@@ -184,7 +184,7 @@ export const comparisons: ComparisonPage[] = [
         quote:
           'factoring, invoice factoring, and asset-based lending are cousins. They both. Or created a revolving line that\'s collateralized by your AR, both can sometimes, oftentimes, also include an add-on piece for inventory, at a lower advance rate, and as a sort of a secondary to the AR, but meaning sometimes it\'s capped at 50% of eligible AR, etc. The difference is factoring is not, it\'s not an actual debt product, it doesn\'t show up on your balance sheet as debt. It is a recurring sale of an asset to the factory… ABL is very similar to that in most respects. They\'re still going to set up a separate lockbox, or a DACA, or a sweep account, but it is a true piece of debt on the balance sheet. It is a line where you supply either a weekly or a monthly borrowing-based certificate.',
         context:
-          'Mike\'s side-by-side framing on the Chuck Wahr / Lowe & Fletcher call — the cleanest plain-English statement of how these two products relate.',
+          'Mike\'s side-by-side framing — the cleanest plain-English statement of how these two products relate.',
       },
       {
         quote:
@@ -203,7 +203,7 @@ export const comparisons: ComparisonPage[] = [
       {
         question: 'Will my customers know I am using factoring or ABL?',
         answer:
-          'Yes, in most structures. Both products set up a lockbox (or a DACA / controlled bank account in the ABL case), and customers receive a notification letter telling them to remit payments to the new account. In practice your AP contact updates the remittance and life goes on — the lender will also place a verification call or two at the start of the relationship to confirm the invoice is real. Mike\'s framing on this exact question, from the Lowe & Fletcher call: "they\'ll make a few phone calls to verify at the very beginning of the relationship… because I can make an invoice today, right, for whatever amount, and it\'s a piece paper, worth nothing."',
+          'Yes, in most structures. Both products set up a lockbox (or a DACA / controlled bank account in the ABL case), and customers receive a notification letter telling them to remit payments to the new account. In practice your AP contact updates the remittance and life goes on — the lender will also place a verification call or two at the start of the relationship to confirm the invoice is real. Mike\'s framing on this exact question: "they\'ll make a few phone calls to verify at the very beginning of the relationship… because I can make an invoice today, right, for whatever amount, and it\'s a piece paper, worth nothing."',
       },
       {
         question: 'Why does factoring not show up as debt?',
@@ -352,19 +352,19 @@ export const comparisons: ComparisonPage[] = [
         quote:
           'there\'s a solid chance that we can get you one of these very, very SBA-like deals, 10-year. You probably wouldn\'t need an SBA. technically an SBA, because, but it\'ll be, there might be priced a point higher, but they\'re still going to be kind of like prime plus a cut, you know?',
         context:
-          'Mike on the Lewis Farsedakis call, explaining the non-bank SBA-like product — same long amortization, slightly higher rate, less paperwork.',
+          'Mike explaining the non-bank SBA-like product — same long amortization, slightly higher rate, less paperwork.',
       },
       {
         quote:
           'I want to explore with several non-bank SBA lenders because they have some more flexibility and potentially find one that, you know, that sees enough value in the business assets of the two businesses combined to be able to do it without, you know, without having to take a lien on any personal properties.',
         context:
-          'Mike on the Frank Tonuzi HVAC-acquisition call, framing how a non-bank SBA lender can sometimes structure around a home lien.',
+          'Mike, on an HVAC-acquisition call, framing how a non-bank SBA lender can sometimes structure around a home lien.',
       },
       {
         quote:
           'I don\'t think we would be trying to beat that from a cost. What we\'re going to deliver is going to be a higher cost of capital, which will come with more flexibility, you know, there\'s no two ways about it.',
         context:
-          'Mike on the Lawson Aschenbach call, being direct about the trade-off when a borrower has a real bank or SBA offer in hand: cheaper bank capital wins on cost, working capital wins on speed and flexibility.',
+          'Mike being direct about the trade-off when a borrower has a real bank or SBA offer in hand: cheaper bank capital wins on cost, working capital wins on speed and flexibility.',
       },
     ],
     faqs: [
@@ -520,13 +520,13 @@ export const comparisons: ComparisonPage[] = [
         quote:
           'there\'s a great lender that we have that does a revolving line and go up to 350k, which is usually one of my gripes about them that I wish they did a bigger… their rate is actually lower, like their true APR rate is like in the mid teens. So it\'s actually even lower than 2% a month.',
         context:
-          'Mike on the Daryl Wakefield call, on the non-bank revenue-based revolver — fast to set up, priced between a bank line and a working capital loan, sized to about 10–15% of annual revenue.',
+          'Mike on the non-bank revenue-based revolver — fast to set up, priced between a bank line and a working capital loan, sized to about 10–15% of annual revenue.',
       },
       {
         quote:
           'In that case, we\'d be looking at more of like a revenue-based – in other words, underwritten cash flows, not tied to a specific asset such as AR, but like a revenue-based revolving line. We have a great lender that will probably qualify you, maybe $100,000 to $150,000, they\'re generally going to go kind of 10% to 15%, maybe pushing 20%, but more like 10% to 15% of annual revenues.',
         context:
-          'Mike on the Schuyler Rooke call, explaining how a revenue-based revolver gets sized when there is no AR to anchor the underwriting.',
+          'Mike explaining how a revenue-based revolver gets sized when there is no AR to anchor the underwriting.',
       },
     ],
     faqs: [
@@ -676,13 +676,13 @@ export const comparisons: ComparisonPage[] = [
         quote:
           'we can get you short-term bridge money to fill orders that you\'re going to pay a higher rate from an annual standpoint than you would like to probably, but when you understand how it\'ll function, because it\'ll function like a line of credit where you can pay it off in two months, and you will have paid a total of 6%, 7% annualized, that sounds horrible, but if it\'s a means to an end until we clean up your balance sheet to go, okay, I\'ll give up 6% on my 66% margin, or whatever it is, these orders out the door to get this moving.',
         context:
-          'Mike on the Lewis Farsedakis call, framing bridge capital as "means to an end" — the rate looks high annualized, but the actual dollar cost over a 60–90 day holding period is small relative to the deal it is enabling.',
+          'Mike framing bridge capital as "means to an end" — the rate looks high annualized, but the actual dollar cost over a 60–90 day holding period is small relative to the deal it is enabling.',
       },
       {
         quote:
           'there\'s a solid chance that we can get you one of these very, very SBA-like deals, 10-year. You probably wouldn\'t need an SBA. technically an SBA, because, but it\'ll be, there might be priced a point higher, but they\'re still going to be kind of like prime plus a cut, you know?',
         context:
-          'Mike on the Lewis call again, framing the non-bank term-loan side — long amortization, slightly higher rate than SBA, but built to live on the balance sheet for years.',
+          'Mike framing the non-bank term-loan side — long amortization, slightly higher rate than SBA, but built to live on the balance sheet for years.',
       },
       {
         quote:
@@ -844,19 +844,19 @@ export const comparisons: ComparisonPage[] = [
         quote:
           'another one would be a term loan against your free and clear equipment, which is called a sale lease back, where you basically, it\'s almost like you\'re selling it back to the lender and then leasing it back from Which is just a fancy way of saying, that\'s how you\'re getting cash out of it. It\'s like, it\'s like they own it now. Which, you know, and that\'s how you get the cash out of it, is if you made a sale, but then you\'re leasing it back until you\'re making lease payments on it over a three or four year period. But that\'s a term note.',
         context:
-          'Mike on the Daryl Wakefield call, giving the cleanest plain-English definition of a sale-leaseback — selling the equipment back to the lender and leasing it back to release the cash trapped in the asset.',
+          'Mike giving the cleanest plain-English definition of a sale-leaseback — selling the equipment back to the lender and leasing it back to release the cash trapped in the asset.',
       },
       {
         quote:
           'you can expect equipment deals, new equipment that you\'re purchasing, you can expect anywhere from, I mean, obviously you can go shorter term and you\'ll get a better rate, but your debt service would be a little higher, so you can go as short as, gosh, 24, 36 months if you want, most cases they live somewhere in the 60 to 84 month range, you know, and again, you can get rates in the single digits, up into the very low, very, very low doubles.',
         context:
-          'Mike on the Chuck Wahr call, framing the term and rate ranges for new-equipment financing — single digits to low double digits, 60–84 months most common.',
+          'Mike framing the term and rate ranges for new-equipment financing — single digits to low double digits, 60–84 months most common.',
       },
       {
         quote:
           'there\'s just a range, you can get really fast and flexible capital, but you\'re going to pay more for it, you\'re going to have something in the middle, like an inventory or asset-based, and then you can have, obviously, real estate also being an asset-based, but, you know, on the real estate side.',
         context:
-          'Mike on the Lawson Aschenbach call, on the general principle that equipment-collateralized capital sits in the middle of the cost spectrum — cheaper than revenue-based, more expensive than real estate.',
+          'Mike on the general principle that equipment-collateralized capital sits in the middle of the cost spectrum — cheaper than revenue-based, more expensive than real estate.',
       },
     ],
     faqs: [

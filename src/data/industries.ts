@@ -120,7 +120,7 @@ export const industries: IndustryPage[] = [
       {
         quote:
           "Invoice Financing is probably your best tool for what you're describing. It's actually not a debt product. It's a recurring sale of an asset. Your receivable is an asset. You've completed the work and you've invoiced the client and the customer and their promise, according to the agreement, is that they'll pay you in 60 days.",
-        context: "Mike explaining factoring mechanics on the Lwany Sarabia call, the cleanest version of his factoring pitch."
+        context: "Mike explaining factoring mechanics — the cleanest version of his factoring pitch."
       },
       {
         quote:
@@ -237,7 +237,7 @@ export const industries: IndustryPage[] = [
       {
         quote:
           "There's only a handful of companies that do medical receivables factoring because it's trickier. There's probably 700 factors in the US and maybe 10 or 15 of them do medical. That's how specialized it is. Insurances won't do what's called an assignment. They won't pay another third party. They have to pay you directly. So they set up typically what's called a DACA account, the control account where the lender has visibility and sweep, but it's still in your name.",
-        context: "Mike explaining medical factoring on the Daryl Wakefield call — the cleanest articulation of why medical AR is its own specialty."
+        context: "Mike explaining medical factoring — the cleanest articulation of why medical AR is its own specialty."
       },
       {
         quote:
@@ -354,7 +354,7 @@ export const industries: IndustryPage[] = [
       {
         quote:
           "Factoring, invoice factoring, and asset-based lending are cousins. They both create a revolving line that's collateralized by your AR. Both can sometimes include an add-on piece for inventory, at a lower advance rate, and as a secondary to the AR. The difference is factoring is not an actual debt product — it doesn't show up on your balance sheet as debt. ABL is very similar in most respects. It is a true piece of debt on the balance sheet.",
-        context: "Mike's framing of the ABL/factoring relationship from the Chuck Wahr (Lowe & Fletcher) call — the cleanest comparison of the two products."
+        context: "Mike's framing of the ABL/factoring relationship — the cleanest comparison of the two products."
       },
       {
         quote:
