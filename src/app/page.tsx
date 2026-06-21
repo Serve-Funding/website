@@ -96,30 +96,6 @@ export default function Home() {
         <HeroCarousel slides={heroSlides} />
       </Section>
 
-      {/* Proof band — crawlable plain text, marked speakable so AI engines extract the numbers */}
-      <Section background="background" className="!py-12">
-        <Container>
-          <div data-speakable className="text-center">
-            <Text size="lg" className="text-gray-700 max-w-3xl mx-auto mb-10">
-              Since <strong>2021</strong>, Serve Funding has facilitated <strong>$50MM+</strong> in working capital — from <strong>$250K to $100MM</strong>, often in <strong>3–10 business days</strong> — as a boutique, channel-neutral advisory based in Atlanta, GA.
-            </Text>
-            <StaggerContainer className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
-              {[
-                { stat: '$50MM+', label: 'Capital facilitated' },
-                { stat: '$250K–$100MM', label: 'Deal range' },
-                { stat: '3–10 days', label: 'Typical funding speed' },
-                { stat: 'Since 2021', label: 'Boutique advisory' },
-              ].map((item) => (
-                <StaggerItem key={item.label} className="text-center">
-                  <div className="text-3xl md:text-4xl font-bold" style={{ color: BRAND_COLORS.secondary }}>{item.stat}</div>
-                  <Text className="text-gray-600 text-sm mt-2">{item.label}</Text>
-                </StaggerItem>
-              ))}
-            </StaggerContainer>
-          </div>
-        </Container>
-      </Section>
-
       {/* Value Props Section */}
       <Section className="!pt-0">
         <Container>
