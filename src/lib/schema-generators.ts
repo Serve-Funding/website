@@ -67,6 +67,20 @@ export const getOrganizationSchema = (config?: {
 })
 
 // ============================================================================
+// WEBSITE SCHEMA (Global - Add to Layout)
+// ============================================================================
+
+export const getWebSiteSchema = () => ({
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://servefunding.com#website",
+  "name": companyInfo.name,
+  "url": "https://servefunding.com",
+  "publisher": { "@id": "https://servefunding.com" },
+  "inLanguage": "en-US"
+})
+
+// ============================================================================
 // FINANCIAL SERVICE SCHEMA (For each funding solution)
 // ============================================================================
 
@@ -379,6 +393,7 @@ export const createSchemaScript = (schema: any) => ({
 
 export default {
   getOrganizationSchema,
+  getWebSiteSchema,
   getFinancialServiceSchema,
   getFAQPageSchema,
   getArticleSchema,

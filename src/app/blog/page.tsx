@@ -17,9 +17,10 @@ import { getBlogPosts } from '@/lib/blog-utils'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Business Growth Funding When Banks Decline',
+  title: 'Business Growth Funding When Banks Decline | Serve Funding',
   description: 'Learn alternative lending strategies when banks decline. Real funding case studies, working capital solutions & expert guides.',
   keywords: 'business funding, alternative lending, working capital strategies, case studies, when banks decline, growth funding',
+  alternates: { canonical: 'https://servefunding.com/blog' },
   openGraph: {
     title: 'Business Growth Funding When Banks Decline',
     description: 'See how real businesses secured funding in 3-10 days when banks declined. Learn alternative lending strategies, explore case studies, and discover creative working capital solutions.',

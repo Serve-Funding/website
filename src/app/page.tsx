@@ -33,6 +33,7 @@ export const metadata: Metadata = {
   title: 'Capital That Serves You | Serve Funding',
   description: 'Trusted working capital advisory. Get funded in 3-10 days with transparency & relationships. Debt refinance, MCA consolidation. $250K-$100MM.',
   keywords: 'working capital, business loans, when banks say no, funding advisory, asset-based lending, invoice factoring, rapid growth funding',
+  alternates: { canonical: 'https://servefunding.com' },
   openGraph: {
     title: 'Capital That Serves You | Serve Funding',
     description: 'Entrepreneurs deserve better. Get funded fast with trusted advisors who prioritize your growth. Debt refinance, MCA consolidation, invoice factoring & working capital solutions in 3-10 days.',
@@ -93,6 +94,30 @@ export default function Home() {
       {/* Hero Section */}
       <Section className="min-h-[80vh] lg:min-h-[65vh]">
         <HeroCarousel slides={heroSlides} />
+      </Section>
+
+      {/* Proof band — crawlable plain text, marked speakable so AI engines extract the numbers */}
+      <Section background="background" className="!py-12">
+        <Container>
+          <div data-speakable className="text-center">
+            <Text size="lg" className="text-gray-700 max-w-3xl mx-auto mb-10">
+              Since <strong>2021</strong>, Serve Funding has facilitated <strong>$50MM+</strong> in capital across <strong>100+ clients</strong>, with a <strong>65% repeat-client rate</strong> — a boutique business-financing advisory based in Atlanta, GA.
+            </Text>
+            <StaggerContainer className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+              {[
+                { stat: '$50MM+', label: 'Capital facilitated' },
+                { stat: '100+', label: 'Clients served' },
+                { stat: '65%', label: 'Repeat-client rate' },
+                { stat: '3–10 days', label: 'Typical funding speed' },
+              ].map((item) => (
+                <StaggerItem key={item.label} className="text-center">
+                  <div className="text-3xl md:text-4xl font-bold" style={{ color: BRAND_COLORS.secondary }}>{item.stat}</div>
+                  <Text className="text-gray-600 text-sm mt-2">{item.label}</Text>
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
+          </div>
+        </Container>
       </Section>
 
       {/* Value Props Section */}
@@ -204,7 +229,7 @@ export default function Home() {
 
           <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
             {fundingSolutions.map((solution) => (
-              <Link key={solution.id} href={`/solutions#${solution.id}`} className="group cursor-pointer block h-full">
+              <Link key={solution.id} href={`/solutions/${solution.id}`} className="group cursor-pointer block h-full">
                 <Card style={{ background: `linear-gradient(to bottom, white, ${BRAND_COLORS.background})` }}>
                   <div className="flex-1">
                     <Heading size="h3" color='primary'>
