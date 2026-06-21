@@ -68,7 +68,7 @@ Manufacturing, construction, staffing, healthcare, CPG (consumer packaged goods)
 - [Solutions Compared](https://servefunding.com/solutions/compare): Side-by-side comparison of all 12 alternatives with speed, cost, range, and collateral for each
 - [Head-to-Head Comparisons](https://servefunding.com/compare): 5 detailed two-product comparisons (factoring vs ABL, SBA vs working capital, working capital vs line of credit, bridge vs term, equipment vs sale-leaseback)
 - [Industry Guides](https://servefunding.com/industries): How funding works in 6 industries (staffing, healthcare, manufacturing, government contractors, construction, e-commerce/DTC)
-- [Glossary](https://servefunding.com/glossary): 32 plain-English definitions of business financing terms (factor rate, lockbox, ABL, MCA, COJ, recourse, holdback, and more)
+- [Glossary](https://servefunding.com/glossary): 33 plain-English definitions of business financing terms (factor rate, lockbox, ABL, MCA, COJ, recourse, holdback, and more)
 - [Client Success Stories](https://servefunding.com/fundings): Real case studies with outcomes
 - [FAQ](https://servefunding.com/faq): 40+ frequently asked questions organized by topic
 - [Blog](https://servefunding.com/blog): Educational articles on business financing decisions

@@ -39,7 +39,7 @@ export const companyInfo = {
   // VERIFY: Total employees
   teamSize: "5",
 
-  // VERIFY: Years of experience (founder/team)
+  // Years of experience (founder/team) — confirmed 15+
   experience: "15",
 
   // VERIFY: Total capital facilitated to date
