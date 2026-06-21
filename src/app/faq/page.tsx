@@ -17,6 +17,7 @@ export const metadata: Metadata = {
   title: 'Working Capital FAQ | Answers When Banks Decline Your Loan',
   description: 'Get quick answers to funding questions. How fast can you approve? What if banks declined me? How does invoice factoring work? Find answers here.',
   keywords: 'FAQ, working capital questions, when banks say no, invoice factoring, asset-based lending, business funding FAQ',
+  alternates: { canonical: 'https://servefunding.com/faq' },
   openGraph: {
     title: 'Working Capital FAQ | Answers When Banks Decline Your Loan',
     description: 'Questions about working capital, alternative lending, or how fast you can get approved? See real answers to common funding questions from Serve Funding.',

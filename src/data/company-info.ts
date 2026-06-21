@@ -39,10 +39,10 @@ export const companyInfo = {
   // VERIFY: Total employees
   teamSize: "5",
 
-  // VERIFY: Years of experience (founder/team)
+  // Years of experience (founder/team) — confirmed 15+
   experience: "15",
 
-  // VERIFY: Total capital facilitated to date
+  // $50MM+ confirmed (~$74MM actual); clients served & repeat rate NOT yet founder-verified
   metrics: {
     totalCapitalFacilitated: "$50MM+",
     averageDealSize: "$500K - $3.35MM",

@@ -53,7 +53,7 @@ export default function CompareIndexPage() {
             <Text className="text-gray-600">
               Each comparison walks through the structural difference, when each
               option fits, what it costs, and how Michael Kodinsky thinks about the
-              decision after 20+ years arranging both. For a full side-by-side of
+              decision after 15+ years arranging both. For a full side-by-side of
               all 12 funding alternatives, see the{' '}
               <Link
                 href="/solutions/compare"

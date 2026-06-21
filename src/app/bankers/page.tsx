@@ -18,7 +18,7 @@ const INTRO_EMAIL_SUBJECT = 'Quick intro — a financing advisory I trust'
 const INTRO_EMAIL_BODY = [
   'Hi [name],',
   '',
-  "Wanted to put a name in front of you. Serve Funding is a family-owned business financing advisory I work with when a deal doesn't fit our credit box. They're not a direct lender — think of them more like your advocate to the non-bank lending world. Channel-neutral, product-neutral, 20+ years doing this.",
+  "Wanted to put a name in front of you. Serve Funding is a family-owned business financing advisory I work with when a deal doesn't fit our credit box. They're not a direct lender — think of them more like your advocate to the non-bank lending world. Channel-neutral, product-neutral, 15+ years doing this.",
   '',
   'A few things worth knowing up front:',
   "  •  Your accounts stay with us — they don't take deposits.",
@@ -86,7 +86,7 @@ const bankerFaqs = [
   },
   {
     q: "What do I tell my client when I refer them?",
-    a: 'Something like: "Our credit team can\'t get this done in our box, but I know a financing advisory that works with bankers exactly like us. They\'ll shop the deal across an extensive network of alternative lenders and bring back honest options. They don\'t take your deposits — your accounts stay with us — and they\'ve been doing this 20+ years. The first call is 20 minutes and they\'ll tell you straight whether they can help. Here\'s the link." Then send servefunding.com/discover or servefunding.com/bankers (whichever feels right). We take it from there.',
+    a: 'Something like: "Our credit team can\'t get this done in our box, but I know a financing advisory that works with bankers exactly like us. They\'ll shop the deal across an extensive network of alternative lenders and bring back honest options. They don\'t take your deposits — your accounts stay with us — and they\'ve been doing this 15+ years. The first call is 20 minutes and they\'ll tell you straight whether they can help. Here\'s the link." Then send servefunding.com/discover or servefunding.com/bankers (whichever feels right). We take it from there.',
   },
   {
     q: "How fast do you fund?",
@@ -448,7 +448,7 @@ export default function ForBankersPage() {
               <Link href="/glossary" className="block">
                 <Card padding="sm">
                   <div className="font-semibold text-olive-900 mb-1">Glossary</div>
-                  <Text size="sm" className="text-gray-600">32 plain-English definitions of terms your client might encounter on a term sheet.</Text>
+                  <Text size="sm" className="text-gray-600">33 plain-English definitions of terms your client might encounter on a term sheet.</Text>
                 </Card>
               </Link>
             </div>

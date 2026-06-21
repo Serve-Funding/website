@@ -3,9 +3,10 @@ import { SolutionsClient } from './client'
 import { Breadcrumb } from '@/components/breadcrumb'
 
 export const metadata: Metadata = {
-  title: "Funding Solutions When Banks Decline",
+  title: "Funding Solutions When Banks Decline | Serve Funding",
   description: 'Explore 10+ funding solutions: asset-based lending, invoice factoring, PO funding & more. Fast approval in 3-10 days. $250K-$100MM.',
   keywords: "when banks say no, alternative funding, asset-based lending, invoice factoring, business loans, working capital, MCA consolidation, equipment leasing",
+  alternates: { canonical: 'https://servefunding.com/solutions' },
   openGraph: {
     title: "Funding Solutions When Banks Decline",
     description: "See all 10+ funding options. Asset-based lending, invoice factoring, PO funding, equipment leasing, government contracts, and more. Get approved in 3-10 days. $250K-$100MM.",

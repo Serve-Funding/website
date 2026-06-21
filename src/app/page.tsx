@@ -33,6 +33,7 @@ export const metadata: Metadata = {
   title: 'Capital That Serves You | Serve Funding',
   description: 'Trusted working capital advisory. Get funded in 3-10 days with transparency & relationships. Debt refinance, MCA consolidation. $250K-$100MM.',
   keywords: 'working capital, business loans, when banks say no, funding advisory, asset-based lending, invoice factoring, rapid growth funding',
+  alternates: { canonical: 'https://servefunding.com' },
   openGraph: {
     title: 'Capital That Serves You | Serve Funding',
     description: 'Entrepreneurs deserve better. Get funded fast with trusted advisors who prioritize your growth. Debt refinance, MCA consolidation, invoice factoring & working capital solutions in 3-10 days.',
@@ -204,7 +205,7 @@ export default function Home() {
 
           <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
             {fundingSolutions.map((solution) => (
-              <Link key={solution.id} href={`/solutions#${solution.id}`} className="group cursor-pointer block h-full">
+              <Link key={solution.id} href={`/solutions/${solution.id}`} className="group cursor-pointer block h-full">
                 <Card style={{ background: `linear-gradient(to bottom, white, ${BRAND_COLORS.background})` }}>
                   <div className="flex-1">
                     <Heading size="h3" color='primary'>
