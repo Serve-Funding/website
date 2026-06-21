@@ -47,6 +47,7 @@ export async function generateMetadata({ params }: SolutionDetailPageProps): Pro
   return {
     title: `${metaTitle} | Serve Funding`,
     description: solution.shortDesc,
+    alternates: { canonical: `https://servefunding.com/solutions/${solution.id}` },
     openGraph: {
       title: `${metaTitle} | Serve Funding`,
       description: solution.shortDesc,

@@ -44,6 +44,20 @@ const formatDate = (dateString: string) => {
   })
 }
 
+// Strip Markdoc/markdown to plain text so the BlogPosting schema's articleBody
+// carries the real article (tables, stats, worked examples) AI engines extract,
+// not just the one-sentence excerpt.
+const toPlainText = (markdown: string): string =>
+  markdown
+    .replace(/\{%[\s\S]*?%\}/g, ' ')         // markdoc tags
+    .replace(/```[\s\S]*?```/g, ' ')          // code fences
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, ' ')    // images
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')  // links -> anchor text
+    .replace(/[#>*_`|]/g, ' ')                // markdown symbols
+    .replace(/\s+/g, ' ')
+    .trim()
+    .slice(0, 5000)
+
 export async function generateMetadata({ params }: Props) {
   const { 'blog-id': blogId } = await params
   const blogPost = getBlogPost(blogId)
@@ -62,6 +76,7 @@ export async function generateMetadata({ params }: Props) {
   return {
     title: `${blogPost.title} | Serve Funding`,
     description: blogPost.excerpt,
+    alternates: { canonical: `https://servefunding.com/blog/${blogPost.id}` },
     openGraph: {
       title: blogPost.title,
       description: blogPost.excerpt,
@@ -105,7 +120,7 @@ export default async function BlogPost({ params }: Props) {
       name: blogPost.author,
       url: 'https://servefunding.com/about-us'
     },
-    content: blogPost.excerpt
+    content: toPlainText(blogPost.content)
   })
 
   return (
@@ -171,7 +186,7 @@ export default async function BlogPost({ params }: Props) {
               {blogPost.relatedSolutions.map((solutionId) => {
                 const solution = fundingSolutions.find(s => s.id === solutionId)
                 return solution ? (
-                  <Link key={solutionId} href={`/solutions#${solutionId}`} className="group">
+                  <Link key={solutionId} href={`/solutions/${solutionId}`} className="group">
                     <Card padding="md">
                       <Heading size="h3" className="mb-3 text-olive-900 group-hover:text-gold-500 transition-colors">
                         {solution.title}

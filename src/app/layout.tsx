@@ -9,8 +9,7 @@ import { UmamiRouteTracker } from "@/components/UmamiRouteTracker"
 import { PerformanceMonitor } from "@/components/PerformanceMonitor"
 import Script from "next/script"
 import { SchemaRenderer } from "@/components/SchemaRenderer"
-import { getOrganizationSchema } from "@/lib/schema-generators"
-import { fundingCases } from "@/data/fundingData"
+import { getOrganizationSchema, getWebSiteSchema } from "@/lib/schema-generators"
 import "@/app/globals.css"
 import { Montserrat } from 'next/font/google'
 import { Chatbot, NewsletterModalLazy } from "@/components/LazyComponents"
@@ -29,6 +28,7 @@ const montserrat = Montserrat({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://servefunding.com"),
   title: "Serve Funding - Creative Working Capital | $250K-$100MM",
   description: "Alternative working capital and funding solutions from $250K-$100MM. Debt refinance, payroll, MCA consolidation, and more when traditional banks decline.",
   keywords: "debt refinance, payroll financing, mca consolidation, when banks say no, alternative business financing, asset-based lending, invoice factoring, channel neutral advisor, boutique lender",
@@ -47,10 +47,10 @@ export const metadata: Metadata = {
       },
     ],
   },
+  // No static title/description here — Next derives the Twitter card from each
+  // page's openGraph, so every page gets a content-specific card automatically.
   twitter: {
     card: "summary_large_image",
-    title: "Serve Funding - Working Capital Solutions for Growing Businesses",
-    description: "Creative working capital solutions from $250K to $100MM. Asset-based lending, invoice factoring, equipment leasing, and more for entrepreneurs.",
   },
   robots: "index, follow",
 }
@@ -73,17 +73,9 @@ export default async function RootLayout({
   return (
     <html lang="en" className={montserrat.variable}>
       <head>
-        {/* Schema Markup — Organization with aggregateRating sourced from case studies
-            (each case ships 5-star Review schema on /fundings, so the count matches reality) */}
-        <SchemaRenderer
-          schema={getOrganizationSchema({
-            aggregateRating: {
-              ratingValue: 5,
-              reviewCount: fundingCases.length,
-            },
-          })}
-          nonce={nonce}
-        />
+        {/* Site-wide entity schema: Organization + WebSite */}
+        <SchemaRenderer schema={getOrganizationSchema()} nonce={nonce} />
+        <SchemaRenderer schema={getWebSiteSchema()} nonce={nonce} />
 
         {/* Preconnect to critical third-party origins for LCP improvement */}
         {process.env.NEXT_PUBLIC_UMAMI_SCRIPT_URL && (

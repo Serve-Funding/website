@@ -25,6 +25,7 @@ export const metadata: Metadata = {
   title: 'Partner With Serve Funding | Bankers, CPAs, CFOs & Advisors',
   description: 'Partner with Serve Funding to offer your clients $250K-$100MM in alternative funding. Built for commercial bankers, CPAs, CFOs, and advisors.',
   keywords: 'partner with us, commercial bankers, fractional CFO, investment bankers, referral partnership, business advisors',
+  alternates: { canonical: 'https://servefunding.com/partners' },
   openGraph: {
     title: 'Partner With Serve Funding | Bankers, CPAs, CFOs & Advisors',
     description: 'Grow your practice by partnering with Serve Funding. Offer your clients access to $250K-$100MM in alternative funding solutions. For bankers, CPAs, CFOs, and advisors.',

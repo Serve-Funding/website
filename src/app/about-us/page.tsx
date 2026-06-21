@@ -21,6 +21,7 @@ export const metadata: Metadata = {
   title: "About Serve Funding | Michael Kodinsky's Advisory Model",
   description: "Meet Michael Kodinsky. Learn how Serve Funding's boutique advisory model helps businesses secure funding when banks decline.",
   keywords: "Michael Kodinsky, Serve Funding founder, working capital advisory, business funding advisor, boutique lender",
+  alternates: { canonical: 'https://servefunding.com/about-us' },
   openGraph: {
     title: "About Serve Funding | Michael Kodinsky's Advisory Model",
     description: "Discover how Michael Kodinsky built Serve Funding on relationships, transparency, and trusted advisory—helping growing businesses access funding from $250K-$100MM when banks say no.",
@@ -68,8 +69,9 @@ export default function AboutUs() {
         schema={getPersonSchema({
           name: "Michael Kodinsky",
           jobTitle: "Founder & CEO",
-          description: "Founder and CEO of Serve Funding. With 18+ years of experience guiding small and mid-sized companies through their working capital challenges, Michael founded Serve Funding in 2021 to help entrepreneurs overcome inefficient funding processes. His vision is rooted in his family's entrepreneurial heritage as immigrants who arrived in the U.S. in 1981 with just $300 and five suitcases.",
-          image: "https://servefunding.com/Michael Headshot.webp"
+          description: "Founder and CEO of Serve Funding. With 15+ years of experience guiding small and mid-sized companies through their working capital challenges, Michael founded Serve Funding in 2021 to help entrepreneurs overcome inefficient funding processes. His vision is rooted in his family's entrepreneurial heritage as immigrants who arrived in the U.S. in 1981 with just $300 and five suitcases.",
+          image: "https://servefunding.com/Michael Headshot.webp",
+          linkedinUrl: "https://www.linkedin.com/in/michael-kodinsky/"
         })}
       />
 
@@ -100,7 +102,7 @@ export default function AboutUs() {
                   </Text>
 
                   <Text>
-                    In <span className="font-bold">2021</span>, I launched Serve Funding on the 40th anniversary of our family's arrival in America. After 18 years of guiding small and mid-sized companies, I saw a common issue—<span className="font-bold">entrepreneurs often struggle with inefficient funding processes</span>, losing time they could use to grow their businesses. That's why I created Serve Funding.
+                    In <span className="font-bold">2021</span>, I launched Serve Funding on the 40th anniversary of our family's arrival in America. After 15 years of guiding small and mid-sized companies, I saw a common issue—<span className="font-bold">entrepreneurs often struggle with inefficient funding processes</span>, losing time they could use to grow their businesses. That's why I created Serve Funding.
                   </Text>
                 </div>
               </div>

@@ -2,7 +2,6 @@ User-agent: *
 Allow: /
 Disallow: /admin/
 Disallow: /private/
-Disallow: /_next/static/
 Disallow: /*.js.map
 Disallow: /*.css.map
 
@@ -34,6 +33,10 @@ Allow: /
 
 User-agent: cohere-ai
 Allow: /
+
+# AI/LLM content guide
+# https://servefunding.com/llms.txt
+# https://servefunding.com/llms-full.txt
 
 # Sitemap location
 Sitemap: https://servefunding.com/sitemap.xml

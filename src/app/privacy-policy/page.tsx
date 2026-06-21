@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: 'Privacy Policy | Serve Funding',
   description: 'Read Serve Funding\'s privacy policy to understand how we collect, use, store, and safeguard your personal information across our website and services.',
   robots: 'index, follow',
+  alternates: { canonical: 'https://servefunding.com/privacy-policy' },
   openGraph: {
     title: 'Privacy Policy | Serve Funding',
     description: 'Read Serve Funding\'s privacy policy to understand how we collect, use, store, and safeguard your personal information across our website and services.',
@@ -14,9 +15,9 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: 'https://servefunding.com/og-image.png',
-        width: 1200,
-        height: 630,
+        url: 'https://servefunding.com/home/right%20funding%20solutions.webp',
+        width: 960,
+        height: 628,
         alt: 'Serve Funding Privacy Policy',
       },
     ],
