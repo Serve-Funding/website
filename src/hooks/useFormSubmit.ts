@@ -25,6 +25,7 @@ export interface FormSubmitData {
   company_state?: string
   calendly_url?: string
   triage_action?: string
+  sms_consent?: string
 }
 
 export function useFormSubmit(
