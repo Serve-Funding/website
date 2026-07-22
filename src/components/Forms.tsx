@@ -200,6 +200,7 @@ export function DealInquiryForm({
     email,
     phone,
     company,
+    smsConsent,
     success,
     formData,
     getFieldValue,
@@ -417,9 +418,21 @@ export function DealInquiryForm({
                   onInput={(e) => setFieldValue('phone', e.currentTarget.value)}
                   placeholder="(555) 123-4567"
                 />
-                <Text className="text-xs text-gray-400 mt-1.5 ml-1">
-                  Don&#39;t worry, we don&#39;t spam.
-                </Text>
+                <label className="flex items-start gap-2 mt-3 ml-1 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={smsConsent}
+                    onChange={(e) => setFieldValue('sms_consent', e.currentTarget.checked)}
+                    className="mt-0.5 h-4 w-4 shrink-0 accent-olive-900 cursor-pointer"
+                  />
+                  <Text className="text-xs text-gray-500">
+                    I agree to receive text messages from Serve Funding about my inquiry. Message
+                    frequency varies; message and data rates may apply. Reply STOP to cancel. See our{' '}
+                    <a href="/privacy-policy" className="underline hover:text-gray-700" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+                    {' '}and{' '}
+                    <a href="/sms-terms" className="underline hover:text-gray-700" target="_blank" rel="noopener noreferrer">SMS Terms</a>.
+                  </Text>
+                </label>
               </div>
 
               <div className="flex items-center gap-3 mt-4">
@@ -468,6 +481,7 @@ export function DealInquiryForm({
           <input type="hidden" name="email" value={email} />
           <input type="hidden" name="phone" value={phone} />
           <input type="hidden" name="company" value={company} />
+          <input type="hidden" name="sms_consent" value={smsConsent ? 'yes' : 'no'} />
           {/* Hidden inputs for "other" responses */}
           {Object.entries(otherResponses).map(([fieldId, value]) => (
             <input key={fieldId} type="hidden" name={fieldId} value={String(value)} />

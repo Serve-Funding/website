@@ -103,7 +103,7 @@ function OptionPill({ label, isSelected, onClick, disabled }: {
 
 function ContactInfoFields({
   isPartner,
-  name, email, phone, company,
+  name, email, phone, company, smsConsent,
   setFieldValue,
   onContinue,
 }: {
@@ -112,6 +112,7 @@ function ContactInfoFields({
   email: string
   phone: string
   company: string
+  smsConsent: boolean
   setFieldValue: (id: string, value: any) => void
   onContinue: () => void
 }) {
@@ -157,6 +158,22 @@ function ContactInfoFields({
             }}
           />
         ))}
+        <label style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', marginLeft: '4px', cursor: 'pointer' }}>
+          <input
+            type="checkbox"
+            name="sms_consent_field"
+            checked={smsConsent}
+            onChange={(e) => setFieldValue('sms_consent', e.target.checked)}
+            style={{ marginTop: '2px', width: '16px', height: '16px', flexShrink: 0, cursor: 'pointer' }}
+          />
+          <span style={{ fontSize: '12px', color: '#9ca3af' }}>
+            I agree to receive text messages from Serve Funding about my inquiry. Message frequency
+            varies; message and data rates may apply. Reply STOP to cancel. See our{' '}
+            <a href="/privacy-policy" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'underline', color: 'inherit' }}>Privacy Policy</a>
+            {' '}and{' '}
+            <a href="/sms-terms" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'underline', color: 'inherit' }}>SMS Terms</a>.
+          </span>
+        </label>
         <p style={{ fontSize: '12px', color: '#9ca3af', marginLeft: '4px' }}>We respect your privacy. No spam, ever.</p>
       </div>
 
@@ -187,6 +204,7 @@ export function ConversationalForm({ initialRole, onComplete }: ConversationalFo
     email,
     phone,
     company,
+    smsConsent,
     success,
     showChoicePoint,
     chosenPath,
@@ -498,6 +516,7 @@ export function ConversationalForm({ initialRole, onComplete }: ConversationalFo
                 email={email}
                 phone={phone}
                 company={company}
+                smsConsent={smsConsent}
                 setFieldValue={setFieldValue}
                 onContinue={handleContactInfoContinue}
               />

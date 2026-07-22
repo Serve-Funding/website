@@ -5,12 +5,12 @@ import { COLORS as BRAND_COLORS } from '@/lib/colors'
 
 export const metadata: Metadata = {
   title: 'Terms of Service | Serve Funding',
-  description: 'Terms and conditions governing your use of Serve Funding\'s website, services, and financial advisory offerings. Last updated September 2024.',
+  description: 'Terms and conditions governing your use of Serve Funding\'s website, services, and financial advisory offerings. Last updated July 2026.',
   robots: 'index, follow',
   alternates: { canonical: 'https://servefunding.com/terms-of-service' },
   openGraph: {
     title: 'Terms of Service | Serve Funding',
-    description: 'Terms and conditions governing your use of Serve Funding\'s website, services, and financial advisory offerings. Last updated September 2024.',
+    description: 'Terms and conditions governing your use of Serve Funding\'s website, services, and financial advisory offerings. Last updated July 2026.',
     url: 'https://servefunding.com/terms-of-service',
     type: 'website',
     images: [
@@ -38,7 +38,7 @@ export default function TermsOfService() {
               Terms of Service
             </Heading>
             <Text size="2xl" className="text-white/90 max-w-3xl">
-              Last Updated: September 8, 2024
+              Last Updated: July 22, 2026
             </Text>
           </div>
         </Container>
@@ -129,6 +129,21 @@ export default function TermsOfService() {
               </Text>
               <Text className="text-gray-700">
                 <strong>Indemnification:</strong> You agree to indemnify and hold harmless Serve Funding from any claims, damages, or costs arising from your violation of these Terms of Service or your use of our services.
+              </Text>
+            </div>
+
+            {/* SMS/Text Messaging */}
+            <div className="mb-12">
+              <Heading size="h2" className="text-olive-900 mb-4">
+                SMS/Text Messaging
+              </Heading>
+              <Text className="text-gray-700 mb-4">
+                If you opt in to receive text messages from Serve Funding, we may send you conversational SMS messages related to your inquiry, funding request, appointment scheduling, and customer care. Message frequency varies. Message and data rates may apply. You can opt out at any time by replying <strong>STOP</strong>, or reply <strong>HELP</strong> for assistance. Carriers are not liable for delayed or undelivered messages.
+              </Text>
+              <Text className="text-gray-700">
+                Consent to receive text messages is not a condition of receiving our services. Mobile phone numbers and SMS opt-in consent are never sold, rented, or shared with third parties or affiliates for marketing or promotional purposes. For complete details, please review our{' '}
+                <a href="/sms-terms" className="text-olive-900 underline hover:text-olive-700">SMS Terms of Service</a>
+                {' '}and <a href="/privacy-policy" className="text-olive-900 underline hover:text-olive-700">Privacy Policy</a>.
               </Text>
             </div>
 

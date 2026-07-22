@@ -38,7 +38,7 @@ export default function PrivacyPolicy() {
               Privacy Policy
             </Heading>
             <Text size="2xl" className="text-white/90 max-w-3xl">
-              Last Updated: September 8, 2024
+              Last Updated: July 22, 2026
             </Text>
           </div>
         </Container>
@@ -164,15 +164,36 @@ export default function PrivacyPolicy() {
               <Heading size="h4" className="text-olive-800 mb-3">
                 Business Transfers
               </Heading>
-              <Text className="text-gray-700">
+              <Text className="text-gray-700 mb-6">
                 If Serve Funding is involved in a merger, acquisition, bankruptcy, or sale of assets, your information may be transferred as part of that transaction. We will provide notice before your information becomes subject to a different privacy policy.
+              </Text>
+
+              <Text className="text-gray-700">
+                Notwithstanding the above, mobile phone numbers and SMS opt-in consent are excluded from any sharing for marketing purposes and are handled as described in the &quot;Mobile Information &amp; SMS Messaging&quot; section below.
+              </Text>
+            </div>
+
+            {/* Mobile Information & SMS Messaging */}
+            <div className="mb-12" id="sms-terms">
+              <Heading size="h2" className="text-olive-900 mb-4">
+                4. Mobile Information &amp; SMS Messaging
+              </Heading>
+              <Text className="text-gray-700 mb-4">
+                <strong>Mobile phone numbers and SMS/text-messaging opt-in consent are never sold, rented, or shared with third parties or affiliates for their own marketing or promotional purposes.</strong> This restriction applies regardless of any other sharing described in this Policy — including our sharing of application information with lenders, financial institutions, and funding partners to service your financing request.
+              </Text>
+              <Text className="text-gray-700 mb-4">
+                We may share mobile information only with service providers who help us operate our messaging service (for example, our telephony provider, Dialpad), solely to deliver the service and under obligations of confidentiality. All text-messaging opt-in data and consent records are kept confidential and are not transferred to any third-party marketers.
+              </Text>
+              <Text className="text-gray-700">
+                Message frequency varies. Message and data rates may apply. Reply <strong>STOP</strong> to opt out of text messages at any time, or <strong>HELP</strong> for assistance. For full details, see our{' '}
+                <a href="/sms-terms" className="text-olive-900 underline hover:text-olive-700">SMS Terms of Service</a>.
               </Text>
             </div>
 
             {/* Data Security */}
             <div className="mb-12">
               <Heading size="h2" className="text-olive-900 mb-4">
-                4. Data Security
+                5. Data Security
               </Heading>
               <Text className="text-gray-700 mb-4">
                 We implement appropriate technical and organizational measures to protect your personal information from unauthorized access, alteration, disclosure, or destruction. These security measures include:
@@ -191,7 +212,7 @@ export default function PrivacyPolicy() {
             {/* Your Privacy Rights */}
             <div className="mb-12">
               <Heading size="h2" className="text-olive-900 mb-4">
-                5. Your Privacy Rights
+                6. Your Privacy Rights
               </Heading>
               <Text className="text-gray-700 mb-4">
                 Depending on your location and applicable laws, you may have the following rights regarding your personal information:
@@ -233,7 +254,7 @@ export default function PrivacyPolicy() {
             {/* Cookies & Tracking */}
             <div className="mb-12">
               <Heading size="h2" className="text-olive-900 mb-4">
-                6. Cookies & Tracking Technologies
+                7. Cookies & Tracking Technologies
               </Heading>
               <Text className="text-gray-700 mb-4">
                 Our website uses cookies and similar tracking technologies to:
@@ -252,7 +273,7 @@ export default function PrivacyPolicy() {
             {/* Third-Party Links */}
             <div className="mb-12">
               <Heading size="h2" className="text-olive-900 mb-4">
-                7. Third-Party Links
+                8. Third-Party Links
               </Heading>
               <Text className="text-gray-700">
                 Our website may contain links to third-party websites. This Privacy Policy applies only to our website. We are not responsible for the privacy practices of other websites. We encourage you to review the privacy policies of any third-party sites before providing your information.
@@ -262,7 +283,7 @@ export default function PrivacyPolicy() {
             {/* Children's Privacy */}
             <div className="mb-12">
               <Heading size="h2" className="text-olive-900 mb-4">
-                8. Children's Privacy
+                9. Children's Privacy
               </Heading>
               <Text className="text-gray-700">
                 Our website and services are not intended for children under the age of 18. We do not knowingly collect personal information from children. If we become aware that a child has provided us with personal information, we will take steps to delete such information and terminate the child's access to our services.
@@ -272,7 +293,7 @@ export default function PrivacyPolicy() {
             {/* Policy Updates */}
             <div className="mb-12">
               <Heading size="h2" className="text-olive-900 mb-4">
-                9. Updates to This Privacy Policy
+                10. Updates to This Privacy Policy
               </Heading>
               <Text className="text-gray-700 mb-4">
                 We may update this Privacy Policy from time to time to reflect changes in our practices or for other operational, legal, or regulatory reasons. We will notify you of any material changes by posting the updated Privacy Policy on our website with a new "Last Updated" date.
@@ -285,7 +306,7 @@ export default function PrivacyPolicy() {
             {/* Contact Us */}
             <div className="mb-12">
               <Heading size="h2" className="text-olive-900 mb-4">
-                10. Contact Us
+                11. Contact Us
               </Heading>
               <Text className="text-gray-700 mb-4">
                 If you have questions about this Privacy Policy, wish to exercise your privacy rights, or have concerns about our privacy practices, please contact us at:

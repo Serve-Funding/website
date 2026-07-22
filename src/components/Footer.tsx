@@ -76,6 +76,7 @@ export function Footer() {
                 <Heading size="h3" className="text-olive-900 font-bold mb-6">Legal</Heading>
                 <div className="space-y-3 flex flex-col mb-6">
                   <Link href="/privacy-policy" className="text-olive-900 hover:text-gold-500 transition-colors">Privacy Policy</Link>
+                  <Link href="/sms-terms" className="text-olive-900 hover:text-gold-500 transition-colors">SMS Terms</Link>
                   <Link href="/terms-of-service" className="text-olive-900 hover:text-gold-500 transition-colors">Terms of Service</Link>
                 </div>
                 <SocialIcons />

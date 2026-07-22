@@ -79,6 +79,7 @@ export function useDealInquiryForm(
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
   const [company, setCompany] = useState('')
+  const [smsConsent, setSmsConsent] = useState(false)
 
   // Dynamic "other" field responses (for single_with_other questions)
   const [otherResponses, setOtherResponses] = useState<Record<string, string>>({})
@@ -120,6 +121,7 @@ export function useDealInquiryForm(
       case 'email': return email
       case 'phone': return phone
       case 'company': return company
+      case 'sms_consent': return smsConsent ? 'yes' : ''
       default: return ''
     }
   }
@@ -145,6 +147,7 @@ export function useDealInquiryForm(
       case 'email': setEmail(value); break
       case 'phone': setPhone(value); break
       case 'company': setCompany(value); break
+      case 'sms_consent': setSmsConsent(Boolean(value)); break
     }
   }
 
@@ -157,6 +160,7 @@ export function useDealInquiryForm(
     financing_needs: financingNeeds,
     funding_amount: fundingAmount,
     owner_credit_score: ownerCreditScore,
+    sms_consent: smsConsent ? 'yes' : 'no',
   })
 
   // Helper to send data to webhooks
@@ -514,6 +518,7 @@ export function useDealInquiryForm(
       email,
       phone,
       company,
+      sms_consent: smsConsent ? 'yes' : 'no',
       user_role: userRole,
       business_industry: businessIndustry,
       time_in_business: timeInBusiness,
@@ -612,6 +617,7 @@ export function useDealInquiryForm(
     email,
     phone,
     company,
+    smsConsent,
     success,
     formData,
     triageAction,

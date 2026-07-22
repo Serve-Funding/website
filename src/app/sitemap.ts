@@ -27,6 +27,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/faq',
     '/blog',
     '/privacy-policy',
+    '/sms-terms',
     '/terms-of-service',
   ].map((route) => ({
     url: `${baseUrl}${route}`,
