@@ -168,83 +168,32 @@ export default function PrivacyPolicy() {
                 If Serve Funding is involved in a merger, acquisition, bankruptcy, or sale of assets, your information may be transferred as part of that transaction. We will provide notice before your information becomes subject to a different privacy policy.
               </Text>
 
-              <Heading size="h4" className="text-olive-800 mb-3">
-                Mobile Information
-              </Heading>
               <Text className="text-gray-700">
-                No mobile information will be shared with third parties or affiliates for marketing or promotional purposes. All the above categories exclude text messaging originator opt-in data and consent; this information will not be shared with, or sold to, any third parties.
+                Notwithstanding the above, mobile phone numbers and SMS opt-in consent are excluded from any sharing for marketing purposes and are handled as described in the &quot;Mobile Information &amp; SMS Messaging&quot; section below.
               </Text>
             </div>
 
-            {/* SMS/Text Messaging & Mobile Information */}
-            <div className="mb-12">
-              <Heading size="h2" className="text-olive-900 mb-4">
-                4. SMS/Text Messaging &amp; Mobile Information
-              </Heading>
-              <Text className="text-gray-700 mb-4">
-                If you provide us with your mobile phone number and consent to receive text messages, we may communicate with you by SMS/text message regarding your inquiry — for example, to respond to your questions, provide updates on your funding request, schedule or confirm calls, and provide customer care.
-              </Text>
-              <Text className="text-gray-700 mb-4">
-                Your mobile phone number and your consent to receive text messages are used solely to communicate with you. We do not use your mobile information for unsolicited marketing, and we do not share or sell your mobile phone number, SMS opt-in status, or SMS consent data to third parties or affiliates for marketing or promotional purposes.
-              </Text>
-              <Text className="text-gray-700">
-                You may withdraw your consent and stop receiving text messages from us at any time by replying <strong>STOP</strong> to any message. Full details are provided in the SMS Terms &amp; Conditions below.
-              </Text>
-            </div>
-
-            {/* SMS Terms & Conditions */}
+            {/* Mobile Information & SMS Messaging */}
             <div className="mb-12" id="sms-terms">
               <Heading size="h2" className="text-olive-900 mb-4">
-                5. SMS Terms &amp; Conditions
+                4. Mobile Information &amp; SMS Messaging
               </Heading>
-
-              <Heading size="h4" className="text-olive-800 mb-3">
-                Program Description
-              </Heading>
-              <Text className="text-gray-700 mb-6">
-                Serve Funding, LLC sends conversational SMS/text messages to clients and prospective clients who have opted in to receive them. Messages may include responses to your inquiries, updates about your funding request or application status, appointment scheduling and confirmations, and related customer care. We do not send recurring automated marketing messages.
+              <Text className="text-gray-700 mb-4">
+                <strong>Mobile phone numbers and SMS/text-messaging opt-in consent are never sold, rented, or shared with third parties or affiliates for their own marketing or promotional purposes.</strong> This restriction applies regardless of any other sharing described in this Policy — including our sharing of application information with lenders, financial institutions, and funding partners to service your financing request.
               </Text>
-
-              <Heading size="h4" className="text-olive-800 mb-3">
-                Opt-In &amp; Consent
-              </Heading>
-              <Text className="text-gray-700 mb-6">
-                You opt in to receive text messages from us by checking the SMS consent box on one of our website forms, by texting us first, or by otherwise providing your mobile phone number and expressly agreeing to receive text messages. Consent to receive text messages is not a condition of receiving any of our services.
+              <Text className="text-gray-700 mb-4">
+                We may share mobile information only with service providers who help us operate our messaging service (for example, our telephony provider, Dialpad), solely to deliver the service and under obligations of confidentiality. All text-messaging opt-in data and consent records are kept confidential and are not transferred to any third-party marketers.
               </Text>
-
-              <Heading size="h4" className="text-olive-800 mb-3">
-                Opt-Out / Cancellation
-              </Heading>
-              <Text className="text-gray-700 mb-6">
-                You can cancel the SMS service at any time by replying <strong>STOP</strong> to any text message from us. After you send STOP, we will send you a one-time SMS message to confirm that you have been unsubscribed, and you will no longer receive SMS messages from us. If you want to rejoin, you can opt in again through one of our website forms or by texting us.
-              </Text>
-
-              <Heading size="h4" className="text-olive-800 mb-3">
-                Help &amp; Support
-              </Heading>
-              <Text className="text-gray-700 mb-6">
-                If you are experiencing issues with the messaging program, reply with the keyword <strong>HELP</strong> for assistance, or contact us directly at michael@servefunding.com or +1 (770) 820-7409.
-              </Text>
-
-              <Heading size="h4" className="text-olive-800 mb-3">
-                Message Frequency, Rates &amp; Carriers
-              </Heading>
-              <Text className="text-gray-700 mb-6">
-                Message frequency varies based on your interaction with us. Message and data rates may apply for any messages sent to you from us and to us from you. If you have questions about your text plan or data plan, please contact your wireless provider. Carriers are not liable for delayed or undelivered messages.
-              </Text>
-
-              <Heading size="h4" className="text-olive-800 mb-3">
-                Privacy
-              </Heading>
               <Text className="text-gray-700">
-                If you have any questions regarding privacy, please review this Privacy Policy in full, including the Mobile Information section above. No mobile information will be shared with third parties or affiliates for marketing or promotional purposes.
+                Message frequency varies. Message and data rates may apply. Reply <strong>STOP</strong> to opt out of text messages at any time, or <strong>HELP</strong> for assistance. For full details, see our{' '}
+                <a href="/sms-terms" className="text-olive-900 underline hover:text-olive-700">SMS Terms of Service</a>.
               </Text>
             </div>
 
             {/* Data Security */}
             <div className="mb-12">
               <Heading size="h2" className="text-olive-900 mb-4">
-                6. Data Security
+                5. Data Security
               </Heading>
               <Text className="text-gray-700 mb-4">
                 We implement appropriate technical and organizational measures to protect your personal information from unauthorized access, alteration, disclosure, or destruction. These security measures include:
@@ -263,7 +212,7 @@ export default function PrivacyPolicy() {
             {/* Your Privacy Rights */}
             <div className="mb-12">
               <Heading size="h2" className="text-olive-900 mb-4">
-                7. Your Privacy Rights
+                6. Your Privacy Rights
               </Heading>
               <Text className="text-gray-700 mb-4">
                 Depending on your location and applicable laws, you may have the following rights regarding your personal information:
@@ -305,7 +254,7 @@ export default function PrivacyPolicy() {
             {/* Cookies & Tracking */}
             <div className="mb-12">
               <Heading size="h2" className="text-olive-900 mb-4">
-                8. Cookies & Tracking Technologies
+                7. Cookies & Tracking Technologies
               </Heading>
               <Text className="text-gray-700 mb-4">
                 Our website uses cookies and similar tracking technologies to:
@@ -324,7 +273,7 @@ export default function PrivacyPolicy() {
             {/* Third-Party Links */}
             <div className="mb-12">
               <Heading size="h2" className="text-olive-900 mb-4">
-                9. Third-Party Links
+                8. Third-Party Links
               </Heading>
               <Text className="text-gray-700">
                 Our website may contain links to third-party websites. This Privacy Policy applies only to our website. We are not responsible for the privacy practices of other websites. We encourage you to review the privacy policies of any third-party sites before providing your information.
@@ -334,7 +283,7 @@ export default function PrivacyPolicy() {
             {/* Children's Privacy */}
             <div className="mb-12">
               <Heading size="h2" className="text-olive-900 mb-4">
-                10. Children's Privacy
+                9. Children's Privacy
               </Heading>
               <Text className="text-gray-700">
                 Our website and services are not intended for children under the age of 18. We do not knowingly collect personal information from children. If we become aware that a child has provided us with personal information, we will take steps to delete such information and terminate the child's access to our services.
@@ -344,7 +293,7 @@ export default function PrivacyPolicy() {
             {/* Policy Updates */}
             <div className="mb-12">
               <Heading size="h2" className="text-olive-900 mb-4">
-                11. Updates to This Privacy Policy
+                10. Updates to This Privacy Policy
               </Heading>
               <Text className="text-gray-700 mb-4">
                 We may update this Privacy Policy from time to time to reflect changes in our practices or for other operational, legal, or regulatory reasons. We will notify you of any material changes by posting the updated Privacy Policy on our website with a new "Last Updated" date.
@@ -357,7 +306,7 @@ export default function PrivacyPolicy() {
             {/* Contact Us */}
             <div className="mb-12">
               <Heading size="h2" className="text-olive-900 mb-4">
-                12. Contact Us
+                11. Contact Us
               </Heading>
               <Text className="text-gray-700 mb-4">
                 If you have questions about this Privacy Policy, wish to exercise your privacy rights, or have concerns about our privacy practices, please contact us at:

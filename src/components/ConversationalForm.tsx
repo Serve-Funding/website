@@ -167,12 +167,11 @@ function ContactInfoFields({
             style={{ marginTop: '2px', width: '16px', height: '16px', flexShrink: 0, cursor: 'pointer' }}
           />
           <span style={{ fontSize: '12px', color: '#9ca3af' }}>
-            I agree to receive text messages from Serve Funding about my inquiry at the phone number
-            provided. Message frequency varies. Message &amp; data rates may apply. Reply STOP to opt out
-            or HELP for help. See our{' '}
+            I agree to receive text messages from Serve Funding about my inquiry. Message frequency
+            varies; message and data rates may apply. Reply STOP to cancel. See our{' '}
             <a href="/privacy-policy" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'underline', color: 'inherit' }}>Privacy Policy</a>
             {' '}and{' '}
-            <a href="/privacy-policy#sms-terms" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'underline', color: 'inherit' }}>SMS Terms &amp; Conditions</a>.
+            <a href="/sms-terms" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'underline', color: 'inherit' }}>SMS Terms</a>.
           </span>
         </label>
         <p style={{ fontSize: '12px', color: '#9ca3af', marginLeft: '4px' }}>We respect your privacy. No spam, ever.</p>

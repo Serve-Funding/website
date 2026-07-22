@@ -426,12 +426,11 @@ export function DealInquiryForm({
                     className="mt-0.5 h-4 w-4 shrink-0 accent-olive-900 cursor-pointer"
                   />
                   <Text className="text-xs text-gray-500">
-                    I agree to receive text messages from Serve Funding about my inquiry at the phone
-                    number provided. Message frequency varies. Message &amp; data rates may apply. Reply
-                    STOP to opt out or HELP for help. See our{' '}
+                    I agree to receive text messages from Serve Funding about my inquiry. Message
+                    frequency varies; message and data rates may apply. Reply STOP to cancel. See our{' '}
                     <a href="/privacy-policy" className="underline hover:text-gray-700" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
                     {' '}and{' '}
-                    <a href="/privacy-policy#sms-terms" className="underline hover:text-gray-700" target="_blank" rel="noopener noreferrer">SMS Terms &amp; Conditions</a>.
+                    <a href="/sms-terms" className="underline hover:text-gray-700" target="_blank" rel="noopener noreferrer">SMS Terms</a>.
                   </Text>
                 </label>
               </div>

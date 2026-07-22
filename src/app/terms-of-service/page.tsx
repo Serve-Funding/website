@@ -141,9 +141,9 @@ export default function TermsOfService() {
                 If you opt in to receive text messages from Serve Funding, we may send you conversational SMS messages related to your inquiry, funding request, appointment scheduling, and customer care. Message frequency varies. Message and data rates may apply. You can opt out at any time by replying <strong>STOP</strong>, or reply <strong>HELP</strong> for assistance. Carriers are not liable for delayed or undelivered messages.
               </Text>
               <Text className="text-gray-700">
-                Consent to receive text messages is not a condition of receiving our services. No mobile information will be shared with third parties or affiliates for marketing or promotional purposes. For complete details, please review the{' '}
-                <a href="/privacy-policy#sms-terms" className="text-olive-900 underline hover:text-olive-700">SMS Terms &amp; Conditions</a>
-                {' '}in our <a href="/privacy-policy" className="text-olive-900 underline hover:text-olive-700">Privacy Policy</a>.
+                Consent to receive text messages is not a condition of receiving our services. Mobile phone numbers and SMS opt-in consent are never sold, rented, or shared with third parties or affiliates for marketing or promotional purposes. For complete details, please review our{' '}
+                <a href="/sms-terms" className="text-olive-900 underline hover:text-olive-700">SMS Terms of Service</a>
+                {' '}and <a href="/privacy-policy" className="text-olive-900 underline hover:text-olive-700">Privacy Policy</a>.
               </Text>
             </div>
 
