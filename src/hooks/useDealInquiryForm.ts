@@ -183,6 +183,34 @@ export function useDealInquiryForm(
     }
   }
 
+  // Parallel stream: mirror the lead to the Serve portal inbound log.
+  // Fire-and-forget, dark until PORTAL_LEAD_ENABLED=true on the server, and
+  // fully swallowed here — a failure never reaches the visitor. keepalive lets
+  // the request survive the navigation to Calendly on the final event.
+  const sendToPortal = (eventType: 'early' | 'final', extra?: Record<string, any>) => {
+    const payload = {
+      source: 'website_discover',
+      event_type: eventType,
+      ...getCurrentFormState(),
+      name,
+      email,
+      phone,
+      company,
+      ...extra,
+      submittedAt: new Date().toISOString(),
+    }
+    try {
+      fetch('/api/portal-lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+        keepalive: true,
+      }).catch(() => {})
+    } catch {
+      // never surface to the visitor
+    }
+  }
+
   // Send current form state to webhook after each question (for Google Sheets upsert)
   const sendAnswerWebhook = (questionId: string, answerValue: any) => {
     const formState = {
@@ -386,6 +414,7 @@ export function useDealInquiryForm(
       chosen_path: path,
     }
     sendToWebhooks(contactData, 'deal_inquiry')
+    sendToPortal('final', { chosen_path: path, triage_action: triageAction || '' })
 
     // Only send the "scheduling a call" email when they actually pick scheduling
     if (path === 'schedule') {
@@ -453,6 +482,8 @@ export function useDealInquiryForm(
     } catch (error) {
       console.error('Notify email error:', error)
     }
+
+    sendToPortal('early')
 
     trackEvent('deal_inquiry_question_answered', {
       question_id: 'contact_info',
