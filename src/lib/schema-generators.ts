@@ -90,6 +90,8 @@ export const getFinancialServiceSchema = (service: {
   shortDesc: string
   fullDesc: string
   features: string[]
+  /** Canonical URL. Defaults to the /solutions page for this id. */
+  url?: string
   ratesAndTerms?: {
     minAmount?: string
     maxAmount?: string
@@ -101,7 +103,7 @@ export const getFinancialServiceSchema = (service: {
   "@type": "FinancialService",
   "@id": `https://servefunding.com#${service.id}`,
   "name": service.title,
-  "url": `https://servefunding.com/solutions/${service.id}`,
+  "url": service.url ?? `https://servefunding.com/solutions/${service.id}`,
   "description": service.fullDesc,
   "areaServed": {
     "@type": "Country",

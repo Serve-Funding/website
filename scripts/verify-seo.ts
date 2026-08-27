@@ -430,27 +430,59 @@ function validateAppPageMetadata(): ValidationResult[] {
 }
 
 /**
- * Validate excerpt fields in data files that become page meta descriptions
- * (comparisons → /compare/[id], industries → /industries/[id]).
+ * Validate title and excerpt fields in data files that become page metadata
+ * (comparisons → /compare/[id], industries → /industries/[id],
+ * funding-pages → /funding/[slug]).
+ *
+ * These titles get " | Serve Funding" appended by their templates, so they are
+ * checked against TITLE_WITH_SUFFIX_MAX rather than TITLE_MAX_LENGTH. Dynamic
+ * routes build metadata in generateMetadata() with no string literal to read,
+ * so this function is the only gate covering them.
  */
 function validateDataExcerpts(): ValidationResult[] {
   const results: ValidationResult[] = []
-  const files = ['src/data/comparisons.ts', 'src/data/industries.ts']
+  const files = [
+    'src/data/comparisons.ts',
+    'src/data/industries.ts',
+    'src/data/funding-pages.ts',
+  ]
 
   for (const rel of files) {
     const filePath = path.join(process.cwd(), rel)
     if (!fs.existsSync(filePath)) continue
 
     const content = fs.readFileSync(filePath, 'utf-8')
-    const re = /excerpt:\s*('((?:\\.|[^'\\])*)'|"((?:\\.|[^"\\])*)"|`((?:\\.|[^`\\])*)`)/g
+
+    // Label each hit by the nearest preceding id so failures are easy to locate.
+    const labelFor = (index: number) => {
+      const idMatch = [...content.slice(0, index).matchAll(/id:\s*['"`]([^'"`]+)['"`]/g)].pop()
+      return idMatch ? idMatch[1] : 'unknown'
+    }
+
+    const excerptRe = /excerpt:\s*('((?:\\.|[^'\\])*)'|"((?:\\.|[^"\\])*)"|`((?:\\.|[^`\\])*)`)/g
     let m: RegExpExecArray | null
 
-    while ((m = re.exec(content)) !== null) {
+    while ((m = excerptRe.exec(content)) !== null) {
       const value = (m[2] ?? m[3] ?? m[4] ?? '').replace(/\\(['"`\\])/g, '$1')
-      // Label by the nearest preceding id so failures are easy to locate.
-      const idMatch = [...content.slice(0, m.index).matchAll(/id:\s*['"`]([^'"`]+)['"`]/g)].pop()
-      const label = idMatch ? idMatch[1] : `#${results.length + 1}`
-      results.push(checkDescription(`${rel} (${label})`, 'excerpt', value))
+      results.push(checkDescription(`${rel} (${labelFor(m.index)})`, 'excerpt', value))
+    }
+
+    const titleRe = /^\s*title:\s*('((?:\\.|[^'\\])*)'|"((?:\\.|[^"\\])*)"|`((?:\\.|[^`\\])*)`)/gm
+    while ((m = titleRe.exec(content)) !== null) {
+      const value = (m[2] ?? m[3] ?? m[4] ?? '').replace(/\\(['"`\\])/g, '$1')
+      const finalLength = value.length + SUFFIX.length
+      const valid = finalLength <= TITLE_MAX_LENGTH
+      results.push({
+        file: `${rel} (${labelFor(m.index)})`,
+        field: 'title',
+        value,
+        length: finalLength,
+        maxLength: TITLE_MAX_LENGTH,
+        valid,
+        error: valid
+          ? undefined
+          : `Title with suffix exceeds ${TITLE_MAX_LENGTH} chars (${finalLength} chars). Max title length: ${TITLE_WITH_SUFFIX_MAX}`,
+      })
     }
   }
 

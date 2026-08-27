@@ -25,6 +25,7 @@ import {
 import { fundingCases } from '@/data/fundingData'
 import { comparisons } from '@/data/comparisons'
 import { industries } from '@/data/industries'
+import { fundingPages } from '@/data/funding-pages'
 import { glossaryTerms } from '@/data/glossary'
 import { getBlogPosts } from '@/lib/blog-utils'
 import { getTitleAsString } from '@/lib/solution-helpers'
@@ -193,6 +194,29 @@ function renderIndustries(): string {
   return `## Industry Guides\n\n${blocks.join('\n\n---\n\n')}\n`
 }
 
+function renderFundingPages(): string {
+  if (!fundingPages.length) return ''
+  const blocks = fundingPages.map(fp => [
+    `### ${fp.h1}`,
+    `${SITE}/funding/${fp.id}`,
+    '',
+    fp.directAnswer,
+    '',
+    `**Who this fits:**`,
+    ...fp.fitsIf.map(f => `- ${f}`),
+    '',
+    `**Terms, costs and timelines:**`,
+    ...fp.terms.map(t => `- ${t.label}: ${t.value}`),
+    '',
+    `**When this is the wrong answer:**`,
+    ...fp.notFor.map(n => `- ${n.who} — ${n.instead}`),
+    '',
+    `**Questions:**`,
+    ...fp.faqs.map(f => `- ${f.question} ${f.answer}`),
+  ].join('\n'))
+  return `## Funding by Problem\n\nProblem-first pages: what each situation costs, how long it takes, and when the honest answer is a different product.\n\n${blocks.join('\n\n---\n\n')}\n`
+}
+
 function renderGlossary(): string {
   if (!glossaryTerms.length) return ''
   const blocks = glossaryTerms.map(t => [
@@ -224,6 +248,7 @@ function buildLlmsFull(): string {
     '',
     renderComparisons(),
     renderIndustries(),
+    renderFundingPages(),
     renderGlossary(),
     renderCaseStudies(),
     allFaqs,
