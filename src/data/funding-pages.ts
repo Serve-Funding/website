@@ -91,7 +91,7 @@ export const fundingPages: FundingPage[] = [
     directAnswer:
       'Revenue-based financing is a term loan sized against a company trailing revenue rather than against its collateral, repaid in fixed monthly installments over 6 to 48 months. As of 2026 it runs $250K to $10MM, is typically sized at 10%-15% of annual revenue, prices at 1.25%-4% per month (roughly 18%-48% effective APR), and funds in 2 to 10 business days. The distinction that decides whether this product helps or hurts is the repayment mechanic. A merchant cash advance pulls 10%-20% of revenue by daily or weekly ACH until a fixed factor amount is paid, which commonly annualizes at 50%-200%+ and takes cash on days your customers have not paid you yet. Revenue-based financing takes one payment a month, and the better products forgive unearned interest on early payoff, which can cut the real cost close to half. Same speed as an advance, roughly a third to a half of the cost. The practical qualifying gate is three consecutive months of healthy bank deposits.',
     fitsIf: [
-      '$5MM-$50MM in annual revenue, two or more years operating',
+      '$5MM-$50MM in annual revenue, two or more years operating, three or more preferred',
       'Profitable enough to carry a fixed monthly payment without the payment deciding your month',
       'Capital needed in days, and needed for growth rather than to fill a hole',
       'No existing advances, or at most one you intend to clear out with this',
@@ -234,7 +234,7 @@ export const fundingPages: FundingPage[] = [
     directAnswer:
       'MCA consolidation replaces two or more merchant cash advances with a single facility that pays them off at their current balances and moves the company from daily or weekly ACH draws to one monthly payment. For a business doing $5MM to $50MM in revenue, the realistic first step as of 2026 is an 18-36 month term loan priced around 18%-22% APR, closing in 10-20 business days, which typically cuts monthly debt service by 30%-50%. That is not a rate anyone brags about. It is the step that stops the daily extraction and buys the twelve months of clean payment history that qualifies the company for asset-based pricing in the low teens or better. Consolidation is a ladder, not a single leap, and any lender promising to land you at bank pricing in one move is selling you a fourth position.',
     fitsIf: [
-      '$5MM-$50MM in annual revenue, two or more years operating',
+      '$5MM-$50MM in annual revenue, two or more years operating, three or more preferred',
       'Two to four active advances — not eight',
       'Something a lender can underwrite against: commercial receivables, free-and-clear equipment, inventory, or equity in owner-occupied real estate',
       'The advances trace back to a shock — a lost contract, a tariff hit, a payroll spike, a customer who stretched to net-90 — rather than to a business that stopped working',
@@ -386,7 +386,7 @@ export const fundingPages: FundingPage[] = [
     directAnswer:
       'A commercial and industrial (C&I) bridge loan is short-term capital secured by a company operating assets — receivables, inventory, equipment, signed contracts — rather than by real estate. It exists to carry a business from today to one specific event: an acquisition closing, a contract mobilizing, a permanent facility finishing underwriting. As of 2026, C&I bridges typically run $250K to $5MM at roughly Prime plus 4%-8%, close in 3-7 business days, and stay outstanding 30-180 days on interest-only payments with credit for early payoff, so the real cost is the days you actually use the money. The discipline that separates a bridge from expensive working capital is the exit: a facility already in underwriting, a contract with an assignment of claims, an acquisition with a signed LOI and a funding date. If you are financing a building, this is the wrong product — that is a commercial real estate bridge, a different structure with different lenders.',
     fitsIf: [
-      '$5MM-$50MM in annual revenue, two or more years operating',
+      '$5MM-$50MM in annual revenue, two or more years operating, three or more preferred',
       'A named exit event with a date on it — not a hope',
       'The need is $250K-$5MM and the money is needed in days rather than weeks',
       'Operating collateral exists: receivables, inventory, equipment, or a contract that can be assigned',
@@ -538,7 +538,7 @@ export const fundingPages: FundingPage[] = [
     directAnswer:
       'Purchase order financing pays your supplier directly so you can fill a confirmed order that is larger than your working capital. The funder issues payment or a letter of credit to the supplier against the purchase order, the goods ship to your customer, and the funder is repaid out of the resulting invoice — usually by rolling straight into invoice factoring. As of 2026, PO financing covers 70%-100% of supplier cost on orders from $250K to $10MM+, prices at roughly 2%-4% per 30 days of the funded amount, and closes in 5-15 business days once the supplier and end customer check out. The gate is gross margin: the transaction generally needs 20%-25% or better to absorb the cost, and the funder cares as much about your customer credit and your supplier reliability as about your financials. It only works for finished goods that ship — not for services, not for labor, and not for work you manufacture yourself from raw inputs.',
     fitsIf: [
-      '$5MM-$50MM in annual revenue, though PO financing does work for smaller companies with one very large order',
+      '$5MM-$50MM in annual revenue, two or more years operating, three or more preferred',
       'A confirmed, non-cancellable purchase order from a creditworthy commercial or government customer',
       'Gross margin of roughly 20%-25% or better on the transaction',
       'Finished goods, drop-shipped or resold — the supplier ships a completed product',
@@ -687,7 +687,7 @@ export const fundingPages: FundingPage[] = [
     directAnswer:
       'Asset-based lending gives a manufacturer a revolving line sized to its collateral rather than to its earnings, which is why the line grows as the business grows instead of capping at whatever a bank underwrote last year. As of 2026, a manufacturing ABL runs $250K to $25MM at roughly Prime plus 1%-5%, closes in 10-20 business days, and advances against four collateral classes at different rates: 80%-85% on eligible receivables, 50%-65% of net orderly liquidation value on finished goods, 25%-50% on raw materials, and 70%-80% of liquidation value on machinery and equipment. The number that surprises most manufacturers is work in process, which is almost universally ineligible — a half-machined part has no liquidation market. That single exclusion is why a company with $4MM of inventory on the balance sheet may only see $1.5MM of borrowing base, and why the fix is usually operational rather than financial.',
     fitsIf: [
-      '$5MM-$50MM in annual revenue, two or more years operating',
+      '$5MM-$50MM in annual revenue, two or more years operating, three or more preferred',
       'Receivables from commercial or government buyers on terms — not consumer sales',
       'Inventory in finished goods or raw materials, and ideally owned machinery',
       'Growth or a bank line that has stopped keeping up with sales',
@@ -810,7 +810,7 @@ export const fundingPages: FundingPage[] = [
     directAnswer:
       'For a staffing agency, asset-based lending means a receivables-only facility, because receivables are effectively the entire balance sheet — there is no inventory and there is rarely meaningful equipment. As of 2026, staffing facilities run $250K to $25MM, advance 85%-90% against eligible receivables, and price from Prime plus 1%-5% for an ABL structure or 0.5%-1.5% per invoice for factoring, with setup in 10-20 business days. The problem the facility solves is structural rather than temporary: payroll runs weekly and clients pay in 45 to 60 days, so every new placement consumes cash before it produces any, and a growing agency is short of money precisely because it is growing. Two things stop these deals more than anything else — unbilled accrued time, which is not eligible collateral until it is invoiced, and unpaid payroll taxes, because an IRS lien primes the lender and no facility closes over one.',
     fitsIf: [
-      '$5MM-$50MM in annual revenue, two or more years operating',
+      '$5MM-$50MM in annual revenue, two or more years operating, three or more preferred',
       'Commercial or government clients on terms — light industrial, IT, healthcare, professional',
       'Payroll taxes current, with proof',
       'Timekeeping and billing tight enough to invoice weekly',
@@ -933,7 +933,7 @@ export const fundingPages: FundingPage[] = [
     directAnswer:
       'Healthcare asset-based lending advances against third-party payor receivables — insurance, Medicare, Medicaid, managed care — at 65%-75% of net collectible value rather than the 80%-85% common in commercial lending. The gap is not a penalty; it reflects that a healthcare claim is billed at gross charges and collects at a contracted rate, so a $100 charge might net $38, and the lender advances against the $38. As of 2026, facilities run $250K to $25MM, price from Prime plus 2%-6%, and close in 15-30 business days — longer than commercial ABL because payor mix, denial rates, and aging by payor all have to be analyzed. The structural complication is that federal anti-assignment rules bar Medicare and Medicaid from paying a lender directly, so these facilities use a two-account lockbox structure where government payments land in the provider own account and are swept under a deposit account control agreement. Providers should expect a specialized medical funder rather than a generalist ABL lender.',
     fitsIf: [
-      '$5MM-$50MM in annual revenue or net patient service revenue, two or more years operating',
+      '$5MM-$50MM in annual revenue or net patient service revenue, two or more years operating, three or more preferred',
       'Third-party payor receivables — insurance, managed care, Medicare, Medicaid, workers compensation',
       'A billing operation that can produce aging by payor and a historical collection rate',
       'Denial and adjustment rates you can document rather than estimate',
@@ -1056,7 +1056,7 @@ export const fundingPages: FundingPage[] = [
     directAnswer:
       'Most asset-based lenders decline construction receivables, and it is worth understanding why before you spend three weeks finding out. Progress billings carry retainage held until project completion, pay-when-paid clauses make payment contingent on money flowing down from an owner, mechanics lien and bond claims can jump ahead of a lender security interest, and percentage-of-completion accounting makes the receivable balance a judgment rather than a fact. As of 2026, the contractors who do get financed use one of three structures: an equipment-led facility advancing 70%-80% of liquidation value on owned machinery, a specialist progress-billing facility advancing 70%-80% on approved billings with retainage excluded or advanced at 0%-25%, or contract financing against a single assigned contract. Facilities run $250K to $25MM, price from Prime plus 2%-6%, and close in 15-30 business days. The practical lever most contractors underuse is their equipment, which is often paid for and appraises well.',
     fitsIf: [
-      '$5MM-$50MM in annual revenue, two or more years operating',
+      '$5MM-$50MM in annual revenue, two or more years operating, three or more preferred',
       'Owned, paid-for equipment — this is frequently the strongest collateral in the business',
       'Approved progress billings with documented sign-offs, not invoices you have only submitted',
       'A work-in-progress schedule you can actually produce and defend',
