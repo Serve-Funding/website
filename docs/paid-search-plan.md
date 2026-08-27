@@ -2,235 +2,211 @@
 
 Last updated: 2026-08-27
 
-Companion to the seven problem pages at `/funding/*` (`src/data/funding-pages.ts`). Those
-pages exist so paid clicks land on the specific expensive problem instead of the homepage.
-This document is how they get fed.
+Companion to the eight problem pages at `/funding/*` (`src/data/funding-pages.ts`).
 
-Every CPC below is a modeled estimate, not measured data. Serve has no paid-search history
-and no Google Ads account attached to this domain yet, so nothing here comes from Search
-Console or Keyword Planner data for this account. Replace these numbers with real auction
-data after the first 30 days.
+## Recommendation: do not buy clicks yet
 
-## The one finding that changes the keyword list
+Merge the pages and spend nothing for 60 days. Then, if the organic signal justifies it,
+$1,500/month on revenue-based financing only.
 
-**"C&I bridge loan" is not a search term.** It is bank jargon. Commercial and industrial
-lending is how a bank classifies a loan on its own call report, and business owners do not
-use the phrase. Bidding it buys almost nothing.
+An earlier draft of this document recommended $6,000/month across four campaigns, led by
+MCA consolidation. That was wrong twice over, and both errors are worth recording so nobody
+re-derives them.
 
-The goal behind Mike's instinct is still correct: pull commercial borrowers and repel real
-estate. The way to get that is not the C&I keyword. It is three other things:
+**Error one: it optimized for click volume instead of deal quality.** MCA consolidation has
+the sharpest search volume in this category, which is why it led the plan. It also selects
+precisely for companies already two to four advances deep, which is the hardest,
+lowest-margin, highest-effort file Serve places. Mike's positioning is that a healthy
+company should come to Serve *instead of* the MCA broker, not *after* it. Paying for the
+after case buys the wrong deals faster.
 
-1. Bid the commercial long tail (`bridge loan for business acquisition`), never the head
-   term (`bridge loan`), which belongs to CRE and hard money and always will.
-2. Run an aggressive real-estate negative list, below. This does more work than any
-   keyword choice.
-3. Put the repellent in the ad and the H1. The page title is
-   "C&I Bridge Loans: For Operations, Not Property" and the direct answer ends with a
-   sentence telling property borrowers to leave. Use C&I as positioning copy, not as a bid.
+**Error two: the unit economics were inflated at the top.** Corrected below.
 
-## Unit economics
+The MCA consolidation page stays live. It is a good answer to a question people genuinely
+ask, it demonstrates that Serve is not the predatory option, and it costs nothing to run
+organically. It just does not get ad budget.
 
-One closed deal absorbs a lot of clicks, which is the whole reason this works in reverse
-from a consumer funnel.
+## The corrected economics
 
-| | Conservative | Brief's assumption |
+| | Earlier draft | Actual |
 |---|---|---|
-| Deal size | $1MM | $2MM |
-| Success fee | 2% | 3% |
-| Revenue per close | $20K | $60K |
+| Success fee | 3% | **2%** (confirmed) |
+| Average deal | $2MM | **~$740K** ($74MM facilitated / 100+ clients, per `company-info.ts`) |
+| Revenue per close | $60K | **~$15K** |
 
-Note the fee gap. The site and `llms.txt` publish a success fee of 1%–2%, and the brief
-models 3%. At 2% on a $1MM deal the allowable cost per acquisition is a third of what a 3%
-fee on $2MM allows. Both still clear comfortably, but the budget ceiling depends on which
-number is real, so it is worth confirming before scaling past the test.
+Three assumptions compounded in the wrong direction:
 
-Modeled funnel, click to funded deal:
-
-| Stage | Rate | Reasoning |
+| Input | Earlier draft | Honest number |
 |---|---|---|
-| Click → funnel start | 18% | Bottom-funnel page matched to the query; the qualifying block deliberately turns some visitors away |
-| Funnel start → call booked | 40% | Seven questions, no credit pull |
-| Call booked → engagement signed | 25% | Advisory sale, not a product sale |
-| Engagement → funded close | 50% | Not every mandate funds |
-| **Click → funded deal** | **~0.9%** | Roughly 1 in 115 clicks |
+| Revenue per close | $20K-$60K | ~$15K |
+| Click → funnel start | 18% | 8%-12% is normal for a good paid landing page; 18% is a best case |
+| Blended CPC | $27 | ~$40 for the first 60 days, because a new account with no history pays above market while quality score builds |
 
-At a $27 blended CPC that is about $3,100 of media per funded deal. Against $20K–$60K of
-revenue, 6x to 19x. At $45 CPC on the most competitive MCA terms it is about $5,200 per
-deal, still 4x to 12x. **CPC is not the risk here. Click quality is.** A page that pulls
-$800K-revenue companies with $75K asks converts at the same rate and produces nothing worth
-closing, which is why the qualifying block sits above the fold on every page.
+Rerun at the honest numbers, cost per funded deal moves from roughly $3,100 to roughly
+$8,000, against about $15,000 of revenue. **Call it 2x gross**, before any of Mike's or
+Camden's time. That does not justify standing up a channel nobody at Serve currently owns.
 
-## Keyword clusters, one per campaign
+There is a volume ceiling on top of that. This is a niche B2B term set, likely a few hundred
+to a couple thousand US searches a month across the whole cluster. A new account at low
+impression share may not be able to spend $6,000/month on exact and phrase match at all,
+and the only ways to hit that number are broad match or Performance Max, both of which buy
+the traffic this entire page set exists to avoid.
 
-Exact and phrase match only. No broad match, no Performance Max, no Display, no Search
-Partners for the first 90 days. Broad match and PMax will find the cheapest traffic
-available, and the cheapest traffic in this category is the LGP audience.
+## The 60-day $0 plan
 
-### Campaign 1 — MCA consolidation → `/funding/mca-consolidation`
+The pages are the asset. They are in the sitemap, in `public/llms.txt`, and rendered into
+`/llms-full.txt` with their direct answers, terms tables and deflections. Serve's organic
+impressions already come more from AI assistants than from classic search, and these pages
+were written for that specifically. Find out what they pull on their own before renting
+traffic to them.
 
-Highest intent and highest volume in the set. Also the most competitive, because MCA
-funders and consumer debt-relief operators bid it hard.
+- Verify the domain in Google Search Console. There is no historical query data for this
+  site available today, which is why every CPC below is modeled rather than measured, and
+  it is the single cheapest gap to close.
+- Watch landing-page entries and `/discover` starts per page in Umami. The metric that
+  matters is not volume; it is whether the companies arriving match the $5MM-$50MM band.
+- Re-read `/llms-full.txt` output after the first crawl cycle and check whether ChatGPT,
+  Gemini, Claude and Perplexity cite the pages when asked the questions they answer. Ask
+  them directly: "what does MCA consolidation cost", "revenue-based financing vs merchant
+  cash advance", "asset-based lending for a staffing agency". That is the channel already
+  working, and it is free.
+
+## If and when paid starts: revenue-based financing first
+
+One campaign, $1,500/month, 90 days, $4,500 total. At roughly $25 blended CPC that is about
+60 clicks a month. It will not produce statistical significance on conversion rate and does
+not need to. The only question worth $4,500 is whether paid clicks on these terms bring
+$5MM+ companies or $500K companies, and that reads off eight leads.
+
+### Campaign 1 — Revenue-based financing → `/funding/revenue-based-financing`
+
+The deal type Serve wants more of, and the searcher who has not taken an advance yet.
 
 | Term | Est. CPC |
 |---|---|
-| mca consolidation | $35–$60 |
-| merchant cash advance consolidation | $35–$60 |
-| consolidate merchant cash advances | $30–$55 |
-| merchant cash advance consolidation loan | $35–$60 |
-| mca refinance / mca payoff loan | $30–$50 |
-| merchant cash advance relief | $25–$45 |
-| how to get out of a merchant cash advance | $20–$40 |
-| stop daily ach payments business loan | $15–$30 |
-| reverse consolidation mca | $30–$50 |
+| alternative to merchant cash advance | $22-$40 |
+| revenue based financing companies | $20-$38 |
+| revenue based financing | $18-$35 |
+| revenue based loan vs merchant cash advance | $18-$32 |
+| working capital loan for growing business | $18-$35 |
+| growth capital for profitable business | $15-$30 |
+| business loan monthly payments not daily | $12-$28 |
+| business loan without daily payments | $12-$28 |
 
-Blended target: **$38**. Serve's differentiator here is structural, not rhetorical. Every
-competitor bidding these terms is selling another advance. The page says so and shows the
-comparison table.
+Blended target: **$25**.
 
-### Campaign 2 — Business bridge → `/funding/business-bridge-loan`
+Two of these deserve special attention. `alternative to merchant cash advance` and
+`business loan without daily payments` are typed by someone holding an MCA term sheet who
+has not signed it. That is the cleanest borrower in this entire keyword universe: healthy
+enough to be offered capital, sceptical enough to check, and not yet stacked. It is also
+exactly the moment Mike's positioning is built for. Low volume, and worth paying up for.
 
-Low volume, moderate cost, and entirely dependent on the negative list.
+### Later, in this order, and only after campaign 1 proves out
 
-| Term | Est. CPC |
-|---|---|
-| bridge loan for business acquisition | $20–$40 |
-| acquisition bridge financing | $25–$45 |
-| business bridge loan | $18–$35 |
-| short term business loan for acquisition | $20–$40 |
-| bridge financing for manufacturing company | $10–$25 |
-| commercial and industrial loan | $12–$28 |
-| bridge loan while sba processes | $15–$30 |
+**Campaign 2 — Asset-based lending by industry** (four ad groups → the four industry pages,
+blended ~$26). Best cost-to-quality ratio in the set. Anyone searching `borrowing base line
+of credit` or `staffing agency receivables financing` is a controller, CFO or banker. The
+sleeper terms are worth their own cheap ad group and near-perfect qualification at tiny
+volume: `borrowing base certificate`, `field exam asset based lender`, `advance rate
+accounts receivable`, `notice of assignment factoring`, `net orderly liquidation value
+lending`.
 
-Blended target: **$27**. Do not bid `bridge loan`, `bridge financing`, or `bridge lender`
-on their own in any match type.
+**Campaign 3 — Business bridge** (→ `/funding/business-bridge-loan`, blended ~$27).
+`acquisition bridge financing`, `bridge loan for business acquisition`, `short term business
+loan for acquisition`, `bridge loan while sba processes`. Never bid `bridge loan`,
+`bridge financing` or `bridge lender` alone in any match type.
 
-### Campaign 3 — Asset-based lending by industry → four ad groups
+**Campaign 4 — Purchase order financing** (→ `/funding/purchase-order-financing`, blended
+~$22). Cleanest intent, lowest competition, smallest volume.
 
-Best cost-to-quality ratio in the set. A searcher using this vocabulary is a controller,
-CFO, or banker.
+**Never — MCA consolidation.** Organic only, for the reasons at the top.
 
-| Term | Est. CPC | Ad group |
-|---|---|---|
-| asset based lending manufacturing | $15–$35 | Manufacturing |
-| borrowing base line of credit | $12–$25 | Manufacturing |
-| inventory and receivables line of credit | $15–$30 | Manufacturing |
-| asset based loan for staffing agency | $20–$40 | Staffing |
-| payroll funding staffing agency | $25–$45 | Staffing |
-| staffing agency receivables financing | $20–$40 | Staffing |
-| medical receivables financing | $20–$40 | Healthcare |
-| healthcare accounts receivable financing | $20–$40 | Healthcare |
-| medicare receivables lender | $18–$35 | Healthcare |
-| construction accounts receivable financing | $15–$35 | Construction |
-| progress billing financing contractor | $12–$28 | Construction |
-| equipment collateral loan contractor | $15–$30 | Construction |
+## Keyword research finding worth keeping
 
-Blended target: **$26**.
-
-**Sleeper terms worth their own cheap ad group.** Nobody outside the industry types these,
-so volume is tiny, CPC is low, and qualification is close to perfect: `borrowing base
-certificate`, `field exam asset based lender`, `advance rate accounts receivable`, `notice
-of assignment factoring`, `net orderly liquidation value lending`. Expect single-digit
-monthly impressions per term and take every click.
-
-### Campaign 4 — Purchase order financing → `/funding/purchase-order-financing`
-
-Cleanest intent, lowest competition, smallest volume.
-
-| Term | Est. CPC |
-|---|---|
-| purchase order financing | $15–$30 |
-| purchase order funding company | $18–$35 |
-| po financing for large order | $15–$30 |
-| finance a large purchase order | $10–$25 |
-| supplier payment financing | $12–$25 |
-
-Blended target: **$22**.
+**"C&I bridge loan" is not a search term.** Commercial and industrial is how a bank
+classifies a loan on its own call report; business owners do not type it. The instinct behind
+it is right, and the way to get it is the commercial long tail plus negatives, with C&I used
+as positioning copy. The page is titled "C&I Bridge Loans: For Operations, Not Property" and
+its direct answer ends by telling property borrowers to go elsewhere.
 
 ## Negative keywords
 
-**Real estate block (applies site-wide, not only to the bridge campaign).** This list is
-the single highest-leverage item in the plan:
+Higher leverage than any keyword choice. The real-estate block applies account-wide.
 
 `real estate`, `commercial real estate`, `cre`, `property`, `properties`, `mortgage`,
-`hard money`, `fix and flip`, `flip`, `flipping`, `multifamily`, `apartment`, `apartments`,
-`rental`, `rentals`, `land`, `lot loan`, `house`, `home`, `homes`, `residential`,
-`construction loan`, `development loan`, `ground up`, `appraisal`, `ltv`, `loan to value`,
-`cap rate`, `reit`, `hotel`, `self storage`, `airbnb`, `landlord`, `tenant`
+`hard money`, `fix and flip`, `flip`, `flipping`, `multifamily`, `apartment`, `rental`,
+`land`, `lot loan`, `house`, `home`, `residential`, `construction loan`, `development loan`,
+`ground up`, `appraisal`, `ltv`, `loan to value`, `cap rate`, `reit`, `hotel`,
+`self storage`, `airbnb`, `landlord`, `tenant`
 
-Note that `construction loan` is negative while the construction ABL campaign is live. The
-distinction the account has to hold is financing a contracting business versus financing a
-building. Ad group names should make that obvious to whoever touches the account next.
+`construction loan` stays negative even when the construction ABL campaign runs. The
+distinction the account must hold is financing a contracting business versus financing a
+building, so name the ad groups so it is obvious to whoever touches the account next.
+
+**Distressed-intent block, specific to keeping the RBF campaign clean.** These select for
+the borrower Serve does not want to buy: `mca`, `merchant cash advance consolidation`,
+`mca relief`, `mca payoff`, `stacked`, `default`, `defaulted`, `judgment`, `coj`,
+`behind on payments`, `cant make payroll`, `debt relief`, `debt settlement`, `bankruptcy`,
+`chapter 11`, `workout`, `forbearance`
+
+Note `alternative to merchant cash advance` is a bid term while `merchant cash advance
+consolidation` is a negative. That is deliberate and it is the whole strategy in two lines:
+buy the borrower deciding, not the borrower recovering.
 
 **Size and intent block:** `free`, `grant`, `grants`, `no credit check`, `startup`,
-`start up`, `new business`, `under 100k`, `personal loan`, `payday`, `student`, `bad credit
-personal`, `crypto`, `salary`, `jobs`, `career`, `how to become`, `broker training`,
-`iso agent`, `course`, `certification`, `software`, `crm`, `template`, `sample letter`
+`start up`, `new business`, `under 100k`, `personal loan`, `payday`, `student`, `crypto`,
+`salary`, `jobs`, `career`, `how to become`, `broker training`, `iso agent`, `course`,
+`certification`, `software`, `crm`, `template`, `sample letter`
 
-Keep `what is` and `definition` variants out of paid but let them keep working organically.
-Those queries are how AI assistants build answers, and the pages are written for that.
+Keep `what is` and `definition` variants out of paid and let them keep working organically.
+Those queries are how AI assistants assemble answers, and all eight pages are written for it.
 
-## Account setup
+## Account setup, when it happens
 
-- **Structure.** Four campaigns, one per page cluster, so a high-CPC MCA auction cannot eat
-  the ABL budget. Ad groups inside campaign 3 map one-to-one to the four industry pages.
-- **Bidding.** Manual CPC or Maximize Clicks with a hard CPC cap for the first 60 days. Do
-  not start on tCPA. There will not be enough conversion volume to train it, and it will
-  spend the budget learning something the negative list already knows.
-- **Conversion actions.** Two. `funnel_started` as the micro-conversion for optimization
-  signal, `call_booked` as primary. Once HubSpot has enough volume, import the
-  qualified-lead stage as an offline conversion. At this deal size that offline import is
-  what eventually makes automated bidding usable.
-- **Attribution.** Land every ad on `?utm_source=google&utm_campaign=<campaign>` plus the
-  page's own `src` param, which the page already carries into `/discover?src=<slug>`. Umami
-  captures landing page and UTMs on the session, so campaign-to-booking attribution works
-  without touching the qualifying funnel. If Mike later wants the source stamped on the
-  lead record itself, that is one field for whoever owns the funnel rewrite.
+- **Bidding.** Manual CPC, or Maximize Clicks with a hard CPC cap. Not target CPA. At this
+  volume it will spend the budget learning what the negative list already knows.
+- **Match types.** Exact and phrase only. No broad, no Performance Max, no Display, no
+  Search Partners. Ever, at this ticket size.
+- **Conversions.** `funnel_started` as the micro-conversion, `call_booked` as primary. Once
+  HubSpot has volume, import the qualified-lead stage as an offline conversion.
+- **Attribution.** Land ads on `?utm_source=google&utm_campaign=<campaign>`. Each page
+  already carries its `src` into `/discover?src=<slug>`, and Umami records landing page and
+  UTMs on the session, so attribution works without touching the qualifying funnel being
+  rebuilt in parallel.
 - **Geography.** US only. Before launch, confirm whether California's commercial financing
-  disclosure rules (SB 1235) and New York's CFDL affect advertising claims in those states.
-  Serve's success-only fee structure is a compliance strength worth stating in ad copy, but
-  the disclosure question is a real one and the licensing screen should answer it rather
-  than this document.
-- **Schedule.** Do not restrict to business hours. Owners research an expensive problem at
-  night, which is the behavior this whole page set is built around. Run all hours, turn
-  call extensions off outside business hours, and let the funnel take the after-hours
-  traffic.
+  disclosure rules (SB 1235) and New York's CFDL affect advertising claims there. Serve's
+  success-only fee is a compliance strength worth stating in ad copy, but the disclosure
+  question belongs to the licensing screen rather than to this document.
+- **Schedule.** All hours, deliberately. Owners research an expensive problem at night,
+  which is the behavior this page set was built around. Call extensions off outside business
+  hours; let the funnel take the rest.
 
-## Budget
+## Decision gates
 
-**Recommended test: $6,000/month for 90 days ($18,000 total).**
+At day 60, not day 14. This ticket size produces too few events for a weekly read.
 
-| Campaign | Monthly | Share | Est. clicks/mo |
-|---|---|---|---|
-| MCA consolidation | $2,400 | 40% | ~63 |
-| ABL by industry | $1,800 | 30% | ~69 |
-| Business bridge | $1,200 | 20% | ~44 |
-| Purchase order | $600 | 10% | ~27 |
-| **Total** | **$6,000** | | **~203** |
-
-Modeled output at the funnel rates above: roughly 36 funnel starts and 14 booked calls per
-month, 3 to 5 engagements over the quarter, 1 to 3 funded deals. One funded $1MM deal at a
-2% fee returns the entire $18,000 test.
-
-**Decision gates at day 60, not day 14.** This ticket size produces too few events for
-weekly reads to mean anything.
-
-- Click to funnel start under 8% on a campaign: rewrite that landing page, do not add
-  budget. The page is failing to match the query.
-- Cost per booked call over $400: pause the campaign and audit the search terms report for
-  what the negative list is missing.
-- One funded deal attributable to paid: raise to $12,000–$15,000/month and add the
-  remaining industry ad groups.
+- Click to funnel start under 8%: rewrite the landing page rather than adding budget. The
+  page is failing to match the query.
+- Leads arriving below $5MM in revenue: the problem is the keyword list, not the page. Audit
+  the search terms report and extend the negative list.
+- Cost per booked call over $400: pause and audit.
+- One funded deal attributable to paid: raise to $4,000-$6,000/month and add campaign 2.
 
 ## What not to spend on
 
 **Meta, TikTok, and SMS.** That is the Lucky Growth Partners channel, and it produces LGP's
 deal size. A $12MM manufacturer with a working capital gap is not on TikTok looking for a
-business loan. Serve's ticket size is a function of where the traffic comes from, and
-paying for cheap clicks is paying to become a different company.
+business loan. Ticket size is a function of where the traffic comes from, so paying for
+cheap clicks is paying to become a different company.
 
-**More Google, once campaign 1 is saturated.** Serve's primary referral source is
-commercial bankers, and there is a `/bankers` page already built for them. LinkedIn
-targeting commercial lenders, CPAs, and turnaround advisors at an estimated $12–$18 CPC
-will probably beat incremental search spend once the MCA campaign hits its impression
-share ceiling. Worth testing at $1,500/month as the second channel rather than doubling
-campaign 1.
+**A general Google budget, ahead of the banker channel.** Serve's primary referral source is
+commercial bankers, with 100+ clients and a 65% repeat rate of proven motion behind it, and
+`/bankers` is already built for them. LinkedIn targeting commercial lenders, CPAs and
+turnaround advisors at an estimated $12-$18 CPC is adjacent to something that already works.
+If there is discretionary marketing money, that is a better test than search.
+
+## Standing caveat
+
+Every CPC here is modeled. There is no Google Ads account on this domain and no Search
+Console history, so none of these figures come from auction or query data for this account.
+Verifying Search Console is step one of the 60-day plan for exactly this reason.

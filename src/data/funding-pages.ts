@@ -71,9 +71,160 @@ export interface FundingPage {
 
 export const fundingPages: FundingPage[] = [
   // ──────────────────────────────────────────────────────────────────────────
-  // MCA CONSOLIDATION — the sharpest wedge. High-intent volume, and the page
-  // where Serve's "faster and cheaper than the broker who called you"
-  // positioning does the most work.
+  // REVENUE-BASED FINANCING — the front door, and the deal type Serve actually
+  // wants more of: a healthy company that has NOT yet taken an advance. Listed
+  // first because it carries the paid budget; mca-consolidation below is the
+  // honest side door for companies that arrive already stacked, and runs on
+  // organic only.
+  //
+  // Note on terminology: two different products get called RBF. One takes a
+  // percentage of revenue, so the payment spikes in a strong month (covered
+  // critically in /blog/rbf-repayment-reality-payment-spikes). The other is a
+  // fixed monthly payment over a known term. Serve places the second. The page
+  // says so explicitly rather than letting the reader assume.
+  // ──────────────────────────────────────────────────────────────────────────
+  {
+    id: 'revenue-based-financing',
+    h1: 'Revenue-Based Financing: Growth Capital in Days, Paid Monthly',
+    title: 'Revenue-Based Financing, Without Daily Payments',
+    excerpt: 'Growth capital in 2 to 10 business days on one fixed monthly payment. What revenue-based financing costs, how it is sized, and who it is wrong for.',
+    directAnswer:
+      'Revenue-based financing is a term loan sized against a company trailing revenue rather than against its collateral, repaid in fixed monthly installments over 6 to 48 months. As of 2026 it runs $250K to $10MM, is typically sized at 10%-15% of annual revenue, prices at 1.25%-4% per month (roughly 18%-48% effective APR), and funds in 2 to 10 business days. The distinction that decides whether this product helps or hurts is the repayment mechanic. A merchant cash advance pulls 10%-20% of revenue by daily or weekly ACH until a fixed factor amount is paid, which commonly annualizes at 50%-200%+ and takes cash on days your customers have not paid you yet. Revenue-based financing takes one payment a month, and the better products forgive unearned interest on early payoff, which can cut the real cost close to half. Same speed as an advance, roughly a third to a half of the cost. The practical qualifying gate is three consecutive months of healthy bank deposits.',
+    fitsIf: [
+      '$5MM-$50MM in annual revenue, two or more years operating',
+      'Profitable enough to carry a fixed monthly payment without the payment deciding your month',
+      'Capital needed in days, and needed for growth rather than to fill a hole',
+      'No existing advances, or at most one you intend to clear out with this',
+      'Three consecutive months of healthy, consistent deposits. A soft December tells a story underwriters do not like',
+      'Owner credit matters more here than in asset-based lending. A clean 680+ meaningfully widens the options',
+    ],
+    notFor: [
+      {
+        who: 'Companies with a large book of commercial invoices',
+        instead: 'If you have $1MM+ of receivables from creditworthy business customers, an asset-based line or invoice financing at Prime plus 1%-5% is a fraction of the cost of revenue-based financing and the facility grows with sales instead of amortizing away. Do not buy RBF because it is faster if the cheaper facility can be in place in three weeks. We will usually structure both: RBF now, the cheap facility underwriting in parallel.',
+      },
+      {
+        who: 'Already two or more advances deep',
+        instead: 'Adding a term loan on top of a stack is stacking, whatever it is called. The conversation you need is a consolidation that pays those positions off and closes them. That is a different page and a different lender set.',
+      },
+      {
+        who: 'Revenue trending down over the last two quarters',
+        instead: 'Revenue-based underwriting reads trailing deposits, so a declining trend prices badly or declines outright. If there is collateral, an asset-based facility looks at what you own rather than at the trend, and is the better door.',
+      },
+      {
+        who: 'Financing an acquisition or a partner buyout',
+        instead: 'RBF is sized to 10%-15% of revenue, which almost never covers a purchase price. Acquisitions want SBA 7(a) for the price and a bridge for the timing gap.',
+      },
+      {
+        who: 'Under about $2MM in revenue, or asking under $250K',
+        instead: 'Below that the products that will look at you are mostly advances, and we would rather say so than walk you through a process that ends in a term sheet we would not want you to sign.',
+      },
+    ],
+    theProblem:
+      'The company this page is written for is doing fine. Revenue is up, the pipeline is real, and there is a specific thing that needs funding in the next two weeks: inventory ahead of a season, a crew for a contract that was just awarded, materials for an order that came in bigger than expected. The bank is not the problem in the sense of having said no. The bank is the problem in the sense of taking three to twelve weeks, and the opportunity does not wait three to twelve weeks.\n\nSo the owner starts making calls, and within about a day the market finds them. Somebody offers $500K in 48 hours at a 1.35 factor rate. The paperwork is short, the funding is real, and almost nothing in the document is expressed as an interest rate, so the cost is genuinely difficult to evaluate under time pressure. What is being sold is speed, and speed is exactly what the buyer came for.\n\nWhat gets lost is the mechanic. A 1.35 factor on $500K is $675K of payback, extracted at 10%-20% of daily revenue, starting the next business day, whether or not your customers have paid you. On a nine-month payback that annualizes past 70%. And because the amount owed is fixed rather than accruing, paying it off early usually saves nothing, so a strong quarter accelerates the extraction without reducing the bill.\n\nRevenue-based financing, structured as a fixed monthly payment, funds in the same two to ten business days on the same kind of underwriting. It reads trailing bank deposits rather than collateral, so it does not require a receivable book or free-and-clear equipment. It costs 1.25%-4% per month rather than a factor rate. And on the better products, paying it off early forgives the unearned interest, which is the single largest lever on what the money actually ends up costing. The reason to know this before you need it is that the decision gets made in about 48 hours, and 48 hours is not enough time to learn a new product category.\n\nOne clarification, because the term is used for two different things. Some products called revenue-based financing take a percentage of revenue each month, so the payment rises in a strong month and the amortization schedule moves under you. Serve places the fixed-payment structure: a known monthly amount over a known term. The variable-payment version has real problems in a seasonal business, and we have written about them separately.',
+    howItWorks: [
+      {
+        step: 'Underwriting reads deposits, not collateral',
+        detail: 'Twelve months of bank statements, with the last three carrying the most weight. The question is whether the business consistently generates enough cash to carry a fixed monthly payment. No field exam, no appraisal, no borrowing base, which is why this closes in days rather than weeks.',
+      },
+      {
+        step: 'Size lands at 10%-15% of annual revenue',
+        detail: 'A $12MM company should expect roughly $1.2MM to $1.8MM as the realistic ceiling. Knowing that number before you start saves the conversation where someone asks for $4MM against $12MM of revenue and hears no from six lenders.',
+      },
+      {
+        step: 'Terms get set at 6 to 48 months, monthly',
+        detail: 'Pricing runs 1.25%-4% per month depending on deposit consistency, time in business, industry, and owner credit. Ask specifically about prepayment: real forgiveness of unearned interest is the difference between a 30% effective cost and a 16% one, and it is not standard across lenders.',
+      },
+      {
+        step: 'Funding in 2 to 10 business days',
+        detail: 'Emergency payroll situations have closed inside 24 to 72 hours. What stretches a five-day close is almost always a document sitting on the borrower side, not the lender.',
+      },
+      {
+        step: 'Treat it as step one where something cheaper exists',
+        detail: 'If the business has receivables, inventory, or owned equipment, the right play is usually to close RBF now and put an asset-based line or factoring facility into underwriting the same week. Six to eight weeks later the cheaper facility retires the RBF. Speed and price are both available; they are just not available on the same day.',
+      },
+    ],
+    terms: [
+      { label: 'Facility size', value: '$250K - $10MM+' },
+      { label: 'How it is sized', value: 'Roughly 10%-15% of annual revenue' },
+      { label: 'Pricing (2026)', value: '1.25%-4% per month, roughly 18%-48% effective APR' },
+      { label: 'Structure', value: 'Fixed monthly payment over 6-48 months. Revolving versions available from select lenders' },
+      { label: 'Payment frequency', value: 'Monthly. No daily or weekly ACH extraction from sales' },
+      { label: 'Time to close', value: '2-10 business days; 24-72 hours on emergency payroll' },
+      { label: 'Early payoff', value: 'The better products forgive unearned interest, which can nearly halve the real cost. Confirm this in writing' },
+      { label: 'What underwriting reads', value: '12 months of bank statements, weighted to the last 3. No appraisal, no field exam' },
+      { label: 'Owner credit', value: 'Matters more than in asset-based lending. Clean 680+ widens the options meaningfully' },
+      { label: 'Lien position', value: 'Subordinate structures available; will sit behind an existing factor or ABL' },
+      { label: 'Serve fee', value: 'Success fee of 1%-2% of the funded amount, in writing, paid only at close' },
+    ],
+    versus: {
+      heading: 'Revenue-based financing vs. the advance you will be offered first',
+      theirsLabel: 'A merchant cash advance',
+      oursLabel: 'Revenue-based financing',
+      rows: [
+        { dimension: 'Speed', theirs: '24-72 hours', ours: '2-10 business days, and 24-72 hours when payroll is the reason' },
+        { dimension: 'How the price is quoted', theirs: 'A factor rate, which is not an interest rate and does not annualize on its own', ours: 'A monthly rate you can convert to an APR on the term sheet' },
+        { dimension: 'Typical effective APR', theirs: '50%-200%+, higher once positions stack', ours: '18%-48%' },
+        { dimension: 'Repayment', theirs: '10%-20% of revenue by daily or weekly ACH, starting immediately', ours: 'One fixed payment a month' },
+        { dimension: 'Paying it off early', theirs: 'Usually saves nothing. The payback is a fixed amount, so a strong quarter just extracts it faster', ours: 'The better products forgive unearned interest, which is the largest single lever on real cost' },
+        { dimension: 'Effect on the next facility', theirs: 'A UCC filing and a daily draw that makes an ABL harder to underwrite', ours: 'Clean monthly payment history, which is what qualifies you for cheaper money in a year' },
+        { dimension: 'Intermediary compensation', theirs: '5-10+ points inside the factor rate, generally undisclosed', ours: '1%-2% success fee, disclosed in writing, contingent on closing' },
+      ],
+    },
+    workedExample:
+      'A specialty food manufacturer doing about $13MM in revenue lands shelf placement with a regional grocery chain. Filling it means roughly $900K of additional raw material and a second production shift, starting in three weeks. The company is profitable, has a $1.5MM bank line that is drawn to $1.3MM, and has never taken outside capital.\n\nThe first offer to arrive is an advance: $1MM in 48 hours at a 1.32 factor rate, so $1.32MM of payback pulled at 12% of daily deposits. On the projected nine-month payback that is an effective cost north of 68%, extracted daily against receivables that pay in 45 days. It would fund the shelf placement and squeeze the cash the shelf placement depends on.\n\nWhat we place instead is $1.4MM of revenue-based financing at 2.1% per month over 30 months, funded in seven business days, with written forgiveness of unearned interest on early payoff. Monthly payment lands near $63K. In parallel, an asset-based facility goes into underwriting against the growing receivable book from the chain, and closes about nine weeks later at Prime plus 3%. The company retires the RBF at month eleven and, because the prepayment terms were real, pays roughly $214K of total interest rather than the roughly $390K the full 30-month schedule implied. Same speed as the advance, and a little over a quarter of the cost.',
+    faqs: [
+      {
+        question: 'What is the difference between revenue-based financing and a merchant cash advance?',
+        answer: 'The repayment mechanic, and it drives everything else. An MCA buys a share of future receivables and collects 10%-20% of revenue by daily or weekly ACH until a fixed factor amount is paid, commonly annualizing at 50%-200%+. Revenue-based financing is a loan with a fixed monthly payment over a known term at 1.25%-4% per month. Both fund in days on similar underwriting. One takes cash on days your customers have not paid you; the other does not.',
+      },
+      {
+        question: 'How much revenue-based financing can I get?',
+        answer: 'Plan on 10%-15% of annual revenue as the realistic ceiling, so roughly $1.2MM to $1.8MM on $12MM of revenue. Facilities run $250K to $10MM+. If the number you need is well above that band, the answer is usually a different product rather than a different lender: an asset-based line sizes to collateral instead of revenue and can go considerably higher.',
+      },
+      {
+        question: 'What does revenue-based financing cost in 2026?',
+        answer: '1.25%-4% per month, which is roughly 18%-48% effective APR depending on deposit consistency, time in business, industry, and owner credit. The single question most worth asking on a term sheet is what happens on early payoff. Real forgiveness of unearned interest can nearly halve what the money costs, and it is not standard across lenders.',
+      },
+      {
+        question: 'Is this the kind of RBF where my payment goes up in a good month?',
+        answer: 'Not the structure we place. Two different products carry the name. One takes a percentage of revenue, so the payment rises when sales rise and the schedule moves under you, which is genuinely difficult in a seasonal business. Serve places the fixed-payment version: a known monthly amount over a known term. If a lender quotes you a percentage of revenue, that is a different product and worth evaluating differently.',
+      },
+      {
+        question: 'Should I use this if I have a lot of receivables?',
+        answer: 'Probably not as the destination. A commercial receivable book of $1MM or more supports an asset-based line or an invoice facility at Prime plus 1%-5%, which is a fraction of the cost and grows with sales. The honest structure in that case is revenue-based financing now, because it closes in days, with the cheaper facility underwriting in parallel and retiring it in six to eight weeks. Speed and price are both available, just not on the same day.',
+      },
+      {
+        question: 'Does taking this hurt my chances of getting cheaper money later?',
+        answer: 'The opposite, generally. Twelve months of clean monthly payments is exactly the history an asset-based lender, a non-bank SBA lender, or a bank wants to underwrite. The thing that damages the next facility is a stack of advances with daily draws and multiple UCC filings, which is a large part of why the mechanic matters more than the headline rate.',
+      },
+      {
+        question: 'How fast can this actually fund?',
+        answer: 'Two to ten business days normally, and 24 to 72 hours when payroll is the reason. What determines where you land is almost entirely how fast the file gets assembled: twelve months of bank statements, a current AR aging if you have one, and a clear explanation of what the money is for. Lenders are rarely the bottleneck.',
+      },
+    ],
+    related: [
+      { label: 'Working Capital Loans & Lines of Credit — the full product explanation', href: '/solutions/working-capital-loans' },
+      { label: 'MCA vs. revenue-based financing, with the APR math', href: '/blog/mca-vs-revenue-based-financing' },
+      { label: 'When RBF payments spike — the variable-payment structure to avoid', href: '/blog/rbf-repayment-reality-payment-spikes' },
+      { label: 'Asset-based lending — usually the cheaper destination', href: '/solutions/asset-based-lending' },
+      { label: 'Already carrying advances? Start here instead', href: '/funding/mca-consolidation' },
+    ],
+    schema: {
+      minAmount: '$250,000',
+      maxAmount: '$10,000,000',
+      rate: '1.25%-4% per month (roughly 18%-48% effective APR)',
+      closingTime: '2-10 business days',
+    },
+  },
+
+  // ──────────────────────────────────────────────────────────────────────────
+  // MCA CONSOLIDATION — the honest side door, ORGANIC ONLY. Paid clicks on
+  // these terms select for companies already two to four advances deep, which
+  // is the hardest, lowest-margin file Serve places. The page earns its place
+  // because it is a genuinely good answer to a question people ask, and
+  // because it proves Serve is not the predatory option. It does not earn ad
+  // budget. See docs/paid-search-plan.md.
   // ──────────────────────────────────────────────────────────────────────────
   {
     id: 'mca-consolidation',
