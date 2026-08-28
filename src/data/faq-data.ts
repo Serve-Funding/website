@@ -69,7 +69,7 @@ export const topLevelFAQs: FAQ[] = [
   {
     id: 'top-how-much-cost',
     q: "How much does Serve Funding cost?",
-    a: "Serve Funding charges a success fee of 1-2% of the funded amount, paid only when you receive financing. No upfront costs, no retainers, no hidden fees. This fee-only-on-success model aligns our incentives entirely with yours — we only get paid when you do."
+    a: "Serve Funding earns a success fee upon closing of a credit facility, loan or line of credit. No upfront costs, no retainers, no hidden fees. We are paid only when you receive financing, which aligns our incentives entirely with yours — we only get paid when you do."
   },
   {
     id: 'top-industries-served',
