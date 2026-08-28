@@ -103,7 +103,7 @@ function OptionPill({ label, isSelected, onClick, disabled }: {
 
 function ContactInfoFields({
   isPartner,
-  name, email, phone, company, smsConsent,
+  name, email, phone, company, howFoundUs, smsConsent,
   setFieldValue,
   onContinue,
 }: {
@@ -112,6 +112,7 @@ function ContactInfoFields({
   email: string
   phone: string
   company: string
+  howFoundUs: string
   smsConsent: boolean
   setFieldValue: (id: string, value: any) => void
   onContinue: () => void
@@ -137,26 +138,45 @@ function ContactInfoFields({
           { name: 'company_field', value: company, field: 'company', placeholder: isPartner ? 'Your firm' : 'Business name', required: false, type: 'text' },
           { name: 'email_field', value: email, field: 'email', placeholder: 'Email *', required: true, type: 'email' },
           { name: 'phone_field', value: phone, field: 'phone', placeholder: 'Phone (optional)', required: false, type: 'tel' },
+          // Asked here rather than as its own step: contact details are the one
+          // screen everybody completes, including the visitors who then skip
+          // straight to booking a call — which is exactly who we were losing
+          // the answer for.
+          {
+            name: 'how_found_us_field',
+            value: howFoundUs,
+            field: 'how_found_us',
+            placeholder: 'How did you find us?',
+            required: false,
+            type: 'text',
+            hint: 'e.g. "Google search for working capital"',
+          },
         ].map((input) => (
-          <input
-            key={input.name}
-            type={input.type}
-            name={input.name}
-            value={input.value}
-            onChange={(e) => setFieldValue(input.field, e.target.value)}
-            required={input.required}
-            placeholder={input.placeholder}
-            style={{
-              backgroundColor: COLORS.gray,
-              color: '#1f2937',
-              borderRadius: '12px',
-              padding: '14px 20px',
-              fontSize: '15px',
-              border: 'none',
-              outline: 'none',
-              width: '100%',
-            }}
-          />
+          <div key={input.name} style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+            <input
+              type={input.type}
+              name={input.name}
+              value={input.value}
+              onChange={(e) => setFieldValue(input.field, e.target.value)}
+              required={input.required}
+              placeholder={input.placeholder}
+              style={{
+                backgroundColor: COLORS.gray,
+                color: '#1f2937',
+                borderRadius: '12px',
+                padding: '14px 20px',
+                fontSize: '15px',
+                border: 'none',
+                outline: 'none',
+                width: '100%',
+              }}
+            />
+            {input.hint && (
+              <span style={{ color: '#6b7280', fontSize: '12px', marginLeft: '4px' }}>
+                {input.hint}
+              </span>
+            )}
+          </div>
         ))}
         <label style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', marginLeft: '4px', cursor: 'pointer' }}>
           <input
@@ -204,6 +224,7 @@ export function ConversationalForm({ initialRole, onComplete }: ConversationalFo
     email,
     phone,
     company,
+    howFoundUs,
     smsConsent,
     success,
     showChoicePoint,
@@ -516,6 +537,7 @@ export function ConversationalForm({ initialRole, onComplete }: ConversationalFo
                 email={email}
                 phone={phone}
                 company={company}
+                howFoundUs={howFoundUs}
                 smsConsent={smsConsent}
                 setFieldValue={setFieldValue}
                 onContinue={handleContactInfoContinue}

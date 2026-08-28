@@ -79,6 +79,9 @@ export function useDealInquiryForm(
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
   const [company, setCompany] = useState('')
+  // Free text, deliberately: a picker can only offer the sources we already
+  // know about, and the point is to learn what they actually searched for.
+  const [howFoundUs, setHowFoundUs] = useState('')
   const [smsConsent, setSmsConsent] = useState(false)
 
   // Dynamic "other" field responses (for single_with_other questions)
@@ -122,6 +125,7 @@ export function useDealInquiryForm(
       case 'phone': return phone
       case 'company': return company
       case 'sms_consent': return smsConsent ? 'yes' : ''
+      case 'how_found_us': return howFoundUs
       default: return ''
     }
   }
@@ -148,6 +152,7 @@ export function useDealInquiryForm(
       case 'phone': setPhone(value); break
       case 'company': setCompany(value); break
       case 'sms_consent': setSmsConsent(Boolean(value)); break
+      case 'how_found_us': setHowFoundUs(value); break
     }
   }
 
@@ -161,6 +166,7 @@ export function useDealInquiryForm(
     funding_amount: fundingAmount,
     owner_credit_score: ownerCreditScore,
     sms_consent: smsConsent ? 'yes' : 'no',
+    how_found_us: howFoundUs,
   })
 
   // Helper to send data to webhooks
@@ -648,6 +654,7 @@ export function useDealInquiryForm(
     email,
     phone,
     company,
+    howFoundUs,
     smsConsent,
     success,
     formData,

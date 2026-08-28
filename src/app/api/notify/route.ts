@@ -47,6 +47,7 @@ function buildTriageTable(body: Record<string, any>): string {
     { label: 'Credit Score', key: 'owner_credit_score' },
     { label: 'Industry', key: 'business_industry' },
     { label: 'Financing Needs', key: 'financing_needs' },
+    { label: 'How They Found Us', key: 'how_found_us' },
     { label: 'Triage Action', key: 'triage_action' },
     { label: 'Calendly URL', key: 'calendly_url' },
   ]
