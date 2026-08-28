@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { COLORS } from '@/lib/colors'
 import { SchemaRenderer } from '@/components/SchemaRenderer'
 import { getBreadcrumbSchema } from '@/lib/schema-generators'
@@ -16,15 +17,20 @@ interface BreadcrumbProps {
 }
 
 export function Breadcrumb({ items, renderSchema = true }: BreadcrumbProps) {
+  const pathname = usePathname()
+
   const allItems = [
     { label: 'Home', href: '/' },
     ...items
   ]
 
-  // Convert visual breadcrumbs to full URLs for schema
+  // Convert visual breadcrumbs to full URLs for schema.
+  // The last crumb intentionally has no href — you don't link the page you're
+  // already on — but BreadcrumbList still needs its real URL. Falling back to
+  // the bare origin made every page claim the homepage as its own final crumb.
   const schemaItems = allItems.map(item => ({
     name: item.label,
-    url: item.href ? `https://servefunding.com${item.href}` : 'https://servefunding.com'
+    url: `https://servefunding.com${item.href ?? pathname ?? ''}`
   }))
 
   const breadcrumbSchema = getBreadcrumbSchema(schemaItems)
