@@ -6,10 +6,11 @@
   "scripts": {
     "dev": "next dev",
     "verify-seo": "tsx scripts/verify-seo.ts",
-    "build": "npm run verify-seo && next build",
+    "build": "npm run verify-seo && npm run verify-webhook-allowlist && next build",
     "start": "next start",
     "lint": "next lint",
-    "analyze": "ANALYZE=true next build --webpack"
+    "analyze": "ANALYZE=true next build --webpack",
+    "verify-webhook-allowlist": "tsx scripts/verify-webhook-allowlist.ts"
   },
   "browserslist": [
     "chrome >= 90",
