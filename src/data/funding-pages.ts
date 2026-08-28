@@ -168,7 +168,7 @@ export const fundingPages: FundingPage[] = [
         { dimension: 'Repayment', theirs: '10%-20% of revenue by daily or weekly ACH, starting immediately', ours: 'One fixed payment a month' },
         { dimension: 'Paying it off early', theirs: 'Usually saves nothing. The payback is a fixed amount, so a strong quarter just extracts it faster', ours: 'The better products forgive unearned interest, which is the largest single lever on real cost' },
         { dimension: 'Effect on the next facility', theirs: 'A UCC filing and a daily draw that makes an ABL harder to underwrite', ours: 'Clean monthly payment history, which is what qualifies you for cheaper money in a year' },
-        { dimension: 'Intermediary compensation', theirs: '5-10+ points inside the factor rate, generally undisclosed', ours: 'A success fee, agreed in writing before you sign and earned only if you close' },
+        { dimension: 'Intermediary compensation', theirs: 'Built into the factor rate rather than quoted separately, so you rarely see it', ours: 'A success fee, agreed in writing before you sign and earned only if you close' },
       ],
     },
     workedExample:
@@ -311,7 +311,7 @@ export const fundingPages: FundingPage[] = [
         },
         {
           dimension: 'How the intermediary gets paid',
-          theirs: '5-10+ points built into the factor rate, usually undisclosed',
+          theirs: 'Built into the factor rate rather than quoted separately, so you rarely see it',
           ours: 'A success fee, agreed in writing before you sign and earned only if you close',
         },
         {
@@ -479,7 +479,7 @@ export const fundingPages: FundingPage[] = [
         },
         {
           dimension: 'Intermediary compensation',
-          theirs: '5-10+ points inside the factor rate, generally undisclosed',
+          theirs: 'Built into the factor rate rather than quoted separately, so you rarely see it',
           ours: 'A success fee, agreed in writing before you sign and earned only if you close',
         },
       ],
@@ -881,7 +881,7 @@ export const fundingPages: FundingPage[] = [
         { dimension: 'Repayment', theirs: 'Daily or weekly ACH from deposits, whether clients paid or not', ours: 'Self-liquidating — the facility repays as clients pay' },
         { dimension: 'Cost', theirs: 'Factor rates that annualize well past 50%', ours: 'Prime + 1%-5%, or 0.5%-1.5% per invoice' },
         { dimension: 'Effect on payroll timing', theirs: 'Extracts cash on payroll week', ours: 'Funds within 24-48 hours of invoicing, on your payroll cycle' },
-        { dimension: 'Intermediary compensation', theirs: '5-10+ points inside the factor rate, generally undisclosed', ours: 'A success fee, agreed in writing before you sign and earned only if you close' },
+        { dimension: 'Intermediary compensation', theirs: 'Built into the factor rate rather than quoted separately, so you rarely see it', ours: 'A success fee, agreed in writing before you sign and earned only if you close' },
       ],
     },
     workedExample:
@@ -1004,7 +1004,7 @@ export const fundingPages: FundingPage[] = [
         { dimension: 'Repayment', theirs: 'Daily or weekly ACH, independent of when payors pay', ours: 'Self-liquidating as claims adjudicate and pay' },
         { dimension: 'Cost', theirs: 'Factor rates that annualize well past 50%', ours: 'Prime + 2%-6%' },
         { dimension: 'Handling of denials', theirs: 'Irrelevant to the lender — the draw continues regardless', ours: 'Reserved for in the borrowing base, so availability tracks reality' },
-        { dimension: 'Intermediary compensation', theirs: '5-10+ points inside the factor rate, generally undisclosed', ours: 'A success fee, agreed in writing before you sign and earned only if you close' },
+        { dimension: 'Intermediary compensation', theirs: 'Built into the factor rate rather than quoted separately, so you rarely see it', ours: 'A success fee, agreed in writing before you sign and earned only if you close' },
       ],
     },
     workedExample:
