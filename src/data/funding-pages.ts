@@ -155,7 +155,7 @@ export const fundingPages: FundingPage[] = [
       { label: 'What underwriting reads', value: '12 months of bank statements, weighted to the last 3. No appraisal, no field exam' },
       { label: 'Owner credit', value: 'Matters more than in asset-based lending. Clean 680+ widens the options meaningfully' },
       { label: 'Lien position', value: 'Subordinate structures available; will sit behind an existing factor or ABL' },
-      { label: 'Serve fee', value: 'Success fee of 1%-2% of the funded amount, in writing, paid only at close' },
+      { label: 'Serve fee', value: 'A success fee, earned only on closing. Agreed in writing before you sign anything. No retainers, no upfront costs' },
     ],
     versus: {
       heading: 'Revenue-based financing vs. the advance you will be offered first',
@@ -168,7 +168,7 @@ export const fundingPages: FundingPage[] = [
         { dimension: 'Repayment', theirs: '10%-20% of revenue by daily or weekly ACH, starting immediately', ours: 'One fixed payment a month' },
         { dimension: 'Paying it off early', theirs: 'Usually saves nothing. The payback is a fixed amount, so a strong quarter just extracts it faster', ours: 'The better products forgive unearned interest, which is the largest single lever on real cost' },
         { dimension: 'Effect on the next facility', theirs: 'A UCC filing and a daily draw that makes an ABL harder to underwrite', ours: 'Clean monthly payment history, which is what qualifies you for cheaper money in a year' },
-        { dimension: 'Intermediary compensation', theirs: '5-10+ points inside the factor rate, generally undisclosed', ours: '1%-2% success fee, disclosed in writing, contingent on closing' },
+        { dimension: 'Intermediary compensation', theirs: '5-10+ points inside the factor rate, generally undisclosed', ours: 'A success fee, agreed in writing before you sign and earned only if you close' },
       ],
     },
     workedExample:
@@ -251,7 +251,7 @@ export const fundingPages: FundingPage[] = [
       },
       {
         who: 'Consumer-facing or DTC businesses with no B2B receivables',
-        instead: 'Without commercial invoices there is no asset to secure the takeout against. Revenue-based options exist but they are a lateral move, not a step down in cost.',
+        instead: 'Without commercial invoices there is no receivable to secure a takeout against, so a conventional consolidation is harder. That does not mean there is nothing here — inventory, equipment and card-processing history all get financed, and our e-commerce and DTC guide covers what actually works. Worth a conversation rather than an assumption.',
       },
       {
         who: 'Looking for one more advance to cover this week',
@@ -292,7 +292,7 @@ export const fundingPages: FundingPage[] = [
       { label: 'Typical debt service reduction', value: '30%-50% of current monthly outflow' },
       { label: 'Second-step target (12+ months later)', value: 'ABL, non-bank SBA, or bank line in the low teens or better' },
       { label: 'What underwriting requires', value: '13-week cash flow forecast, 6 months bank statements, current AR aging' },
-      { label: 'Serve fee', value: 'Success fee of 1%-2% of the funded amount, in writing, paid only at close' },
+      { label: 'Serve fee', value: 'A success fee, earned only on closing. Agreed in writing before you sign anything. No retainers, no upfront costs' },
     ],
     versus: {
       heading: 'Consolidating through Serve vs. through the broker who called you',
@@ -312,7 +312,7 @@ export const fundingPages: FundingPage[] = [
         {
           dimension: 'How the intermediary gets paid',
           theirs: '5-10+ points built into the factor rate, usually undisclosed',
-          ours: 'A 1%-2% success fee, disclosed in writing before you sign, paid only if you close',
+          ours: 'A success fee, agreed in writing before you sign and earned only if you close',
         },
         {
           dimension: 'Payment mechanics after close',
@@ -356,7 +356,7 @@ export const fundingPages: FundingPage[] = [
       },
       {
         question: 'Do you charge anything before funding?',
-        answer: 'No. Serve is paid a success fee of 1%-2% of the funded amount, disclosed in writing before you sign anything, and only if the financing closes. No retainers, no application fees, no diligence deposits. If someone in this market asks you for money upfront to arrange a consolidation, that is worth walking away from.',
+        answer: 'No. Serve earns a success fee upon the closing of a facility, agreed in writing before you sign anything, and nothing at all if it does not close. No retainers, no application fees, no diligence deposits. If someone in this market asks you for money upfront to arrange a consolidation, that is worth walking away from.',
       },
     ],
     related: [
@@ -364,6 +364,7 @@ export const fundingPages: FundingPage[] = [
       { label: 'How to read an MCA term sheet, line by line', href: '/blog/how-to-read-an-mca-term-sheet' },
       { label: 'MCA vs. revenue-based financing in 2026', href: '/blog/mca-vs-revenue-based-financing' },
       { label: 'Asset-based lending — the usual second step', href: '/solutions/asset-based-lending' },
+      { label: 'E-commerce and DTC financing guide', href: '/industries/ecommerce-dtc' },
     ],
     schema: {
       minAmount: '$250,000',
@@ -384,7 +385,7 @@ export const fundingPages: FundingPage[] = [
     title: 'C&I Bridge Loans: For Operations, Not Property',
     excerpt: 'Short-term capital secured by receivables, inventory, equipment and contracts — not by a building. Pricing, timelines and what counts as an exit.',
     directAnswer:
-      'A commercial and industrial (C&I) bridge loan is short-term capital secured by a company operating assets — receivables, inventory, equipment, signed contracts — rather than by real estate. It exists to carry a business from today to one specific event: an acquisition closing, a contract mobilizing, a permanent facility finishing underwriting. As of 2026, C&I bridges typically run $250K to $5MM at roughly Prime plus 4%-8%, close in 3-7 business days, and stay outstanding 30-180 days on interest-only payments with credit for early payoff, so the real cost is the days you actually use the money. The discipline that separates a bridge from expensive working capital is the exit: a facility already in underwriting, a contract with an assignment of claims, an acquisition with a signed LOI and a funding date. If you are financing a building, this is the wrong product — that is a commercial real estate bridge, a different structure with different lenders.',
+      'A commercial and industrial (C&I) bridge loan is short-term capital secured by a company operating assets — receivables, inventory, equipment, signed contracts — rather than by real estate. It exists to carry a business from today to one specific event: an acquisition closing, a contract mobilizing, a permanent facility finishing underwriting. As of 2026, C&I bridges typically run $250K to $5MM at roughly Prime plus 4%-8%, close in 3-7 business days, and stay outstanding 30-180 days on interest-only payments with credit for early payoff, so the real cost is the days you actually use the money. The discipline that separates a bridge from expensive working capital is the exit: a facility already in underwriting, a contract with an assignment of claims, an acquisition with a signed LOI and a funding date. If you are financing a building rather than a business, what you want is a commercial real estate bridge instead: a different structure, underwritten on the property, with a different lender set. Serve places those regularly. The two are separated here because they answer different credit questions, not because either of them belongs to someone else.',
     fitsIf: [
       'Sweet spot is $5MM-$50MM in annual revenue and two or more years operating — neither is a cutoff',
       'A named exit event with a date on it — not a hope',
@@ -394,8 +395,8 @@ export const fundingPages: FundingPage[] = [
     ],
     notFor: [
       {
-        who: 'Anyone financing real property — purchase, refinance, construction, fix-and-flip, multifamily, land',
-        instead: 'That is a CRE bridge or a hard-money loan, underwritten on the property rather than the business. Serve does place real-estate-secured deals, but through a different structure and a different lender set. Start at our real estate lending page instead of here.',
+        who: 'Financing real property rather than a business — purchase, refinance, construction, fix-and-flip, multifamily, land',
+        instead: 'That is a commercial real estate bridge, underwritten on the property rather than on the business, and it is work we do constantly — quick to close, and needed all the time. Different structure, different lenders, same firm. Our real estate lending page is the right starting point, and the fastest route is simply to tell us what the property is and when you need to close.',
       },
       {
         who: 'No visible exit — the plan is that revenue improves',
@@ -444,7 +445,7 @@ export const fundingPages: FundingPage[] = [
       { label: 'Lien position', value: 'First position preferred; subordinated structures available behind an existing factor or ABL' },
       { label: 'Qualifying exits', value: 'ABL or SBA in underwriting, signed acquisition with a funding date, assignable contract, property under contract' },
       { label: 'Disqualifying exits', value: 'Soft investor interest, expected revenue improvement, speculative asset appreciation' },
-      { label: 'Serve fee', value: 'Success fee of 1%-2% of the funded amount, in writing, paid only at close' },
+      { label: 'Serve fee', value: 'A success fee, earned only on closing. Agreed in writing before you sign anything. No retainers, no upfront costs' },
     ],
     versus: {
       heading: 'A C&I bridge vs. the fast money that will find you first',
@@ -479,7 +480,7 @@ export const fundingPages: FundingPage[] = [
         {
           dimension: 'Intermediary compensation',
           theirs: '5-10+ points inside the factor rate, generally undisclosed',
-          ours: '1%-2% success fee, disclosed in writing, contingent on closing',
+          ours: 'A success fee, agreed in writing before you sign and earned only if you close',
         },
       ],
     },
@@ -508,7 +509,7 @@ export const fundingPages: FundingPage[] = [
       },
       {
         question: 'Do you do real estate bridge loans at all?',
-        answer: 'Yes, but as a separate product with a separate lender set — see our real estate lending page. We keep the two apart on purpose. Underwriting a building and underwriting an operating company are different disciplines, and pretending otherwise is how borrowers end up with the wrong structure.',
+        answer: 'Yes, and a good deal of it. Real estate bridges are fast to close and we do them constantly. They are a separate product with a separate lender set, which is why they have their own page rather than living on this one. Underwriting a building and underwriting an operating company are genuinely different disciplines, and treating them as one is how borrowers end up with the wrong structure. Tell us which one you have and we will point you at the right desk.',
       },
     ],
     related: [
@@ -596,7 +597,7 @@ export const fundingPages: FundingPage[] = [
       { label: 'What is not financed', value: 'Services, labor, in-house work in process' },
       { label: 'Primary credit decision', value: 'Your end customer credit, then your supplier reliability' },
       { label: 'Typical exit', value: 'Invoice factoring on the resulting receivable, usually arranged in the same package' },
-      { label: 'Serve fee', value: 'Success fee of 1%-2% of the funded amount, in writing, paid only at close' },
+      { label: 'Serve fee', value: 'A success fee, earned only on closing. Agreed in writing before you sign anything. No retainers, no upfront costs' },
     ],
     versus: {
       heading: 'PO financing vs. the two things companies usually do instead',
@@ -745,7 +746,7 @@ export const fundingPages: FundingPage[] = [
       { label: 'Machinery and equipment', value: '70%-80% of appraised liquidation value, often as a term tranche' },
       { label: 'Time to close', value: '10-20 business days including field exam and appraisal' },
       { label: 'Ongoing reporting', value: 'Monthly borrowing base certificate, AR aging, inventory report' },
-      { label: 'Serve fee', value: 'Success fee of 1%-2% of the funded amount, in writing, paid only at close' },
+      { label: 'Serve fee', value: 'A success fee, earned only on closing. Agreed in writing before you sign anything. No retainers, no upfront costs' },
     ],
     versus: {
       heading: 'ABL vs. the bank line it usually replaces',
@@ -819,7 +820,7 @@ export const fundingPages: FundingPage[] = [
     notFor: [
       {
         who: 'Agencies behind on 941 payroll tax deposits',
-        instead: 'Fix this first — it is not negotiable. A federal tax lien takes priority over the lender security interest, so no facility closes until the liability is resolved or subject to a formal installment agreement the lender can review. Get a payroll tax professional involved before you look for financing.',
+        instead: 'Fix this first — it is not negotiable. A federal tax lien takes priority over the lender security interest, so no facility closes until the liability is resolved or sits under a formal installment agreement the lender can review. Get a payroll tax professional on it, then come back to us. We would rather help you structure the facility on the other side of that than pretend it is not in the way.',
       },
       {
         who: 'Direct-hire or permanent placement only',
@@ -827,7 +828,7 @@ export const fundingPages: FundingPage[] = [
       },
       {
         who: '1099 or independent-contractor models with disputed classification',
-        instead: 'Classification exposure is a real credit issue, not paperwork. Lenders read it as contingent liability. Resolve the classification question before pursuing a facility that will be underwritten around it.',
+        instead: 'Classification exposure is a real credit issue rather than paperwork, and lenders read it as a contingent liability. Worth resolving before a facility gets underwritten around it. Tell us where it stands anyway — if it is already being addressed, that is often a conversation lenders will have.',
       },
       {
         who: 'One client at more than half the book',
@@ -868,7 +869,7 @@ export const fundingPages: FundingPage[] = [
       { label: 'Ineligible collateral', value: 'Unbilled accrued time, invoices past 90 days, disputed hours, intercompany' },
       { label: 'Hard gate', value: 'Payroll taxes current — an IRS lien primes the lender and stops the deal' },
       { label: 'Concentration', value: 'Reserves typically begin above 30%-40% for a single client' },
-      { label: 'Serve fee', value: 'Success fee of 1%-2% of the funded amount, in writing, paid only at close' },
+      { label: 'Serve fee', value: 'A success fee, earned only on closing. Agreed in writing before you sign anything. No retainers, no upfront costs' },
     ],
     versus: {
       heading: 'A receivables facility vs. the advance an agency usually takes instead',
@@ -880,7 +881,7 @@ export const fundingPages: FundingPage[] = [
         { dimension: 'Repayment', theirs: 'Daily or weekly ACH from deposits, whether clients paid or not', ours: 'Self-liquidating — the facility repays as clients pay' },
         { dimension: 'Cost', theirs: 'Factor rates that annualize well past 50%', ours: 'Prime + 1%-5%, or 0.5%-1.5% per invoice' },
         { dimension: 'Effect on payroll timing', theirs: 'Extracts cash on payroll week', ours: 'Funds within 24-48 hours of invoicing, on your payroll cycle' },
-        { dimension: 'Intermediary compensation', theirs: '5-10+ points inside the factor rate, generally undisclosed', ours: '1%-2% success fee, disclosed in writing, contingent on closing' },
+        { dimension: 'Intermediary compensation', theirs: '5-10+ points inside the factor rate, generally undisclosed', ours: 'A success fee, agreed in writing before you sign and earned only if you close' },
       ],
     },
     workedExample:
@@ -942,7 +943,7 @@ export const fundingPages: FundingPage[] = [
     notFor: [
       {
         who: 'Practices under an active payor audit or recoupment demand',
-        instead: 'A pending recoupment is a claim ahead of the lender on the same receivables, and lenders will wait it out. Resolve or quantify the exposure first — a documented settlement is financeable, an open audit generally is not.',
+        instead: 'A pending recoupment is a claim ahead of the lender on the same receivables, so lenders will wait it out. Resolve or quantify the exposure first: a documented settlement is financeable, an open audit of unknown scope generally is not. Tell us early rather than letting diligence find it, and we will tell you what the file needs to look like when it is time.',
       },
       {
         who: 'Cash-pay or elective practices with no third-party AR',
@@ -991,7 +992,7 @@ export const fundingPages: FundingPage[] = [
       { label: 'Key underwriting inputs', value: 'Aging by payor, gross-to-net collection rate, denial rate, days in AR' },
       { label: 'Common exclusions', value: 'Self-pay balances, claims past 120-180 days, amounts under audit or recoupment' },
       { label: 'Lender type', value: 'Specialized medical funders, not generalist ABL lenders' },
-      { label: 'Serve fee', value: 'Success fee of 1%-2% of the funded amount, in writing, paid only at close' },
+      { label: 'Serve fee', value: 'A success fee, earned only on closing. Agreed in writing before you sign anything. No retainers, no upfront costs' },
     ],
     versus: {
       heading: 'A medical receivables facility vs. what gets pitched to practices',
@@ -1003,7 +1004,7 @@ export const fundingPages: FundingPage[] = [
         { dimension: 'Repayment', theirs: 'Daily or weekly ACH, independent of when payors pay', ours: 'Self-liquidating as claims adjudicate and pay' },
         { dimension: 'Cost', theirs: 'Factor rates that annualize well past 50%', ours: 'Prime + 2%-6%' },
         { dimension: 'Handling of denials', theirs: 'Irrelevant to the lender — the draw continues regardless', ours: 'Reserved for in the borrowing base, so availability tracks reality' },
-        { dimension: 'Intermediary compensation', theirs: '5-10+ points inside the factor rate, generally undisclosed', ours: '1%-2% success fee, disclosed in writing, contingent on closing' },
+        { dimension: 'Intermediary compensation', theirs: '5-10+ points inside the factor rate, generally undisclosed', ours: 'A success fee, agreed in writing before you sign and earned only if you close' },
       ],
     },
     workedExample:
@@ -1073,7 +1074,7 @@ export const fundingPages: FundingPage[] = [
       },
       {
         who: 'Contractors with active mechanics lien or bond claims on completed work',
-        instead: 'Those claims can prime a lender lien on the same receivables. Resolve or quantify them before pursuing a facility; a documented resolution is financeable, an open claim usually is not.',
+        instead: 'Those claims can prime a lender lien on the same receivables. Resolve or quantify them first — a documented resolution is financeable, an open claim usually is not. If it is in progress, say so and we will look at the equipment side in the meantime, which is often the stronger collateral anyway.',
       },
       {
         who: 'Businesses with no WIP schedule',
@@ -1114,7 +1115,7 @@ export const fundingPages: FundingPage[] = [
       { label: 'Contract-specific option', value: 'Contract financing against a single assigned contract, strongest on public work' },
       { label: 'Deal-stoppers', value: 'Active mechanics lien or bond claims, no WIP schedule, unresolved surety issues' },
       { label: 'What lenders read first', value: 'The contract — pay-when-paid, offset rights, assignment restrictions, surety agreement' },
-      { label: 'Serve fee', value: 'Success fee of 1%-2% of the funded amount, in writing, paid only at close' },
+      { label: 'Serve fee', value: 'A success fee, earned only on closing. Agreed in writing before you sign anything. No retainers, no upfront costs' },
     ],
     versus: {
       heading: 'Equipment-led financing vs. chasing a receivables facility',
