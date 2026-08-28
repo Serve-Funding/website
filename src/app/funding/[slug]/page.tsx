@@ -115,11 +115,14 @@ export default async function ProblemPage({ params }: Props) {
         <Container>
           <div className="max-w-3xl mx-auto">
             <Heading size="h2" className="mb-4 text-olive-900">
-              Who this is for
+              Where this fits best
             </Heading>
             <Text className="text-gray-600 mb-6">
-              Serve works with companies doing $5MM to $50MM in revenue on asks between
-              $250K and $5MM. Being specific about that up front saves everyone a call.
+              Our sweet spot is $5MM to $50MM in revenue on asks between $250K and $5MM. We
+              work meaningfully smaller and meaningfully larger — we have closed $250K
+              factoring lines and $50MM facilities in the same year. What usually decides
+              fit is your credit, your existing debt, and whether the structure works at
+              all. Size is the last thing we look at, not the first.
             </Text>
             <ul className="space-y-3 text-gray-700">
               {page.fitsIf.map((item, i) => (

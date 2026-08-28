@@ -29,8 +29,8 @@ export default function FundingIndexPage() {
             <Text className="text-gray-600">
               Each page answers one expensive problem directly — what it costs, how long it
               takes, what underwriting needs to see, and when the honest answer is that this
-              is not the right tool. Serve works with companies doing $5MM to $50MM in
-              revenue on asks between $250K and $5MM.
+              is not the right tool. Our sweet spot is $5MM to $50MM in revenue on asks
+              between $250K and $5MM, and we work meaningfully smaller and larger than that.
             </Text>
           </FadeIn>
         </Container>

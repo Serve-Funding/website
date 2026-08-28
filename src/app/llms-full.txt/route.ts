@@ -202,7 +202,7 @@ function renderFundingPages(): string {
     '',
     fp.directAnswer,
     '',
-    `**Who this fits:**`,
+    `**Where this fits best (sweet spot, not a cutoff — Serve works meaningfully smaller and larger):**`,
     ...fp.fitsIf.map(f => `- ${f}`),
     '',
     `**Terms, costs and timelines:**`,
