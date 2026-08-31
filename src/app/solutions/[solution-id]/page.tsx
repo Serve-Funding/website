@@ -21,6 +21,7 @@ import {
 import { FeatureList } from '@/components/FeatureList'
 import { CTA } from '@/components/cta'
 import { FAQSectionWithSchema } from '@/components/FAQSection'
+import { TermsTable, NotForList, WorkedExample } from '@/components/content-blocks'
 import { Breadcrumb } from '@/components/breadcrumb'
 import { SolutionDetailClient } from './client'
 import type { Metadata } from 'next'
@@ -238,6 +239,13 @@ export default async function SolutionDetailPage({ params }: SolutionDetailPageP
           </Container>
         </Section>
 
+
+        {/* Terms, worked example and deflections. Populated per solution as the
+            /funding content is folded in; each renders nothing until its field
+            is filled, so partial migration is safe. */}
+        <TermsTable terms={solution.terms ?? []} />
+        <WorkedExample text={solution.workedExample} />
+        <NotForList items={solution.notFor ?? []} />
 
         {/* FAQ Section - AIEO Optimized */}
         {(() => {

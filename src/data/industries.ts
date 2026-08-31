@@ -46,6 +46,12 @@ export interface IndustryPage {
   recommendedSolutions: RecommendedSolution[]
   /** Products that DON'T typically fit this industry, with one sentence why */
   whatDoesntFit: Array<{ solutionId: string; why: string }>
+  /**
+   * Advance rates and eligibility for THIS industry, as a quotable table.
+   * Industry-specific exclusions belong here; rates true of the product
+   * generally belong on the /solutions page for that product.
+   */
+  terms?: Array<{ label: string; value: string }>
   /** Generic-sized worked example (no customer identification). 3 paragraphs: scenario, structure, outcome. */
   workedExample: string
   /** 2-3 Mike quotes from docs/ */
