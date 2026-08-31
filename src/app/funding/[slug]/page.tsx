@@ -119,7 +119,7 @@ export default async function ProblemPage({ params }: Props) {
             </Heading>
             <Text className="text-gray-600 mb-6">
               Our sweet spot is $5MM to $50MM in revenue on asks between $250K and $5MM. We
-              work meaningfully smaller and meaningfully larger — we have closed $250K
+              work meaningfully smaller and meaningfully larger. We have closed $250K
               factoring lines and $50MM facilities in the same year. What usually decides
               fit is your credit, your existing debt, and whether the structure works at
               all. Size is the last thing we look at, not the first.
@@ -247,7 +247,7 @@ export default async function ProblemPage({ params }: Props) {
               {page.workedExample}
             </Text>
             <Text size="sm" className="text-gray-500 mt-6 italic">
-              A representative structure, sized to a typical file. Details are generalized —
+              A representative structure, sized to a typical file. Details are generalized,
               we do not publish client specifics.
             </Text>
           </div>
@@ -263,7 +263,7 @@ export default async function ProblemPage({ params }: Props) {
             </Heading>
             <Text className="text-gray-600 mb-6">
               Half of being useful is being clear about what does not work. If one of these
-              describes you, the honest path is below — and it may not run through us.
+              describes you, the honest path is below, and it may not run through us.
             </Text>
             <div className="space-y-4">
               {page.notFor.map((item, i) => (
@@ -312,7 +312,7 @@ export default async function ProblemPage({ params }: Props) {
 
       <CTA
         title="Capital That Serves You"
-        text="Tell us what you are working with and we will tell you what fits — including when the answer is not us."
+        text="Tell us what you are working with and we will tell you what fits, including when the answer is not us."
         buttonText="See What You Qualify For"
         href={funnelHref(page)}
         useBG
