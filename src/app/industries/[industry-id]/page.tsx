@@ -13,6 +13,7 @@ import {
 import { Breadcrumb } from '@/components/breadcrumb'
 import { CTA } from '@/components/cta'
 import { FAQSectionWithSchema } from '@/components/FAQSection'
+import { TermsTable } from '@/components/content-blocks'
 import { SchemaRenderer } from '@/components/SchemaRenderer'
 import { getWebPageSchema } from '@/lib/schema-generators'
 import { lastUpdated } from '@/data/last-updated.generated'
@@ -236,6 +237,13 @@ export default async function IndustryPage({ params }: Props) {
       )}
 
       {/* What doesn't fit (honest deflection) */}
+      {/* Advance rates and eligibility for this industry. Renders nothing until
+          `terms` is populated, so this is safe ahead of the content migration. */}
+      <TermsTable
+        terms={ind.terms ?? []}
+        heading={`Advance rates and eligibility in ${ind.name.toLowerCase()}`}
+      />
+
       {ind.whatDoesntFit.length > 0 && (
         <Section className="py-12 bg-gray-50">
           <Container>

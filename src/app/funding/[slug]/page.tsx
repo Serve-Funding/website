@@ -13,6 +13,7 @@ import {
 import { Breadcrumb } from '@/components/breadcrumb'
 import { CTA } from '@/components/cta'
 import { FAQSectionWithSchema } from '@/components/FAQSection'
+import { TermsTable, NotForList, WorkedExample } from '@/components/content-blocks'
 import { SchemaRenderer } from '@/components/SchemaRenderer'
 import { getFinancialServiceSchema } from '@/lib/schema-generators'
 import { getFundingPage, getFundingPageIds, type FundingPage } from '@/data/funding-pages'
@@ -174,6 +175,72 @@ export default async function ProblemPage({ params }: Props) {
         </Container>
       </Section>
 
+      <TermsTable terms={page.terms} />
+
+      {/* Qualifying gate — stated where nobody can miss it */}
+      <Section className="py-12 bg-gray-50">
+        <Container>
+          <div className="max-w-3xl mx-auto">
+            <Heading size="h2" className="mb-4 text-olive-900">
+              Where this fits best
+            </Heading>
+            <Text className="text-gray-600 mb-6">
+              Our sweet spot is $5MM to $50MM in revenue on asks between $250K and $5MM. We
+              work meaningfully smaller and meaningfully larger. We have closed $250K
+              factoring lines and $50MM facilities in the same year. What usually decides
+              fit is your credit, your existing debt, and whether the structure works at
+              all. Size is the last thing we look at, not the first.
+            </Text>
+            <ul className="space-y-3 text-gray-700">
+              {page.fitsIf.map((item, i) => (
+                <li key={i} className="flex gap-3">
+                  <span className="text-gold-500 font-bold flex-shrink-0">•</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Container>
+      </Section>
+
+      {/* The problem, in the reader's words */}
+      <Section className="py-12 bg-white">
+        <Container>
+          <div className="max-w-3xl mx-auto">
+            <Heading size="h2" className="mb-6 text-olive-900">
+              What is actually going on
+            </Heading>
+            <Text className="text-gray-700 whitespace-pre-line">
+              {page.theProblem}
+            </Text>
+          </div>
+        </Container>
+      </Section>
+
+      {/* Mechanics */}
+      <Section className="py-12 bg-gray-50">
+        <Container>
+          <div className="max-w-4xl mx-auto">
+            <Heading size="h2" className="mb-6 text-olive-900">
+              How it works
+            </Heading>
+            <div className="space-y-4">
+              {page.howItWorks.map((s, i) => (
+                <Card key={i} padding="md" noHover>
+                  <div className="flex items-baseline gap-3 mb-2">
+                    <span className="text-gold-500 font-bold text-sm">{i + 1}</span>
+                    <Heading size="h4" className="text-olive-900">
+                      {s.step}
+                    </Heading>
+                  </div>
+                  <Text className="text-gray-700">{s.detail}</Text>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </Container>
+      </Section>
+
       {/* Terms — the quotable block */}
       <Section className="py-12 bg-white">
         <Container>
@@ -237,47 +304,10 @@ export default async function ProblemPage({ params }: Props) {
       </Section>
 
       {/* Worked example */}
-      <Section className="py-12 bg-white">
-        <Container>
-          <div className="max-w-3xl mx-auto">
-            <Heading size="h2" className="mb-6 text-olive-900">
-              How this plays out, with numbers
-            </Heading>
-            <Text className="text-gray-700 whitespace-pre-line">
-              {page.workedExample}
-            </Text>
-            <Text size="sm" className="text-gray-500 mt-6 italic">
-              A representative structure, sized to a typical file. Details are generalized,
-              we do not publish client specifics.
-            </Text>
-          </div>
-        </Container>
-      </Section>
+      <WorkedExample text={page.workedExample} />
 
       {/* Honest deflection */}
-      <Section className="py-12 bg-gray-50">
-        <Container>
-          <div className="max-w-3xl mx-auto">
-            <Heading size="h2" className="mb-4 text-olive-900">
-              When this is the wrong answer
-            </Heading>
-            <Text className="text-gray-600 mb-6">
-              Half of being useful is being clear about what does not work. If one of these
-              describes you, the honest path is below, and it may not run through us.
-            </Text>
-            <div className="space-y-4">
-              {page.notFor.map((item, i) => (
-                <Card key={i} padding="md" noHover>
-                  <div className="font-semibold text-olive-900 mb-1">{item.who}</div>
-                  <Text size="sm" className="text-gray-700">
-                    {item.instead}
-                  </Text>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </Container>
-      </Section>
+      <NotForList items={page.notFor} />
 
       <FAQSectionWithSchema
         title="Questions we get asked on this"
