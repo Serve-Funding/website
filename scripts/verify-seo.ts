@@ -26,6 +26,7 @@ const TITLE_WITH_SUFFIX_MAX = TITLE_MAX_LENGTH - SUFFIX.length // 53 chars
 const INTENT_COLLISION_THRESHOLD = 0.5
 const CAPSULE_MIN_WORDS = 40
 const CAPSULE_MAX_WORDS = 80
+const STALE_AFTER_DAYS = 180
 
 interface ValidationResult {
   file: string
@@ -598,6 +599,26 @@ function validateAnswerEngineSignals(collected: ValidationResult[]): {
     }
   } catch {
     // solutions data not resolvable in this context; skip rather than fail the build
+  }
+
+  // Freshness. Assistants weigh how recently a page changed, and these dates are
+  // derived from git rather than hand-maintained, so a stale one means the
+  // content genuinely has not moved.
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const { DATA_LAST_UPDATED } = require('../src/data/last-updated.generated')
+    const now = Date.now()
+    for (const [file, iso] of Object.entries(DATA_LAST_UPDATED as Record<string, string>)) {
+      const days = Math.floor((now - Date.parse(iso)) / 86_400_000)
+      if (days > STALE_AFTER_DAYS) {
+        warnings.push({
+          kind: 'content freshness',
+          detail: `${String(days).padStart(4)} days since last change  ${file}  (last ${iso})`,
+        })
+      }
+    }
+  } catch {
+    // generated file missing; `npm run last-updated` writes it before this runs
   }
 
   return { results, warnings }

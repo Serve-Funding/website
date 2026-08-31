@@ -13,6 +13,9 @@ import {
 import { Breadcrumb } from '@/components/breadcrumb'
 import { CTA } from '@/components/cta'
 import { FAQSectionWithSchema } from '@/components/FAQSection'
+import { SchemaRenderer } from '@/components/SchemaRenderer'
+import { getWebPageSchema } from '@/lib/schema-generators'
+import { lastUpdated } from '@/data/last-updated.generated'
 import { getIndustry, getIndustryIds } from '@/data/industries'
 import { fundingSolutions } from '@/data/solutions'
 import { fundingCases } from '@/data/fundingData'
@@ -68,6 +71,14 @@ export default async function IndustryPage({ params }: Props) {
 
   return (
     <>
+      <SchemaRenderer
+        schema={getWebPageSchema({
+          url: `https://servefunding.com/industries/${ind.id}`,
+          name: ind.title,
+          description: ind.excerpt,
+          dateModified: lastUpdated('src/data/industries.ts'),
+        })}
+      />
       <Breadcrumb
         items={[
           { label: 'Industries', href: '/industries' },
