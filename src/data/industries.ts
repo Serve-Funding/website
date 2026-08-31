@@ -120,8 +120,20 @@ export const industries: IndustryPage[] = [
         why: "Staffing is asset-light. The capital need is almost always payroll timing, not equipment, so an AR-based product carries more leverage and lower friction."
       }
     ],
+    terms: [
+      { label: "Facility size", value: "$250K - $25MM" },
+      { label: "Advance rate on eligible AR", value: "80%-95%" },
+      { label: "ABL pricing (2026)", value: "Prime + 1%-5% on drawn funds" },
+      { label: "Factoring pricing (2026)", value: "0.5%-1.5% per invoice, depending on terms and client credit" },
+      { label: "Funding speed once live", value: "24-48 hours from invoice upload" },
+      { label: "Setup time", value: "10-20 business days" },
+      { label: "Ineligible collateral", value: "Unbilled accrued time, invoices past 90 days, disputed hours, intercompany" },
+      { label: "Hard gate", value: "Payroll taxes current. An IRS lien primes the lender and stops the deal" },
+      { label: "Concentration", value: "Reserves typically begin above 30%-40% for a single client" },
+      { label: "Serve fee", value: "A success fee, earned only on closing. Agreed in writing before you sign anything. No retainers, no upfront costs" },
+    ],
     workedExample:
-      "A $4MM commercial staffing agency, paying weekly across roughly 80 placements at large logistics customers, has $600K–$700K of AR open at any time on net-45 terms. Payroll runs about $55K per week. The bank has them on a $250K line of credit that is permanently maxed and gets renewed reluctantly. Tax returns show $80K of net income against $4MM in revenue, which makes every bank conversation slow.\n\nThe structure is a $1MM revolving factoring line at an 88% advance rate, factor fee of 1.5% per month, no personal guarantee on the facility itself. Approval runs about three weeks. Once onboarded, the agency uploads invoices into the factor's portal, the factor advances 88% the next business day, and the remaining 12% (less the factor fee) is released when the customer pays. The factor sets up a lockbox in the agency's name so the customer relationship doesn't change.\n\nThe outcome: weekly payroll is no longer a fire drill. There is roughly $600K of immediate availability against current AR on day one. Six months in, the agency takes on a new logistics contract that adds $1.5MM of annual revenue and the line scales with it. Eighteen months in, with cleaner financials, the conversation shifts to converting to an ABL structure at Prime + 2%.",
+      "A light industrial staffing agency doing about $11MM in revenue is funding weekly payroll of roughly $150K out of the owner personal line of credit and a single advance taken the previous spring. Receivables stand at $1.75MM across nineteen clients, the largest at 22% of the book. Payroll taxes are current.\n\nThe first finding has nothing to do with the lender. The agency bills semi-monthly, so at any moment $250K-$300K of worked hours sit unbilled and therefore ineligible. Moving to weekly invoicing adds roughly $260K of eligible receivables before a single term is negotiated. With that change, about $1.6MM of the book is eligible after removing aged and disputed items, supporting roughly $1.4MM at an 88% advance rate.\n\nWe place a factoring facility at 88% with a 1.05% fee per invoice on 45-day terms and 24-hour funding, closed in 13 business days. The advance taken the previous spring is retired out of the first draw. Fourteen months later the same book supports an ABL at Prime plus 3%, which cuts the cost of the facility by roughly 40% and returns collections to the agency. The factoring facility was the on-ramp, not the destination.",
     mikeQuotes: [
       {
         quote:
@@ -140,6 +152,30 @@ export const industries: IndustryPage[] = [
       }
     ],
     faqs: [
+      {
+        question: "Can I finance payroll before I invoice the client?",
+        answer: "Generally not through the facility itself, because unbilled accrued time is not eligible collateral. The practical fix is billing frequency: an agency that invoices weekly instead of semi-monthly converts up to two weeks of payroll from ineligible to eligible, which usually creates more availability than any advance-rate negotiation would. Some payroll-funding providers will bridge the gap, at a price.",
+      },
+      {
+        question: "What if I am behind on payroll taxes?",
+        answer: "Resolve that before looking for financing. A federal tax lien takes priority over a lender security interest, so almost no facility will close over an unresolved 941 liability. Lenders will sometimes proceed where there is a documented IRS installment agreement in good standing that they can review. Get a payroll tax professional involved first. This is not a financing problem.",
+      },
+      {
+        question: "Factoring or ABL for a staffing agency?",
+        answer: "Factoring if you need speed, have thin financials, or are growing fast enough that collections management is a burden. It funds in 24-48 hours and the factor handles the lockbox. ABL if your financials support it and you want to keep collecting and pay less. A common path is factoring for the first twelve to eighteen months, then ABL once there is clean history to underwrite.",
+      },
+      {
+        question: "Will my clients know I am financing my receivables?",
+        answer: "With factoring, yes. Payments are directed to a lockbox in your name that the factor sweeps, and clients receive a notice of assignment. Large employers process these constantly and their AP teams treat it as routine. With an ABL you keep collecting and clients generally notice nothing. Either way, tell your largest accounts yourself before the paperwork reaches them.",
+      },
+      {
+        question: "How much can a staffing agency borrow?",
+        answer: "80%-95% of eligible invoiced receivables, with facilities from $250K to $25MM. Eligible excludes unbilled time, invoices past 90 days, disputed hours, and a reserve against any client concentrated above roughly 30%-40% of the book. The useful exercise is to run your current AR aging through those rules. The answer is usually within a day.",
+      },
+      {
+        question: "Does this work for direct-hire placements?",
+        answer: "Less well. Permanent placement fees are often refundable inside a guarantee period, which makes them weaker collateral, and advance rates drop accordingly. If your book mixes temp and direct-hire, expect the temporary staffing receivables to carry the facility and the placement fees to be treated as a secondary or ineligible category.",
+      },
       {
         question: "How fast can a new staffing agency get a factoring line in place?",
         answer:
@@ -237,8 +273,20 @@ export const industries: IndustryPage[] = [
         why: "SBA can fit healthcare practice acquisitions, but it's a 4–12 week underwrite that we usually refer out. For working capital timing in a live practice, faster non-SBA products almost always make more sense."
       }
     ],
+    terms: [
+      { label: "Facility size", value: "$250K - $25MM" },
+      { label: "Advance rate", value: "65%-85% of net collectible value, not of billed charges" },
+      { label: "Pricing (2026)", value: "Prime + 2%-6%, depending on payor mix and collection history" },
+      { label: "Time to close", value: "15-30 business days" },
+      { label: "Payors financed", value: "Commercial insurance, managed care, Medicare, Medicaid, workers compensation" },
+      { label: "Government payor structure", value: "Two-account lockbox with a deposit account control agreement, because direct assignment is barred" },
+      { label: "Key underwriting inputs", value: "Aging by payor, gross-to-net collection rate, denial rate, days in AR" },
+      { label: "Common exclusions", value: "Self-pay balances, claims past 120-180 days, amounts under audit or recoupment" },
+      { label: "Lender type", value: "Specialized medical funders, not generalist ABL lenders" },
+      { label: "Serve fee", value: "A success fee, earned only on closing. Agreed in writing before you sign anything. No retainers, no upfront costs" },
+    ],
     workedExample:
-      "A healthcare equipment supplier doing $6MM in annual revenue carries about $850K of AR on net-45 to net-60 terms with hospital systems and surgical centers (commercial receivables, not insurance). They also hold roughly $700K in inventory at cost: proprietary disposables and a handful of consigned units at customer sites. The bank line is $400K and capped. They have one large new customer (a regional hospital network) waiting on a $1.2MM PO that will ship in tranches over six months.\n\nThe structure is a $1.5MM AR-based facility at an 88% advance rate, plus a $500K inventory sublimit at 50% advance on finished goods at cost. Pricing comes in around Prime + 3.5% on the AR portion. To bridge the production cycle on the hospital network PO, we lay in a separate PO financing facility that pays the manufacturer directly for 80% of the cost, settled when the invoice gets factored into the AR line on shipment.\n\nThe outcome: working AR availability roughly triples versus the old bank line. The new hospital network contract becomes deliverable because production cash is now sourced. Twelve months later, with the supplier at $9MM in revenue, the whole stack rolls into a single ABL facility at Prime + 2%.",
+      "A multi-site specialty practice with about $16MM in net patient service revenue is carrying $4.8MM in gross receivables and financing a biweekly clinical payroll of roughly $420K out of a fully drawn bank line. Payor mix runs about 58% commercial, 27% Medicare, 11% Medicaid, and 4% self-pay.\n\nThe gross number is not the working number. Historical gross-to-net conversion on this book is about 41%, so $4.8MM in billed charges represents roughly $1.97MM of expected net collections. Removing self-pay balances and claims past 150 days leaves about $1.72MM eligible. At a 71% advance rate, supported by a documented denial rate under 6% and clean payor-level reporting, the facility sizes to roughly $1.22MM.\n\nStructure: commercial payors directed to a lockbox, Medicare and Medicaid flowing into a practice-name account under a deposit account control agreement and swept daily. Priced at Prime plus 4.25%, closed in 24 business days. The practice stops timing payroll against deposit timing, and the reporting discipline the facility requires surfaces a denial pattern with one managed care plan that had been quietly costing more than the financing does.",
     mikeQuotes: [
       {
         quote:
@@ -257,6 +305,30 @@ export const industries: IndustryPage[] = [
       }
     ],
     faqs: [
+      {
+        question: "Why is the advance rate quoted against net collectible value rather than what I billed?",
+        answer: "Because a healthcare receivable is billed at gross charges and collects at a contracted rate. If $100 of billed charges historically converts to $40 of cash, the lender is advancing 70% of the $40, not of the $100. The percentage looks lower and the underlying math is consistent with commercial lending. Model your borrowing base off expected net collections and the number stops being a surprise.",
+      },
+      {
+        question: "Can Medicare and Medicaid receivables be financed?",
+        answer: "Yes, but not by assigning the payment to a lender. Federal anti-assignment rules bar that. The standard structure is a two-account arrangement where government payments land in an account in the provider name, subject to a deposit account control agreement, and are swept from there. It is well established, and it is one reason these facilities go to specialized medical funders.",
+      },
+      {
+        question: "What does healthcare asset-based lending cost in 2026?",
+        answer: "Prime plus 2%-6% on drawn funds, with pricing driven mainly by payor mix and documented collection history. A commercial-heavy book with a low denial rate prices near the bottom of that range; a Medicaid-heavy book with inconsistent reporting prices near the top or gets declined. Setup costs include the payor analysis and, sometimes, a third-party billing review.",
+      },
+      {
+        question: "How long does it take to close?",
+        answer: "15-30 business days, longer than a commercial ABL. The additional time goes to the payor-level analysis and to setting up the two-account lockbox structure with your bank. If cash is needed sooner, a working capital loan closing in days can bridge while the facility underwrites.",
+      },
+      {
+        question: "Will an open payor audit stop the deal?",
+        answer: "Usually, yes. A recoupment demand is a claim ahead of the lender against the same receivables, so funders wait for it to resolve or be quantified. A documented settlement with a payment plan is generally financeable; an open audit of unknown scope generally is not. Tell your advisor about it at the start rather than letting diligence find it.",
+      },
+      {
+        question: "Is this the same as medical factoring?",
+        answer: "Closely related. Medical factoring is the sale of specific claims with the funder managing collections; a medical ABL is a loan against the receivable pool with the provider continuing to bill and collect. Factoring is faster to establish and more forgiving of weak financials; ABL costs less and is less intrusive. Payor mix often decides which lenders will engage at all.",
+      },
       {
         question: "Can I factor my insurance receivables?",
         answer:
@@ -354,8 +426,20 @@ export const industries: IndustryPage[] = [
         why: "Revenue-based working capital is fine as a small subordinate layer, but it ignores the collateral sitting on a manufacturer's balance sheet. Leading with an asset-based product almost always lowers the all-in cost."
       }
     ],
+    terms: [
+      { label: "Facility size", value: "$250K - $25MM" },
+      { label: "Pricing (2026)", value: "Roughly Prime + 1%-5%" },
+      { label: "Eligible receivables", value: "80%-85% advance; typically under 90 days, no intercompany, concentration reserved" },
+      { label: "Finished goods", value: "60%-75% of net orderly liquidation value" },
+      { label: "Raw materials", value: "Generally ineligible. Lenders want finished goods" },
+      { label: "Work in process", value: "Almost always ineligible, zero borrowing base credit" },
+      { label: "Machinery and equipment", value: "70%-80% of appraised liquidation value, often as a term tranche" },
+      { label: "Time to close", value: "10-20 business days including field exam and appraisal" },
+      { label: "Ongoing reporting", value: "Monthly borrowing base certificate, AR aging, inventory report" },
+      { label: "Serve fee", value: "A success fee, earned only on closing. Agreed in writing before you sign anything. No retainers, no upfront costs" },
+    ],
     workedExample:
-      "A $12MM specialty manufacturer carries roughly $1.8MM in AR at any given time (net-45 customer terms), $2.5MM of inventory at cost (a mix of raw materials and finished goods), and roughly $1MM of owned equipment. The current bank has them on a $1.5MM line, capped, with a personal guarantee and a tight DSCR covenant. A new customer just placed a $2.4MM purchase order requiring 90 days of production cash and imported components.\n\nThe structure is a $6MM asset-based facility: 85% advance on eligible AR, 55% advance on finished goods inventory, plus a $750K equipment add-on. Pricing comes in at Prime + 2.5%. The bank is paid out at closing and walks away from the covenant. To bridge the new customer's $2.4MM PO, a separate PO facility funds the overseas supplier for 80% of cost at 2% per 30 days; once the goods ship and the invoice generates, the AR line picks up the receivable and the PO facility self-liquidates.\n\nThe outcome: total revolving availability roughly triples versus the old bank line. The $2.4MM order ships on time without the manufacturer touching equity capital. Eighteen months in, with revenue at $18MM, the facility resizes to $10MM at slightly tighter pricing and the equipment add-on is rolled into a separate term structure for tax efficiency.",
+      "A precision components manufacturer doing about $14MM in revenue has a $1MM bank line it outgrew two years ago. The balance sheet shows $2.6MM in receivables, $3.9MM in inventory, and machinery the company owns outright.\n\nModeling the borrowing base first changes expectations in a useful way. Of the $2.6MM in AR, about $2.3MM is eligible after removing invoices past 90 days and reserving for a customer at 24% of the book, giving roughly $1.9MM at an 83% advance. The inventory splits into $1.1MM finished goods, $1.4MM raw material, and $1.4MM work in process. Only the finished goods count, contributing about $715K at 65% of NOLV. Raw materials and WIP contribute nothing. An appraisal supports a $900K term tranche against the machinery at 75% of orderly liquidation value.\n\nTotal facility: roughly $3.5MM against a $1MM bank line, at Prime plus 3.25%, closed in 17 business days. The company also learns something operationally: $2.8MM of its balance sheet sits in raw material and work in process earning no borrowing base credit, which becomes an argument for shortening cycle times and buying closer to demand that has nothing to do with financing.",
     mikeQuotes: [
       {
         quote:
@@ -374,6 +458,30 @@ export const industries: IndustryPage[] = [
       }
     ],
     faqs: [
+      {
+        question: "Why does my inventory not count for as much as I expected?",
+        answer: "Because ABL advance rates are set against liquidation value rather than book value, and most of a manufacturer inventory does not qualify at all. Work in process is excluded entirely, since a partially machined part has no resale market, and raw materials are generally ineligible too. What lenders want is finished goods, which advance at 60%-75% of net orderly liquidation value. It is common for $4MM of book inventory to produce $1.5MM of availability, which is why we model the borrowing base before anyone pays for a field exam.",
+      },
+      {
+        question: "What does a manufacturing ABL cost in 2026?",
+        answer: "Roughly Prime plus 1%-5% on drawn funds, plus an unused line fee, plus field exam and appraisal costs at setup. Bank-owned lenders price at the low end and are more rigid on eligibility; independent lenders are more flexible and slightly pricier. For most manufacturers who do not qualify for a bank line, it remains the cheapest revolving structure available.",
+      },
+      {
+        question: "Will an ABL work if one customer is most of my revenue?",
+        answer: "It gets harder. Concentration above roughly 20%-25% draws a reserve, and a single customer at 60% or more of the book usually caps the facility below what the company needs. Factoring with credit insurance on that specific account debtor sometimes works where ABL will not, because the risk can be insured rather than reserved against.",
+      },
+      {
+        question: "How is this different from invoice factoring?",
+        answer: "Factoring is the sale of specific invoices, with the factor collecting from your customers through a lockbox. ABL is a loan against a pool of collateral where you keep collecting yourself and report monthly. ABL is cheaper and less intrusive; factoring is faster to put in place and more forgiving of weak financials. We compare them in detail on our factoring vs. ABL page.",
+      },
+      {
+        question: "Can I get an ABL if I am not profitable?",
+        answer: "Often, yes. That is much of the point. ABL underwrites collateral rather than earnings, so a loss year that would fail a bank covenant test does not automatically disqualify you. What the lender needs is collateral that holds up under examination and records clean enough to report against monthly.",
+      },
+      {
+        question: "How long does it take?",
+        answer: "10-20 business days, driven by the field exam and equipment appraisal. If capital is needed sooner, the standard sequence is a working capital loan or bridge closing in days while the ABL underwrites in parallel, with the ABL retiring the bridge on close.",
+      },
       {
         question: "What's the difference between factoring and ABL for a manufacturer?",
         answer:
@@ -597,8 +705,20 @@ export const industries: IndustryPage[] = [
         why: "Most contractors don't carry inventory at cost in a way an inventory lender can underwrite. Materials are typically consumed on the job, not held on a shelf."
       }
     ],
+    terms: [
+      { label: "Facility size", value: "$250K - $25MM" },
+      { label: "Pricing (2026)", value: "Prime + 2%-6%" },
+      { label: "Equipment advance", value: "70%-80% of appraised liquidation value on owned, free-and-clear machinery" },
+      { label: "Approved progress billings", value: "70%-80% advance, with documented sign-off required" },
+      { label: "Retainage", value: "Excluded from the borrowing base" },
+      { label: "Time to close", value: "15-30 business days including appraisal and contract review" },
+      { label: "Contract-specific option", value: "Contract financing against a single assigned contract, strongest on public work" },
+      { label: "Deal-stoppers", value: "Active mechanics lien or bond claims, no WIP schedule, unresolved surety issues" },
+      { label: "What lenders read first", value: "The contract: pay-when-paid, offset rights, assignment restrictions, surety agreement" },
+      { label: "Serve fee", value: "A success fee, earned only on closing. Agreed in writing before you sign anything. No retainers, no upfront costs" },
+    ],
     workedExample:
-      "A specialty contractor with $4MM in revenue and a husband-and-wife ownership team carries $600K in progress billings on net-45 terms with two general contractors. The bank line is $250K and they just got notice it won't renew. The previous tax year showed a loss after one large dispute pushed an invoice past 90 days. They have $400K of free-and-clear equipment (loaders, trucks, a few specialty tools) and an upcoming bonding renewal that requires demonstrating working capital.\n\nThe structure layers three products. First, a $750K commercial factoring line at an 87% advance rate on eligible billings, retainage carved out until release; this clears the existing bank line at closing and gives ongoing working capital that tracks the AR. Second, a $250K sale-leaseback on the free-and-clear equipment over 48 months, pulling cash out of equity sitting on equipment that wasn't generating leverage. Third, a $150K bridge with aggressive early-payoff terms to clean up a pair of MCAs taken on during the previous slow quarter.\n\nThe outcome: monthly debt service drops sharply versus the pre-restructure picture because the MCA daily debits are gone. Working capital availability roughly triples. The bonding renewal lands clean. Twelve months later, with the factoring line seasoned and the books cleaner, the contractor refinances the sale-leaseback into a longer-term equipment note at a better rate.",
+      "A site work contractor doing about $22MM in revenue is carrying $3.4MM in receivables, of which roughly $1.1MM is retainage across seven jobs. It owns an equipment fleet (excavators, dozers, haul trucks) with no liens on most units. The bank line is $1.5MM and fully drawn every spring during mobilization season.\n\nThe receivables-only path is disappointing on inspection. Excluding retainage and the billings still awaiting owner approval leaves about $1.4MM of approved progress billings eligible, supporting roughly $1.05MM at a 75% advance rate. That is less than the existing bank line and it took three weeks to establish.\n\nThe equipment changes the picture. An appraisal supports $4.1MM of orderly liquidation value across the free-and-clear units, producing a $3.1MM term facility at 76%. Combined with a $1.05MM revolver against approved billings from a construction-specialist lender, total availability reaches roughly $4.15MM at a blended cost near Prime plus 4%. When the company wins a $6MM municipal award the following quarter, contract financing against the assigned contract covers mobilization without touching either facility. The fleet was the answer the whole time, and it had been sitting in the yard.",
     mikeQuotes: [
       {
         quote:
@@ -617,6 +737,26 @@ export const industries: IndustryPage[] = [
       }
     ],
     faqs: [
+      {
+        question: "Why do lenders decline construction receivables?",
+        answer: "Four reasons that compound. Retainage is contingent on project completion. Pay-when-paid clauses make your customer obligation conditional on the owner paying them. Mechanics lien and bond claims from your subs and suppliers can take priority over a lender lien on the same receivables. And percentage-of-completion accounting means the receivable balance moves when the cost-to-complete estimate moves. Lenders who specialize in construction price for those risks; generalists decline.",
+      },
+      {
+        question: "Can I borrow against retainage?",
+        answer: "Effectively nothing. Expect retainage to be excluded from the borrowing base, because it is contingent on completion and exposed to offset. If retainage is a large share of what you are owed, plan the facility around equipment or a specific assigned contract instead, and treat retainage as cash that arrives at closeout rather than as availability.",
+      },
+      {
+        question: "What is the best financing structure for a contractor?",
+        answer: "For most contractors at $5MM-$50MM in revenue, an equipment-led facility is the strongest starting point. Owned machinery appraises reliably, has a deep resale market, and carries none of the offset problems construction AR does. Layer a progress-billing revolver from a construction specialist on top for the ongoing book, and use contract financing for individual large awards. Which mix fits depends on how much equipment you own outright.",
+      },
+      {
+        question: "Is this the same as a construction loan?",
+        answer: "No, and the distinction matters. A construction loan finances the building of a property and is underwritten on the real estate, drawn against inspections, and held by a real estate lender. What is described here finances the contracting business, its receivables and its equipment. If you are developing property, our real estate lending page is the right starting point.",
+      },
+      {
+        question: "How long does it take to close?",
+        answer: "15-30 business days. Equipment appraisals and contract review drive the timeline. If mobilization money is needed before that, a bridge secured by existing receivables can close in 3-7 business days and be retired by the facility on close, a standard sequence rather than a workaround.",
+      },
       {
         question: "How does factoring work with progress billings?",
         answer:

@@ -25,7 +25,6 @@ import {
 import { fundingCases } from '@/data/fundingData'
 import { comparisons } from '@/data/comparisons'
 import { industries } from '@/data/industries'
-import { fundingPages } from '@/data/funding-pages'
 import { glossaryTerms } from '@/data/glossary'
 import { getBlogPosts } from '@/lib/blog-utils'
 import { getTitleAsString } from '@/lib/solution-helpers'
@@ -62,6 +61,13 @@ function renderSolutions(): string {
       '**Features & terms:**',
       features,
       bestFor,
+      s.terms?.length
+        ? `\n\n**Terms, costs and timelines:**\n${s.terms.map(t => `- ${t.label}: ${t.value}`).join('\n')}`
+        : '',
+      s.workedExample ? `\n\n**Worked example:**\n${s.workedExample}` : '',
+      s.notFor?.length
+        ? `\n\n**When this is the wrong answer:**\n${s.notFor.map(n => `- ${n.who}: ${n.instead}`).join('\n')}`
+        : '',
     ].join('\n')
   })
   return `## Funding Solutions\n\n${blocks.join('\n\n---\n\n')}\n`
@@ -190,31 +196,12 @@ function renderIndustries(): string {
       .slice()
       .sort((a, b) => a.rank - b.rank)
       .map(r => `${r.rank}. ${r.solutionId}: ${r.why}`),
+    ...(ind.terms?.length
+      ? ['', '**Advance rates and eligibility:**', ...ind.terms.map(t => `- ${t.label}: ${t.value}`)]
+      : []),
+    ...(ind.workedExample ? ['', '**Worked example:**', ind.workedExample] : []),
   ].join('\n'))
   return `## Industry Guides\n\n${blocks.join('\n\n---\n\n')}\n`
-}
-
-function renderFundingPages(): string {
-  if (!fundingPages.length) return ''
-  const blocks = fundingPages.map(fp => [
-    `### ${fp.h1}`,
-    `${SITE}/funding/${fp.id}`,
-    '',
-    fp.directAnswer,
-    '',
-    `**Where this fits best (sweet spot, not a cutoff; Serve works meaningfully smaller and larger):**`,
-    ...fp.fitsIf.map(f => `- ${f}`),
-    '',
-    `**Terms, costs and timelines:**`,
-    ...fp.terms.map(t => `- ${t.label}: ${t.value}`),
-    '',
-    `**When this is the wrong answer:**`,
-    ...fp.notFor.map(n => `- ${n.who}: ${n.instead}`),
-    '',
-    `**Questions:**`,
-    ...fp.faqs.map(f => `- ${f.question} ${f.answer}`),
-  ].join('\n'))
-  return `## Funding by Problem\n\nProblem-first pages: what each situation costs, how long it takes, and when the honest answer is a different product.\n\n${blocks.join('\n\n---\n\n')}\n`
 }
 
 function renderGlossary(): string {
@@ -248,7 +235,6 @@ function buildLlmsFull(): string {
     '',
     renderComparisons(),
     renderIndustries(),
-    renderFundingPages(),
     renderGlossary(),
     renderCaseStudies(),
     allFaqs,

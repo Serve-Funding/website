@@ -10,7 +10,6 @@ export const DATA_LAST_UPDATED = {
   'src/data/company-info.ts': '2026-08-31',
   'src/data/comparisons.ts': '2026-08-31',
   'src/data/faq-data.ts': '2026-08-31',
-  'src/data/funding-pages.ts': '2026-08-31',
   'src/data/fundingData.ts': '2026-06-06',
   'src/data/glossary.ts': '2026-08-31',
   'src/data/industries.ts': '2026-08-31',
