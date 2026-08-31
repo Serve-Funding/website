@@ -285,6 +285,189 @@ export const workingCapitalFAQs: FAQ[] = [
 // ============================================================================
 
 export const solutionSpecificFAQs: FAQ[] = [
+  // working-capital-loans — folded in from the /funding consolidation
+  {
+    id: "what-is-the-difference-between-revenue-based",
+    q: "What is the difference between revenue-based financing and a merchant cash advance?",
+    a: "The repayment mechanic, and it drives everything else. An MCA buys a share of future receivables and collects 10%-20% of revenue by daily or weekly ACH until a fixed factor amount is paid, commonly annualizing at 50%-200%+. Revenue-based financing is a loan with a fixed monthly payment over a known term at 1.25%-4% per month. Both fund in days on similar underwriting. One takes cash on days your customers have not paid you; the other does not.",
+    relatedSolutions: ["working-capital-loans"]
+  },
+  {
+    id: "how-much-revenue-based-financing-can-i",
+    q: "How much revenue-based financing can I get?",
+    a: "Plan on 10%-15% of annual revenue as the realistic ceiling, so roughly $1.2MM to $1.8MM on $12MM of revenue. Facilities run $250K to $10MM+. If the number you need is well above that band, the answer is usually a different product rather than a different lender: an asset-based line sizes to collateral instead of revenue and can go considerably higher.",
+    relatedSolutions: ["working-capital-loans"]
+  },
+  {
+    id: "what-does-revenue-based-financing-cost-in",
+    q: "What does revenue-based financing cost in 2026?",
+    a: "1.25%-4% per month, which is roughly 18%-48% effective APR depending on deposit consistency, time in business, industry, and owner credit. The single question most worth asking on a term sheet is what happens on early payoff. Real forgiveness of unearned interest can nearly halve what the money costs, and it is not standard across lenders.",
+    relatedSolutions: ["working-capital-loans"]
+  },
+  {
+    id: "is-this-the-kind-of-rbf-where",
+    q: "Is this the kind of RBF where my payment goes up in a good month?",
+    a: "Not the structure we place. Two different products carry the name. One takes a percentage of revenue, so the payment rises when sales rise and the schedule moves under you, which is genuinely difficult in a seasonal business. Serve places the fixed-payment version: a known monthly amount over a known term. If a lender quotes you a percentage of revenue, that is a different product and worth evaluating differently.",
+    relatedSolutions: ["working-capital-loans"]
+  },
+  {
+    id: "should-i-use-this-if-i-have",
+    q: "Should I use this if I have a lot of receivables?",
+    a: "Probably not as the destination. A commercial receivable book of $1MM or more supports an asset-based line or an invoice facility at Prime plus 1%-5%, which is a fraction of the cost and grows with sales. The honest structure in that case is revenue-based financing now, because it closes in days, with the cheaper facility underwriting in parallel and retiring it in six to eight weeks. Speed and price are both available, just not on the same day.",
+    relatedSolutions: ["working-capital-loans"]
+  },
+  {
+    id: "does-taking-this-hurt-my-chances-of",
+    q: "Does taking this hurt my chances of getting cheaper money later?",
+    a: "The opposite, generally. Twelve months of clean monthly payments is exactly the history an asset-based lender, a non-bank SBA lender, or a bank wants to underwrite. The thing that damages the next facility is a stack of advances with daily draws and multiple UCC filings, which is a large part of why the mechanic matters more than the headline rate.",
+    relatedSolutions: ["working-capital-loans"]
+  },
+  {
+    id: "how-fast-can-this-actually-fund",
+    q: "How fast can this actually fund?",
+    a: "Two to ten business days normally, and 24 to 72 hours when payroll is the reason. What determines where you land is almost entirely how fast the file gets assembled: twelve months of bank statements, a current AR aging if you have one, and a clear explanation of what the money is for. Lenders are rarely the bottleneck.",
+    relatedSolutions: ["working-capital-loans"]
+  },
+
+  // invoice-factoring — folded in from the /funding consolidation
+  {
+    id: "is-factoring-a-loan-does-it-put",
+    q: "Is factoring a loan? Does it put debt on my balance sheet?",
+    a: "A properly documented factoring facility is a true sale of the receivable, so the receivable comes off your balance sheet and no debt goes on. That distinction matters if you have covenants elsewhere restricting additional indebtedness. The factor does file a UCC financing statement on your receivables, which is a lien and will be visible to any other lender, so existing secured lenders generally need to subordinate.",
+    relatedSolutions: ["invoice-factoring"]
+  },
+  {
+    id: "what-is-the-difference-between-recourse-and",
+    q: "What is the difference between recourse and non-recourse factoring?",
+    a: "Under recourse factoring, if your customer never pays, you buy the invoice back. Under non-recourse, the factor absorbs that loss. The distinction is narrower than it sounds: non-recourse ordinarily covers customer insolvency only, not disputes, short payments, or a customer withholding because of a quality issue. Those come back to you under either structure. Non-recourse typically costs 0.25%-0.75% more per 30 days, and it is worth paying when the ledger is concentrated in a few names.",
+    relatedSolutions: ["invoice-factoring"]
+  },
+  {
+    id: "can-i-factor-a-single-invoice-instead",
+    q: "Can I factor a single invoice instead of my whole ledger?",
+    a: "Spot factoring exists and can solve a one-off gap, though it prices well above a committed facility, often 3%-5% for a single invoice, because the funder underwrites a customer relationship it will not see again. Most facilities instead ask for the whole ledger or all invoices from selected customers. If your need genuinely is one invoice once, say so early, because the lender set is different.",
+    relatedSolutions: ["invoice-factoring"]
+  },
+  {
+    id: "which-invoices-will-a-factor-refuse-to",
+    q: "Which invoices will a factor refuse to buy?",
+    a: "Anything pre-billed or covering work still in progress. Invoices already more than 90 days old. Invoices to a customer you also buy from, because the contra account can be netted against what you are owed. Related-party invoices. Consignment and guaranteed-sale arrangements, where the sale is not final. Progress billings and retainage. Foreign receivables without credit insurance. Anything under dispute. Expect roughly 5%-15% of a typical ledger to be ineligible, and size the facility on the eligible portion rather than on the gross ageing.",
+    relatedSolutions: ["invoice-factoring"]
+  },
+  {
+    id: "how-quickly-can-a-facility-be-in",
+    q: "How quickly can a facility be in place?",
+    a: "Five to ten business days from a complete submission to the first funded invoice, then 24 to 48 hours per submission after that. The step that most often extends it is obtaining a subordination or lien release from an existing secured lender, which depends on that lender rather than on the factor. If you know a blanket lien is on file, raise it in the first conversation.",
+    relatedSolutions: ["invoice-factoring"]
+  },
+
+  // purchase-order-funding — folded in from the /funding consolidation
+  {
+    id: "can-i-get-purchase-order-financing-with",
+    q: "Can I get purchase order financing with bad credit or a weak balance sheet?",
+    a: "Often, yes. The primary credit decision is about your end customer, not about you. A company with thin financials and a firm order from a creditworthy buyer is a normal PO financing profile. What will stop a deal is a customer whose credit does not check out, a supplier with no delivery history, or margin too thin to carry the cost.",
+    relatedSolutions: ["purchase-order-funding"]
+  },
+  {
+    id: "what-does-purchase-order-financing-cost-in",
+    q: "What does purchase order financing cost in 2026?",
+    a: "Roughly 2%-4% per 30 days on the funded amount. A typical 60-day cycle from supplier payment to customer collection therefore runs 4%-8% of the financed amount. Add the factoring fee on the exit and plan for total financing cost of 5%-10% of the transaction. That is why the margin floor sits around 20%-25%.",
+    relatedSolutions: ["purchase-order-funding"]
+  },
+  {
+    id: "will-the-money-come-to-my-company",
+    q: "Will the money come to my company?",
+    a: "No. The funder pays your supplier directly or issues a letter of credit in their favor. This is intentional. It is what makes the structure financeable, and it is also why PO financing does not solve a general cash shortage. If what you need is operating cash rather than supplier payment, the right tools are factoring, an asset-based line, or a working capital loan.",
+    relatedSolutions: ["purchase-order-funding"]
+  },
+  {
+    id: "does-my-customer-find-out",
+    q: "Does my customer find out?",
+    a: "Usually yes, because the receivable gets factored on the exit and payment is directed to a lockbox. In practice large commercial and government buyers deal with assigned receivables constantly and their AP departments handle it as routine paperwork. It is worth telling your customer before they receive the notice rather than after.",
+    relatedSolutions: ["purchase-order-funding"]
+  },
+  {
+    id: "i-manufacture-the-goods-myself-does-this",
+    q: "I manufacture the goods myself. Does this work?",
+    a: "Generally not for the manufacturing itself. PO funders will not finance work in process, because a half-built product is not collateral. Some will finance the raw-material purchase specifically, and the more common structure for manufacturers is inventory financing or an asset-based line against raw materials and finished goods. It is worth a conversation about which of your costs are actually financeable.",
+    relatedSolutions: ["purchase-order-funding"]
+  },
+  {
+    id: "how-fast-can-this-close",
+    q: "How fast can this close?",
+    a: "Five to fifteen business days. The variable is diligence on two third parties, your customer credit and your supplier reliability, neither of which you fully control. The fastest closings happen when the supplier has delivered for you before and the customer is a name the funder already knows.",
+    relatedSolutions: ["purchase-order-funding"]
+  },
+
+  // bridge-funding — folded in from the /funding consolidation
+  {
+    id: "what-is-the-difference-between-a-c",
+    q: "What is the difference between a C&I bridge loan and a commercial real estate bridge loan?",
+    a: "The collateral and the underwriting question. A C&I bridge is secured by a company operating assets (receivables, inventory, equipment, contract proceeds) and underwritten on the business and its exit event. A CRE bridge is secured by real property and underwritten on the asset value, loan-to-value, and the property exit. Different lenders, different pricing, different documents. Most \"bridge loan\" search results are about the second one, which is why this page exists.",
+    relatedSolutions: ["bridge-funding"]
+  },
+  {
+    id: "what-actually-counts-as-an-exit",
+    q: "What actually counts as an exit?",
+    a: "Something with a date and a document. An asset-based line or SBA loan already in underwriting. A signed acquisition agreement with a funding date. A contract that can be assigned, with the assignment in process. A property under contract with a closing date. What does not count: investors who seem interested, expected revenue improvement, or an asset you believe will appreciate. We will not structure a bridge against those, because in ninety days the bridge becomes the problem.",
+    relatedSolutions: ["bridge-funding"]
+  },
+  {
+    id: "is-a-bridge-loan-expensive",
+    q: "Is a bridge loan expensive?",
+    a: "The annualized rate is high and the total dollars are usually modest, because the money is outstanding for 30-180 days rather than years. Prime plus 6% on $650K for 60 days is roughly $12K-$14K of interest. Evaluate it as dollars against the value of the transaction it protects, over the actual days outstanding, and not as an annualized rate you would never actually pay.",
+    relatedSolutions: ["bridge-funding"]
+  },
+  {
+    id: "can-a-bridge-sit-behind-my-existing",
+    q: "Can a bridge sit behind my existing factor or bank line?",
+    a: "Often, yes. Subordinated bridge structures exist specifically for companies that already have a senior lender in first position. Whether it works depends on your existing intercreditor terms, which we read before proposing anything. If your senior lender has to consent, that conversation happens early rather than at closing.",
+    relatedSolutions: ["bridge-funding"]
+  },
+  {
+    id: "do-you-do-real-estate-bridge-loans",
+    q: "Do you do real estate bridge loans at all?",
+    a: "Yes, and a good deal of it. Real estate bridges are fast to close and we do them constantly. They are a separate product with a separate lender set, which is why they have their own page rather than living on this one. Underwriting a building and underwriting an operating company are genuinely different disciplines, and treating them as one is how borrowers end up with the wrong structure. Tell us which one you have and we will point you at the right desk.",
+    relatedSolutions: ["bridge-funding"]
+  },
+
+  // debt-refinance — folded in from the /funding consolidation
+  {
+    id: "is-mca-consolidation-just-another-merchant-cash",
+    q: "Is MCA consolidation just another merchant cash advance?",
+    a: "It should not be, and often is. A genuine consolidation is a term loan or an asset-secured facility that pays your advances off at their current balances and switches you to monthly payments. If the document in front of you quotes a factor rate, specifies a daily or weekly ACH, and does not name the specific positions it retires, you are being sold a fourth position with a friendlier label. Ask for written payoff letters as a condition of funding.",
+    relatedSolutions: ["debt-refinance"]
+  },
+  {
+    id: "how-much-does-mca-consolidation-cost-in",
+    q: "How much does MCA consolidation cost in 2026?",
+    a: "The realistic first step is an 18-36 month term loan around 18%-22% APR. In isolation that is expensive money. Against a stacked position with a blended true cost above 70%, it typically cuts monthly debt service by 30%-50% and stops the daily extraction. The cheap money comes at the second step, twelve months later, once there is clean payment history to underwrite.",
+    relatedSolutions: ["debt-refinance"]
+  },
+  {
+    id: "how-many-advances-can-be-consolidated-at",
+    q: "How many advances can be consolidated at once?",
+    a: "Two to four positions in a single tranche is normal. Beyond four the arithmetic usually stops working, because the payoff total exceeds what the collateral supports. At six or more positions the honest answer is generally not a refinance at all but a negotiation with the funders, and we will tell you that rather than take you through three weeks of diligence to reach the same conclusion.",
+    relatedSolutions: ["debt-refinance"]
+  },
+  {
+    id: "will-consolidating-hurt-my-credit-or-trigger",
+    q: "Will consolidating hurt my credit or trigger a default?",
+    a: "Paying an advance off at its stated balance is contractually a payoff, not a default, and most agreements permit it. The risks worth checking before you sign anything are prepayment terms that do not forgive unearned fees, confessions of judgment on older contracts, and cross-default language between positions. We read the existing contracts before structuring the takeout, because one bad clause changes the whole sequence.",
+    relatedSolutions: ["debt-refinance"]
+  },
+  {
+    id: "what-if-my-business-does-not-have",
+    q: "What if my business does not have receivables to secure against?",
+    a: "Then the options narrow to free-and-clear equipment, inventory a lender will lend against, or equity in property. If none of those exist, a conventional refinance generally will not close and the realistic paths are a home equity line on the owner side or direct negotiation with the funders. We would rather say that in the first conversation than three weeks in.",
+    relatedSolutions: ["debt-refinance"]
+  },
+  {
+    id: "do-you-charge-anything-before-funding",
+    q: "Do you charge anything before funding?",
+    a: "No. Serve earns a success fee upon the closing of a facility, agreed in writing before you sign anything, and nothing at all if it does not close. No retainers, no application fees, no diligence deposits. If someone in this market asks you for money upfront to arrange a consolidation, that is worth walking away from.",
+    relatedSolutions: ["debt-refinance"]
+  },
   // Asset-Based Lending
   {
     id: "what-is-abl",
