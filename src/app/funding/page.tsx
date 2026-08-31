@@ -27,7 +27,7 @@ export default function FundingIndexPage() {
               and name the number.
             </Text>
             <Text className="text-gray-600">
-              Each page answers one expensive problem directly — what it costs, how long it
+              Each page answers one expensive problem directly: what it costs, how long it
               takes, what underwriting needs to see, and when the honest answer is that this
               is not the right tool. Our sweet spot is $5MM to $50MM in revenue on asks
               between $250K and $5MM, and we work meaningfully smaller and larger than that.
@@ -58,7 +58,7 @@ export default function FundingIndexPage() {
 
       <CTA
         title="Not sure which one you are looking at?"
-        text="Answer a few questions and we will tell you what fits — including when the answer is not us."
+        text="Answer a few questions and we will tell you what fits, including when the answer is not us."
         buttonText="See What You Qualify For"
         href="/discover?src=funding-index"
         useBG
