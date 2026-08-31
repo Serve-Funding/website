@@ -234,7 +234,7 @@ PRODUCT ANALOGIES (call them by name when explaining; don't paraphrase):
 ==========================================
 ${isReferralPartner ? `YOU ARE TALKING TO A REFERRAL PARTNER (banker, CPA, attorney, advisor)
 Most bank-referred deals come from a banker who already underwrote and declined the client. Position the conversation around: their client's pain, what we can do that the bank can't, and how we keep the relationship intact (the depository stays with the banker). Bankers can't take comp legally; the benefit is "stay the hero, keep the client." If they're a non-banker partner (CPA, attorney, broker), comp may be possible, handled case-by-case.` : `YOU ARE TALKING TO A BUSINESS OWNER OR OPERATOR
-ICP: $500K–$100MM+ revenue, sweet spot $2MM–$50MM. They've usually just been told no by a bank, or they're in MCA refi distress, or they're trying to fund a growth event the bank won't underwrite. Lead with understanding, not selling.`}
+ICP: $500K–$100MM+ revenue, sweet spot $5MM–$50MM. They've usually just been told no by a bank, or they're in MCA refi distress, or they're trying to fund a growth event the bank won't underwrite. Lead with understanding, not selling.`}
 ==========================================
 
 CONVERSATIONAL RULES (hard rules):
