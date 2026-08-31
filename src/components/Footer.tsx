@@ -116,7 +116,7 @@ export function Footer() {
         <div className="py-4" style={{ backgroundColor: BRAND_COLORS.primary }}>
           <Container>
             <Text size="sm" className="text-center" style={{ color: '#ffffff' }}>
-              © {currentYear} All Rights Reserved — Serve Funding, LLC.
+              © {currentYear} Serve Funding, LLC. All rights reserved.
             </Text>
           </Container>
         </div>

@@ -179,7 +179,7 @@ export default function PrivacyPolicy() {
                 4. Mobile Information &amp; SMS Messaging
               </Heading>
               <Text className="text-gray-700 mb-4">
-                <strong>Mobile phone numbers and SMS/text-messaging opt-in consent are never sold, rented, or shared with third parties or affiliates for their own marketing or promotional purposes.</strong> This restriction applies regardless of any other sharing described in this Policy — including our sharing of application information with lenders, financial institutions, and funding partners to service your financing request.
+                <strong>Mobile phone numbers and SMS/text-messaging opt-in consent are never sold, rented, or shared with third parties or affiliates for their own marketing or promotional purposes.</strong> This restriction applies regardless of any other sharing described in this Policy, including our sharing of application information with lenders, financial institutions, and funding partners to service your financing request.
               </Text>
               <Text className="text-gray-700 mb-4">
                 We may share mobile information only with service providers who help us operate our messaging service (for example, our telephony provider, Dialpad), solely to deliver the service and under obligations of confidentiality. All text-messaging opt-in data and consent records are kept confidential and are not transferred to any third-party marketers.

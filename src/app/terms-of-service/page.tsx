@@ -106,7 +106,7 @@ export default function TermsOfService() {
                 Important Disclaimers
               </Heading>
               <Text className="text-gray-700 mb-4">
-                <strong>Not Financial, Legal, or Tax Advice:</strong> The information and advisory services provided by Serve Funding are for general informational purposes only and do not constitute financial, legal, or tax advice. We strongly recommend that you consult with qualified professionals—including financial advisors, attorneys, and tax specialists—before making any financial decisions based on our recommendations or information.
+                <strong>Not Financial, Legal, or Tax Advice:</strong> The information and advisory services provided by Serve Funding are for general informational purposes only and do not constitute financial, legal, or tax advice. We strongly recommend that you consult with qualified professionals, including financial advisors, attorneys, and tax specialists, before making any financial decisions based on our recommendations or information.
               </Text>
               <Text className="text-gray-700 mb-4">
                 <strong>No Guarantee of Funding:</strong> Serve Funding makes no warranties or guarantees regarding the approval or availability of funding. All funding is subject to lender evaluation, underwriting, and approval based on their specific criteria.

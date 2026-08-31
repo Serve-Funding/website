@@ -62,7 +62,7 @@ function getContextualHint(pathname: string): { hook: string; opener: string } |
   if (pathname === '/') {
     return {
       hook: 'Want help finding the right capital for your business?',
-      opener: "Hi — I can help you think through what kind of capital fits your situation. What's on your mind?",
+      opener: "Hi. I can help you think through what kind of capital fits your situation. What's on your mind?",
     }
   }
 
@@ -88,7 +88,7 @@ function getContextualHint(pathname: string): { hook: string; opener: string } |
     if (comp) {
       return {
         hook: `Trying to decide between ${comp.productA.name} and ${comp.productB.name}?`,
-        opener: `${comp.productA.name} vs ${comp.productB.name} — happy to talk through which one would actually fit. What's your situation?`,
+        opener: `${comp.productA.name} vs ${comp.productB.name}. Happy to talk through which one would actually fit. What's your situation?`,
       }
     }
     return {
@@ -103,7 +103,7 @@ function getContextualHint(pathname: string): { hook: string; opener: string } |
     if (ind) {
       return {
         hook: `Looking for capital in ${ind.id.replace(/-/g, ' ')}?`,
-        opener: `Looks like you're in ${ind.id.replace(/-/g, ' ')}. We do a lot of work in this space — what's the capital need you're trying to solve?`,
+        opener: `Looks like you're in ${ind.id.replace(/-/g, ' ')}. We do a lot of work in this space. What's the capital need you're trying to solve?`,
       }
     }
   }
@@ -111,7 +111,7 @@ function getContextualHint(pathname: string): { hook: string; opener: string } |
   if (pathname.startsWith('/blog/')) {
     return {
       hook: 'Have a question on what you just read?',
-      opener: 'Reading something specific? I can help connect it to your situation — what brought you to this article?',
+      opener: 'Reading something specific? I can help connect it to your situation. What brought you to this article?',
     }
   }
 
@@ -132,7 +132,7 @@ function getContextualHint(pathname: string): { hook: string; opener: string } |
   if (pathname === '/bankers') {
     return {
       hook: 'Have a client situation you want to talk through?',
-      opener: "Banker here? Happy to walk through a specific client situation — what kind of deal are you trying to get done?",
+      opener: "Banker here? Happy to walk through a specific client situation. What kind of deal are you trying to get done?",
     }
   }
 
