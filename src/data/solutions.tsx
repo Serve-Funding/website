@@ -40,6 +40,39 @@ export const fundingSolutions: FundingSolution[] = [
       "Cleaner-than-MCA replacement for businesses with one or two existing advances they want to clear out",
       "Acquisition or M&A timing gaps where speed matters more than the lowest possible rate"
     ],
+    terms: [
+      { label: "Pricing (2026)", value: "1.25%-4% per month, roughly 18%-48% effective APR" },
+      { label: "Structure", value: "Fixed monthly payment over 6-48 months. Revolving versions available from select lenders" },
+      { label: "Payment frequency", value: "Monthly. No daily or weekly ACH extraction from sales" },
+      { label: "Early payoff", value: "The better products forgive unearned interest, which can nearly halve the real cost. Confirm this in writing" },
+      { label: "What underwriting reads", value: "12 months of bank statements, weighted to the last 3. No appraisal, no field exam" },
+      { label: "Owner credit", value: "Matters more than in asset-based lending. Clean 680+ widens the options meaningfully" },
+      { label: "Lien position", value: "Subordinate structures available; will sit behind an existing factor or ABL" },
+      { label: "Serve fee", value: "A success fee, earned only on closing. Agreed in writing before you sign anything. No retainers, no upfront costs" },
+    ],
+    notFor: [
+      {
+        who: "Companies with a large book of commercial invoices",
+        instead: "If you have $1MM+ of receivables from creditworthy business customers, an asset-based line or invoice financing at Prime plus 1%-5% is a fraction of the cost of revenue-based financing and the facility grows with sales instead of amortizing away. Do not buy RBF because it is faster if the cheaper facility can be in place in three weeks. We will usually structure both: RBF now, the cheap facility underwriting in parallel.",
+      },
+      {
+        who: "Already two or more advances deep",
+        instead: "Adding a term loan on top of a stack is stacking, whatever it is called. The conversation you need is a consolidation that pays those positions off and closes them. That is a different page and a different lender set.",
+      },
+      {
+        who: "Revenue trending down over the last two quarters",
+        instead: "Revenue-based underwriting reads trailing deposits, so a declining trend prices badly or declines outright. If there is collateral, an asset-based facility looks at what you own rather than at the trend, and is the better door.",
+      },
+      {
+        who: "Financing an acquisition or a partner buyout",
+        instead: "RBF is sized to 10%-15% of revenue, which almost never covers a purchase price. Acquisitions want SBA 7(a) for the price and a bridge for the timing gap.",
+      },
+      {
+        who: "Under about $2MM in revenue, or asking under $250K",
+        instead: "Below that the revenue-based options thin out and most of what will look at you are advances. Still worth a conversation, because sometimes there is an asset to lend against that changes the answer entirely, and if there genuinely is not, we will tell you rather than put you into something we would not want to sign ourselves.",
+      },
+    ],
+    workedExample: "A specialty food manufacturer doing about $13MM in revenue lands shelf placement with a regional grocery chain. Filling it means roughly $900K of additional raw material and a second production shift, starting in three weeks. The company is profitable, has a $1.5MM bank line that is drawn to $1.3MM, and has never taken outside capital.\n\nThe first offer to arrive is an advance: $1MM in 48 hours at a 1.32 factor rate, so $1.32MM of payback pulled at 12% of daily deposits. On the projected nine-month payback that is an effective cost north of 68%, extracted daily against receivables that pay in 45 days. It would fund the shelf placement and squeeze the cash the shelf placement depends on.\n\nWhat we place instead is $1.4MM of revenue-based financing at 2.1% per month over 30 months, funded in seven business days, with written forgiveness of unearned interest on early payoff. Monthly payment lands near $63K. In parallel, an asset-based facility goes into underwriting against the growing receivable book from the chain, and closes about nine weeks later at Prime plus 3%. The company retires the RBF at month eleven and, because the prepayment terms were real, pays roughly $214K of total interest rather than the roughly $390K the full 30-month schedule implied. Same speed as the advance, and a little over a quarter of the cost.",
   },
 
   {
@@ -77,6 +110,37 @@ export const fundingSolutions: FundingSolution[] = [
       "Bridge facility for a company on the way to a bank-owned ABL in 6–12 months",
       "Acquired businesses where the new ownership wants to keep operating debt off the balance sheet"
     ],
+    terms: [
+      { label: "Cost", value: "1%-3% per 30 days outstanding" },
+      { label: "Reserve", value: "10%-20%, released on collection less the fee" },
+      { label: "Typical single-customer concentration limit", value: "20%-30% of the ledger" },
+      { label: "Invoice ageing limit", value: "Normally 90 days, occasionally 120" },
+      { label: "Contract term", value: "12-24 months is standard, 30-90 day terms exist and cost more" },
+      { label: "Balance sheet treatment", value: "A true sale of the receivable, not debt" },
+    ],
+    notFor: [
+      {
+        who: "Companies invoicing consumers, or taking payment by card at the point of sale",
+        instead: "There is no commercial receivable to sell. What fits that revenue pattern is revenue-based financing, sized against your deposits rather than against an invoice ledger.",
+      },
+      {
+        who: "Contractors billing on progress or holding retainage",
+        instead: "A construction receivable behaves differently from a commercial one. Progress billings are conditional until the work is accepted, retainage is not collectible until the job closes, and pay-when-paid clauses put a third party between you and the money. Most factors will not buy that paper. An asset-based facility built for construction is the better door.",
+      },
+      {
+        who: "Needing cash before the goods exist",
+        instead: "If the money is going to a supplier so an order can be produced, that is purchase order financing. The two are frequently arranged together: PO financing pays the supplier, and the factoring advance retires the PO position the day the invoice is issued.",
+      },
+      {
+        who: "Companies that also need to borrow against inventory, equipment or property",
+        instead: "Factoring only ever addresses the receivable. If there is meaningful collateral elsewhere on the balance sheet, one asset-based line against all of it is usually cheaper per dollar and simpler to administer than a factoring facility plus separate borrowings.",
+      },
+      {
+        who: "Already inside a factoring agreement with another funder",
+        instead: "Most factoring contracts carry a term, a minimum volume commitment, and an early termination fee, and the incumbent holds a first-position UCC on your receivables. Moving is normal and happens constantly, but it is a buyout conversation rather than a new facility. Send us the agreement before you sign anything else.",
+      },
+    ],
+    workedExample: "A wholesale distributor doing roughly $12MM in revenue sells into regional grocery and food-service chains on net 45 terms, though the ledger actually pays closer to 58 days. Receivables run about $2.1MM at any one time. The company is profitable, has been trading nine years, and was declined for a bank line increase because two quarters in the prior year showed compressed margins during a commodity swing.\n\nWe place a $2MM factoring facility at an 85% advance rate, priced at about 1.4% per 30 days, with the largest customer carved out at a higher concentration limit because that buyer is a national chain with public financials. Documentation takes eight business days, most of it spent obtaining a subordination from the equipment lender holding a blanket lien.\n\nOn a representative month the company submits $900K of verified invoices and receives about $765K within 48 hours. Those invoices collect over an average of 56 days, so the fee lands near $23K, and the $135K reserve is released as each invoice pays. Annualized across the facility the financing cost runs close to $265K against roughly $2.4MM of gross margin.\n\nWhat the company actually bought is a purchasing position. Paying suppliers inside terms rather than at 45 days earns a 2% early-payment discount on about $7MM of annual purchases, worth roughly $140K, which recovers over half the cost of the facility. Eighteen months later, with two clean years on the books, the same distributor moved onto an asset-based line at a materially lower rate. That is the normal arc. For most companies factoring is a bridge to cheaper capital rather than a permanent arrangement.",
   },
 
   {
@@ -222,6 +286,34 @@ export const fundingSolutions: FundingSolution[] = [
       "Operators with strong margins but lumpy AR who need to bridge the build cycle",
       "Businesses already running a factoring line that need a front-end add-on to fund production"
     ],
+    terms: [
+      { label: "Coverage of supplier cost", value: "70%-100%" },
+      { label: "Gross margin required", value: "Roughly 20%-25% or better on the transaction" },
+      { label: "What is financed", value: "Finished goods that ship: resale, drop-ship, contract-manufactured" },
+      { label: "What is not financed", value: "Services, labor, in-house work in process" },
+      { label: "Primary credit decision", value: "Your end customer credit, then your supplier reliability" },
+      { label: "Typical exit", value: "Invoice factoring on the resulting receivable, usually arranged in the same package" },
+      { label: "Serve fee", value: "A success fee, earned only on closing. Agreed in writing before you sign anything. No retainers, no upfront costs" },
+    ],
+    notFor: [
+      {
+        who: "Service businesses, staffing, or anything where the cost is labor",
+        instead: "There is no supplier to pay and no goods to secure. What you want is invoice factoring against the receivable once you have billed, or a payroll-funding facility if the gap is between payroll and collection.",
+      },
+      {
+        who: "Manufacturers converting raw materials in-house",
+        instead: "PO funders will not finance work in process, because half-finished goods are not collateral anyone can liquidate. Inventory financing or an asset-based line against raw materials and finished goods is the right structure. Some funders will cover the raw-material purchase specifically, which is worth asking about.",
+      },
+      {
+        who: "Gross margin under about 15%",
+        instead: "The arithmetic does not survive the cost of the money. Either the order needs repricing or the capital needs to come from a cheaper facility, an ABL or a bank line, which takes longer to put in place but works at thin margins.",
+      },
+      {
+        who: "A purchase order that is really a forecast",
+        instead: "Letters of intent, blanket agreements with no firm quantities, and verbal commitments are not financeable. A funder needs a document your customer is contractually bound by.",
+      },
+    ],
+    workedExample: "A consumer products company doing roughly $7MM in revenue receives a $1.9MM purchase order from a national retailer, roughly triple its largest previous order. Supplier cost is about $1.25MM against an overseas manufacturer it has used for three years, with 50% due at production start and the balance at shipment. Gross margin on the transaction is about 34%.\n\nWe arrange PO financing covering 100% of supplier cost. That is $1.25MM, issued as a letter of credit at production start with the balance released against shipping documents, priced at roughly 3% per 30 days. Alongside it, a factoring facility is set up on the retailer receivable at an 85% advance rate, so the moment the invoice is issued the factoring advance retires the PO position. Both facilities are documented together before production starts, which is the part that makes the timing work.\n\nThe cycle runs 71 days from letter of credit to customer payment. Total financing cost lands near $102K against roughly $650K of gross margin. The company nets about $548K on an order it could not otherwise have accepted, and finishes with an open factoring line ready for the reorder that arrives four months later.",
   },
 
   {
@@ -365,6 +457,36 @@ export const fundingSolutions: FundingSolution[] = [
       "M&A bridge layered with a senior real-estate or subordinated tranche",
       "Any deal where the exit event is real, visible, and on a known timeline"
     ],
+    terms: [
+      { label: "Collateral", value: "Receivables, inventory, equipment, assignable contract proceeds, not real property" },
+      { label: "Pricing (2026)", value: "Roughly Prime + 4%-8%, typically interest-only" },
+      { label: "Time to close", value: "3-7 business days from a clean file" },
+      { label: "Time outstanding", value: "30-180 days in most cases" },
+      { label: "Early payoff", value: "Credit for early payoff on most products, so you pay for the days you use" },
+      { label: "Lien position", value: "First position preferred; subordinated structures available behind an existing factor or ABL" },
+      { label: "Qualifying exits", value: "ABL or SBA in underwriting, signed acquisition with a funding date, assignable contract, property under contract" },
+      { label: "Disqualifying exits", value: "Soft investor interest, expected revenue improvement, speculative asset appreciation" },
+      { label: "Serve fee", value: "A success fee, earned only on closing. Agreed in writing before you sign anything. No retainers, no upfront costs" },
+    ],
+    notFor: [
+      {
+        who: "Financing real property rather than a business: purchase, refinance, construction, fix-and-flip, multifamily, land",
+        instead: "That is a commercial real estate bridge, underwritten on the property rather than on the business, and it is work we do constantly. Quick to close, and needed all the time. Different structure, different lenders, same firm. Our real estate lending page is the right starting point, and the fastest route is simply to tell us what the property is and when you need to close.",
+      },
+      {
+        who: "No visible exit, where the plan is that revenue improves",
+        instead: "A bridge with no takeout is not a bridge, it is short-term debt at bridge pricing, and in six months it will be the problem instead of the solution. What you probably want is a working capital facility or an asset-based line with an amortization you can actually carry.",
+      },
+      {
+        who: "Investors who \"seem interested\" as the repayment source",
+        instead: "Soft equity interest is not an exit and no credible lender will treat it as one. Come back when there is a signed term sheet, and in the meantime look at what your operating assets alone will support.",
+      },
+      {
+        who: "Needing under $250K",
+        instead: "The diligence cost does not amortize at that size and the pricing gets punishing. A working capital loan or a single-invoice advance is usually the better structure.",
+      },
+    ],
+    workedExample: "A specialty contractor doing about $18MM in revenue wins a $4.2MM municipal contract. Mobilization (crews, bonding, materials) runs roughly $600K, and the first progress payment is 75 days out under the contract terms. The company has $2.1MM in receivables from other work and a bank line that is fully drawn.\n\nThe exit is the contract itself: an assignment of claims on the municipal receivable, plus an asset-based facility already in underwriting against the existing AR book, expected to close in about seven weeks. We place a $650K bridge at Prime plus 6%, interest-only, secured by the existing receivables and subordinated to nothing because the bank line is unsecured. Funding takes five business days.\n\nThe ABL closes in week eight and retires the bridge. Total interest paid on the bridge: roughly $22K over 58 days. Against a $4.2MM contract the company would otherwise have had to decline, that is not a close call. But it only worked because the exit was two named, dated, documentable events rather than a general expectation that things would improve.",
   },
 
   {
@@ -437,5 +559,35 @@ export const fundingSolutions: FundingSolution[] = [
       "Acquisition targets where the seller's debt structure needs to clean up before close",
       "Multi-loan companies with overlapping bank line, equipment loans, and trade payables wanting a single restructure"
     ],
+    terms: [
+      { label: "First-step structure", value: "Term loan, 18-36 months, monthly payments" },
+      { label: "First-step pricing (2026)", value: "Roughly 18%-22% APR" },
+      { label: "Payment frequency", value: "Monthly, with no daily or weekly ACH sweeps" },
+      { label: "Time to close", value: "10-20 business days on a clean file" },
+      { label: "Positions taken out", value: "Typically 2-4 in a single tranche" },
+      { label: "Typical debt service reduction", value: "30%-50% of current monthly outflow" },
+      { label: "Second-step target (12+ months later)", value: "ABL, non-bank SBA, or bank line in the low teens or better" },
+      { label: "What underwriting requires", value: "13-week cash flow forecast, 6 months bank statements, current AR aging" },
+      { label: "Serve fee", value: "A success fee, earned only on closing. Agreed in writing before you sign anything. No retainers, no upfront costs" },
+    ],
+    notFor: [
+      {
+        who: "Under about $2MM in revenue with no commercial invoices",
+        instead: "Conventional refinance math rarely closes at that size. A home equity line or a single-invoice advance is usually the only honest answer, and we will say so on the first call rather than run you through a diligence process that ends in a no.",
+      },
+      {
+        who: "Six or more stacked positions with no collateral left",
+        instead: "A refinance does not reach that far. What is needed is a restructuring conversation: negotiating directly with the funders, or a formal workout, not more capital. We can point you toward counsel that does this work.",
+      },
+      {
+        who: "Consumer-facing or DTC businesses with no B2B receivables",
+        instead: "Without commercial invoices there is no receivable to secure a takeout against, so a conventional consolidation is harder. That does not mean there is nothing here. Inventory, equipment and card-processing history all get financed, and our e-commerce and DTC guide covers what actually works. Worth a conversation rather than an assumption.",
+      },
+      {
+        who: "Looking for one more advance to cover this week",
+        instead: "That is stacking, and it is exactly how a two-position problem becomes a six-position one. If this week is the emergency, say so and we will tell you honestly whether anything real can close in time.",
+      },
+    ],
+    workedExample: "A metal fabricator doing roughly $9MM in revenue loses a customer that represented about a fifth of the book. Payroll does not shrink on the same timeline as revenue, so over five months the company takes three advances totaling $780K. By the time we see it, the combined draw is about $4,100 per business day. Call it $86K a month against roughly $95K of gross monthly margin. The business is profitable on paper and cannot fund a purchase order.\n\nThe asset is the receivable book: about $1.6MM outstanding, spread across eleven industrial customers on net-45 to net-60, no single account over 18% of the total. That concentration profile is what makes the file workable. We structure a $850K term loan at 20% APR over 30 months, secured by the receivables, which pays all three positions off at their current balances and closes them. New monthly payment: about $38K. Monthly debt service falls by roughly 55%.\n\nEleven months of clean payment history later, the same receivable book supports a $1.2MM asset-based revolving line at Prime plus 3.5%, which retires the term loan and leaves the company with a facility that grows as sales grow instead of a payment that shrinks as it amortizes. The first loan was never the destination. It was the thing that made the second one possible.",
   }
 ]
