@@ -35,8 +35,8 @@ export const formQuestions: Question[] = [
   },
   {
     id: 'contact_info',
-    title: "Great — let's get to know you. What's your name and how can we reach you?",
-    partnerTitle: "Great — let's get to know you. What's your name and how can we reach you?",
+    title: "Great. Let's get to know you. What's your name and how can we reach you?",
+    partnerTitle: "Great. Let's get to know you. What's your name and how can we reach you?",
     answers: [],
     type: 'contact-info'
   },

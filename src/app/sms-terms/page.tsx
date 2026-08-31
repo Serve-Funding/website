@@ -85,7 +85,7 @@ export default function SmsTerms() {
                 Consent
               </Heading>
               <Text className="text-gray-700 mb-4">
-                You opt in to receive text messages from us by providing your mobile number and agreeing to be contacted by text — for example, by checking the SMS consent box on one of our website forms, by texting us first, or by requesting text updates during a conversation with our team. Consent to receive text messages is not a condition of receiving any of our services.
+                You opt in to receive text messages from us by providing your mobile number and agreeing to be contacted by text, for example by checking the SMS consent box on one of our website forms, by texting us first, or by requesting text updates during a conversation with our team. Consent to receive text messages is not a condition of receiving any of our services.
               </Text>
               <Text className="text-gray-700">
                 Mobile phone numbers and SMS opt-in consent are never sold, rented, or shared with third parties or affiliates for their own marketing or promotional purposes.

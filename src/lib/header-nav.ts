@@ -144,7 +144,7 @@ export const headerNavConfig: HeaderNavConfig = {
       itemType: 'anchors',
       featuredTitle: 'Our Story',
       regularTitle: 'Learn More',
-      description: 'Built on 40 years of entrepreneurial heritage, we\'re committed to serving you with integrity. We believe relationships matter more than bots—partnering with you as a trusted advisor to simplify your funding journey and accelerate your growth.'
+      description: 'Built on 40 years of entrepreneurial heritage, we\'re committed to serving you with integrity. We believe relationships matter more than bots, partnering with you as a trusted advisor to simplify your funding journey and accelerate your growth.'
     }
   ]
 }

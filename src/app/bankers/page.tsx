@@ -14,14 +14,14 @@ import { SchemaRenderer } from '@/components/SchemaRenderer'
 import { FAQSectionWithSchema } from '@/components/FAQSection'
 
 // Banker → client intro email draft, voiced per docs/mike-voice-patterns.md.
-const INTRO_EMAIL_SUBJECT = 'Quick intro — a financing advisory I trust'
+const INTRO_EMAIL_SUBJECT = 'Quick intro: a financing advisory I trust'
 const INTRO_EMAIL_BODY = [
   'Hi [name],',
   '',
-  "Wanted to put a name in front of you. Serve Funding is a family-owned business financing advisory I work with when a deal doesn't fit our credit box. They're not a direct lender — think of them more like your advocate to the non-bank lending world. Channel-neutral, product-neutral, 15+ years doing this.",
+  "Wanted to put a name in front of you. Serve Funding is a family-owned business financing advisory I work with when a deal doesn't fit our credit box. They're not a direct lender. Think of them more like your advocate to the non-bank lending world. Channel-neutral, product-neutral, 15+ years doing this.",
   '',
   'A few things worth knowing up front:',
-  "  •  Your accounts stay with us — they don't take deposits.",
+  "  •  Your accounts stay with us. They don't take deposits.",
   "  •  The first call is about 20 minutes. They'll tell you straight whether they can help.",
   "  •  They shop the deal across their lender network and come back with two or three real options, not a single quoted rate.",
   '',
@@ -36,12 +36,12 @@ const INTRO_MAILTO = `mailto:?subject=${encodeURIComponent(INTRO_EMAIL_SUBJECT)}
 const PAGE_URL = 'https://servefunding.com/bankers'
 
 export const metadata: Metadata = {
-  title: 'Bankers — When You Have to Decline a Loan',
+  title: 'Bankers: When You Have to Decline a Loan',
   description:
-    'When you must decline a commercial loan but want to keep the client: how Serve Funding works with banker referrals — and why your deposits stay with you.',
+    'When you must decline a commercial loan but want to keep the client: how Serve Funding works with banker referrals, and why your deposits stay with you.',
   alternates: { canonical: PAGE_URL },
   openGraph: {
-    title: 'Bankers — When You Have to Decline a Loan',
+    title: 'Bankers: When You Have to Decline a Loan',
     description:
       'A non-bank financing advisory built around banker referrals. You stay the relationship; we extend your reach.',
     url: PAGE_URL,
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
         url: 'https://servefunding.com/partners/Trust.webp',
         width: 1024,
         height: 728,
-        alt: 'Bankers — Serve Funding',
+        alt: 'Bankers, Serve Funding',
       },
     ],
   },
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
 const bankerFaqs = [
   {
     q: "Will my client switch their depository relationship to a different bank?",
-    a: "No. Serve Funding is a financing advisory, not a bank. We don't take deposits, we don't open operating accounts, and we don't compete with you for the relationship. Your depository, treasury, ACH, payroll, and FX business all stay where they are. The only new account that gets opened in a typical placement is a lockbox or DACA account at the alternative lender's bank — and that account specifically serves the AR-collateralized facility. Your operating account is untouched.",
+    a: "No. Serve Funding is a financing advisory, not a bank. We don't take deposits, we don't open operating accounts, and we don't compete with you for the relationship. Your depository, treasury, ACH, payroll, and FX business all stay where they are. The only new account that gets opened in a typical placement is a lockbox or DACA account at the alternative lender's bank, and that account specifically serves the AR-collateralized facility. Your operating account is untouched.",
   },
   {
     q: "Do you pay banker referral fees?",
@@ -70,35 +70,35 @@ const bankerFaqs = [
   },
   {
     q: "What happens to my client after I refer them?",
-    a: "We take a 20-minute discovery call to map the situation — collateral position, revenue trajectory, use of funds, timing. We tell the client honestly which path fits (often two or three layered products). We shop the deal across our extensive lender network — asset-based lenders, factors, equipment specialists, SBA partners, real estate lenders. We come back to the client with two or three real options to choose from. You're kept in the loop throughout if the client wants you in the loop; we don't run separately from the banking relationship.",
+    a: "We take a 20-minute discovery call to map the situation: collateral position, revenue trajectory, use of funds, timing. We tell the client honestly which path fits (often two or three layered products). We shop the deal across our extensive lender network: asset-based lenders, factors, equipment specialists, SBA partners, real estate lenders. We come back to the client with two or three real options to choose from. You're kept in the loop throughout if the client wants you in the loop; we don't run separately from the banking relationship.",
   },
   {
     q: "When will my client be bankable again?",
-    a: "Depends on what got them declined and what we put in place. A factoring or asset-based facility used to bridge slow AR while the business cleans up its tax returns typically produces a bankable profile within 12 to 24 months. An MCA consolidation refinance into a term loan is often a longer arc — 18 to 36 months. A real-estate cash-out for working capital can pencil out to bankable inside a year. The point is we're not trying to keep your client off your bank line forever; we're stabilizing them so they can come back to you.",
+    a: "Depends on what got them declined and what we put in place. A factoring or asset-based facility used to bridge slow AR while the business cleans up its tax returns typically produces a bankable profile within 12 to 24 months. An MCA consolidation refinance into a term loan is often a longer arc, 18 to 36 months. A real-estate cash-out for working capital can pencil out to bankable inside a year. The point is we're not trying to keep your client off your bank line forever; we're stabilizing them so they can come back to you.",
   },
   {
     q: "What kind of deals do you actually do?",
-    a: "Revenue range $500K to $100MM+, with most placements between $2MM and $50MM in revenue. Deal sizes $250K to $100MM+. Products: invoice factoring, asset-based lending, working capital loans, equipment financing, purchase order funding, government contract financing, bridge capital, SBA (referred through specialty non-bank SBA lenders), real estate cash-out, MCA consolidation. Industries: staffing, manufacturing, healthcare supply, government contractors, construction, distribution, professional services, e-commerce. Channel-neutral, product-neutral — we shop whichever lender fits the situation, not whichever pays us the most.",
+    a: "Revenue range $500K to $100MM+, with most placements between $2MM and $50MM in revenue. Deal sizes $250K to $100MM+. Products: invoice factoring, asset-based lending, working capital loans, equipment financing, purchase order funding, government contract financing, bridge capital, SBA (referred through specialty non-bank SBA lenders), real estate cash-out, MCA consolidation. Industries: staffing, manufacturing, healthcare supply, government contractors, construction, distribution, professional services, e-commerce. Channel-neutral, product-neutral. We shop whichever lender fits the situation, not whichever pays us the most.",
   },
   {
     q: "What kind of deals do you not do?",
-    a: "Pure equity rounds (we refer out to capital advisors). Consumer-facing lending. Cannabis. Crypto-specific. Anything where the business doesn't have at least $500K in trailing revenue or a clear path to it. Deals where the client is unwilling to put up any collateral, has no PG-creditworthy owner, and has thin revenue — we'll tell them honestly that none of our network will write it. We say no plainly when no is the right answer.",
+    a: "Pure equity rounds (we refer out to capital advisors). Consumer-facing lending. Cannabis. Crypto-specific. Anything where the business doesn't have at least $500K in trailing revenue or a clear path to it. Deals where the client is unwilling to put up any collateral, has no PG-creditworthy owner, and has thin revenue, we'll tell them honestly that none of our network will write it. We say no plainly when no is the right answer.",
   },
   {
     q: "What do I tell my client when I refer them?",
-    a: 'Something like: "Our credit team can\'t get this done in our box, but I know a financing advisory that works with bankers exactly like us. They\'ll shop the deal across an extensive network of alternative lenders and bring back honest options. They don\'t take your deposits — your accounts stay with us — and they\'ve been doing this 15+ years. The first call is 20 minutes and they\'ll tell you straight whether they can help. Here\'s the link." Then send servefunding.com/discover or servefunding.com/bankers (whichever feels right). We take it from there.',
+    a: 'Something like: "Our credit team can\'t get this done in our box, but I know a financing advisory that works with bankers exactly like us. They\'ll shop the deal across an extensive network of alternative lenders and bring back honest options. They don\'t take your deposits, your accounts stay with us, and they\'ve been doing this 15+ years. The first call is 20 minutes and they\'ll tell you straight whether they can help. Here\'s the link." Then send servefunding.com/discover or servefunding.com/bankers (whichever feels right). We take it from there.',
   },
   {
     q: "How fast do you fund?",
     a: "Depends on the product. Working capital loans and bridge capital fund in 2 to 10 business days. Invoice factoring closes in 2 to 3 weeks (then 24–48 hours per invoice after). Asset-based lending takes 4 to 8 weeks. Government contract financing 10 to 20 business days. SBA 4 to 12 weeks (we refer those to non-bank SBA lenders). When timing is genuinely critical we can usually find a bridge structure that funds in days while a permanent facility closes in the background.",
   },
   {
-    q: "Who's actually doing the work — Mike or an intake person?",
-    a: "Mike Kodinsky personally handles initial discovery on every banker-referred deal. After the discovery call, depending on the product complexity, he may bring in additional team members for placement and closing — but the relationship stays with him. We're deliberately a small boutique because the relationship-driven approach doesn't scale through a call center. We've turned down hiring expansions specifically to keep that hands-on character.",
+    q: "Who's actually doing the work, Mike or an intake person?",
+    a: "Mike Kodinsky personally handles initial discovery on every banker-referred deal. After the discovery call, depending on the product complexity, he may bring in additional team members for placement and closing, but the relationship stays with him. We're deliberately a small boutique because the relationship-driven approach doesn't scale through a call center. We've turned down hiring expansions specifically to keep that hands-on character.",
   },
   {
     q: "Can I just send my client to your discovery form?",
-    a: "Yes. The fastest path is servefunding.com/discover. Mention you're a banker referral and we'll prioritize the discovery call. If you'd prefer to make a warm introduction over email, michael@servefunding.com goes straight to Mike — happy to coordinate a three-way call if that fits the situation better than a hand-off.",
+    a: "Yes. The fastest path is servefunding.com/discover. Mention you're a banker referral and we'll prioritize the discovery call. If you'd prefer to make a warm introduction over email, michael@servefunding.com goes straight to Mike, and he is happy to coordinate a three-way call if that fits the situation better than a hand-off.",
   },
 ]
 
@@ -113,7 +113,7 @@ const itemListSchema = {
       '@type': 'HowToStep',
       position: 1,
       name: 'Identify the credit-box mismatch',
-      text: "The client has revenue and a real business but doesn't fit your underwriting box — usually because of net income, leverage, DSCR, or industry concentration. The deal is fundamentally sound; your credit box just doesn't fit it.",
+      text: "The client has revenue and a real business but doesn't fit your underwriting box, usually because of net income, leverage, DSCR, or industry concentration. The deal is fundamentally sound; your credit box just doesn't fit it.",
     },
     {
       '@type': 'HowToStep',
@@ -125,7 +125,7 @@ const itemListSchema = {
       '@type': 'HowToStep',
       position: 3,
       name: 'Serve Funding discovery call',
-      text: 'A 20-minute discovery call maps the client situation — collateral, revenue trajectory, use of funds, timing — and identifies which two or three products fit. If nothing fits, the client hears that honestly on the first call.',
+      text: 'A 20-minute discovery call maps the client situation (collateral, revenue trajectory, use of funds, timing) and identifies which two or three products fit. If nothing fits, the client hears that honestly on the first call.',
     },
     {
       '@type': 'HowToStep',
@@ -174,7 +174,7 @@ export default function ForBankersPage() {
               You stay the relationship. We extend your reach.
             </Heading>
             <Text className="text-gray-700 mb-6">
-              Most commercial bankers turn down 30–40% of their loan requests for credit-box reasons even when the underlying business is sound — thin DSCR, tax returns that don&apos;t yet reflect current revenue, leverage from a recent acquisition, industry concentration the bank can&apos;t take. The credit need is real. Your client knows it&apos;s real. And right now your client is one Google search away from a financing broker who&apos;ll pitch them an MCA at a 1.4 factor rate and quietly try to move the depository over the next twelve months.
+              Most commercial bankers turn down 30–40% of their loan requests for credit-box reasons even when the underlying business is sound: thin DSCR, tax returns that don&apos;t yet reflect current revenue, leverage from a recent acquisition, industry concentration the bank can&apos;t take. The credit need is real. Your client knows it&apos;s real. And right now your client is one Google search away from a financing broker who&apos;ll pitch them an MCA at a 1.4 factor rate and quietly try to move the depository over the next twelve months.
             </Text>
             <Text className="text-gray-700 mb-6">
               The alternative is a referral to an advisor whose business model depends on never threatening yours. That&apos;s how Serve Funding works. We exist downstream of your decline. The client gets credit; you stay the hero; the operating account stays with you; and 12 to 36 months later, when the trajectory has cleaned up the financials, the client comes back to your credit team in a position to qualify.
@@ -196,10 +196,10 @@ export default function ForBankersPage() {
         <Container>
           <div className="max-w-3xl mx-auto">
             <Heading size="h2" className="mb-6 text-olive-900">
-              Why we exist — Mike&apos;s origin story
+              Why we exist: Mike&apos;s origin story
             </Heading>
             <Text className="text-gray-700 mb-6">
-              Mike Kodinsky came up on the direct-lender side. For years he was the person bankers referred their declined clients to — running asset-based deals out of one specific credit box. That experience is what built Serve Funding, and it&apos;s the reason banker referrals are at the center of how we operate today.
+              Mike Kodinsky came up on the direct-lender side. For years he was the person bankers referred their declined clients to, running asset-based deals out of one specific credit box. That experience is what built Serve Funding, and it&apos;s the reason banker referrals are at the center of how we operate today.
             </Text>
             <Card padding="md" noHover className="bg-gray-50 border-l-4 border-l-gold-500 mb-6">
               <Text className="text-gray-800 italic mb-3">
@@ -210,10 +210,10 @@ export default function ForBankersPage() {
               </Text>
             </Card>
             <Text className="text-gray-700 mb-6">
-              That experience is what turned Mike into a channel-neutral, product-neutral advisor. When the only product in your bag is asset-based lending, every client&apos;s situation has to fit asset-based lending — and you spend weeks of the client&apos;s time before you find out it doesn&apos;t. The job of a real advisor is to triage the situation across <em>every</em> product available, not to force the situation into the one product you happen to sell.
+              That experience is what turned Mike into a channel-neutral, product-neutral advisor. When the only product in your bag is asset-based lending, every client&apos;s situation has to fit asset-based lending, and you spend weeks of the client&apos;s time before you find out it doesn&apos;t. The job of a real advisor is to triage the situation across <em>every</em> product available, not to force the situation into the one product you happen to sell.
             </Text>
             <Text className="text-gray-700">
-              For a referring banker, this matters in one concrete way: when you send a client to Serve Funding, the client&apos;s time is the resource we&apos;re most protective of. If we can&apos;t place the deal, we say so on the discovery call rather than after three weeks of underwriting. The banker who sent the referral never has to apologize to their client for the wasted process — which is the outcome that quietly kills banker-referral relationships across this industry.
+              For a referring banker, this matters in one concrete way: when you send a client to Serve Funding, the client&apos;s time is the resource we&apos;re most protective of. If we can&apos;t place the deal, we say so on the discovery call rather than after three weeks of underwriting. The banker who sent the referral never has to apologize to their client for the wasted process, which is the outcome that quietly kills banker-referral relationships across this industry.
             </Text>
           </div>
         </Container>
@@ -224,7 +224,7 @@ export default function ForBankersPage() {
         <Container>
           <div className="max-w-4xl mx-auto">
             <Heading size="h2" className="mb-6 text-olive-900">
-              What we do — and what we don&apos;t
+              What we do, and what we don&apos;t
             </Heading>
 
             <div className="grid md:grid-cols-2 gap-6">
@@ -312,7 +312,7 @@ export default function ForBankersPage() {
                   <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gold-500 text-white font-bold flex items-center justify-center">1</div>
                   <div>
                     <Heading size="h4" className="mb-1 text-olive-900">Discovery call (20 minutes)</Heading>
-                    <Text className="text-gray-700">Mike Kodinsky personally takes the call. He maps the situation — collateral position, revenue trajectory, use of funds, timing — and identifies which two or three products fit. If nothing fits, he says so honestly on this call.</Text>
+                    <Text className="text-gray-700">Mike Kodinsky personally takes the call. He maps the situation (collateral position, revenue trajectory, use of funds, timing) and identifies which two or three products fit. If nothing fits, he says so honestly on this call.</Text>
                   </div>
                 </div>
               </li>
@@ -321,7 +321,7 @@ export default function ForBankersPage() {
                   <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gold-500 text-white font-bold flex items-center justify-center">2</div>
                   <div>
                     <Heading size="h4" className="mb-1 text-olive-900">Diligence and lender shopping</Heading>
-                    <Text className="text-gray-700">Serve Funding builds a data room with the client, shops the deal across the relevant subset of our extensive lender network, and returns with two or three real options — not just one quoted rate but actual term sheets the client can compare.</Text>
+                    <Text className="text-gray-700">Serve Funding builds a data room with the client, shops the deal across the relevant subset of our extensive lender network, and returns with two or three real options, not just one quoted rate but actual term sheets the client can compare.</Text>
                   </div>
                 </div>
               </li>
@@ -329,8 +329,8 @@ export default function ForBankersPage() {
                 <div className="flex gap-4">
                   <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gold-500 text-white font-bold flex items-center justify-center">3</div>
                   <div>
-                    <Heading size="h4" className="mb-1 text-olive-900">Delivery — closing the facility</Heading>
-                    <Text className="text-gray-700">Mike negotiates terms on the client&apos;s behalf, coordinates underwriting, and guides closing. You&apos;re kept in the loop on closing timing and any material structural changes — we don&apos;t run separately from the banking relationship.</Text>
+                    <Heading size="h4" className="mb-1 text-olive-900">Delivery: closing the facility</Heading>
+                    <Text className="text-gray-700">Mike negotiates terms on the client&apos;s behalf, coordinates underwriting, and guides closing. You&apos;re kept in the loop on closing timing and any material structural changes. We don&apos;t run separately from the banking relationship.</Text>
                   </div>
                 </div>
               </li>
@@ -338,8 +338,8 @@ export default function ForBankersPage() {
                 <div className="flex gap-4">
                   <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gold-500 text-white font-bold flex items-center justify-center">4</div>
                   <div>
-                    <Heading size="h4" className="mb-1 text-olive-900">Ongoing advisory — and graduation back to the bank</Heading>
-                    <Text className="text-gray-700">Most clients stay engaged with us through one or two refinances as the business matures. The endpoint of a well-built engagement is often a hand-back to the original banker once the financials qualify for a bank line again — typically 12 to 36 months depending on what got them declined in the first place.</Text>
+                    <Heading size="h4" className="mb-1 text-olive-900">Ongoing advisory, and graduation back to the bank</Heading>
+                    <Text className="text-gray-700">Most clients stay engaged with us through one or two refinances as the business matures. The endpoint of a well-built engagement is often a hand-back to the original banker once the financials qualify for a bank line again, typically 12 to 36 months depending on what got them declined in the first place.</Text>
                   </div>
                 </div>
               </li>
@@ -348,7 +348,7 @@ export default function ForBankersPage() {
                   <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gold-500 text-white font-bold flex items-center justify-center">5</div>
                   <div>
                     <Heading size="h4" className="mb-1 text-olive-900">The warm hand-back to your credit team</Heading>
-                    <Text className="text-gray-700">When a client looks ready, Mike emails the original referring banker with a short summary of where the business is — current facility, monthly debt service, recent tax-return trajectory, DSCR posture — so your credit team can pick the conversation up cleanly. You stay in the driver&apos;s seat on whether and when to re-open the bank credit conversation. If Serve Funding ever has to decline a referred deal we couldn&apos;t place, the same courtesy: a short written summary back to you so you know exactly where the client landed and why.</Text>
+                    <Text className="text-gray-700">When a client looks ready, Mike emails the original referring banker with a short summary of where the business is (current facility, monthly debt service, recent tax-return trajectory, DSCR posture) so your credit team can pick the conversation up cleanly. You stay in the driver&apos;s seat on whether and when to re-open the bank credit conversation. If Serve Funding ever has to decline a referred deal we couldn&apos;t place, the same courtesy: a short written summary back to you so you know exactly where the client landed and why.</Text>
                   </div>
                 </div>
               </li>
@@ -381,7 +381,7 @@ export default function ForBankersPage() {
               What to say to your client when you make the referral
             </Heading>
             <Text className="text-gray-700 mb-6">
-              You know your client better than we do. The framing below is just a starting point — adapt it to how the two of you actually talk.
+              You know your client better than we do. The framing below is just a starting point. Adapt it to how the two of you actually talk.
             </Text>
             <Card padding="md" noHover className="border-l-4 border-l-olive-500">
               <Text className="text-gray-800 italic">
@@ -442,7 +442,7 @@ export default function ForBankersPage() {
               <Link href="/blog/mca-vs-revenue-based-financing" className="block">
                 <Card padding="sm">
                   <div className="font-semibold text-olive-900 mb-1">MCA vs Revenue-Based Financing</div>
-                  <Text size="sm" className="text-gray-600">For clients already in stacked MCAs — the consolidation arc.</Text>
+                  <Text size="sm" className="text-gray-600">For clients already in stacked MCAs: the consolidation arc.</Text>
                 </Card>
               </Link>
               <Link href="/glossary" className="block">
@@ -461,7 +461,7 @@ export default function ForBankersPage() {
           <FadeIn className="text-center">
             <Heading size="h2">Ready to make the introduction?</Heading>
             <Text size="2xl" className="mt-4 text-gray-600 max-w-2xl mx-auto mb-8">
-              Open a pre-drafted intro email in your own client. Edit it however you like — we just wanted to take the blank-page problem off your plate.
+              Open a pre-drafted intro email in your own client. Edit it however you like. We just wanted to take the blank-page problem off your plate.
             </Text>
             <a href={INTRO_MAILTO}>
               <Button variant="default" size="lg">

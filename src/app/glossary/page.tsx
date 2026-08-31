@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Business Financing Glossary',
     description:
-      'Plain-English definitions of business financing terms — factor rate, lockbox, ABL, MCA, recourse, and more.',
+      'Plain-English definitions of business financing terms: factor rate, lockbox, ABL, MCA, recourse, and more.',
     url: 'https://servefunding.com/glossary',
     siteName: 'Serve Funding',
     type: 'article',

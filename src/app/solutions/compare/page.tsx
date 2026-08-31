@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Working Capital Alternatives Compared',
     description:
-      'A side-by-side comparison of 12 funding options for growing businesses — with the trade-offs that actually matter when you have to pick one.',
+      'A side-by-side comparison of 12 funding options for growing businesses, with the trade-offs that actually matter when you have to pick one.',
     url: PAGE_URL,
     siteName: 'Serve Funding',
     type: 'article',
@@ -98,7 +98,7 @@ export default function SolutionsComparePage() {
             </Text>
             <Card className="p-6 bg-white border-l-4 border-l-gold-500">
               <Text className="text-gray-800">
-                <strong>Quick answer:</strong> growing companies that can&apos;t get a bank line have twelve real alternatives. They split along three axes — <strong>speed</strong> (days vs. weeks vs. months), <strong>cost</strong> (Prime + 2% on the cheap end, ~4% per month on the expensive end), and <strong>collateral</strong> (some products want AR, some want inventory, some want nothing). Serve Funding has placed $50MM+ across 100+ clients since 2021 by matching each business to the right combination across our extensive lender network. The right answer is almost never one product — it&apos;s two or three layered together.
+                <strong>Quick answer:</strong> growing companies that can&apos;t get a bank line have twelve real alternatives. They split along three axes: <strong>speed</strong> (days vs. weeks vs. months), <strong>cost</strong> (Prime + 2% on the cheap end, ~4% per month on the expensive end), and <strong>collateral</strong> (some products want AR, some want inventory, some want nothing). Serve Funding has placed $50MM+ across 100+ clients since 2021 by matching each business to the right combination across our extensive lender network. The right answer is almost never one product. It&apos;s two or three layered together.
               </Text>
             </Card>
             <Text size="sm" className="text-gray-500 mt-3">
@@ -116,7 +116,7 @@ export default function SolutionsComparePage() {
               The 12 alternatives at a glance
             </Heading>
             <Text className="text-gray-700 mb-8 max-w-3xl">
-              Every row is a real option. Read the table for the shape, then jump down to the section that fits your situation — each one explains when to pick it over the others.
+              Every row is a real option. Read the table for the shape, then jump down to the section that fits your situation. Each one explains when to pick it over the others.
             </Text>
             <div className="overflow-x-auto rounded-xl border border-gray-200 bg-white">
               <table className="w-full text-left text-sm">
@@ -166,7 +166,7 @@ export default function SolutionsComparePage() {
               <strong>1. How fast do you need it?</strong> If the answer is days, the list collapses to four: working capital loans, bridge funding, invoice factoring (after a 2–3 week setup), and emergency payroll structures inside our debt-refinance toolkit. Every other option needs weeks to close, which means they&apos;re not really available to a business with a payroll deadline.
             </Text>
             <Text className="text-gray-700 mb-4">
-              <strong>2. What collateral can you offer?</strong> If you have unpaid B2B invoices, factoring is almost always the cheapest fast option. If you have hard assets (inventory, equipment, real estate) plus AR, an asset-based line consolidates everything into one facility. If you have nothing pledgeable but strong revenue, working capital and unsecured products are still real options — they just cost more.
+              <strong>2. What collateral can you offer?</strong> If you have unpaid B2B invoices, factoring is almost always the cheapest fast option. If you have hard assets (inventory, equipment, real estate) plus AR, an asset-based line consolidates everything into one facility. If you have nothing pledgeable but strong revenue, working capital and unsecured products are still real options. They just cost more.
             </Text>
             <Text className="text-gray-700 mb-4">
               <strong>3. How long is the need?</strong> A 60-day timing gap before a contract closes is a bridge loan. A permanent shift in your working-capital baseline is an ABL line or an SBA loan. Mismatching the term to the need is how growing businesses end up rolling expensive bridge debt for two years.
@@ -317,7 +317,7 @@ export default function SolutionsComparePage() {
 
       <CTA
         title="Not sure which one fits your business?"
-        text="A 20-minute call with Michael narrows it to one or two — and we shop the deal across our extensive lender network if it makes sense."
+        text="A 20-minute call with Michael narrows it to one or two, and we shop the deal across our extensive lender network if it makes sense."
         buttonText="Start a Consultation"
         useBG
       />

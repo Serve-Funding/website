@@ -70,7 +70,7 @@ function renderSolutions(): string {
 function renderCaseStudies(): string {
   if (!fundingCases.length) return ''
   const blocks = fundingCases.map(c => [
-    `### ${c.amount} — ${c.title} (${c.company})`,
+    `### ${c.amount}: ${c.title} (${c.company})`,
     `Industry: ${c.industry} | Funding type: ${c.fundingType} | Timeline: ${c.timeline}`,
     '',
     c.description,
@@ -102,14 +102,14 @@ function renderBlogPosts(): string {
 
 function renderCompany(): string {
   const values = coreValues
-    .map(v => `- **${v.acronym} — ${v.value}**: ${v.description}`)
+    .map(v => `- **${v.acronym} (${v.value})**: ${v.description}`)
     .join('\n')
   const process = serveFundingProcess
-    .map(s => `${s.step}. **${s.name}** — ${s.description}`)
+    .map(s => `${s.step}. **${s.name}**: ${s.description}`)
     .join('\n')
 
   return [
-    `# Serve Funding — Full Knowledge Base`,
+    `# Serve Funding: Full Knowledge Base`,
     '',
     `> ${companyInfo.description}`,
     '',
@@ -147,7 +147,7 @@ function renderCompany(): string {
     '',
     `Memberships: ${founder.credentials.memberships.join(', ')}`,
     '',
-    `## Core Values — TRUST`,
+    `## Core Values: TRUST`,
     '',
     values,
     '',
@@ -189,7 +189,7 @@ function renderIndustries(): string {
     ...ind.recommendedSolutions
       .slice()
       .sort((a, b) => a.rank - b.rank)
-      .map(r => `${r.rank}. ${r.solutionId} — ${r.why}`),
+      .map(r => `${r.rank}. ${r.solutionId}: ${r.why}`),
   ].join('\n'))
   return `## Industry Guides\n\n${blocks.join('\n\n---\n\n')}\n`
 }
@@ -202,14 +202,14 @@ function renderFundingPages(): string {
     '',
     fp.directAnswer,
     '',
-    `**Where this fits best (sweet spot, not a cutoff — Serve works meaningfully smaller and larger):**`,
+    `**Where this fits best (sweet spot, not a cutoff; Serve works meaningfully smaller and larger):**`,
     ...fp.fitsIf.map(f => `- ${f}`),
     '',
     `**Terms, costs and timelines:**`,
     ...fp.terms.map(t => `- ${t.label}: ${t.value}`),
     '',
     `**When this is the wrong answer:**`,
-    ...fp.notFor.map(n => `- ${n.who} — ${n.instead}`),
+    ...fp.notFor.map(n => `- ${n.who}: ${n.instead}`),
     '',
     `**Questions:**`,
     ...fp.faqs.map(f => `- ${f.question} ${f.answer}`),

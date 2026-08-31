@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://servefunding.com/about-us' },
   openGraph: {
     title: "About Serve Funding | Michael Kodinsky's Advisory Model",
-    description: "Discover how Michael Kodinsky built Serve Funding on relationships, transparency, and trusted advisory—helping growing businesses access funding from $250K-$100MM when banks say no.",
+    description: "Discover how Michael Kodinsky built Serve Funding on relationships, transparency, and trusted advisory, helping growing businesses access funding from $250K-$100MM when banks say no.",
     url: "https://servefunding.com/about-us",
     type: "website",
     images: [
@@ -102,7 +102,7 @@ export default function AboutUs() {
                   </Text>
 
                   <Text>
-                    In <span className="font-bold">2021</span>, I launched Serve Funding on the 40th anniversary of our family's arrival in America. After 15 years of guiding small and mid-sized companies, I saw a common issue—<span className="font-bold">entrepreneurs often struggle with inefficient funding processes</span>, losing time they could use to grow their businesses. That's why I created Serve Funding.
+                    In <span className="font-bold">2021</span>, I launched Serve Funding on the 40th anniversary of our family's arrival in America. After 15 years of guiding small and mid-sized companies, I saw a common issue: <span className="font-bold">entrepreneurs often struggle with inefficient funding processes</span>, losing time they could use to grow their businesses. That's why I created Serve Funding.
                   </Text>
                 </div>
               </div>
