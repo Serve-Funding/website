@@ -215,6 +215,16 @@ export const fundingSolutions: FundingSolution[] = [
       "A company that has hit the ceiling on factoring and is ready for the lower-cost ABL graduation",
       "A business whose bank has signaled they want them off the line and needs a soft landing"
     ],
+    terms: [
+      { label: "Eligible receivables", value: "80%-85%" },
+      { label: "Finished goods inventory", value: "60%-75% of net orderly liquidation value" },
+      { label: "Raw materials", value: "Generally ineligible. Lenders want finished goods" },
+      { label: "Work in process", value: "Ineligible. Zero borrowing base credit" },
+      { label: "Machinery and equipment", value: "70%-80% of appraised liquidation value" },
+      { label: "Pricing (2026)", value: "Prime + 1%-6%, depending on collateral mix and vertical" },
+      { label: "Reporting", value: "Monthly borrowing-base certificate, weekly on tighter facilities" },
+      { label: "Serve fee", value: "A success fee, earned only on closing. Agreed in writing before you sign anything. No retainers, no upfront costs" },
+    ],
   },
 
   {

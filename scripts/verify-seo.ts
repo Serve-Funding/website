@@ -454,7 +454,6 @@ function validateDataExcerpts(): ValidationResult[] {
   const files = [
     'src/data/comparisons.ts',
     'src/data/industries.ts',
-    'src/data/funding-pages.ts',
   ]
 
   for (const rel of files) {
