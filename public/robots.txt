@@ -34,12 +34,31 @@ Allow: /
 User-agent: cohere-ai
 Allow: /
 
+# OAI-SearchBot is the crawler behind ChatGPT search results and citations.
+# GPTBot above is the training crawler and is NOT a substitute for it.
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+# CCBot feeds Common Crawl, which is training and retrieval input for several
+# assistants that do not run a crawler of their own.
+User-agent: CCBot
+Allow: /
+
 # AI/LLM content guide
 # https://servefunding.com/llms.txt
 # https://servefunding.com/llms-full.txt
 
 # Sitemap location
 Sitemap: https://servefunding.com/sitemap.xml
-
-# Crawl delay (in seconds)
-Crawl-delay: 1
