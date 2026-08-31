@@ -198,7 +198,7 @@ export const industries: IndustryPage[] = [
       {
         solutionId: "invoice-factoring",
         rank: 1,
-        why: "For medical AR specifically, this is a specialized variant: DACA account instead of true lockbox, 65%–75% advance rates instead of 85%–90%, around 2% per month pricing. For non-insurance healthcare receivables, the standard commercial structure applies."
+        why: "For medical AR specifically, this is a specialized variant: DACA account instead of true lockbox, advances of 65%–85% set against net collectible value rather than billed charges, around 2% per month pricing. For non-insurance healthcare receivables, the standard commercial structure applies."
       },
       {
         solutionId: "asset-based-lending",
