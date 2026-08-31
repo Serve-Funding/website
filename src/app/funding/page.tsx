@@ -20,17 +20,17 @@ export default function FundingIndexPage() {
         <Container>
           <FadeIn className="max-w-3xl mx-auto">
             <Heading size="h1" className="mb-4 text-olive-900">
-              Funding, Starting From the Problem
+              Business Funding, Starting With Your Situation
             </Heading>
             <Text size="2xl" className="text-gray-700 mb-4">
-              Most financing pages explain a product. These start from what has gone wrong
-              and name the number.
+              Find the one below that sounds like your business right now.
             </Text>
             <Text className="text-gray-600">
-              Each page answers one expensive problem directly: what it costs, how long it
-              takes, what underwriting needs to see, and when the honest answer is that this
-              is not the right tool. Our sweet spot is $5MM to $50MM in revenue on asks
-              between $250K and $5MM, and we work meaningfully smaller and larger than that.
+              Each page gives you the honest version: what it costs, how long it takes, and
+              what a lender will need to see. We also say plainly when it is the wrong tool
+              and point you somewhere better, including when that is not us. Our sweet spot
+              is $5MM to $50MM in revenue on asks between $250K and $5MM, and we work
+              meaningfully smaller and larger than that.
             </Text>
           </FadeIn>
         </Container>
