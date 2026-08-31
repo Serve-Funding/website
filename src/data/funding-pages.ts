@@ -674,6 +674,181 @@ export const fundingPages: FundingPage[] = [
   },
 
   // ──────────────────────────────────────────────────────────────────────────
+  // INVOICE FACTORING — the product Serve places most often and the one the
+  // problem pages were missing. Sits deliberately next to the PO page above,
+  // because factoring is the standard exit from a PO facility, and next to the
+  // ABL pages below, because the reader who lands here is usually choosing
+  // between the two without knowing that is the choice they are making.
+  //
+  // The page is written on the axis that separates it from /funding/asset-
+  // based-lending-*: factoring answers "I need cash against invoices I have
+  // already issued", ABL answers "I need a line against the whole balance
+  // sheet". Same borrower, different question. Keep that split if this page is
+  // ever rewritten, or the two cannibalize each other in search.
+  // ──────────────────────────────────────────────────────────────────────────
+  {
+    id: 'invoice-factoring',
+    h1: 'Invoice Factoring: Cash Against Invoices You Have Already Issued',
+    title: 'Invoice Factoring: Cash on Unpaid Invoices',
+    excerpt: 'How commercial invoice factoring works in 2026: advance rates, what a facility costs per 30 days, which invoices qualify, and when a line is the cheaper answer.',
+    directAnswer:
+      'Invoice factoring converts unpaid commercial invoices into cash by selling them to a funder at a discount, typically advancing 80%-90% of face value within 24 to 48 hours of the invoice being verified. As of 2026, facilities run $250K to $25MM, cost 1%-3% per 30 days outstanding, and take 5 to 10 business days to put in place. The reserve, meaning the 10%-20% held back, is released when your customer pays, less the fee. Two things decide whether a company qualifies, and neither is its own credit. The first is who owes the money: factoring underwrites the creditworthiness of your customers, so a company with thin financials and invoices out to solid commercial or government buyers is a normal approval. The second is whether the work is finished. A factor buys receivables for goods delivered or services rendered and accepted, never work still in progress, which is what separates factoring from purchase order financing. Because a factoring line is sized to your receivables rather than to a fixed loan amount, the facility grows as sales grow instead of amortizing away.',
+    fitsIf: [
+      'You invoice other businesses or government agencies on terms. Consumer and card receivables do not factor',
+      'At least $250K of receivables outstanding at any one time, and ideally a revolving book rather than one large invoice a year',
+      'Your customers pay reliably but slowly. Factoring solves a timing problem, not a collection problem',
+      'The invoices cover work already delivered and accepted, with no open dispute and nothing pre-billed',
+      'Sweet spot is $5MM-$50MM in annual revenue, though this is one of the few products where a smaller company with strong customers is genuinely bankable',
+      'Your own credit is not the obstacle it would be elsewhere. A tax lien or a thin balance sheet is workable here in a way it is not with a bank',
+    ],
+    notFor: [
+      {
+        who: 'Companies invoicing consumers, or taking payment by card at the point of sale',
+        instead: 'There is no commercial receivable to sell. What fits that revenue pattern is revenue-based financing, sized against your deposits rather than against an invoice ledger.',
+      },
+      {
+        who: 'Contractors billing on progress or holding retainage',
+        instead: 'A construction receivable behaves differently from a commercial one. Progress billings are conditional until the work is accepted, retainage is not collectible until the job closes, and pay-when-paid clauses put a third party between you and the money. Most factors will not buy that paper. An asset-based facility built for construction is the better door.',
+      },
+      {
+        who: 'Needing cash before the goods exist',
+        instead: 'If the money is going to a supplier so an order can be produced, that is purchase order financing. The two are frequently arranged together: PO financing pays the supplier, and the factoring advance retires the PO position the day the invoice is issued.',
+      },
+      {
+        who: 'Companies that also need to borrow against inventory, equipment or property',
+        instead: 'Factoring only ever addresses the receivable. If there is meaningful collateral elsewhere on the balance sheet, one asset-based line against all of it is usually cheaper per dollar and simpler to administer than a factoring facility plus separate borrowings.',
+      },
+      {
+        who: 'Already inside a factoring agreement with another funder',
+        instead: 'Most factoring contracts carry a term, a minimum volume commitment, and an early termination fee, and the incumbent holds a first-position UCC on your receivables. Moving is normal and happens constantly, but it is a buyout conversation rather than a new facility. Send us the agreement before you sign anything else.',
+      },
+    ],
+    theProblem:
+      'The invoices are good. That is what makes this particular cash shortage so difficult to explain to anyone who has not run a business on terms. You delivered, the customer accepted, the paperwork is clean, and a national buyer with an investment-grade balance sheet owes you $600K. They will pay. They will pay on day 58 of net 45, because that is how their accounts payable department runs, and there is no version of the conversation where you tell them otherwise and keep the account.\n\nMeanwhile payroll is Friday, your suppliers are on net 30, and the growth that created the receivable is the same growth that is now consuming the cash. This is the part that catches people out: the faster you grow, the worse it gets. Every new order pushes more cash out the door in wages and materials weeks before any of it comes back. A company can be profitable on every single job and still run out of money, and plenty do.\n\nThe bank is not the answer inside this timeframe, and often not at all. A line of credit is underwritten on your financial statements, your debt service coverage, and two or three years of history. If you are young, if last year was uneven, if there is a lien on file, or if you simply need the facility in two weeks rather than two months, the answer is no or the answer arrives too late to matter.\n\nSo the offers that do arrive are the ones that come fast, and they are almost always advances against revenue, repaid by daily debit. That structure takes money on days your customers have not paid you, which is precisely the problem you were trying to solve. Factoring inverts it. Instead of borrowing against what you might collect, you sell what you are already owed, and the money arrives against the specific invoice that created the gap.',
+    howItWorks: [
+      {
+        step: 'The funder underwrites your customers, not you',
+        detail: 'You provide an accounts receivable ageing, a sample of invoices, and details of your largest debtors. The credit work is done on the companies that owe you money. Expect questions about concentration: most facilities want no single customer above 20%-30% of the ledger, though exceptions are routine when that customer is large and creditworthy.',
+      },
+      {
+        step: 'A facility limit and an advance rate are set',
+        detail: 'The limit is sized to your receivable book, commonly 1 to 1.5 times peak monthly billings. The advance rate on commercial invoices normally lands at 80%-90%, with 85% the usual starting point. Weaker debtors, longer terms or heavy concentration pull it down.',
+      },
+      {
+        step: 'Documentation and a UCC filing, 5 to 10 business days',
+        detail: 'The factor files a first-position UCC on your receivables and sets up a lockbox in your company name. If a lender already holds a blanket lien, that lender must subordinate its interest in the receivables. Arranging that subordination is usually the longest step, and it is the one worth starting early.',
+      },
+      {
+        step: 'You submit invoices and they are verified',
+        detail: 'Verification means the factor confirms with your customer that the goods arrived or the work was accepted and that no dispute exists. On an established account this is a routine email. It is also the reason a disputed invoice cannot be funded, however good the customer.',
+      },
+      {
+        step: 'The advance funds in 24 to 48 hours',
+        detail: 'Once verified, 80%-90% of face value reaches your account, usually the next business day. After the first few submissions the cycle becomes routine and same-day funding is common.',
+      },
+      {
+        step: 'Your customer pays the lockbox, and the reserve is released',
+        detail: 'Payment goes to the lockbox rather than to you. The factor applies it, releases the reserve, and deducts the fee for the days the invoice was outstanding. An invoice paid in 30 days costs roughly a third of what the same invoice costs if it pays in 90, which is why customer payment behavior matters more than the headline rate.',
+      },
+    ],
+    terms: [
+      { label: 'Facility size', value: '$250K to $25MM, sized to the receivable book' },
+      { label: 'Advance rate, commercial invoices', value: '80%-90% of face value, 85% typical' },
+      { label: 'Advance rate, government receivables', value: '80%-90%, subject to assignment of claims' },
+      { label: 'Cost', value: '1%-3% per 30 days outstanding' },
+      { label: 'Reserve', value: '10%-20%, released on collection less the fee' },
+      { label: 'Time to fund the first invoice', value: '5-10 business days to document, then 24-48 hours' },
+      { label: 'Typical single-customer concentration limit', value: '20%-30% of the ledger' },
+      { label: 'Invoice ageing limit', value: 'Normally 90 days, occasionally 120' },
+      { label: 'Contract term', value: '12-24 months is standard, 30-90 day terms exist and cost more' },
+      { label: 'Balance sheet treatment', value: 'A true sale of the receivable, not debt' },
+    ],
+    versus: {
+      heading: 'Factoring vs. the bank line it usually stands in for',
+      theirsLabel: 'A bank line of credit',
+      oursLabel: 'A factoring facility',
+      rows: [
+        {
+          dimension: 'What is underwritten',
+          theirs: 'Your financial statements, debt service coverage and operating history',
+          ours: 'The creditworthiness of the customers who owe you money',
+        },
+        {
+          dimension: 'Time to put in place',
+          theirs: '45-90 days, longer if the last fiscal year was uneven',
+          ours: '5-10 business days, then 24-48 hours per invoice',
+        },
+        {
+          dimension: 'How the limit behaves as you grow',
+          theirs: 'Fixed until the annual review, so growth outruns the facility',
+          ours: 'Moves with the receivable book, so the limit rises with sales',
+        },
+        {
+          dimension: 'Covenants',
+          theirs: 'Financial covenants tested quarterly, with a default risk if a quarter goes badly',
+          ours: 'No financial covenants. The obligations are operational: submit real invoices, direct payment to the lockbox',
+        },
+        {
+          dimension: 'Cost per dollar borrowed',
+          theirs: 'Materially cheaper. Prime plus a margin, and worth waiting for when you can',
+          ours: 'More expensive, and the honest reason to choose it is availability and speed rather than price',
+        },
+        {
+          dimension: 'What happens if a customer pays late',
+          theirs: 'Your problem entirely, and it shows up in the covenant calculation',
+          ours: 'The fee accrues for the extra days. Under a non-recourse facility, customer insolvency is the factor loss rather than yours',
+        },
+      ],
+    },
+    workedExample:
+      'A wholesale distributor doing roughly $12MM in revenue sells into regional grocery and food-service chains on net 45 terms, though the ledger actually pays closer to 58 days. Receivables run about $2.1MM at any one time. The company is profitable, has been trading nine years, and was declined for a bank line increase because two quarters in the prior year showed compressed margins during a commodity swing.\n\nWe place a $2MM factoring facility at an 85% advance rate, priced at about 1.4% per 30 days, with the largest customer carved out at a higher concentration limit because that buyer is a national chain with public financials. Documentation takes eight business days, most of it spent obtaining a subordination from the equipment lender holding a blanket lien.\n\nOn a representative month the company submits $900K of verified invoices and receives about $765K within 48 hours. Those invoices collect over an average of 56 days, so the fee lands near $23K, and the $135K reserve is released as each invoice pays. Annualized across the facility the financing cost runs close to $265K against roughly $2.4MM of gross margin.\n\nWhat the company actually bought is a purchasing position. Paying suppliers inside terms rather than at 45 days earns a 2% early-payment discount on about $7MM of annual purchases, worth roughly $140K, which recovers over half the cost of the facility. Eighteen months later, with two clean years on the books, the same distributor moved onto an asset-based line at a materially lower rate. That is the normal arc. For most companies factoring is a bridge to cheaper capital rather than a permanent arrangement.',
+    faqs: [
+      {
+        question: 'Will my customers know I am factoring invoices?',
+        answer: 'Under a standard notification facility, yes. Your customer receives a notice of assignment and pays into a lockbox in your company name. Accounts payable departments at large commercial and government buyers process assigned receivables constantly and treat the notice as routine paperwork rather than as a signal of distress. Make the call to your customer yourself, a few days ahead of the paperwork, and it lands as housekeeping instead of news. Non-notification facilities do exist for stronger companies, and they cost more.',
+      },
+      {
+        question: 'What does invoice factoring cost in 2026?',
+        answer: 'Between 1% and 3% of face value per 30 days outstanding. The rate depends on monthly volume, the credit quality of your customers, and how quickly they actually pay. A facility quoted at 1.5% per 30 days on invoices that collect in 45 days costs about 2.25% of face. The figure to compare is cost per dollar collected over your real ageing, not the headline monthly rate, and any funder unwilling to model that for you is telling you something.',
+      },
+      {
+        question: 'Is factoring a loan? Does it put debt on my balance sheet?',
+        answer: 'A properly documented factoring facility is a true sale of the receivable, so the receivable comes off your balance sheet and no debt goes on. That distinction matters if you have covenants elsewhere restricting additional indebtedness. The factor does file a UCC financing statement on your receivables, which is a lien and will be visible to any other lender, so existing secured lenders generally need to subordinate.',
+      },
+      {
+        question: 'What is the difference between recourse and non-recourse factoring?',
+        answer: 'Under recourse factoring, if your customer never pays, you buy the invoice back. Under non-recourse, the factor absorbs that loss. The distinction is narrower than it sounds: non-recourse ordinarily covers customer insolvency only, not disputes, short payments, or a customer withholding because of a quality issue. Those come back to you under either structure. Non-recourse typically costs 0.25%-0.75% more per 30 days, and it is worth paying when the ledger is concentrated in a few names.',
+      },
+      {
+        question: 'Can I factor a single invoice instead of my whole ledger?',
+        answer: 'Spot factoring exists and can solve a one-off gap, though it prices well above a committed facility, often 3%-5% for a single invoice, because the funder underwrites a customer relationship it will not see again. Most facilities instead ask for the whole ledger or all invoices from selected customers. If your need genuinely is one invoice once, say so early, because the lender set is different.',
+      },
+      {
+        question: 'Which invoices will a factor refuse to buy?',
+        answer: 'Anything pre-billed or covering work still in progress. Invoices already more than 90 days old. Invoices to a customer you also buy from, because the contra account can be netted against what you are owed. Related-party invoices. Consignment and guaranteed-sale arrangements, where the sale is not final. Progress billings and retainage. Foreign receivables without credit insurance. Anything under dispute. Expect roughly 5%-15% of a typical ledger to be ineligible, and size the facility on the eligible portion rather than on the gross ageing.',
+      },
+      {
+        question: 'How quickly can a facility be in place?',
+        answer: 'Five to ten business days from a complete submission to the first funded invoice, then 24 to 48 hours per submission after that. The step that most often extends it is obtaining a subordination or lien release from an existing secured lender, which depends on that lender rather than on the factor. If you know a blanket lien is on file, raise it in the first conversation.',
+      },
+    ],
+    related: [
+      { label: 'Invoice factoring, the full product explanation', href: '/solutions/invoice-factoring' },
+      { label: 'Factoring vs. asset-based lending, compared directly', href: '/compare/invoice-factoring-vs-asset-based-lending' },
+      { label: 'How invoice factoring actually works', href: '/blog/how-invoice-factoring-actually-works' },
+      { label: 'What factoring costs by industry', href: '/blog/ar-factoring-costs-by-industry' },
+      { label: 'Purchase order financing, the facility that usually exits into this one', href: '/funding/purchase-order-financing' },
+      { label: 'Common myths about factoring', href: '/blog/invoice-factoring-myths' },
+    ],
+    schema: {
+      minAmount: '$250,000',
+      maxAmount: '$25,000,000',
+      rate: '1%-3% per 30 days outstanding',
+      closingTime: '5-10 business days',
+    },
+  },
+
+  // ──────────────────────────────────────────────────────────────────────────
   // ABL x INDUSTRY — four crosses. The product page explains ABL generally and
   // the industry page explains the industry generally; these pages answer the
   // question a searcher actually types, which is both at once. The value in
