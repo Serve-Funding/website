@@ -10,6 +10,8 @@ import {
 } from '@/components/ui'
 import { Breadcrumb } from '@/components/breadcrumb'
 import { SchemaRenderer } from '@/components/SchemaRenderer'
+import { getWebPageSchema } from '@/lib/schema-generators'
+import { lastUpdated } from '@/data/last-updated.generated'
 import { CTA } from '@/components/cta'
 import { getFAQPageSchema } from '@/lib/schema-generators'
 import { solutionComparisons } from '@/data/solutions-comparison'
@@ -76,6 +78,13 @@ function nameFor(id: string): string {
 export default function SolutionsComparePage() {
   return (
     <>
+      <SchemaRenderer
+        schema={getWebPageSchema({
+          url: 'https://servefunding.com/solutions/compare',
+          name: 'Working Capital Alternatives Compared',
+          dateModified: lastUpdated('src/data/solutions-comparison.ts'),
+        })}
+      />
       <SchemaRenderer schema={itemListSchema} />
       <SchemaRenderer schema={comparisonFaqSchema} />
 

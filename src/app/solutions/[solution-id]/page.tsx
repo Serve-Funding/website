@@ -1,9 +1,10 @@
 import { fundingSolutions } from '@/data/solutions'
 import { getBlogPosts } from '@/lib/blog-utils'
 import { solutionSpecificFAQs } from '@/data/faq-data'
-import { getFinancialServiceSchema, getHowToSchema } from '@/lib/schema-generators'
+import { getFinancialServiceSchema, getHowToSchema, getWebPageSchema } from '@/lib/schema-generators'
 import { serveFundingProcess } from '@/data/company-info'
 import { SchemaRenderer } from '@/components/SchemaRenderer'
+import { lastUpdated } from '@/data/last-updated.generated'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -84,6 +85,12 @@ export default async function SolutionDetailPage({ params }: SolutionDetailPageP
       {/* Schemas */}
       <SchemaRenderer
         schemas={[
+          getWebPageSchema({
+            url: `https://servefunding.com/solutions/${solution.id}`,
+            name: getTitleAsString(solution.title),
+            description: solution.shortDesc,
+            dateModified: lastUpdated('src/data/solutions.tsx'),
+          }),
           getFinancialServiceSchema({
             id: solution.id,
             title: getTitleAsString(solution.title),

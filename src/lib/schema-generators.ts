@@ -140,6 +140,44 @@ export const getFinancialServiceSchema = (service: {
 })
 
 // ============================================================================
+// WEBPAGE SCHEMA
+// ============================================================================
+
+/**
+ * Per-page WebPage node, carrying the freshness signal.
+ *
+ * Assistants weigh how recently a page was updated when deciding what to cite,
+ * and until now only blog posts emitted dateModified. Everything else asserted
+ * nothing about its own age. Dates come from src/data/last-updated.generated.ts,
+ * which is derived from git rather than hand-maintained.
+ */
+export const getWebPageSchema = (page: {
+  url: string
+  name: string
+  description?: string
+  /** ISO date. Use lastUpdated() from src/data/last-updated.generated.ts. */
+  dateModified: string
+  datePublished?: string
+}) => ({
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": `${page.url}#webpage`,
+  "url": page.url,
+  "name": page.name,
+  ...(page.description && { "description": page.description }),
+  "dateModified": page.dateModified,
+  ...(page.datePublished && { "datePublished": page.datePublished }),
+  "isPartOf": {
+    "@type": "WebSite",
+    "@id": "https://servefunding.com#website"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://servefunding.com"
+  }
+})
+
+// ============================================================================
 // FAQ PAGE SCHEMA
 // ============================================================================
 
@@ -397,6 +435,7 @@ export default {
   getOrganizationSchema,
   getWebSiteSchema,
   getFinancialServiceSchema,
+  getWebPageSchema,
   getFAQPageSchema,
   getArticleSchema,
   getBreadcrumbSchema,

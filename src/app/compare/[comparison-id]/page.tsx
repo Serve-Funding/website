@@ -11,8 +11,9 @@ import {
 } from '@/components/ui'
 import { Breadcrumb } from '@/components/breadcrumb'
 import { SchemaRenderer } from '@/components/SchemaRenderer'
+import { lastUpdated } from '@/data/last-updated.generated'
 import { CTA } from '@/components/cta'
-import { getFAQPageSchema } from '@/lib/schema-generators'
+import { getFAQPageSchema, getWebPageSchema } from '@/lib/schema-generators'
 import {
   comparisons,
   getComparison,
@@ -91,6 +92,14 @@ export default async function ComparisonPage({ params }: Props) {
 
   return (
     <>
+      <SchemaRenderer
+        schema={getWebPageSchema({
+          url: `https://servefunding.com/compare/${c.id}`,
+          name: c.title,
+          description: c.excerpt,
+          dateModified: lastUpdated('src/data/comparisons.ts'),
+        })}
+      />
       <SchemaRenderer schema={itemListSchema} />
       <SchemaRenderer schema={faqSchema} />
 
