@@ -107,7 +107,7 @@ function DiscoverContent() {
       fetch('/api/webhook', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ webhookUrl: 'https://aiascend.app.n8n.cloud/webhook/sf-inquiry', ...payload }),
+        body: JSON.stringify({ target: 'inquiry', ...payload }),
       })
     } catch (error) {
       console.error('Webhook error:', error)

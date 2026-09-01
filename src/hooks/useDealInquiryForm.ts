@@ -6,8 +6,6 @@ import { formQuestions } from '@/data/form-questions'
 import { trackEvent, trackFormSubmission, trackHubSpotNativeForm } from '@/lib/tracking'
 import { checkTriageRules, triageRules, type TriageAction } from '@/lib/triage-rules'
 
-const WEBHOOK_URL = 'https://aiascend.app.n8n.cloud/webhook/sf-inquiry'
-const CLAY_WEBHOOK_URL = process.env.NEXT_PUBLIC_CLAY_WEBHOOK_URL || ''
 
 // Calendly URLs - split by person and owner vs partner role
 export const CALENDLY_URLS = {
@@ -166,18 +164,13 @@ export function useDealInquiryForm(
   // Helper to send data to webhooks
   const sendToWebhooks = async (data: Record<string, any>, formType: string) => {
     const payload = { ...data, formType, submittedAt: new Date().toISOString() }
-    const urls = [WEBHOOK_URL, ...(CLAY_WEBHOOK_URL ? [CLAY_WEBHOOK_URL] : [])]
 
     try {
-      await Promise.allSettled(
-        urls.map(url =>
-          fetch('/api/webhook', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ webhookUrl: url, ...payload }),
-          })
-        )
-      )
+      await fetch('/api/webhook', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ target: 'inquiry', ...payload }),
+      })
     } catch (error) {
       console.error('Webhook submission error:', error)
     }
@@ -564,7 +557,7 @@ export function useDealInquiryForm(
 
   const { success, handleSubmit: baseHandleSubmit, formData } = useFormSubmit(
     'deal_inquiry',
-    'https://aiascend.app.n8n.cloud/webhook/sf-inquiry',
+    'inquiry',
     '',
     (data) => {
       if (onSubmitSuccess) {

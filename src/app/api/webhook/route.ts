@@ -1,34 +1,46 @@
-import { isAllowedWebhookUrl } from '@/lib/webhook-allowlist'
+import {
+  isWebhookTarget,
+  legacyTargetForUrl,
+  mirrorDestination,
+  primaryDestination,
+  type WebhookTarget,
+} from '@/lib/webhook-destinations'
 
 export async function POST(request: Request) {
   try {
     const body = await request.json()
-    const { webhookUrl, ...data } = body
+    const { target, webhookUrl, ...data } = body
 
-    if (!webhookUrl) {
-      return Response.json(
-        { error: 'webhookUrl is required' },
-        { status: 400 }
-      )
+    let resolved: WebhookTarget | null = isWebhookTarget(target) ? target : null
+
+    // Old bundle still in a visitor's tab. See legacyTargetForUrl.
+    if (!resolved && webhookUrl) {
+      resolved = legacyTargetForUrl(webhookUrl)
+      if (resolved) console.warn(`[webhook] legacy webhookUrl accepted for '${resolved}'`)
     }
 
-    // The destination comes from the request body, so it has to be checked
-    // against the allowlist before it is fetched. Without this the route is an
-    // open proxy. The response deliberately does not echo the URL back, so a
-    // probe learns nothing about what is allowed.
-    if (!isAllowedWebhookUrl(webhookUrl)) {
-      console.error(`[webhook] blocked destination: ${String(webhookUrl).slice(0, 120)}`)
-      return Response.json(
-        { error: 'webhookUrl is not permitted' },
-        { status: 400 }
-      )
+    if (!resolved) {
+      console.error(`[webhook] unknown target: ${safeForLog(target ?? webhookUrl)}`)
+      return Response.json({ error: 'unknown webhook target' }, { status: 400 })
     }
 
-    const response = await fetch(webhookUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
-    })
+    const post = (url: string) =>
+      fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+        // An allowlisted host must not be able to bounce us somewhere else.
+        redirect: 'error',
+      })
+
+    // Mirrored copy is best-effort and never affects what the visitor sees,
+    // matching the fire-and-forget behaviour this replaces on the client.
+    const mirror = mirrorDestination(data.is_spam === true)
+    if (mirror) {
+      post(mirror).catch((error) => console.error('[webhook] mirror failed:', error))
+    }
+
+    const response = await post(primaryDestination(resolved))
 
     if (!response.ok) {
       console.error(`Webhook failed with status ${response.status}`)
@@ -46,4 +58,9 @@ export async function POST(request: Request) {
       { status: 500 }
     )
   }
+}
+
+/** Keeps an attacker-supplied value from forging extra log lines. */
+function safeForLog(value: unknown): string {
+  return String(value).replace(/[\r\n]+/g, ' ').slice(0, 120)
 }
