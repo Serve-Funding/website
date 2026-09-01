@@ -2,8 +2,7 @@
 
 import { useState } from 'react'
 import { trackFormSubmission, trackHubSpotNativeForm } from '@/lib/tracking'
-
-const CLAY_WEBHOOK_URL = process.env.NEXT_PUBLIC_CLAY_WEBHOOK_URL || ''
+import type { WebhookTarget } from '@/lib/webhook-destinations'
 
 export interface FormSubmitData {
   name?: string
@@ -30,7 +29,7 @@ export interface FormSubmitData {
 
 export function useFormSubmit(
   formType: string,
-  webhookUrl?: string,
+  target?: WebhookTarget,
   calendlyUrl?: string,
   onAfterSubmit?: (data: FormSubmitData) => void
 ) {
@@ -62,7 +61,7 @@ export function useFormSubmit(
       form.setAttribute('data-spam-detected', 'true')
       
       // Build webhook payload for spam detection
-      if (webhookUrl) {
+      if (target) {
         try {
           const spamPayload = {
             ...webhookData,
@@ -74,7 +73,7 @@ export function useFormSubmit(
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-              webhookUrl,
+              target,
               ...spamPayload,
             }),
           })
@@ -131,7 +130,7 @@ export function useFormSubmit(
     trackHubSpotNativeForm(formType, form)
 
     // HubSpot: The tracking code in layout.tsx automatically captures this form submission
-    // Webhook: Send to primary webhook and Clay
+    // Webhook: the route resolves the destination and mirrors to Clay.
     const webhookPayload = {
       ...webhookData,
       formType,
@@ -139,25 +138,16 @@ export function useFormSubmit(
       submittedAt: new Date().toISOString(),
     }
 
-    const webhookDestinations = [
-      ...(webhookUrl ? [{ url: webhookUrl }] : []),
-      ...(CLAY_WEBHOOK_URL ? [{ url: CLAY_WEBHOOK_URL }] : []),
-    ]
-
-    if (webhookDestinations.length) {
+    if (target) {
       try {
-        await Promise.allSettled(
-          webhookDestinations.map(({ url }) =>
-            fetch('/api/webhook', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                webhookUrl: url,
-                ...webhookPayload,
-              }),
-            })
-          )
-        )
+        await fetch('/api/webhook', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            target,
+            ...webhookPayload,
+          }),
+        })
       } catch (error) {
         console.error('Webhook submission error:', error)
       }

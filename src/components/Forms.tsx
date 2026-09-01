@@ -508,7 +508,7 @@ export function DealInquiryForm({
 export function NewsletterForm() {
   const { success, handleSubmit, formData, isSubmitting } = useFormSubmit(
     'newsletter',
-    'https://aiascend.app.n8n.cloud/webhook/sf-newsletter'
+    'newsletter'
   )
 
   return (

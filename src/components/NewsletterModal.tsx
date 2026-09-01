@@ -13,7 +13,7 @@ export function NewsletterModal() {
   const [isOpen, setIsOpen] = useState(false)
   const { success, handleSubmit, formData, isSubmitting } = useFormSubmit(
     'newsletter_modal',
-    'https://aiascend.app.n8n.cloud/webhook/sf-newsletter'
+    'newsletter'
   )
 
   useEffect(() => {
