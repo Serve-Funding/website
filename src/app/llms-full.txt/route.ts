@@ -140,7 +140,7 @@ function renderCompany(): string {
     `- Repeat client rate: ${companyInfo.metrics.repeatClientRate}`,
     `- Deal range: $250K – $100MM`,
     `- Funding speed: 3–10 business days (vs. 60–90 days at traditional banks)`,
-    `- Fee structure: success-only, 1–2% of funded amount`,
+    `- Fee structure: success fee only, earned upon closing of a credit facility, loan or line of credit`,
     `- Lender network: an extensive network of vetted alternative lenders`,
     '',
     `## Founder`,
