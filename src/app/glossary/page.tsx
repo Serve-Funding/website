@@ -10,6 +10,8 @@ import {
 } from '@/components/ui'
 import { Breadcrumb } from '@/components/breadcrumb'
 import { SchemaRenderer } from '@/components/SchemaRenderer'
+import { getWebPageSchema } from '@/lib/schema-generators'
+import { lastUpdated } from '@/data/last-updated.generated'
 import { CTA } from '@/components/cta'
 import { glossaryTerms, getTermsByCategory } from '@/data/glossary'
 
@@ -21,7 +23,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Business Financing Glossary',
     description:
-      'Plain-English definitions of business financing terms — factor rate, lockbox, ABL, MCA, recourse, and more.',
+      'Plain-English definitions of business financing terms: factor rate, lockbox, ABL, MCA, recourse, and more.',
     url: 'https://servefunding.com/glossary',
     siteName: 'Serve Funding',
     type: 'article',
@@ -79,6 +81,13 @@ export default function GlossaryPage() {
 
   return (
     <>
+      <SchemaRenderer
+        schema={getWebPageSchema({
+          url: 'https://servefunding.com/glossary',
+          name: 'Business Financing Glossary',
+          dateModified: lastUpdated('src/data/glossary.ts'),
+        })}
+      />
       <SchemaRenderer schema={definedTermSetSchema} />
       {definedTermSchemas.map((s, i) => (
         <SchemaRenderer key={i} schema={s} />

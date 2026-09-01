@@ -13,6 +13,10 @@ import {
 import { Breadcrumb } from '@/components/breadcrumb'
 import { CTA } from '@/components/cta'
 import { FAQSectionWithSchema } from '@/components/FAQSection'
+import { TermsTable } from '@/components/content-blocks'
+import { SchemaRenderer } from '@/components/SchemaRenderer'
+import { getWebPageSchema } from '@/lib/schema-generators'
+import { lastUpdated } from '@/data/last-updated.generated'
 import { getIndustry, getIndustryIds } from '@/data/industries'
 import { fundingSolutions } from '@/data/solutions'
 import { fundingCases } from '@/data/fundingData'
@@ -68,6 +72,14 @@ export default async function IndustryPage({ params }: Props) {
 
   return (
     <>
+      <SchemaRenderer
+        schema={getWebPageSchema({
+          url: `https://servefunding.com/industries/${ind.id}`,
+          name: ind.title,
+          description: ind.excerpt,
+          dateModified: lastUpdated('src/data/industries.ts'),
+        })}
+      />
       <Breadcrumb
         items={[
           { label: 'Industries', href: '/industries' },
@@ -134,7 +146,7 @@ export default async function IndustryPage({ params }: Props) {
         <Container>
           <div className="max-w-4xl mx-auto">
             <Heading size="h2" className="mb-6 text-olive-900">
-              What usually fits — ranked
+              What usually fits, ranked
             </Heading>
             <div className="space-y-4">
               {ind.recommendedSolutions
@@ -181,7 +193,7 @@ export default async function IndustryPage({ params }: Props) {
             {matchedCase && (
               <Card padding="md" noHover className="mt-8 bg-gold-50 border-l-4 border-l-gold-500">
                 <Heading size="h4" className="mb-2 text-olive-900">
-                  Public case study: {matchedCase.title} — {matchedCase.amount}
+                  Public case study: {matchedCase.title}, {matchedCase.amount}
                 </Heading>
                 <Text size="sm" className="text-gray-700 mb-2">
                   {matchedCase.description}
@@ -225,6 +237,13 @@ export default async function IndustryPage({ params }: Props) {
       )}
 
       {/* What doesn't fit (honest deflection) */}
+      {/* Advance rates and eligibility for this industry. Renders nothing until
+          `terms` is populated, so this is safe ahead of the content migration. */}
+      <TermsTable
+        terms={ind.terms ?? []}
+        heading={`Advance rates and eligibility in ${ind.name.toLowerCase()}`}
+      />
+
       {ind.whatDoesntFit.length > 0 && (
         <Section className="py-12 bg-gray-50">
           <Container>
@@ -235,7 +254,7 @@ export default async function IndustryPage({ params }: Props) {
               <Text className="text-gray-600 mb-6">
                 Half of being useful is being honest about what doesn&apos;t work.
                 These are products we generally don&apos;t recommend for{' '}
-                {ind.name.toLowerCase()} — and the reason.
+                {ind.name.toLowerCase()}, and the reason.
               </Text>
               <div className="space-y-4">
                 {ind.whatDoesntFit.map((item, i) => (
@@ -265,7 +284,7 @@ export default async function IndustryPage({ params }: Props) {
 
       <CTA
         title={`Ready to talk about your business?`}
-        text="A 20-minute conversation: we listen, we ask the questions that matter for your industry, and we tell you what fits — even if it isn&apos;t us."
+        text="A 20-minute conversation: we listen, we ask the questions that matter for your industry, and we tell you what fits, even if it isn&apos;t us."
         buttonText="Start a Conversation"
         useBG
       />

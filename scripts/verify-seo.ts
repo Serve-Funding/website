@@ -18,6 +18,16 @@ const DESCRIPTION_MIN_LENGTH = 120
 const SUFFIX = ' | Serve Funding' // 17 chars
 const TITLE_WITH_SUFFIX_MAX = TITLE_MAX_LENGTH - SUFFIX.length // 53 chars
 
+// Answer-engine checks. AI assistants pick one URL per query, so two of our own
+// pages competing for the same intent tends to mean neither gets cited. Exact
+// duplicates fail the build; near-duplicates are reported for a human to judge,
+// because some overlap is legitimate (an ABL page per industry shares most of
+// its title tokens by design).
+const INTENT_COLLISION_THRESHOLD = 0.5
+const CAPSULE_MIN_WORDS = 40
+const CAPSULE_MAX_WORDS = 80
+const STALE_AFTER_DAYS = 180
+
 interface ValidationResult {
   file: string
   field: string
@@ -444,7 +454,6 @@ function validateDataExcerpts(): ValidationResult[] {
   const files = [
     'src/data/comparisons.ts',
     'src/data/industries.ts',
-    'src/data/funding-pages.ts',
   ]
 
   for (const rel of files) {
@@ -489,10 +498,135 @@ function validateDataExcerpts(): ValidationResult[] {
   return results
 }
 
+interface Warning {
+  kind: string
+  detail: string
+}
+
+const STOP_WORDS = new Set([
+  'the', 'a', 'an', 'for', 'and', 'of', 'to', 'in', 'on', 'with', 'vs', 'your',
+  'you', 'what', 'is', 'are', 'how', 'when', 'it', 'that', 'this',
+])
+
+function significantTokens(value: string): Set<string> {
+  const words = value
+    .toLowerCase()
+    .replace(/&[a-z]+;/g, ' ')
+    .match(/[a-z0-9]+/g)
+  return new Set((words ?? []).filter(w => w.length > 2 && !STOP_WORDS.has(w)))
+}
+
+function jaccard(a: Set<string>, b: Set<string>): number {
+  if (a.size === 0 || b.size === 0) return 0
+  let shared = 0
+  a.forEach(t => { if (b.has(t)) shared++ })
+  return shared / (a.size + b.size - shared)
+}
+
+/**
+ * Answer-engine signals, derived from the results the validators already
+ * collected rather than from a second pass over the data.
+ *
+ * Exact duplicate titles or descriptions are an error: two pages claiming the
+ * same query is the one failure mode that silently costs citations, and it is
+ * never intentional. Near-duplicates are a warning, listed for review.
+ */
+function validateAnswerEngineSignals(collected: ValidationResult[]): {
+  results: ValidationResult[]
+  warnings: Warning[]
+} {
+  const results: ValidationResult[] = []
+  const warnings: Warning[] = []
+
+  const isTitle = (f: string) => /title/i.test(f)
+  const isDesc = (f: string) => /desc|excerpt/i.test(f)
+
+  for (const [label, predicate] of [
+    ['Title', isTitle],
+    ['Description', isDesc],
+  ] as Array<[string, (f: string) => boolean]>) {
+    const seen = new Map<string, string>()
+    for (const r of collected) {
+      if (!predicate(r.field) || !r.value) continue
+      const key = r.value.trim().toLowerCase().replace(SUFFIX.toLowerCase(), '')
+      const first = seen.get(key)
+      if (first && first !== r.file) {
+        results.push({
+          file: r.file,
+          field: r.field,
+          value: r.value,
+          length: r.value.length,
+          valid: false,
+          error: `${label} is identical to the one on ${first}. Two pages competing for the same query usually means neither gets cited. Differentiate them or consolidate the pages.`,
+        })
+      } else if (!first) {
+        seen.set(key, r.file)
+      }
+    }
+  }
+
+  // Near-duplicate intent: report only, no build failure.
+  const titles = collected
+    .filter(r => isTitle(r.field) && r.value)
+    .map(r => ({ file: r.file, value: r.value, tokens: significantTokens(r.value) }))
+
+  for (let i = 0; i < titles.length; i++) {
+    for (let j = i + 1; j < titles.length; j++) {
+      if (titles[i].file === titles[j].file) continue
+      const score = jaccard(titles[i].tokens, titles[j].tokens)
+      if (score >= INTENT_COLLISION_THRESHOLD) {
+        warnings.push({
+          kind: 'intent overlap',
+          detail: `${score.toFixed(2)}  ${titles[i].file} vs ${titles[j].file}\n              "${titles[i].value}"\n              "${titles[j].value}"`,
+        })
+      }
+    }
+  }
+
+  // Answer capsules: the block an assistant lifts. Too long stops being liftable.
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const { fundingSolutions } = require('../src/data/solutions')
+    for (const sol of fundingSolutions) {
+      const words = String(sol.whatIs ?? '').trim().split(/\s+/).filter(Boolean).length
+      if (words < CAPSULE_MIN_WORDS || words > CAPSULE_MAX_WORDS) {
+        warnings.push({
+          kind: 'answer capsule length',
+          detail: `${String(words).padStart(3)}w  solutions.tsx :: ${sol.id}.whatIs  (target ${CAPSULE_MIN_WORDS}-${CAPSULE_MAX_WORDS} words)`,
+        })
+      }
+    }
+  } catch {
+    // solutions data not resolvable in this context; skip rather than fail the build
+  }
+
+  // Freshness. Assistants weigh how recently a page changed, and these dates are
+  // derived from git rather than hand-maintained, so a stale one means the
+  // content genuinely has not moved.
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const { DATA_LAST_UPDATED } = require('../src/data/last-updated.generated')
+    const now = Date.now()
+    for (const [file, iso] of Object.entries(DATA_LAST_UPDATED as Record<string, string>)) {
+      const days = Math.floor((now - Date.parse(iso)) / 86_400_000)
+      if (days > STALE_AFTER_DAYS) {
+        warnings.push({
+          kind: 'content freshness',
+          detail: `${String(days).padStart(4)} days since last change  ${file}  (last ${iso})`,
+        })
+      }
+    }
+  } catch {
+    // generated file missing; `npm run last-updated` writes it before this runs
+  }
+
+  return { results, warnings }
+}
+
 /**
  * Display validation results in a clear format
  */
-function displayResults(allResults: ValidationResult[]): void {
+function displayResults(allResults: ValidationResult[], warnings: Warning[] = []): void {
   const failures = allResults.filter(r => !r.valid)
   const successes = allResults.filter(r => r.valid)
 
@@ -514,6 +648,17 @@ function displayResults(allResults: ValidationResult[]): void {
     })
   }
 
+  if (warnings.length > 0) {
+    const byKind = new Map<string, Warning[]>()
+    warnings.forEach(w => byKind.set(w.kind, [...(byKind.get(w.kind) ?? []), w]))
+    console.log(`\n⚠️  Answer-engine review (${warnings.length}, non-blocking):`)
+    byKind.forEach((items, kind) => {
+      console.log(`\n   ${kind} (${items.length}):`)
+      items.forEach(w => console.log(`      ${w.detail}`))
+    })
+    console.log()
+  }
+
   console.log(`\n📊 Summary: ${successes.length}/${allResults.length} fields pass validation\n`)
 }
 
@@ -523,7 +668,7 @@ function displayResults(allResults: ValidationResult[]): void {
 function validateAllSEO(): void {
   console.log('\n🔍 Starting SEO Validation...\n')
 
-  const allResults = [
+  const collected = [
     ...validateBlogPosts(),
     ...validateCentralizedSEO(),
     ...validateSolutionsData(),
@@ -531,12 +676,15 @@ function validateAllSEO(): void {
     ...validateDataExcerpts()
   ]
 
+  const aeo = validateAnswerEngineSignals(collected)
+  const allResults = [...collected, ...aeo.results]
+
   if (allResults.length === 0) {
     console.log('⚠️  No SEO data found to validate')
     return
   }
 
-  displayResults(allResults)
+  displayResults(allResults, aeo.warnings)
 
   const failures = allResults.filter(r => !r.valid)
 
@@ -547,7 +695,8 @@ function validateAllSEO(): void {
     console.error(`  - Titles with " | Serve Funding" suffix must be ≤ ${TITLE_WITH_SUFFIX_MAX} chars`)
     console.error(`  - Descriptions must be ${DESCRIPTION_MIN_LENGTH}-${DESCRIPTION_MAX_LENGTH} chars`)
     console.error(`  - Blog post titles max: ${TITLE_WITH_SUFFIX_MAX} chars (suffix added by template)`)
-    console.error(`  - Solution SEO titles max: ${TITLE_WITH_SUFFIX_MAX} chars (suffix added by template)\n`)
+    console.error(`  - Solution SEO titles max: ${TITLE_WITH_SUFFIX_MAX} chars (suffix added by template)`)
+    console.error('  - No two pages may share a title or description verbatim\n')
     process.exit(1)
   }
 

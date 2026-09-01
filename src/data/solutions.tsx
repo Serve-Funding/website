@@ -14,21 +14,21 @@ export const fundingSolutions: FundingSolution[] = [
     seoTitle: "Fast Working Capital Loans Approved in 3-10 Days",
     image: "/solutions/Working Capital Loans.webp",
     category: "Quick Operations Funding",
-    whatIs: "A working capital loan is short-term, revenue-based financing of $100K to $10M+ that funds in 2 to 10 business days, priced at 1.25%–4% per month. As of 2026, it's the fastest way to cover payroll, inventory, or growth-driven cash gaps when a bank can't move quickly enough — and at the same speed as a merchant cash advance it costs roughly half as much because the payment is monthly rather than a daily extraction from sales.",
+    whatIs: "A working capital loan is short-term, revenue-based financing of $100K to $10M+ that funds in 2 to 10 business days, priced at 1.25%–4% per month. As of 2026, it's the fastest way to cover payroll, inventory, or growth-driven cash gaps when a bank can't move quickly enough, and at the same speed as a merchant cash advance it costs roughly half as much because the payment is monthly rather than a daily extraction from sales.",
     shortDesc: "Working capital loans for growing companies. Fast funding (2–10 business days). Support payroll, inventory, expansion. $100K–$10M+.",
-    fullDesc: "A working capital loan is the fastest way to fund a healthy business when timing — not the underlying numbers — is the problem. Payroll hits Friday, a big invoice gets paid the 15th, and the bank's three-week approval cycle does not bend. This is the tool for that gap.\n\nLenders here look at your revenue and bank deposits over the last twelve months rather than at collateral. If the business is profitable enough to comfortably carry a fixed monthly payment, you qualify. As of 2026, loans typically run around 10–15% of annual revenue and fund in 2–10 business days.\n\nIt is easy to confuse this with a merchant cash advance, or MCA — but the difference matters. MCAs pull repayments daily or weekly straight from your sales, which can choke cash flow and rarely let you save by paying off early. The product we use is paid monthly and rewards early payoff, which cuts the real cost roughly in half.\n\nOften, this loan is a bridge. We close it in days, then spend the next six to eight weeks building a permanent line — usually one secured by your unpaid invoices — that takes over once it is in place.\n\nThe right fit: a healthy business, capital needed in days, no large pool of commercial invoices yet to borrow against. The wrong fit: already juggling multiple MCAs, revenue trending down, or financing an acquisition. We will say so up front rather than waste your time.",
+    fullDesc: "A working capital loan is the fastest way to fund a healthy business when timing, not the underlying numbers, is the problem. Payroll hits Friday, a big invoice gets paid the 15th, and the bank's three-week approval cycle does not bend. This is the tool for that gap.\n\nLenders here look at your revenue and bank deposits over the last twelve months rather than at collateral. If the business is profitable enough to comfortably carry a fixed monthly payment, you qualify. As of 2026, loans typically run around 10–15% of annual revenue and fund in 2–10 business days.\n\nIt is easy to confuse this with a merchant cash advance, or MCA, but the difference matters. MCAs pull repayments daily or weekly straight from your sales, which can choke cash flow and rarely let you save by paying off early. The product we use is paid monthly and rewards early payoff, which cuts the real cost roughly in half.\n\nOften, this loan is a bridge. We close it in days, then spend the next six to eight weeks building a permanent line, usually one secured by your unpaid invoices, that takes over once it is in place.\n\nThe right fit: a healthy business, capital needed in days, no large pool of commercial invoices yet to borrow against. The wrong fit: already juggling multiple MCAs, revenue trending down, or financing an acquisition. We will say so up front rather than waste your time.",
     features: [
       "Loan sizes from $100K to $10MM+, sized at roughly 10–15% of annual revenue",
-      "Monthly payments — not daily or weekly extractions from sales like an MCA",
+      "Monthly payments, not daily or weekly extractions from sales like an MCA",
       "Terms of 6–48 months, with revolving line structures available from select lenders",
       "Funding in 2–10 business days; emergency payroll situations have closed in 24–72 hours",
       "Pricing 1.25%–4% per month all-in; the best-priced revolving versions sit in the mid-teens true APR",
-      "Real prepay forgiveness on the better products — pay off early, save the unused interest",
+      "Real prepay forgiveness on the better products: pay off early, save the unused interest",
       "Subordinate options that don't require senior lien position (will sit behind an existing factor or ABL)",
       "Underwritten on revenue history and deposit consistency, not on credit score gates or hard assets",
-      "Personal credit matters more here than in asset-based lending — clean 680+ FICO meaningfully widens options",
+      "Personal credit matters more here than in asset-based lending. A clean 680+ FICO meaningfully widens options",
       "Used as the \"step one\" bridge while a slower asset-based facility (ABL, factoring, SBA) underwrites in parallel",
-      "A consistent 3-month run of healthy deposits is the practical gate — a soft December tells a story lenders don't want to see"
+      "A consistent 3-month run of healthy deposits is the practical gate. A soft December tells a story lenders don't want to see"
     ],
     bestFor: [
       "Payroll bridge gaps: Friday payroll, receivable lands the 15th",
@@ -40,6 +40,39 @@ export const fundingSolutions: FundingSolution[] = [
       "Cleaner-than-MCA replacement for businesses with one or two existing advances they want to clear out",
       "Acquisition or M&A timing gaps where speed matters more than the lowest possible rate"
     ],
+    terms: [
+      { label: "Pricing (2026)", value: "1.25%-4% per month, roughly 18%-48% effective APR" },
+      { label: "Structure", value: "Fixed monthly payment over 6-48 months. Revolving versions available from select lenders" },
+      { label: "Payment frequency", value: "Monthly. No daily or weekly ACH extraction from sales" },
+      { label: "Early payoff", value: "The better products forgive unearned interest, which can nearly halve the real cost. Confirm this in writing" },
+      { label: "What underwriting reads", value: "12 months of bank statements, weighted to the last 3. No appraisal, no field exam" },
+      { label: "Owner credit", value: "Matters more than in asset-based lending. Clean 680+ widens the options meaningfully" },
+      { label: "Lien position", value: "Subordinate structures available; will sit behind an existing factor or ABL" },
+      { label: "Serve fee", value: "A success fee, earned only on closing. Agreed in writing before you sign anything. No retainers, no upfront costs" },
+    ],
+    notFor: [
+      {
+        who: "Companies with a large book of commercial invoices",
+        instead: "If you have $1MM+ of receivables from creditworthy business customers, an asset-based line or invoice financing at Prime plus 1%-5% is a fraction of the cost of revenue-based financing and the facility grows with sales instead of amortizing away. Do not buy RBF because it is faster if the cheaper facility can be in place in three weeks. We will usually structure both: RBF now, the cheap facility underwriting in parallel.",
+      },
+      {
+        who: "Already two or more advances deep",
+        instead: "Adding a term loan on top of a stack is stacking, whatever it is called. The conversation you need is a consolidation that pays those positions off and closes them. That is a different page and a different lender set.",
+      },
+      {
+        who: "Revenue trending down over the last two quarters",
+        instead: "Revenue-based underwriting reads trailing deposits, so a declining trend prices badly or declines outright. If there is collateral, an asset-based facility looks at what you own rather than at the trend, and is the better door.",
+      },
+      {
+        who: "Financing an acquisition or a partner buyout",
+        instead: "RBF is sized to 10%-15% of revenue, which almost never covers a purchase price. Acquisitions want SBA 7(a) for the price and a bridge for the timing gap.",
+      },
+      {
+        who: "Under about $2MM in revenue, or asking under $250K",
+        instead: "Below that the revenue-based options thin out and most of what will look at you are advances. Still worth a conversation, because sometimes there is an asset to lend against that changes the answer entirely, and if there genuinely is not, we will tell you rather than put you into something we would not want to sign ourselves.",
+      },
+    ],
+    workedExample: "A specialty food manufacturer doing about $13MM in revenue lands shelf placement with a regional grocery chain. Filling it means roughly $900K of additional raw material and a second production shift, starting in three weeks. The company is profitable, has a $1.5MM bank line that is drawn to $1.3MM, and has never taken outside capital.\n\nThe first offer to arrive is an advance: $1MM in 48 hours at a 1.32 factor rate, so $1.32MM of payback pulled at 12% of daily deposits. On the projected nine-month payback that is an effective cost north of 68%, extracted daily against receivables that pay in 45 days. It would fund the shelf placement and squeeze the cash the shelf placement depends on.\n\nWhat we place instead is $1.4MM of revenue-based financing at 2.1% per month over 30 months, funded in seven business days, with written forgiveness of unearned interest on early payoff. Monthly payment lands near $63K. In parallel, an asset-based facility goes into underwriting against the growing receivable book from the chain, and closes about nine weeks later at Prime plus 3%. The company retires the RBF at month eleven and, because the prepayment terms were real, pays roughly $214K of total interest rather than the roughly $390K the full 30-month schedule implied. Same speed as the advance, and a little over a quarter of the cost.",
   },
 
   {
@@ -48,20 +81,20 @@ export const fundingSolutions: FundingSolution[] = [
     seoTitle: "Get Paid Faster | Invoice Financing",
     image: "/solutions/Invoice AI Financing.webp",
     category: "Fast Cash Flow",
-    whatIs: "Invoice factoring is the practice of selling unpaid B2B invoices to a factor for 75%–95% of face value within 24–48 hours, then receiving the balance (minus a 0.25%–1% fee per invoice) when the customer pays. As of 2026, pricing typically runs Prime + 1–6%, facility sizes range from $250K to $100MM, and the facility scales automatically with sales. Approval looks at your customers' credit rather than your tax return — which is why it works for growing companies whose financials don't yet tell the full story.",
+    whatIs: "Invoice factoring is the practice of selling unpaid B2B invoices to a factor for 75%–95% of face value within 24–48 hours, then receiving the balance (minus a 0.25%–1% fee per invoice) when the customer pays. As of 2026, pricing typically runs Prime + 1–6%, facility sizes range from $250K to $100MM, and the facility scales automatically with sales. Approval looks at your customers' credit rather than your tax return, which is why it works for growing companies whose financials don't yet tell the full story.",
     shortDesc: "Invoice financing for growing companies. Fast cash access once approved. Scales with sales. Better for rapidly growing businesses than bank loans.",
-    fullDesc: "Invoice factoring is the sale of unpaid B2B invoices to a third party — called a factor — in exchange for most of the money upfront. The factor advances 75–95% of the invoice's face value within a day or two, then sends the balance, minus a small fee, once your customer pays.\n\nThe first thing to understand is that this is not a loan. It is the recurring sale of an asset, which means it does not appear as debt on your balance sheet — a meaningful difference if you have bank covenants to protect or are preparing the business for sale.\n\nThe line refills as customers pay, so you can keep drawing against new invoices as you upload them. Customers send payments to a separate bank account in your name, called a lockbox, that the factor sweeps. The only operational change for your customers is a slightly different mailing address, which most accounts payable teams handle routinely.\n\nThe biggest advantage for growing companies is the underwriting lens. Factors evaluate the credit of your customers rather than your tax returns or owner's personal credit, which is why factoring often works for businesses that have been declined by a bank. Staffing agencies, manufacturers selling to large buyers, and government subcontractors are typical fits.\n\nAs of 2026, advance rates run 75–95%, per-invoice fees range from 0.25–1.5%, and facility sizes scale from $250K to $100MM.\n\nThe wrong fit: direct-to-consumer businesses, which have no commercial invoices to sell; construction with heavy retainage and concentrated customers; and businesses with less than about $250K of steady invoices, where the economics get thin for both sides.",
+    fullDesc: "Invoice factoring is the sale of unpaid B2B invoices to a third party, called a factor, in exchange for most of the money upfront. The factor advances 75–95% of the invoice's face value within a day or two, then sends the balance, minus a small fee, once your customer pays.\n\nThe first thing to understand is that this is not a loan. It is the recurring sale of an asset, which means it does not appear as debt on your balance sheet, a meaningful difference if you have bank covenants to protect or are preparing the business for sale.\n\nThe line refills as customers pay, so you can keep drawing against new invoices as you upload them. Customers send payments to a separate bank account in your name, called a lockbox, that the factor sweeps. The only operational change for your customers is a slightly different mailing address, which most accounts payable teams handle routinely.\n\nThe biggest advantage for growing companies is the underwriting lens. Factors evaluate the credit of your customers rather than your tax returns or owner's personal credit, which is why factoring often works for businesses that have been declined by a bank. Staffing agencies, manufacturers selling to large buyers, and government subcontractors are typical fits.\n\nAs of 2026, advance rates run 75–95%, per-invoice fees range from 0.25–1.5%, and facility sizes scale from $250K to $100MM.\n\nThe wrong fit: direct-to-consumer businesses, which have no commercial invoices to sell; construction with heavy retainage and concentrated customers; and businesses with less than about $250K of steady invoices, where the economics get thin for both sides.",
     features: [
       "Facility sizes from $250K to $100MM, scaling automatically as your sales grow",
       "Advance rates of 75%–95% on eligible invoices; medical AR runs lower (65–70%) because of insurance discounting",
       "Pricing: factor fees of 0.25%–1.5% per invoice on the discount-rate model; combined-fee structures run Prime + 1–6% on borrowed funds",
-      "Not a debt product on your balance sheet — it's a recurring sale of an asset",
+      "Not a debt product on your balance sheet. It's a recurring sale of an asset",
       "Self-liquidating revolving line: as customers pay, the line refills like water in a cup",
       "Lockbox or DACA account set up in your name; lender sweeps customer payments directly",
       "Underwritten primarily on the credit of your customers (account debtors), not on owner personal credit",
       "Funding typically 24–48 hours after invoice upload; full facility setup runs 3–4 weeks",
-      "Validity guarantee in lieu of personal guarantee on many deals — you're only liable if there's fraud or misrepresentation",
-      "Selective or full-turn factoring options — you can choose which invoices to fund or run the whole book",
+      "Validity guarantee in lieu of personal guarantee on many deals, so you're only liable if there's fraud or misrepresentation",
+      "Selective or full-turn factoring options: you can choose which invoices to fund or run the whole book",
       "Mid-stream facility raises happen fast (often in days) once the lender knows your account debtors",
       "Distressed-company pricing runs higher (mid-teens to 18%+ all-in); cleaner profiles get below 14%, sometimes 12–13%",
       "Bank-owned factors are more rigid but cheaper; non-bank factors are more flexible and slightly pricier"
@@ -70,13 +103,44 @@ export const fundingSolutions: FundingSolution[] = [
       "Staffing agencies with weekly or bi-weekly payroll against 30–60 day client receivables",
       "Manufacturers selling to blue-chip OEMs, distributors, or government primes on terms",
       "Government subcontractors waiting on assignment-of-claims and CO sign-offs",
-      "Healthcare practices billing insurance (Medicare, Humana, Blue Cross) on 30–90 day cycles — uses specialized medical factoring",
+      "Healthcare practices billing insurance (Medicare, Humana, Blue Cross) on 30–90 day cycles, which uses specialized medical factoring",
       "Growing companies that have hit the ceiling on their bank line and need a facility that scales with sales",
       "Businesses declined by their bank on owner personal credit or thin profitability where the AR itself is high-quality",
       "Companies with loss tax returns but strong recurring invoices to creditworthy customers",
       "Bridge facility for a company on the way to a bank-owned ABL in 6–12 months",
       "Acquired businesses where the new ownership wants to keep operating debt off the balance sheet"
     ],
+    terms: [
+      { label: "Cost", value: "1%-3% per 30 days outstanding" },
+      { label: "Reserve", value: "10%-20%, released on collection less the fee" },
+      { label: "Typical single-customer concentration limit", value: "20%-30% of the ledger" },
+      { label: "Invoice ageing limit", value: "Normally 90 days, occasionally 120" },
+      { label: "Contract term", value: "12-24 months is standard, 30-90 day terms exist and cost more" },
+      { label: "Balance sheet treatment", value: "A true sale of the receivable, not debt" },
+    ],
+    notFor: [
+      {
+        who: "Companies invoicing consumers, or taking payment by card at the point of sale",
+        instead: "There is no commercial receivable to sell. What fits that revenue pattern is revenue-based financing, sized against your deposits rather than against an invoice ledger.",
+      },
+      {
+        who: "Contractors billing on progress or holding retainage",
+        instead: "A construction receivable behaves differently from a commercial one. Progress billings are conditional until the work is accepted, retainage is not collectible until the job closes, and pay-when-paid clauses put a third party between you and the money. Most factors will not buy that paper. An asset-based facility built for construction is the better door.",
+      },
+      {
+        who: "Needing cash before the goods exist",
+        instead: "If the money is going to a supplier so an order can be produced, that is purchase order financing. The two are frequently arranged together: PO financing pays the supplier, and the factoring advance retires the PO position the day the invoice is issued.",
+      },
+      {
+        who: "Companies that also need to borrow against inventory, equipment or property",
+        instead: "Factoring only ever addresses the receivable. If there is meaningful collateral elsewhere on the balance sheet, one asset-based line against all of it is usually cheaper per dollar and simpler to administer than a factoring facility plus separate borrowings.",
+      },
+      {
+        who: "Already inside a factoring agreement with another funder",
+        instead: "Most factoring contracts carry a term, a minimum volume commitment, and an early termination fee, and the incumbent holds a first-position UCC on your receivables. Moving is normal and happens constantly, but it is a buyout conversation rather than a new facility. Send us the agreement before you sign anything else.",
+      },
+    ],
+    workedExample: "A wholesale distributor doing roughly $12MM in revenue sells into regional grocery and food-service chains on net 45 terms, though the ledger actually pays closer to 58 days. Receivables run about $2.1MM at any one time. The company is profitable, has been trading nine years, and was declined for a bank line increase because two quarters in the prior year showed compressed margins during a commodity swing.\n\nWe place a $2MM factoring facility at an 85% advance rate, priced at about 1.4% per 30 days, with the largest customer carved out at a higher concentration limit because that buyer is a national chain with public financials. Documentation takes eight business days, most of it spent obtaining a subordination from the equipment lender holding a blanket lien.\n\nOn a representative month the company submits $900K of verified invoices and receives about $765K within 48 hours. Those invoices collect over an average of 56 days, so the fee lands near $23K, and the $135K reserve is released as each invoice pays. Annualized across the facility the financing cost runs close to $265K against roughly $2.4MM of gross margin.\n\nWhat the company actually bought is a purchasing position. Paying suppliers inside terms rather than at 45 days earns a 2% early-payment discount on about $7MM of annual purchases, worth roughly $140K, which recovers over half the cost of the facility. Eighteen months later, with two clean years on the books, the same distributor moved onto an asset-based line at a materially lower rate. That is the normal arc. For most companies factoring is a bridge to cheaper capital rather than a permanent arrangement.",
   },
 
   {
@@ -87,7 +151,7 @@ export const fundingSolutions: FundingSolution[] = [
     category: "Asset Acquisition",
     whatIs: "Equipment leasing and financing covers $100K to $50MM+ of machinery, vehicles, or technology over 3–7 year terms, with advance rates of 70%–85% of liquidation value and pricing of Prime + 3–10%. As of 2026, financing the asset directly is almost always cheaper than drawing on a working-capital line for the same purchase. Sale-leaseback structures let you extract 50%–70% of the equity from equipment you already own without adding a new debt covenant.",
     shortDesc: "Equipment financing for growing manufacturers & contractors. 3-7 year terms. Avoid upfront capital costs. Scale operations.",
-    fullDesc: "When you are buying equipment — machinery, vehicles, a clean room, an imaging suite, anything with a serial number and a useful life — financing the asset directly is almost always cheaper than paying for it from a working capital line. The reason is collateral. The equipment itself secures the loan, so if the business runs into trouble the lender can recover by selling the asset. That hard collateral lowers the rate. Working capital, by contrast, is unsecured against revenue, so it costs more.\n\nAs of 2026, terms typically run 36 to 84 months, with 60 months as the sweet spot, at rates from the high single digits to the low teens depending on credit and the type of equipment. Many lenders offer a three-month deferral at the front so the equipment can be installed and start earning before the first payment.\n\nA few practical notes. If the equipment is built abroad, expect to bridge the purchase yourself — paying the vendor, shipping it, and clearing customs — with the lender reimbursing on the back end. If the business is young or the credit is thin, a story credit deal is often still possible: a lender who underwrites the narrative, not just the financials. And if your manufacturer offers direct financing on reasonable terms, take it. We will say so plainly. Our value in that case is structuring working capital alongside.\n\nThe other half of this product is the sale-leaseback. If you already own equipment outright, the cash you put into it is locked up. A sale-leaseback transfers title to a lender and leases it back to you, which puts cash on your balance sheet without disrupting operations. It is a frequent choice for owners who want growth capital without touching real estate, signing a personal guarantee, or taking on a merchant cash advance.",
+    fullDesc: "When you are buying equipment, whether machinery, vehicles, a clean room, an imaging suite or anything else with a serial number and a useful life, financing the asset directly is almost always cheaper than paying for it from a working capital line. The reason is collateral. The equipment itself secures the loan, so if the business runs into trouble the lender can recover by selling the asset. That hard collateral lowers the rate. Working capital, by contrast, is unsecured against revenue, so it costs more.\n\nAs of 2026, terms typically run 36 to 84 months, with 60 months as the sweet spot, at rates from the high single digits to the low teens depending on credit and the type of equipment. Many lenders offer a three-month deferral at the front so the equipment can be installed and start earning before the first payment.\n\nA few practical notes. If the equipment is built abroad, expect to bridge the purchase yourself, paying the vendor, shipping it and clearing customs, with the lender reimbursing on the back end. If the business is young or the credit is thin, a story credit deal is often still possible: a lender who underwrites the narrative, not just the financials. And if your manufacturer offers direct financing on reasonable terms, take it. We will say so plainly. Our value in that case is structuring working capital alongside.\n\nThe other half of this product is the sale-leaseback. If you already own equipment outright, the cash you put into it is locked up. A sale-leaseback transfers title to a lender and leases it back to you, which puts cash on your balance sheet without disrupting operations. It is a frequent choice for owners who want growth capital without touching real estate, signing a personal guarantee, or taking on a merchant cash advance.",
     features: [
       "Loan range $100K to $50M+ as of 2026",
       "36 to 84 month terms; 60-month is the sweet spot",
@@ -122,9 +186,9 @@ export const fundingSolutions: FundingSolution[] = [
     seoTitle: "Asset-Based Lending Credit Lines Fast",
     image: "/solutions/Asset Based Lending.webp",
     category: "Flexible Working Capital",
-    whatIs: "Asset-Based Lending (ABL) is a revolving credit line — typically $250K to $25M, priced at Prime + 1–5% — secured by a combination of accounts receivable (70%–90% advance), inventory (50%–75% advance), equipment, and sometimes real estate. As of 2026, ABL is the standard replacement for a maxed-out bank line when a company has hard assets but doesn't fit a traditional credit box. Most bank ABL desks start at $3–5M minimums, which is why deals below that size usually need an advisor with multiple lender relationships.",
+    whatIs: "Asset-Based Lending (ABL) is a revolving credit line, typically $250K to $25M priced at Prime + 1–5%, secured by a combination of accounts receivable (70%–90% advance), inventory (50%–75% advance), equipment, and sometimes real estate. As of 2026, ABL is the standard replacement for a maxed-out bank line when a company has hard assets but doesn't fit a traditional credit box. Most bank ABL desks start at $3–5M minimums, which is why deals below that size usually need an advisor with multiple lender relationships.",
     shortDesc: "Asset-based lending for growing companies. Flexible credit lines backed by AR, inventory, equipment & real estate. Facility sizes $250K–$25M.",
-    fullDesc: "Asset-based lending, or ABL, is a revolving credit line backed by the company's hard assets — typically unpaid invoices and inventory, sometimes equipment and real estate. It is the structure most businesses move into when they outgrow their bank line but still have real collateral to borrow against.\n\nAs of 2026, most ABL deals run $3M to $25M, priced at Prime plus 1–5%. Lenders advance roughly 70–90% on unpaid invoices and 50–75% on inventory underneath. You report your eligible collateral on a regular schedule, usually weekly or monthly, and the lender raises or lowers your available credit accordingly. Customer payments flow into a separate bank account in your name, paying the line down automatically as new invoices come in.\n\nABL and invoice factoring are close cousins — both create a revolving line collateralized by unpaid invoices. The difference is that factoring is the sale of an asset and stays off the balance sheet, while ABL is true debt with formal borrowing reports. For larger operators with clean financials, ABL usually wins on cost and presentation. For smaller deals or distressed credits, factoring is often the better tool.\n\nABL is the right structure for funding growth that has outpaced a bank, supporting an acquisition, consolidating expensive debt into a single line, or stabilizing a manufacturer with a long production cycle that needs to borrow against work-in-progress and finished inventory.\n\nSetup takes six to eight weeks, with a field examination and legal documentation. We often bridge the first step with a faster working capital loan, then move into ABL once the underwriting is complete — the bridge buys time, and ABL is the permanent structure the business is moving into.",
+    fullDesc: "Asset-based lending, or ABL, is a revolving credit line backed by the company's hard assets, typically unpaid invoices and inventory, sometimes equipment and real estate. It is the structure most businesses move into when they outgrow their bank line but still have real collateral to borrow against.\n\nAs of 2026, most ABL deals run $3M to $25M, priced at Prime plus 1–5%. Lenders advance roughly 70–90% on unpaid invoices and 50–75% on inventory underneath. You report your eligible collateral on a regular schedule, usually weekly or monthly, and the lender raises or lowers your available credit accordingly. Customer payments flow into a separate bank account in your name, paying the line down automatically as new invoices come in.\n\nABL and invoice factoring are close cousins. Both create a revolving line collateralized by unpaid invoices. The difference is that factoring is the sale of an asset and stays off the balance sheet, while ABL is true debt with formal borrowing reports. For larger operators with clean financials, ABL usually wins on cost and presentation. For smaller deals or distressed credits, factoring is often the better tool.\n\nABL is the right structure for funding growth that has outpaced a bank, supporting an acquisition, consolidating expensive debt into a single line, or stabilizing a manufacturer with a long production cycle that needs to borrow against work-in-progress and finished inventory.\n\nSetup takes six to eight weeks, with a field examination and legal documentation. We often bridge the first step with a faster working capital loan, then move into ABL once the underwriting is complete. The bridge buys time, and ABL is the permanent structure the business is moving into.",
     features: [
       "Facility sizes typically $250K to $25M; most placements are $3M and up",
       "Pricing at Prime + 1%–5% as of 2026",
@@ -151,6 +215,16 @@ export const fundingSolutions: FundingSolution[] = [
       "A company that has hit the ceiling on factoring and is ready for the lower-cost ABL graduation",
       "A business whose bank has signaled they want them off the line and needs a soft landing"
     ],
+    terms: [
+      { label: "Eligible receivables", value: "80%-85%" },
+      { label: "Finished goods inventory", value: "60%-75% of net orderly liquidation value" },
+      { label: "Raw materials", value: "Generally ineligible. Lenders want finished goods" },
+      { label: "Work in process", value: "Ineligible. Zero borrowing base credit" },
+      { label: "Machinery and equipment", value: "70%-80% of appraised liquidation value" },
+      { label: "Pricing (2026)", value: "Prime + 1%-6%, depending on collateral mix and vertical" },
+      { label: "Reporting", value: "Monthly borrowing-base certificate, weekly on tighter facilities" },
+      { label: "Serve fee", value: "A success fee, earned only on closing. Agreed in writing before you sign anything. No retainers, no upfront costs" },
+    ],
   },
 
   {
@@ -159,9 +233,9 @@ export const fundingSolutions: FundingSolution[] = [
     seoTitle: "Inventory Financing for Growing Retailers",
     image: "/solutions/Inventory Financing.webp",
     category: "Asset-Based",
-    whatIs: "Inventory financing advances up to 85% of the liquidation value of finished goods or raw materials, with facilities from $500K to $20M and pricing typically at Prime + 6–12%. As of 2026, it's the right product when growth is being held back by stock you can't afford to hold — particularly for e-commerce and direct-to-consumer businesses that don't have B2B invoices to factor against.",
+    whatIs: "Inventory financing advances up to 85% of the liquidation value of finished goods or raw materials, with facilities from $500K to $20M and pricing typically at Prime + 6–12%. As of 2026, it's the right product when growth is being held back by stock you can't afford to hold, particularly for e-commerce and direct-to-consumer businesses that don't have B2B invoices to factor against.",
     shortDesc: "Inventory financing for growing e-commerce & retail. Scale inventory levels without depleting working capital. Up to 85% advance.",
-    fullDesc: "Inventory financing is for companies whose growth is being held back by stock they cannot afford to hold. The classic example is an e-commerce or direct-to-consumer brand pre-stocking inventory two months before the holiday season but without commercial invoices to borrow against. Their customers are consumers, not businesses, so there are no unpaid B2B invoices to use. The inventory itself becomes the asset.\n\nMechanically, most inventory lenders pay your supplier directly. They might front $100K of product against an approved vendor, ship it into your warehouse or fulfillment center, then give you a cycle — usually 90 days — to sell through and repay. Your operating cash stays intact, and you only pay for the capital against goods that are actually moving.\n\nAs of 2026, advance rates run up to 85% of liquidation value, sometimes 40–50% on cost, at pricing of Prime plus 6–12%. Standalone inventory facilities run higher.\n\nA few practical considerations. Most lenders require a first-priority claim on the inventory, which means coordinating with any existing bank line or factoring facility that already covers it. True standalone inventory facilities exist but require a 13-week cash flow forecast and a clear, math-based explanation for why the inventory will turn into cash before the loan term ends.\n\nFor e-commerce specifically, one of our partner lenders offers a revolving line built around direct-to-consumer inventory at roughly Prime plus 2% — unusually attractive pricing for inventory — but it requires that same first-priority claim and clean reporting. For owners with real estate, drawing working capital against the property at single-digit rates is often cheaper. When real estate is not available, inventory financing is the realistic answer.",
+    fullDesc: "Inventory financing is for companies whose growth is being held back by stock they cannot afford to hold. The classic example is an e-commerce or direct-to-consumer brand pre-stocking inventory two months before the holiday season but without commercial invoices to borrow against. Their customers are consumers, not businesses, so there are no unpaid B2B invoices to use. The inventory itself becomes the asset.\n\nMechanically, most inventory lenders pay your supplier directly. They might front $100K of product against an approved vendor, ship it into your warehouse or fulfillment center, then give you a cycle, usually 90 days, to sell through and repay. Your operating cash stays intact, and you only pay for the capital against goods that are actually moving.\n\nAs of 2026, advance rates run up to 85% of liquidation value, sometimes 40–50% on cost, at pricing of Prime plus 6–12%. Standalone inventory facilities run higher.\n\nA few practical considerations. Most lenders require a first-priority claim on the inventory, which means coordinating with any existing bank line or factoring facility that already covers it. True standalone inventory facilities exist but require a 13-week cash flow forecast and a clear, math-based explanation for why the inventory will turn into cash before the loan term ends.\n\nFor e-commerce specifically, one of our partner lenders offers a revolving line built around direct-to-consumer inventory at roughly Prime plus 2%, unusually attractive pricing for inventory, but it requires that same first-priority claim and clean reporting. For owners with real estate, drawing working capital against the property at single-digit rates is often cheaper. When real estate is not available, inventory financing is the realistic answer.",
     features: [
       "Facility sizes $500K to $20M as of 2026",
       "Revolving line structure available with most lenders",
@@ -196,9 +270,9 @@ export const fundingSolutions: FundingSolution[] = [
     seoTitle: "PO Funding: Scale Without Cash Drain",
     image: "/solutions/Purchase Order Funding.webp",
     category: "Growth Capital",
-    whatIs: "Purchase order (PO) funding pays your suppliers — domestic or international — for 70%–100% of a confirmed customer purchase order, at 1.5%–3% per 30 days, with deals from $250K to $50M. As of 2026, it's the one product that solves cash trapped between you and your supplier. It pairs naturally with invoice factoring: PO funding covers production, factoring covers the wait after delivery.",
+    whatIs: "Purchase order (PO) funding pays your suppliers, domestic or international, for 70%–100% of a confirmed customer purchase order, at 1.5%–3% per 30 days, with deals from $250K to $50M. As of 2026, it's the one product that solves cash trapped between you and your supplier. It pairs naturally with invoice factoring: PO funding covers production, factoring covers the wait after delivery.",
     shortDesc: "PO funding for growing manufacturers & importers. Scale orders without cash depletion. Manage tariffs, international suppliers.",
-    fullDesc: "Purchase order funding, or PO funding, solves the cash gap between winning an order and getting paid for it. You have a confirmed purchase order from a customer, but your supplier wants a deposit — or full payment — before production starts, and your customer will not pay you for 60 to 120 days after delivery. The money is trapped between supplier and customer. A bank typically cannot help because no invoice exists yet, only a promise of one.\n\nA PO funder steps into that gap by paying your supplier directly so production can move forward. Some structures give you a credit line with the supplier; others wire the supplier on a per-order basis. Either way, the mechanics are the same: you get the materials, you build and ship, you invoice the customer, and the PO lender is paid off the moment that invoice is created.\n\nThe part most owners do not anticipate is that the PO lender expects to be repaid immediately at invoice — they do not stay in the deal through the customer's payment cycle. That requires a takeout: an invoice factoring or accounts receivable line that funds the moment the invoice exists. We almost always arrange the two together. Paired well, PO funding plus factoring covers the full cash cycle, from supplier payment through customer payment.\n\nAs of 2026, PO funding runs 2–3% per 30 days, with select lenders closer to 1.75%. The invoice-side line is roughly half that, around 1–1.5% per 30 days, because the risk is lower once a real receivable exists.\n\nPO funding is not the right tool when there is no clean supplier-to-finished-product chain — for example, a custom manufacturer assembling forty different components into one finished good. That is work-in-process financing, which is a different structure.",
+    fullDesc: "Purchase order funding, or PO funding, solves the cash gap between winning an order and getting paid for it. You have a confirmed purchase order from a customer, but your supplier wants a deposit, or full payment, before production starts, and your customer will not pay you for 60 to 120 days after delivery. The money is trapped between supplier and customer. A bank typically cannot help because no invoice exists yet, only a promise of one.\n\nA PO funder steps into that gap by paying your supplier directly so production can move forward. Some structures give you a credit line with the supplier; others wire the supplier on a per-order basis. Either way, the mechanics are the same: you get the materials, you build and ship, you invoice the customer, and the PO lender is paid off the moment that invoice is created.\n\nThe part most owners do not anticipate is that the PO lender expects to be repaid immediately at invoice. They do not stay in the deal through the customer's payment cycle. That requires a takeout: an invoice factoring or accounts receivable line that funds the moment the invoice exists. We almost always arrange the two together. Paired well, PO funding plus factoring covers the full cash cycle, from supplier payment through customer payment.\n\nAs of 2026, PO funding runs 2–3% per 30 days, with select lenders closer to 1.75%. The invoice-side line is roughly half that, around 1–1.5% per 30 days, because the risk is lower once a real receivable exists.\n\nPO funding is not the right tool when there is no clean supplier-to-finished-product chain: for example, a custom manufacturer assembling forty different components into one finished good. That is work-in-process financing, which is a different structure.",
     features: [
       "Funds 70%–100% of a confirmed customer purchase order, as of 2026",
       "PO costs typically 2%–3% per 30 days; our network sometimes hits closer to 1.75%",
@@ -209,8 +283,8 @@ export const fundingSolutions: FundingSolution[] = [
       "Lender underwrites on the strength of the end-customer's credit, not yours",
       "Facility sizes typically $250K to $50MM",
       "Realistic timeline: factoring + PO combo placed in 2–3 weeks once documents are in",
-      "Volume drives down cost — bigger, predictable PO flow earns better pricing",
-      "Honest exclusion: PO funding generally doesn't fit custom manufacturers buying many components — that's WIP financing territory"
+      "Volume drives down cost: bigger, predictable PO flow earns better pricing",
+      "Honest exclusion: PO funding generally doesn't fit custom manufacturers buying many components. That's WIP financing territory"
     ],
     bestFor: [
       "Manufacturers and wholesalers with a confirmed customer PO and a supplier that wants paid first",
@@ -222,6 +296,34 @@ export const fundingSolutions: FundingSolution[] = [
       "Operators with strong margins but lumpy AR who need to bridge the build cycle",
       "Businesses already running a factoring line that need a front-end add-on to fund production"
     ],
+    terms: [
+      { label: "Coverage of supplier cost", value: "70%-100%" },
+      { label: "Gross margin required", value: "Roughly 20%-25% or better on the transaction" },
+      { label: "What is financed", value: "Finished goods that ship: resale, drop-ship, contract-manufactured" },
+      { label: "What is not financed", value: "Services, labor, in-house work in process" },
+      { label: "Primary credit decision", value: "Your end customer credit, then your supplier reliability" },
+      { label: "Typical exit", value: "Invoice factoring on the resulting receivable, usually arranged in the same package" },
+      { label: "Serve fee", value: "A success fee, earned only on closing. Agreed in writing before you sign anything. No retainers, no upfront costs" },
+    ],
+    notFor: [
+      {
+        who: "Service businesses, staffing, or anything where the cost is labor",
+        instead: "There is no supplier to pay and no goods to secure. What you want is invoice factoring against the receivable once you have billed, or a payroll-funding facility if the gap is between payroll and collection.",
+      },
+      {
+        who: "Manufacturers converting raw materials in-house",
+        instead: "PO funders will not finance work in process, because half-finished goods are not collateral anyone can liquidate. Inventory financing or an asset-based line against raw materials and finished goods is the right structure. Some funders will cover the raw-material purchase specifically, which is worth asking about.",
+      },
+      {
+        who: "Gross margin under about 15%",
+        instead: "The arithmetic does not survive the cost of the money. Either the order needs repricing or the capital needs to come from a cheaper facility, an ABL or a bank line, which takes longer to put in place but works at thin margins.",
+      },
+      {
+        who: "A purchase order that is really a forecast",
+        instead: "Letters of intent, blanket agreements with no firm quantities, and verbal commitments are not financeable. A funder needs a document your customer is contractually bound by.",
+      },
+    ],
+    workedExample: "A consumer products company doing roughly $7MM in revenue receives a $1.9MM purchase order from a national retailer, roughly triple its largest previous order. Supplier cost is about $1.25MM against an overseas manufacturer it has used for three years, with 50% due at production start and the balance at shipment. Gross margin on the transaction is about 34%.\n\nWe arrange PO financing covering 100% of supplier cost. That is $1.25MM, issued as a letter of credit at production start with the balance released against shipping documents, priced at roughly 3% per 30 days. Alongside it, a factoring facility is set up on the retailer receivable at an 85% advance rate, so the moment the invoice is issued the factoring advance retires the PO position. Both facilities are documented together before production starts, which is the part that makes the timing work.\n\nThe cycle runs 71 days from letter of credit to customer payment. Total financing cost lands near $102K against roughly $650K of gross margin. The company nets about $548K on an order it could not otherwise have accepted, and finishes with an open factoring line ready for the reorder that arrives four months later.",
   },
 
   {
@@ -232,20 +334,20 @@ export const fundingSolutions: FundingSolution[] = [
     category: "Contract-Based",
     whatIs: "Government contract financing advances up to 90% of contract value against federal (GSA, DoD), state, or local awards, with deals from $250K to $50MM+ priced at Prime + 2–8% and funding in 10–20 business days. As of 2026, it bridges the 30–90+ day payment cycle that defines government work. Because it underwrites against the contract itself, subcontractors waiting on a prime can qualify even when standard factoring won't touch the deal.",
     shortDesc: "Government contract financing for federal, state, and local contracts. Fund prime contractors and subcontractors while awaiting government payment.",
-    fullDesc: "Government contract financing solves the cash gap built into federal, state, and local contracts. The government does not pay deposits, expects you to fund production yourself, and the payment clock does not start when you deliver — it starts when the contracting officer formally accepts the delivery. Sixty days from acceptance, not from delivery, is normal. A single order can mean roughly 60 days of production funding plus another 60 days waiting for payment. Staggered deliveries — which most government orders are — repeat that cycle for each batch.\n\nThe structure we use for most contracts is a combined facility under one roof: purchase order funding covers production, and an invoice line takes over at delivery to pay the PO lender off and wait on the government check. The result is a single revolving line built around government receivables.\n\nFor businesses where every dollar of revenue is government work, we go to specialist lenders who focus exclusively on government contracts. They know how to handle assignment of claims, work with contracting officers, and structure around acceptance cycles. Subcontractors working under a prime contractor are the most underserved part of the market — most lenders will not fund them because the payer is another contractor, not the government directly. We have access to lenders who specifically structure for subcontractors and can fund against the prime's commitment.\n\nA few practical notes. Setup for government accounts takes longer than commercial — assignment of claims and contracting officer sign-offs add three to four weeks. For uneven billing with milestones and quiet stretches, we usually structure a true facility with a small unused-line fee rather than spot funding. Government slow-pay of 30 to 45 days is normal — the point of the facility is to make that rhythm survivable.",
+    fullDesc: "Government contract financing solves the cash gap built into federal, state, and local contracts. The government does not pay deposits, expects you to fund production yourself, and the payment clock does not start when you deliver. It starts when the contracting officer formally accepts the delivery. Sixty days from acceptance, not from delivery, is normal. A single order can mean roughly 60 days of production funding plus another 60 days waiting for payment. Staggered deliveries, which most government orders are, repeat that cycle for each batch.\n\nThe structure we use for most contracts is a combined facility under one roof: purchase order funding covers production, and an invoice line takes over at delivery to pay the PO lender off and wait on the government check. The result is a single revolving line built around government receivables.\n\nFor businesses where every dollar of revenue is government work, we go to specialist lenders who focus exclusively on government contracts. They know how to handle assignment of claims, work with contracting officers, and structure around acceptance cycles. Subcontractors working under a prime contractor are the most underserved part of the market. Most lenders will not fund them because the payer is another contractor, not the government directly. We have access to lenders who specifically structure for subcontractors and can fund against the prime's commitment.\n\nA few practical notes. Setup for government accounts takes longer than commercial, because assignment of claims and contracting officer sign-offs add three to four weeks. For uneven billing with milestones and quiet stretches, we usually structure a true facility with a small unused-line fee rather than spot funding. Government slow-pay of 30 to 45 days is normal. The point of the facility is to make that rhythm survivable.",
     features: [
       "Up to 90% advance against federal (GSA, DoD, civilian agencies), state, and local contract value, as of 2026",
-      "Works for prime contractors and subcontractors-on-a-prime — including deals traditional factors won't touch",
+      "Works for prime contractors and subcontractors-on-a-prime, including deals traditional factors won't touch",
       "Specialist GovCon lenders available for shops where 100% of revenue is government work",
       "PO + AR combo under one roof to cover the full pre-invoice and post-invoice cycle",
       "Handles staggered/batched delivery schedules typical of government orders",
-      "Accommodates milestone billing — peaks and valleys are expected, not red flags",
+      "Accommodates milestone billing: peaks and valleys are expected, not red flags",
       "Sporadic-billing facilities available with a nominal unused-line fee (~50 basis points)",
       "Built-in support for assignment of claims and contracting-officer sign-off process",
       "Pricing: AR side runs sub-mid-teens annualized; PO side runs mid-20s annualized for normal cycles",
       "Underwriting weighs the government receivable, not the operator's personal credit",
       "Realistic setup: 3–4 weeks for a true facility once assignment of claims is in motion",
-      "Honest exclusion: spot/one-off GovCon factoring is rare — the procedural overhead makes a facility a better fit"
+      "Honest exclusion: spot/one-off GovCon factoring is rare. The procedural overhead makes a facility a better fit"
     ],
     bestFor: [
       "Prime contractors on federal, state, or local awards funding production before payment",
@@ -267,7 +369,7 @@ export const fundingSolutions: FundingSolution[] = [
     category: "Long-Term Financing",
     whatIs: "Commercial real estate lending covers $500K to $100MM+ of property purchases, refinances, and cash-outs, with bridge structures of 12–36 months (interest-only) and permanent loans amortizing over 25–30 years at Prime + 2–7%. As of 2026, bridge loans handle acquisition timing gaps and cash-out refinances turn dead equity in property you already own into deployable working capital for the operating business.",
     shortDesc: "Real estate financing for growing companies. Bridge loans, refinancing, cash-out options. Fast approval for acquisition timing.",
-    fullDesc: "Commercial real estate is often the cheapest collateral in a business's capital stack. Real estate appreciates, does not move, and tends to be the lender's preferred asset to lend against, which means rates and terms attached to property usually beat what you can get on an asset-based line, an inventory loan, or a working capital loan. That is the math of how risk gets priced.\n\nIf your business owns commercial property — a building, a warehouse, owner-occupied space, or an investment parcel — and there is real equity in it, capital can usually be pulled out and redeployed into the operating business. The structures include a cash-out refinance, a second-position loan, a bridge, or in some cases a sale-leaseback. Equity sitting in a paid-off property can be put back to work without selling it.\n\nA common use case: a brand with a paid-off building needs working capital for pre-season inventory but is rate-sensitive. An inventory line might price at 15–25%, while a cash-out against the building can fund the same need in single digits. Another common case is layering a second mortgage on personal real estate as one piece of an acquisition's capital stack — again because the property is the cheapest piece available.\n\nAs of 2026, we work facilities from $500K to $100MM+ across industrial, office, retail, multi-family, mixed-use, and investment portfolios. Bridge structures run 12–36 months at interest-only, while permanent loans amortize over 25–30 years at roughly Prime plus 2–7%. The maximum loan-to-value ratio depends on the asset — owner-occupied commercial typically reaches 65% or more, while raw land caps closer to 50%. We work with banks, credit unions, institutional lenders, private credit, and equity funds, and structure each deal around what the owner is optimizing for: lowest rate, lowest payment, maximum cash extraction, or speed.",
+    fullDesc: "Commercial real estate is often the cheapest collateral in a business's capital stack. Real estate appreciates, does not move, and tends to be the lender's preferred asset to lend against, which means rates and terms attached to property usually beat what you can get on an asset-based line, an inventory loan, or a working capital loan. That is the math of how risk gets priced.\n\nIf your business owns commercial property, whether a building, a warehouse, owner-occupied space, or an investment parcel, and there is real equity in it, capital can usually be pulled out and redeployed into the operating business. The structures include a cash-out refinance, a second-position loan, a bridge, or in some cases a sale-leaseback. Equity sitting in a paid-off property can be put back to work without selling it.\n\nA common use case: a brand with a paid-off building needs working capital for pre-season inventory but is rate-sensitive. An inventory line might price at 15–25%, while a cash-out against the building can fund the same need in single digits. Another common case is layering a second mortgage on personal real estate as one piece of an acquisition's capital stack, again because the property is the cheapest piece available.\n\nAs of 2026, we work facilities from $500K to $100MM+ across industrial, office, retail, multi-family, mixed-use, and investment portfolios. Bridge structures run 12–36 months at interest-only, while permanent loans amortize over 25–30 years at roughly Prime plus 2–7%. The maximum loan-to-value ratio depends on the asset. Owner-occupied commercial typically reaches 65% or more, while raw land caps closer to 50%. We work with banks, credit unions, institutional lenders, private credit, and equity funds, and structure each deal around what the owner is optimizing for: lowest rate, lowest payment, maximum cash extraction, or speed.",
     features: [
       "Facilities from $500K to $100MM+, across all commercial property types",
       "Cash-out refinance to redeploy dead equity into the operating business",
@@ -275,9 +377,9 @@ export const fundingSolutions: FundingSolution[] = [
       "Permanent mortgages amortizing 25-30 years, typically Prime + 2-7% as of 2026",
       "Owner-occupied commercial real estate: 65%+ LTV typical; layered LOC option on top",
       "Investment / non-owner-occupied: DSCR-based underwriting against rental income",
-      "Raw land: 50% LTV maximum and slower to close — set expectations early",
+      "Raw land: 50% LTV maximum and slower to close, so set expectations early",
       "Sell-leaseback as a max-cash-extraction alternative when the owner is willing to give up the asset",
-      "PROPCO/OPCO structures supported — lender will underwrite both",
+      "PROPCO/OPCO structures supported, and the lender will underwrite both",
       "SBA-style real-estate-backed structures available for businesses with a few rough years on the P&L (pro-forma underwrites)",
       "Pairs cleanly with an asset-based line or unsecured stretch capital to build a layered-capital stack",
       "Bank-friendly: most of these deals are referred in by bankers when the bank can't do the cash-out themselves"
@@ -286,7 +388,7 @@ export const fundingSolutions: FundingSolution[] = [
       "Owners sitting on free-and-clear or lightly-mortgaged commercial property who need working capital",
       "Rate-sensitive owners (single-digit ceiling) where an asset-based line on inventory or AR is too expensive",
       "E-commerce / DTC operators with no factorable B2B AR but property to leverage for pre-season inventory",
-      "Acquisition timing — buying a property where the permanent take-out isn't ready yet",
+      "Acquisition timing: buying a property where the permanent take-out isn't ready yet",
       "Business owners in slow-season, pre-funding peak inventory before revenue ramps",
       "M&A scenarios using personal or business real estate as one layer in a multi-product stack",
       "Operators with a few negative P&L years who can show a defensible pro forma on the property",
@@ -301,22 +403,22 @@ export const fundingSolutions: FundingSolution[] = [
     seoTitle: "Unsecured & Subordinated Financing",
     image: "/solutions/Unsecured & Sub-Debt Loans.webp",
     category: "Strategic Financing",
-    whatIs: "Subordinated and unsecured credit ranges from $50K to $20MM+ at Prime + 4–8%, with 6–36 month terms, no UCC filing on some products, and no personal guarantee on others. As of 2026, it's stretch capital — the layer that sits on top of an asset-based line or a real-estate mortgage when you've pledged everything else but still have a growth opportunity to fund. Subordinated debt lends at 1–5× EBITDA and is how layered-capital stacks actually get built.",
+    whatIs: "Subordinated and unsecured credit ranges from $50K to $20MM+ at Prime + 4–8%, with 6–36 month terms, no UCC filing on some products, and no personal guarantee on others. As of 2026, it's stretch capital, the layer that sits on top of an asset-based line or a real-estate mortgage when you've pledged everything else but still have a growth opportunity to fund. Subordinated debt lends at 1–5× EBITDA and is how layered-capital stacks actually get built.",
     shortDesc: "Subordinated & unsecured credit for growing companies. Stretch capital when banks say no. Bridge M&A, acquisitions, and strategic timing gaps.",
-    fullDesc: "Subordinated and unsecured credit is stretch capital — the layer that sits on top of secured debt like an asset-based line, a real estate mortgage, or equipment financing. When the obvious collateral is already pledged but a growth opportunity still needs funding, this is the tool that extends the total available capital.\n\nSubordinated debt is still secured by collateral but takes second position behind the senior lender, which means the senior lender gets paid first in any default. It typically lends at one to five times EBITDA — annual operating profit — depending on the strength of the cash flow. Unsecured debt takes no collateral at all: no lien, sometimes no personal guarantee. It is priced higher because the lender takes more risk, but it preserves flexibility for the senior lender below it.\n\nA typical example: a business needs more than $1M of bridge capital quickly to close a transaction, but the existing asset-based line is already maxed against eligible collateral. A senior real estate piece plus an unsecured stretch on top can reach the number neither one alone could. Another common case is layering an unsecured term loan with an existing invoice revolver to fund inventory ahead of a tariff change, without unwinding the senior facility.\n\nAs of 2026, we structure these from $50K to $20MM+. Terms run six to 36 months, often interest-only on the bridge variants. Pricing is Prime plus 4–8% depending on structure, cash flow, and how deep in the stack the position sits.\n\nStretch capital costs more than the secured layer below it, by design. The relevant question is whether the additional dollars unlock enough value to justify the cost. When the answer is yes, this is the tool that makes the larger structure work.",
+    fullDesc: "Subordinated and unsecured credit is stretch capital, the layer that sits on top of secured debt like an asset-based line, a real estate mortgage, or equipment financing. When the obvious collateral is already pledged but a growth opportunity still needs funding, this is the tool that extends the total available capital.\n\nSubordinated debt is still secured by collateral but takes second position behind the senior lender, which means the senior lender gets paid first in any default. It typically lends at one to five times EBITDA, annual operating profit, depending on the strength of the cash flow. Unsecured debt takes no collateral at all: no lien, sometimes no personal guarantee. It is priced higher because the lender takes more risk, but it preserves flexibility for the senior lender below it.\n\nA typical example: a business needs more than $1M of bridge capital quickly to close a transaction, but the existing asset-based line is already maxed against eligible collateral. A senior real estate piece plus an unsecured stretch on top can reach the number neither one alone could. Another common case is layering an unsecured term loan with an existing invoice revolver to fund inventory ahead of a tariff change, without unwinding the senior facility.\n\nAs of 2026, we structure these from $50K to $20MM+. Terms run six to 36 months, often interest-only on the bridge variants. Pricing is Prime plus 4–8% depending on structure, cash flow, and how deep in the stack the position sits.\n\nStretch capital costs more than the secured layer below it, by design. The relevant question is whether the additional dollars unlock enough value to justify the cost. When the answer is yes, this is the tool that makes the larger structure work.",
     features: [
       "Facility sizes from $50K to $20MM+, scaled to the size of the gap above your senior line",
-      "Subordinated debt typically lends at 1-5× EBITDA — sized to cash flow, not collateral",
+      "Subordinated debt typically lends at 1-5× EBITDA, sized to cash flow rather than collateral",
       "Unsecured term and bridge products with no UCC filing on some structures",
       "Personal-guarantee-free options on select products (rare, but real)",
-      "Sits behind a senior ABL, AR factoring line, or real-estate mortgage — designed to layer cleanly",
+      "Sits behind a senior ABL, AR factoring line, or real-estate mortgage, designed to layer cleanly",
       "Terms 6-36 months, often interest-only during the bridge period",
       "Pricing roughly Prime + 4-8% as of 2026, depending on cash flow and lien position",
       "Second-lien structures available for stacks that need a true secured stretch layer",
-      "Faster underwriting than senior secured products — days to a few weeks, not months",
+      "Faster underwriting than senior secured products: days to a few weeks, not months",
       "Bank-friendly: subordinated layers are often what makes the bank's senior deal possible at the size they're comfortable with",
       "Pairs with: senior ABL, AR factoring, real-estate cash-out, equipment financing",
-      "Honest framing: this is the most expensive secured-stack layer by design — used when the incremental dollars unlock outsized upside"
+      "Honest framing: this is the most expensive secured-stack layer by design, used when the incremental dollars unlock outsized upside"
     ],
     bestFor: [
       "M&A and acquisition deals where the senior lender can't get the whole number done alone",
@@ -337,17 +439,17 @@ export const fundingSolutions: FundingSolution[] = [
     seoTitle: "Quick Bridge Funding | Cover Timing Gaps in Days",
     image: "/solutions/Bridge Funding.webp",
     category: "Short-Term Capital",
-    whatIs: "Bridge funding is short-term, often interest-only capital from $50K to $5MM+ at Prime + 4–8% that exits when a specific event closes — a contract, an acquisition, a property sale. As of 2026, typical structures close in 3–7 business days, stay outstanding for 30–180 days, and carry aggressive early-payoff discounts so you only pay interest for the days you actually use the money.",
+    whatIs: "Bridge funding is short-term, often interest-only capital from $50K to $5MM+ at Prime + 4–8% that exits when a specific event closes: a contract, an acquisition, a property sale. As of 2026, typical structures close in 3–7 business days, stay outstanding for 30–180 days, and carry aggressive early-payoff discounts so you only pay interest for the days you actually use the money.",
     shortDesc: "Bridge funding for growing companies. Quick capital for timing gaps, acquisitions, operational needs, and seasonal cash flow challenges.",
-    fullDesc: "Bridge funding is event-driven capital. It exists to carry a business from where it is now to a specific upcoming event — a contract closing, an acquisition funding, a property sale, a permanent facility coming online — and then it exits. The discipline of a good bridge structure is that you only pay interest for the days you actually use the money. If the event closes in 45 days, you carry the cost for 45 days, not for a year.\n\nOn paper, the annualized rate can look expensive. But once you understand that the loan functions like a line of credit you pay off in 60 days, the math shifts. You are giving up a few points on a high-margin transaction to get the deal across the finish line. That tradeoff almost always works when the exit is real and visible.\n\nBridge funding is usually the first step in a longer financing sequence. The bridge closes in days; the larger, cheaper facility takes six to eight weeks to underwrite. Closing the bridge first lets the business keep operating while the permanent structure is assembled in parallel.\n\nThe most important part of a bridge structure is the exit. A bridge with no visible repayment source is not a bridge — it is expensive working capital. \"Investors who seem interested\" is not an exit. An asset-based line already in underwriting, a property under contract, or a signed contract with an assignment of claims is an exit. We will only structure a bridge when the takeout is concrete.\n\nAs of 2026, bridge facilities run from $50K to $5MM+. Typical closings happen in three to seven business days, with capital outstanding for 30 to 180 days. Pricing is Prime plus 4–8%, often interest-only, with aggressive early-payoff discounts that reward paying it off as soon as the exit event closes.",
+    fullDesc: "Bridge funding is event-driven capital. It exists to carry a business from where it is now to a specific upcoming event, whether a contract closing, an acquisition funding, a property sale or a permanent facility coming online, and then it exits. The discipline of a good bridge structure is that you only pay interest for the days you actually use the money. If the event closes in 45 days, you carry the cost for 45 days, not for a year.\n\nOn paper, the annualized rate can look expensive. But once you understand that the loan functions like a line of credit you pay off in 60 days, the math shifts. You are giving up a few points on a high-margin transaction to get the deal across the finish line. That tradeoff almost always works when the exit is real and visible.\n\nBridge funding is usually the first step in a longer financing sequence. The bridge closes in days; the larger, cheaper facility takes six to eight weeks to underwrite. Closing the bridge first lets the business keep operating while the permanent structure is assembled in parallel.\n\nThe most important part of a bridge structure is the exit. A bridge with no visible repayment source is not a bridge. It is expensive working capital. \"Investors who seem interested\" is not an exit. An asset-based line already in underwriting, a property under contract, or a signed contract with an assignment of claims is an exit. We will only structure a bridge when the takeout is concrete.\n\nAs of 2026, bridge facilities run from $50K to $5MM+. Typical closings happen in three to seven business days, with capital outstanding for 30 to 180 days. Pricing is Prime plus 4–8%, often interest-only, with aggressive early-payoff discounts that reward paying it off as soon as the exit event closes.",
     features: [
       "Facility sizes from $50K to $5MM+",
       "Typical close: 3-7 business days from clean file to funded",
-      "Capital outstanding 30-180 days in most cases — built to exit, not to amortize",
+      "Capital outstanding 30-180 days in most cases: built to exit, not to amortize",
       "Interest-only payment structures so debt service stays low while the bridge is live",
-      "Early-payoff discounts on most products — you only pay interest for the days you use the money",
+      "Early-payoff discounts on most products, so you only pay interest for the days you use the money",
       "Pricing roughly Prime + 4-8% as of 2026, depending on speed and structure",
-      "Sequencing logic: \"one-then-three\" — bridge first (days), longer facility in parallel (6-8 weeks)",
+      "Sequencing logic: \"one-then-three\": bridge first (days), longer facility in parallel (6-8 weeks)",
       "Event-driven exits supported: contract close, property sale, acquisition funding, ABL/senior take-out",
       "Pairs cleanly with: asset-based lending, real-estate cash-out, SBA take-out, contract financing",
       "Bank-friendly: protects the referring banker's relationship by avoiding a long-term commitment elsewhere",
@@ -355,8 +457,8 @@ export const fundingSolutions: FundingSolution[] = [
       "Works for both small operating gaps (sub-$250K) and large M&A timing gaps (multi-million)"
     ],
     bestFor: [
-      "Acquisition timing gaps — covering year-end or working capital while M&A closes",
-      "Asset-based or SBA facilities under way but 6-8 weeks from close — fund operations in the meantime",
+      "Acquisition timing gaps: covering year-end or working capital while M&A closes",
+      "Asset-based or SBA facilities under way but 6-8 weeks from close, so fund operations in the meantime",
       "Custom manufacturers mid-production cycle when customer deposits stop coming in",
       "Contract mobilization on a newly-won government, municipal, or large commercial deal",
       "Property transactions where the take-out mortgage isn't ready yet",
@@ -365,6 +467,36 @@ export const fundingSolutions: FundingSolution[] = [
       "M&A bridge layered with a senior real-estate or subordinated tranche",
       "Any deal where the exit event is real, visible, and on a known timeline"
     ],
+    terms: [
+      { label: "Collateral", value: "Receivables, inventory, equipment, assignable contract proceeds, not real property" },
+      { label: "Pricing (2026)", value: "Roughly Prime + 4%-8%, typically interest-only" },
+      { label: "Time to close", value: "3-7 business days from a clean file" },
+      { label: "Time outstanding", value: "30-180 days in most cases" },
+      { label: "Early payoff", value: "Credit for early payoff on most products, so you pay for the days you use" },
+      { label: "Lien position", value: "First position preferred; subordinated structures available behind an existing factor or ABL" },
+      { label: "Qualifying exits", value: "ABL or SBA in underwriting, signed acquisition with a funding date, assignable contract, property under contract" },
+      { label: "Disqualifying exits", value: "Soft investor interest, expected revenue improvement, speculative asset appreciation" },
+      { label: "Serve fee", value: "A success fee, earned only on closing. Agreed in writing before you sign anything. No retainers, no upfront costs" },
+    ],
+    notFor: [
+      {
+        who: "Financing real property rather than a business: purchase, refinance, construction, fix-and-flip, multifamily, land",
+        instead: "That is a commercial real estate bridge, underwritten on the property rather than on the business, and it is work we do constantly. Quick to close, and needed all the time. Different structure, different lenders, same firm. Our real estate lending page is the right starting point, and the fastest route is simply to tell us what the property is and when you need to close.",
+      },
+      {
+        who: "No visible exit, where the plan is that revenue improves",
+        instead: "A bridge with no takeout is not a bridge, it is short-term debt at bridge pricing, and in six months it will be the problem instead of the solution. What you probably want is a working capital facility or an asset-based line with an amortization you can actually carry.",
+      },
+      {
+        who: "Investors who \"seem interested\" as the repayment source",
+        instead: "Soft equity interest is not an exit and no credible lender will treat it as one. Come back when there is a signed term sheet, and in the meantime look at what your operating assets alone will support.",
+      },
+      {
+        who: "Needing under $250K",
+        instead: "The diligence cost does not amortize at that size and the pricing gets punishing. A working capital loan or a single-invoice advance is usually the better structure.",
+      },
+    ],
+    workedExample: "A specialty contractor doing about $18MM in revenue wins a $4.2MM municipal contract. Mobilization (crews, bonding, materials) runs roughly $600K, and the first progress payment is 75 days out under the contract terms. The company has $2.1MM in receivables from other work and a bank line that is fully drawn.\n\nThe exit is the contract itself: an assignment of claims on the municipal receivable, plus an asset-based facility already in underwriting against the existing AR book, expected to close in about seven weeks. We place a $650K bridge at Prime plus 6%, interest-only, secured by the existing receivables and subordinated to nothing because the bank line is unsecured. Funding takes five business days.\n\nThe ABL closes in week eight and retires the bridge. Total interest paid on the bridge: roughly $22K over 58 days. Against a $4.2MM contract the company would otherwise have had to decline, that is not a close call. But it only worked because the exit was two named, dated, documentable events rather than a general expectation that things would improve.",
   },
 
   {
@@ -373,9 +505,9 @@ export const fundingSolutions: FundingSolution[] = [
     seoTitle: "SBA Loans: Lower Rates & Longer Terms",
     image: "/solutions/Small Business Administration Loans.webp",
     category: "Government-Backed",
-    whatIs: "SBA loans are government-guaranteed loans of $250K to $5MM+ at Prime + 2–3%, amortizing up to 10 years for working capital and 25 years for real estate. As of 2026, they're the cheapest capital most growing businesses will ever access — but they require 4–12 weeks of underwriting, two years of clean financials, and a business that fits the SBA credit box. Programs include the 7(a) for general business needs, the 504 for fixed assets, and SBA Express for faster $500K-and-under deals.",
+    whatIs: "SBA loans are government-guaranteed loans of $250K to $5MM+ at Prime + 2–3%, amortizing up to 10 years for working capital and 25 years for real estate. As of 2026, they're the cheapest capital most growing businesses will ever access, but they require 4–12 weeks of underwriting, two years of clean financials, and a business that fits the SBA credit box. Programs include the 7(a) for general business needs, the 504 for fixed assets, and SBA Express for faster $500K-and-under deals.",
     shortDesc: "SBA loans for established small businesses. Government-backed financing with lower rates and longer terms for working capital, equipment, and real estate.",
-    fullDesc: "SBA loans are the cheapest capital most growing businesses will ever access. As of 2026, pricing is roughly Prime plus 2–3%, with terms up to 10 years for working capital and 25 years for real estate. The federal government guarantees a portion of the loan, which lowers the lender's risk and translates into significantly better terms for the borrower. Loan sizes range from $250K to $5MM. Nothing else in alternative finance comes close on price. When the business fits the SBA criteria, SBA is almost always the first answer.\n\nThe tradeoff is the underwriting. The process takes four to twelve weeks, sometimes longer. Lenders require two years of clean, profitable financial statements, with credit analysis as rigorous as a traditional bank's. There are program-specific rules: the 7(a) is the general-purpose loan for most business needs, the 504 covers fixed assets such as commercial real estate or large equipment, and SBA Express is a faster option for loans under $500K.\n\nBecause SBA is highly specialized, we do not originate SBA loans ourselves. We refer every SBA deal to a partner — a former SBA banker who runs a dedicated SBA-only practice — and stay involved to make sure the borrower is served well.\n\nSBA is the right tool for acquiring a profitable business (typically through the 7(a) program for owner-operator purchases), purchasing commercial real estate with a meaningful down payment (504), refinancing high-cost debt onto a long amortization, or funding growth in an established, profitable business with clean books.\n\nSBA is the wrong tool when you need capital in the next 30 days, when the trailing twelve months have been weak, when the business is in turnaround, or when there is no two-year profitability story to tell. For those situations, we structure a parallel track — invoice factoring, an asset-based line, a bridge, or a real estate cash-out — that gets the business through the period an SBA underwriter could not work within.",
+    fullDesc: "SBA loans are the cheapest capital most growing businesses will ever access. As of 2026, pricing is roughly Prime plus 2–3%, with terms up to 10 years for working capital and 25 years for real estate. The federal government guarantees a portion of the loan, which lowers the lender's risk and translates into significantly better terms for the borrower. Loan sizes range from $250K to $5MM. Nothing else in alternative finance comes close on price. When the business fits the SBA criteria, SBA is almost always the first answer.\n\nThe tradeoff is the underwriting. The process takes four to twelve weeks, sometimes longer. Lenders require two years of clean, profitable financial statements, with credit analysis as rigorous as a traditional bank's. There are program-specific rules: the 7(a) is the general-purpose loan for most business needs, the 504 covers fixed assets such as commercial real estate or large equipment, and SBA Express is a faster option for loans under $500K.\n\nBecause SBA is highly specialized, we do not originate SBA loans ourselves. We refer every SBA deal to a partner, a former SBA banker who runs a dedicated SBA-only practice, and stay involved to make sure the borrower is served well.\n\nSBA is the right tool for acquiring a profitable business (typically through the 7(a) program for owner-operator purchases), purchasing commercial real estate with a meaningful down payment (504), refinancing high-cost debt onto a long amortization, or funding growth in an established, profitable business with clean books.\n\nSBA is the wrong tool when you need capital in the next 30 days, when the trailing twelve months have been weak, when the business is in turnaround, or when there is no two-year profitability story to tell. For those situations, we structure a parallel track, whether invoice factoring, an asset-based line, a bridge or a real estate cash-out, that gets the business through the period an SBA underwriter could not work within.",
     features: [
       "Government-guaranteed loans from $250K to the SBA $5MM cap, as of 2026",
       "Pricing typically prime + 2%–3%, often the cheapest capital available",
@@ -383,7 +515,7 @@ export const fundingSolutions: FundingSolution[] = [
       "7(a) program for general business purposes (acquisitions, refi, working capital, equipment)",
       "504 program for fixed-asset purchases (commercial real estate, large equipment)",
       "Strong fit for owner-operator business acquisitions",
-      "Serve refers all SBA deals to a dedicated SBA-only specialist partner — no in-house origination",
+      "Serve refers all SBA deals to a dedicated SBA-only specialist partner, with no in-house origination",
       "SBA Form 159 disclosure handled in writing for full borrower transparency",
       "Bridge capital can run in parallel while the SBA underwrite completes",
       "Realistic timeline: 4–12 weeks, sometimes longer; not a fast-money product",
@@ -408,9 +540,9 @@ export const fundingSolutions: FundingSolution[] = [
     seoTitle: "Consolidate Debt & Lower Payments 30-50%",
     image: "/solutions/Consolidation and Recapitalization.webp",
     category: "Strategic Restructuring",
-    whatIs: "Debt refinancing replaces high-cost debt — stacked MCAs, expensive term loans, multiple monthly payments — with a single cheaper product, typically closing in 10–20 business days. As of 2026, typical outcomes are monthly debt service cut by 30%–50% and all-in rate reduced by 5–10 percentage points. One staffing agency we worked with went from $15K/month in MCA fees to $8K/month on a term loan, freeing $7K monthly for growth.",
+    whatIs: "Debt refinancing replaces high-cost debt, whether stacked MCAs, expensive term loans or multiple monthly payments, with a single cheaper product, typically closing in 10–20 business days. As of 2026, typical outcomes are monthly debt service cut by 30%–50% and all-in rate reduced by 5–10 percentage points. One staffing agency we worked with went from $15K/month in MCA fees to $8K/month on a term loan, freeing $7K monthly for growth.",
     shortDesc: "Debt refinancing for growing companies. Consolidate loans, refinance MCAs, reduce payments by 30-50%. Cash out for growth.",
-    fullDesc: "Debt refinancing replaces high-cost debt — most commonly stacked merchant cash advances and expensive term loans — with a single, lower-cost product. As of 2026, typical outcomes are a 30–50% reduction in monthly debt service and a 5–10 percentage point drop in the all-in rate. Closings run 10–20 business days.\n\nMerchant cash advances are particularly difficult to escape because they take daily or weekly draws directly from sales. Businesses that stack two, three, or more often discover that the combined true APR sits between 50% and well into the triple digits. The first goal of refinancing is to stop the daily bleed and replace it with a manageable monthly payment.\n\nGetting out is rarely a single leap. The realistic path is a sequence of steps. The first move is usually a true-term loan with monthly payments over roughly two years, in the 18–20% APR range. The rate is not impressive in isolation, but it stops daily cash extraction overnight and creates a clean payment history. Twelve months later, that history opens the door to a cheaper product — typically asset-based lending, a non-bank SBA loan, or a bank facility. Each step moves the business closer to bank-grade pricing.\n\nA real refinance lender is taking on debt other lenders considered risky and pricing it lower because they see a viable business underneath. To make their case work, we typically prepare a 13-week cash flow forecast, a clear math-based explanation of why repayment is realistic, and ideally a piece of collateral the lender can underwrite against — receivables, real estate equity, free-and-clear equipment, or in some cases clean owner credit.\n\nRefinancing is not always possible. When a business is several MCAs deep with no commercial receivables, no real estate equity, and a damaged credit profile, conventional refinance math will not work. In those cases the honest answer is sometimes a home equity advance on the owner's residence if available, or a structural reset rather than a refinance. We will say so directly rather than promise an outcome we cannot deliver.",
+    fullDesc: "Debt refinancing replaces high-cost debt, most commonly stacked merchant cash advances and expensive term loans, with a single, lower-cost product. As of 2026, typical outcomes are a 30–50% reduction in monthly debt service and a 5–10 percentage point drop in the all-in rate. Closings run 10–20 business days.\n\nMerchant cash advances are particularly difficult to escape because they take daily or weekly draws directly from sales. Businesses that stack two, three, or more often discover that the combined true APR sits between 50% and well into the triple digits. The first goal of refinancing is to stop the daily bleed and replace it with a manageable monthly payment.\n\nGetting out is rarely a single leap. The realistic path is a sequence of steps. The first move is usually a true-term loan with monthly payments over roughly two years, in the 18–20% APR range. The rate is not impressive in isolation, but it stops daily cash extraction overnight and creates a clean payment history. Twelve months later, that history opens the door to a cheaper product, typically asset-based lending, a non-bank SBA loan, or a bank facility. Each step moves the business closer to bank-grade pricing.\n\nA real refinance lender is taking on debt other lenders considered risky and pricing it lower because they see a viable business underneath. To make their case work, we typically prepare a 13-week cash flow forecast, a clear math-based explanation of why repayment is realistic, and ideally a piece of collateral the lender can underwrite against: receivables, real estate equity, free-and-clear equipment, or in some cases clean owner credit.\n\nRefinancing is not always possible. When a business is several MCAs deep with no commercial receivables, no real estate equity, and a damaged credit profile, conventional refinance math will not work. In those cases the honest answer is sometimes a home equity advance on the owner's residence if available, or a structural reset rather than a refinance. We will say so directly rather than promise an outcome we cannot deliver.",
     features: [
       "Consolidates multiple MCAs, expensive term loans, and overlapping credit lines into a single product",
       "Typical first-step refi: true-term loan, monthly payments, 18–36 month term, roughly 18%–22% APR",
@@ -420,22 +552,52 @@ export const fundingSolutions: FundingSolution[] = [
       "Deal sizes from $250K to $10MM+, with smaller deals (sub-$100K) usually requiring a HELOC or Home Equity Advance instead",
       "Close in 10–20 business days for clean profiles; longer if a real estate or asset appraisal is in the path",
       "Will sometimes take out 2–3 MCA positions in a single tranche; rare to take all positions if the stack is six-plus deep",
-      "Will sit subordinate to an existing SBA 7(a) loan — SBA lenders usually consent to subordinate for an AR-backed working capital tranche",
+      "Will sit subordinate to an existing SBA 7(a) loan. SBA lenders usually consent to subordinate for an AR-backed working capital tranche",
       "Real-estate-backed bridge structures available where owner has free-and-clear property or significant home equity",
       "A 13-week cash flow forecast and a math-driven recovery plan are practically required to get to a yes",
       "Spot/single-invoice factoring exists at 3% flat for 30 days for sub-prime borrowers needing one-off liquidity",
-      "No more daily or weekly sweeps — payments shift to monthly on the better products"
+      "No more daily or weekly sweeps, and payments shift to monthly on the better products"
     ],
     bestFor: [
       "Businesses 1–3 MCAs deep that need to step up the ladder before they get pulled under",
       "Companies whose monthly payments have outgrown their ability to operate (cash bleed from daily ACH sweeps)",
       "Owners with strong commercial receivables, free-and-clear equipment, or home equity who can secure the refi against a real asset",
-      "Businesses whose MCAs were triggered by a one-time shock (lost contract, payroll spike, tariff shift) — fundamentals are sound",
+      "Businesses whose MCAs were triggered by a one-time shock (lost contract, payroll spike, tariff shift), and fundamentals are sound",
       "Companies preparing for an SBA application 6–12 months out who need to clear MCAs off the file first",
       "Construction subs with progress-billing carry burdens that snowballed into MCA stacks",
       "Manufacturers and importers hit by tariff or supply-chain shocks that took capital out of cycle",
       "Acquisition targets where the seller's debt structure needs to clean up before close",
       "Multi-loan companies with overlapping bank line, equipment loans, and trade payables wanting a single restructure"
     ],
+    terms: [
+      { label: "First-step structure", value: "Term loan, 18-36 months, monthly payments" },
+      { label: "First-step pricing (2026)", value: "Roughly 18%-22% APR" },
+      { label: "Payment frequency", value: "Monthly, with no daily or weekly ACH sweeps" },
+      { label: "Time to close", value: "10-20 business days on a clean file" },
+      { label: "Positions taken out", value: "Typically 2-4 in a single tranche" },
+      { label: "Typical debt service reduction", value: "30%-50% of current monthly outflow" },
+      { label: "Second-step target (12+ months later)", value: "ABL, non-bank SBA, or bank line in the low teens or better" },
+      { label: "What underwriting requires", value: "13-week cash flow forecast, 6 months bank statements, current AR aging" },
+      { label: "Serve fee", value: "A success fee, earned only on closing. Agreed in writing before you sign anything. No retainers, no upfront costs" },
+    ],
+    notFor: [
+      {
+        who: "Under about $2MM in revenue with no commercial invoices",
+        instead: "Conventional refinance math rarely closes at that size. A home equity line or a single-invoice advance is usually the only honest answer, and we will say so on the first call rather than run you through a diligence process that ends in a no.",
+      },
+      {
+        who: "Six or more stacked positions with no collateral left",
+        instead: "A refinance does not reach that far. What is needed is a restructuring conversation: negotiating directly with the funders, or a formal workout, not more capital. We can point you toward counsel that does this work.",
+      },
+      {
+        who: "Consumer-facing or DTC businesses with no B2B receivables",
+        instead: "Without commercial invoices there is no receivable to secure a takeout against, so a conventional consolidation is harder. That does not mean there is nothing here. Inventory, equipment and card-processing history all get financed, and our e-commerce and DTC guide covers what actually works. Worth a conversation rather than an assumption.",
+      },
+      {
+        who: "Looking for one more advance to cover this week",
+        instead: "That is stacking, and it is exactly how a two-position problem becomes a six-position one. If this week is the emergency, say so and we will tell you honestly whether anything real can close in time.",
+      },
+    ],
+    workedExample: "A metal fabricator doing roughly $9MM in revenue loses a customer that represented about a fifth of the book. Payroll does not shrink on the same timeline as revenue, so over five months the company takes three advances totaling $780K. By the time we see it, the combined draw is about $4,100 per business day. Call it $86K a month against roughly $95K of gross monthly margin. The business is profitable on paper and cannot fund a purchase order.\n\nThe asset is the receivable book: about $1.6MM outstanding, spread across eleven industrial customers on net-45 to net-60, no single account over 18% of the total. That concentration profile is what makes the file workable. We structure a $850K term loan at 20% APR over 30 months, secured by the receivables, which pays all three positions off at their current balances and closes them. New monthly payment: about $38K. Monthly debt service falls by roughly 55%.\n\nEleven months of clean payment history later, the same receivable book supports a $1.2MM asset-based revolving line at Prime plus 3.5%, which retires the term loan and leaves the company with a facility that grows as sales grow instead of a payment that shrinks as it amortizes. The first loan was never the destination. It was the thing that made the second one possible.",
   }
 ]

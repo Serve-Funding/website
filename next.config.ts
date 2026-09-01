@@ -107,6 +107,25 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // /funding Group A folded into the /solutions pages that already rank.
+      // The problem pages duplicated a product page each and had no inbound
+      // internal links; their terms tables, deflections and worked examples now
+      // live on the destination. See docs/funding-pages-harvest.md.
+      { source: '/funding/revenue-based-financing', destination: '/solutions/working-capital-loans', permanent: true },
+      { source: '/funding/invoice-factoring', destination: '/solutions/invoice-factoring', permanent: true },
+      { source: '/funding/purchase-order-financing', destination: '/solutions/purchase-order-funding', permanent: true },
+      { source: '/funding/business-bridge-loan', destination: '/solutions/bridge-funding', permanent: true },
+      { source: '/funding/mca-consolidation', destination: '/solutions/debt-refinance', permanent: true },
+      // Group B: the four ABL crosses fold into the industry pages, which already
+      // owned the vertical framing and were already linked. The index goes to
+      // /solutions/compare, the stronger hub. This also retires the /funding vs
+      // /fundings name collision.
+      { source: '/funding/asset-based-lending-manufacturing', destination: '/industries/manufacturing', permanent: true },
+      { source: '/funding/asset-based-lending-healthcare', destination: '/industries/healthcare', permanent: true },
+      { source: '/funding/asset-based-lending-staffing', destination: '/industries/staffing', permanent: true },
+      { source: '/funding/asset-based-lending-construction', destination: '/industries/construction', permanent: true },
+      { source: '/funding', destination: '/solutions/compare', permanent: true },
+
       // www redirect - SEO best practice to prevent duplicate content
       {
         source: "/:path*",

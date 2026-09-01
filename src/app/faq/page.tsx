@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import FAQClient, { type FAQSection } from './faq-client'
 import { Section, Container, Heading, Text, FadeIn } from '@/components/ui'
 import { SchemaRenderer } from '@/components/SchemaRenderer'
+import { getWebPageSchema } from '@/lib/schema-generators'
+import { lastUpdated } from '@/data/last-updated.generated'
 import { Breadcrumb } from '@/components/breadcrumb'
 import { getFAQPageSchema } from '@/lib/schema-generators'
 import {
@@ -84,6 +86,13 @@ const faqSchema = getFAQPageSchema(allFaqsForSchema)
 export default function FAQ() {
   return (
     <>
+      <SchemaRenderer
+        schema={getWebPageSchema({
+          url: 'https://servefunding.com/faq',
+          name: 'Frequently Asked Questions',
+          dateModified: lastUpdated('src/data/faq-data.ts'),
+        })}
+      />
       <SchemaRenderer schema={faqSchema} />
 
       <Breadcrumb items={[{ label: 'FAQ' }]} />

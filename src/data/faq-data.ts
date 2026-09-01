@@ -49,12 +49,12 @@ export const topLevelFAQs: FAQ[] = [
   {
     id: 'top-what-is-serve-funding',
     q: "What is Serve Funding?",
-    a: "Serve Funding is a channel-neutral business financing advisory with access to an extensive network of alternative lenders for working capital from $250K to $100MM. We're not a lender — we're your advocate who compares options across multiple underwriting styles and negotiates on your behalf when traditional banks decline."
+    a: "Serve Funding is a channel-neutral business financing advisory with access to an extensive network of alternative lenders for working capital from $250K to $100MM. We're not a lender. We're your advocate who compares options across multiple underwriting styles and negotiates on your behalf when traditional banks decline."
   },
   {
     id: 'top-when-banks-say-no',
     q: "What if my bank denied my loan application?",
-    a: "Bank declines are our most common starting point — bankers are our primary referral source. We specialize in non-bank financing including asset-based lending, invoice factoring, debt refinance, and MCA consolidation for businesses that don't fit traditional credit boxes. Alternative lenders evaluate whole businesses, not just DSCR or credit scores."
+    a: "Bank declines are our most common starting point. Bankers are our primary referral source. We specialize in non-bank financing including asset-based lending, invoice factoring, debt refinance, and MCA consolidation for businesses that don't fit traditional credit boxes. Alternative lenders evaluate whole businesses, not just DSCR or credit scores."
   },
   {
     id: 'top-how-fast-funding',
@@ -64,12 +64,12 @@ export const topLevelFAQs: FAQ[] = [
   {
     id: 'top-debt-refinance',
     q: "Can you help refinance expensive debt?",
-    a: "Yes — debt refinancing reduces monthly payments by 30-50% and lowers total cost of capital by 5-10 percentage points annually. We help businesses escape MCA debt traps, consolidate multiple daily/weekly payments into a single monthly payment, and often cash out additional working capital in the process."
+    a: "Yes, debt refinancing reduces monthly payments by 30-50% and lowers total cost of capital by 5-10 percentage points annually. We help businesses escape MCA debt traps, consolidate multiple daily/weekly payments into a single monthly payment, and often cash out additional working capital in the process."
   },
   {
     id: 'top-how-much-cost',
     q: "How much does Serve Funding cost?",
-    a: "Serve Funding earns a success fee upon closing of a credit facility, loan or line of credit. No upfront costs, no retainers, no hidden fees. We are paid only when you receive financing, which aligns our incentives entirely with yours — we only get paid when you do."
+    a: "Serve Funding earns a success fee upon closing of a credit facility, loan or line of credit. No upfront costs, no retainers, no hidden fees. We are paid only when you receive financing, which aligns our incentives entirely with yours. We only get paid when you do."
   },
   {
     id: 'top-industries-served',
@@ -86,22 +86,22 @@ export const aboutServeFundingFAQs: FAQ[] = [
   {
     id: 'what-is-serve-funding',
     q: 'What is Serve Funding?',
-    a: 'Serve Funding is a boutique business financing advisory that provides strategic guidance and access to an extensive network of lenders for alternative financing from $250K to $100MM. As a channel-neutral advisor, we\'re not limited by a single lender\'s "credit box"—we tap into multiple underwriting styles. We operate with servant leadership and 15+ years of experience in asset-based and cash-flow lending.'
+    a: 'Serve Funding is a boutique business financing advisory that provides strategic guidance and access to an extensive network of lenders for alternative financing from $250K to $100MM. As a channel-neutral advisor, we\'re not limited by a single lender\'s "credit box". We tap into multiple underwriting styles. We operate with servant leadership and 15+ years of experience in asset-based and cash-flow lending.'
   },
   {
     id: 'relationships-over-bots',
     q: 'What does "Relationships Over Bots" mean?',
-    a: 'We believe tired of automated platforms and generic funding advice? We provide high-touch, relationship-based advisory—not algorithms or quick-fix bots. You work directly with our founder or senior team members who understand your story, fight for your best interests, and negotiate the best terms across our lender network. When you partner with us, a little part of your reputation goes with it—and we protect that trust.'
+    a: 'We believe tired of automated platforms and generic funding advice? We provide high-touch, relationship-based advisory, not algorithms or quick-fix bots. You work directly with our founder or senior team members who understand your story, fight for your best interests, and negotiate the best terms across our lender network. When you partner with us, a little part of your reputation goes with it, and we protect that trust.'
   },
   {
     id: 'how-does-serve-funding-work',
     q: 'How does Serve Funding work?',
-    a: 'We follow a three-step process: Discovery (understanding your needs and goals), Diligence (evaluating financing options across our lender network), and Delivery (guiding you through closing and negotiating on your behalf). Most engagements start with referrals from bankers, CFOs, or CPAs. You\'ll work directly with experienced advisors throughout—no handoffs to junior staff.'
+    a: 'We follow a three-step process: Discovery (understanding your needs and goals), Diligence (evaluating financing options across our lender network), and Delivery (guiding you through closing and negotiating on your behalf). Most engagements start with referrals from bankers, CFOs, or CPAs. You\'ll work directly with experienced advisors throughout, with no handoffs to junior staff.'
   },
   {
     id: 'what-makes-serve-different',
     q: 'What makes Serve Funding different from other lenders or brokers?',
-    a: 'We\'re not a lender—we\'re your trusted advisor with relationships across an extensive lender network and multiple underwriting styles. Unlike captive brokers tied to one lender, we provide unbiased guidance throughout your company\'s growth trajectory. We fight hard to negotiate 10-20 percentage point rate reductions compared to going direct.'
+    a: 'We\'re not a lender. We\'re your trusted advisor with relationships across an extensive lender network and multiple underwriting styles. Unlike captive brokers tied to one lender, we provide unbiased guidance throughout your company\'s growth trajectory. We fight hard to negotiate 10-20 percentage point rate reductions compared to going direct.'
   },
   {
     id: 'can-you-help-if-bank-denied',
@@ -111,17 +111,17 @@ export const aboutServeFundingFAQs: FAQ[] = [
   {
     id: 'channel-neutral-advisor',
     q: 'What is a channel-neutral advisor?',
-    a: 'A channel-neutral advisor is not tied to any single lender or product. Unlike captive brokers who earn commissions from one lender, we maintain relationships across an extensive lender network with different underwriting styles, rate structures, and specialties. This means we can match you with the best lender for your situation—and negotiate aggressively because we\'re not beholden to any single relationship.'
+    a: 'A channel-neutral advisor is not tied to any single lender or product. Unlike captive brokers who earn commissions from one lender, we maintain relationships across an extensive lender network with different underwriting styles, rate structures, and specialties. This means we can match you with the best lender for your situation, and negotiate aggressively because we\'re not beholden to any single relationship.'
   },
   {
     id: 'why-banks-first',
     q: 'Why do most businesses go to their bank first?',
-    a: 'Banks are the cheapest capital source and offer the most favorable terms for businesses that fit their credit boxes. If your banker knows you and can help, that\'s always the right first step. When banks can\'t help—whether due to credit limitations, timing, growth rate, or business model—that\'s when alternative financing becomes the next logical choice. We specialize in solving the problems your bank can\'t.'
+    a: 'Banks are the cheapest capital source and offer the most favorable terms for businesses that fit their credit boxes. If your banker knows you and can help, that\'s always the right first step. When banks can\'t help, whether due to credit limitations, timing, growth rate, or business model, that\'s when alternative financing becomes the next logical choice. We specialize in solving the problems your bank can\'t.'
   },
   {
     id: 'spot-predatory-lender',
     q: 'How do I know if a lender is predatory?',
-    a: 'Red flags include: high-pressure sales tactics ("this offer expires at 5 PM today"), unclear rate disclosures (advertising "6% rates" when APR is actually 80-120%), double-digit fees not explained upfront, claims of "guaranteed approval" without questions, and ads that seem too good to be true. Good lenders ask questions to understand your business, explain everything clearly, and let you shop around without pressure. Trust your gut—if something feels rushed or unclear, it probably is.'
+    a: 'Red flags include: high-pressure sales tactics ("this offer expires at 5 PM today"), unclear rate disclosures (advertising "6% rates" when APR is actually 80-120%), double-digit fees not explained upfront, claims of "guaranteed approval" without questions, and ads that seem too good to be true. Good lenders ask questions to understand your business, explain everything clearly, and let you shop around without pressure. Trust your gut. If something feels rushed or unclear, it probably is.'
   },
   {
     id: 'tax-return-vs-invoices',
@@ -141,12 +141,12 @@ export const aboutServeFundingFAQs: FAQ[] = [
   {
     id: 'early-payoff-discount',
     q: 'What\'s an "early payoff discount" and how does it work?',
-    a: 'When you need quick funding at a higher rate, we build aggressive early payoff discounts into the structure. Scenario: You fund at 18% for 90 days, but close on a customer contract after 2 weeks. Instead of paying 90 days of interest, the early payoff discount lets you exit the loan with only 2 weeks of interest owed. This lets you refinance into a cheaper product immediately. We structure deals expecting this—it rewards clients who get liquidity events quickly.'
+    a: 'When you need quick funding at a higher rate, we build aggressive early payoff discounts into the structure. Scenario: You fund at 18% for 90 days, but close on a customer contract after 2 weeks. Instead of paying 90 days of interest, the early payoff discount lets you exit the loan with only 2 weeks of interest owed. This lets you refinance into a cheaper product immediately. We structure deals expecting this. It rewards clients who get liquidity events quickly.'
   },
   {
     id: 'percentage-need-capital',
     q: 'What percentage of businesses actually need working capital?',
-    a: 'Approximately 90%+ of growing companies need working capital at some point in their first 5 years. It might come from family, investors, or lenders, but capital is essential for growth. Some bootstrap it themselves (slower growth), but most need an infusion. Working capital can be a one-time need or ongoing—either way, the vast majority of growing businesses face the need at some point.'
+    a: 'Approximately 90%+ of growing companies need working capital at some point in their first 5 years. It might come from family, investors, or lenders, but capital is essential for growth. Some bootstrap it themselves (slower growth), but most need an infusion. Working capital can be a one-time need or ongoing. Either way, the vast majority of growing businesses face the need at some point.'
   },
   {
     id: 'maxed-bank-line-options',
@@ -161,7 +161,7 @@ export const aboutServeFundingFAQs: FAQ[] = [
   {
     id: 'why-use-serve-vs-direct',
     q: 'Why should I use Serve Funding instead of going direct to a lender?',
-    a: 'Working with a channel-neutral advisor typically reduces your cost of capital by 10-20 percentage points vs. going direct. Here\'s why: we have relationships across an extensive lender network and can negotiate aggressively on your behalf because we\'re not committed to any one relationship. We also guide you away from predatory products and help you avoid costly mistakes. Our 65% repeat client rate shows we deliver value—we succeed only when you do.'
+    a: 'Working with a channel-neutral advisor typically reduces your cost of capital by 10-20 percentage points vs. going direct. Here\'s why: we have relationships across an extensive lender network and can negotiate aggressively on your behalf because we\'re not committed to any one relationship. We also guide you away from predatory products and help you avoid costly mistakes. Our 65% repeat client rate shows we deliver value. We succeed only when you do.'
   }
 ]
 
@@ -183,7 +183,7 @@ export const workingCapitalFAQs: FAQ[] = [
   {
     id: 'how-to-escape-mca-debt',
     q: 'How do I escape merchant cash advance (MCA) debt?',
-    a: 'MCA consolidation refinances daily or weekly MCA payments into a single monthly term loan or line of credit with significantly lower costs. We\'ve helped dozens of businesses escape MCA debt traps by securing asset-based lending, term loans, or revenue-based financing that costs 10-20 percentage points less annually. The key is acting before cash flow becomes too constrained—contact us as soon as you realize MCA payments are unsustainable.'
+    a: 'MCA consolidation refinances daily or weekly MCA payments into a single monthly term loan or line of credit with significantly lower costs. We\'ve helped dozens of businesses escape MCA debt traps by securing asset-based lending, term loans, or revenue-based financing that costs 10-20 percentage points less annually. The key is acting before cash flow becomes too constrained. Contact us as soon as you realize MCA payments are unsustainable.'
   },
   {
     id: 'emergency-payroll-financing',
@@ -193,7 +193,7 @@ export const workingCapitalFAQs: FAQ[] = [
   {
     id: 'how-much-working-capital-needed',
     q: 'How much working capital do I need?',
-    a: 'The amount varies by business size, growth rate, industry, and operating costs—heavier overhead industries need more, while asset-light businesses need less. A common rule of thumb is maintaining 2-3 months of operating expenses. For example, $500K in monthly expenses suggests $1M-$1.5M in working capital. Rapidly growing companies and those with uneven payment terms need more to bridge cash flow gaps.'
+    a: 'The amount varies by business size, growth rate, industry, and operating costs. Heavier overhead industries need more, while asset-light businesses need less. A common rule of thumb is maintaining 2-3 months of operating expenses. For example, $500K in monthly expenses suggests $1M-$1.5M in working capital. Rapidly growing companies and those with uneven payment terms need more to bridge cash flow gaps.'
   },
   {
     id: 'what-is-working-capital-loan',
@@ -208,31 +208,31 @@ export const workingCapitalFAQs: FAQ[] = [
   {
     id: 'can-use-wc-for-growth',
     q: 'Can I use working capital loans for growth investments?',
-    a: 'Absolutely. Working capital loans are ideally suited for growth—it takes money to make money. Businesses use them to fund inventory buildup, hire ahead of revenue, invest in marketing and sales, enter new markets, and purchase equipment. A $500K loan invested in inventory, marketing, and staff can generate $2MM in new revenue with strong ROI when the business model is proven and market demand is validated.'
+    a: 'Absolutely. Working capital loans are ideally suited for growth. It takes money to make money. Businesses use them to fund inventory buildup, hire ahead of revenue, invest in marketing and sales, enter new markets, and purchase equipment. A $500K loan invested in inventory, marketing, and staff can generate $2MM in new revenue with strong ROI when the business model is proven and market demand is validated.'
   },
   {
     id: 'what-if-cash-flow-irregular',
     q: 'What if my cash flow is irregular or seasonal?',
-    a: 'Seasonal and irregular cash flow don\'t disqualify you—they\'re actually perfect reasons to seek working capital. Businesses need financing to maintain payroll and inventory during slow periods while preparing for busy ones. Revolving lines of credit, working capital loans, and invoice factoring all work well for seasonal businesses. Landscaping, retail, hospitality, and tourism companies commonly use working capital to bridge seasonal gaps.',
+    a: 'Seasonal and irregular cash flow don\'t disqualify you. They\'re actually perfect reasons to seek working capital. Businesses need financing to maintain payroll and inventory during slow periods while preparing for busy ones. Revolving lines of credit, working capital loans, and invoice factoring all work well for seasonal businesses. Landscaping, retail, hospitality, and tourism companies commonly use working capital to bridge seasonal gaps.',
     relatedSolutions: ['working-capital-loans', 'invoice-factoring', 'asset-based-lending']
   },
   {
     id: 'can-get-wc-for-payroll',
     q: 'Can I get working capital for payroll emergencies?',
-    a: 'Absolutely. Payroll emergencies from delayed customer payments, depleted cash reserves, or unexpected expenses are common drivers for working capital. When payroll is due but cash flow hasn\'t caught up, time isn\'t just money—it\'s team trust and operational stability. We can fund payroll emergencies in 1-2 business days through short-term bridge loans or invoice factoring without exploiting your urgency.',
+    a: 'Absolutely. Payroll emergencies from delayed customer payments, depleted cash reserves, or unexpected expenses are common drivers for working capital. When payroll is due but cash flow hasn\'t caught up, time isn\'t just money. It\'s team trust and operational stability. We can fund payroll emergencies in 1-2 business days through short-term bridge loans or invoice factoring without exploiting your urgency.',
     relatedSolutions: ['working-capital-loans', 'invoice-factoring', 'bridge-funding']
   },
   {
     id: 'what-credit-score-needed',
     q: 'What credit score do I need for business financing?',
-    a: 'Credit score requirements vary by solution. Asset-based lending and invoice factoring focus on collateral value (550+ credit often acceptable). Term loans and lines of credit typically require 600-650+ for approval. Debt refinancing and MCA consolidation can work with 550+ if you have strong revenue and assets. The key advantage of alternative financing is that credit score is just one factor—revenue, assets, and business trajectory matter more.',
+    a: 'Credit score requirements vary by solution. Asset-based lending and invoice factoring focus on collateral value (550+ credit often acceptable). Term loans and lines of credit typically require 600-650+ for approval. Debt refinancing and MCA consolidation can work with 550+ if you have strong revenue and assets. The key advantage of alternative financing is that credit score is just one factor: revenue, assets, and business trajectory matter more.',
     relatedSolutions: ['asset-based-lending', 'invoice-factoring', 'working-capital-loans', 'debt-refinance']
   },
 
   // RBF/MCA Critical Questions
   {
     id: 'mca-vs-rbf-which-to-use',
-    q: 'Should I use MCA or RBF—and what\'s the difference?',
+    q: 'Should I use MCA or RBF, and what\'s the difference?',
     a: 'The core difference: MCAs take daily or weekly cuts from your card sales (typically 10-20%), while RBF takes a fixed monthly percentage (typically 5-15%) that scales with revenue. MCA hits hardest on slow days and weekends when you need cash most; RBF is predictable regardless of daily fluctuations. Working capital loans (RBF) at 1.25%-4% per month typically cost 30-50% less than MCA, making them the better choice for sustainable growth.',
     relatedSolutions: ['working-capital-loans', 'invoice-factoring', 'debt-refinance']
   },
@@ -240,42 +240,42 @@ export const workingCapitalFAQs: FAQ[] = [
   {
     id: 'mca-factor-rate-real-cost',
     q: 'What is an MCA factor rate, and how much will it actually cost me?',
-    a: 'Factor rates hide true costs—a "1.3 factor rate" means you owe $130K on a $100K advance, which looks like 30% but is actually much higher depending on repayment speed. Over 5-6 months, that 1.3x factor rate translates to roughly 50-80%+ APR; over 3 months, it\'s significantly higher. By comparison, invoice factoring at Prime + 1-6% or working capital loans at 1.25%-4% monthly give you transparent pricing you can actually compare.',
+    a: 'Factor rates hide true costs. A "1.3 factor rate" means you owe $130K on a $100K advance, which looks like 30% but is actually much higher depending on repayment speed. Over 5-6 months, that 1.3x factor rate translates to roughly 50-80%+ APR; over 3 months, it\'s significantly higher. By comparison, invoice factoring at Prime + 1-6% or working capital loans at 1.25%-4% monthly give you transparent pricing you can actually compare.',
     relatedSolutions: ['debt-refinance', 'invoice-factoring', 'working-capital-loans']
   },
 
   {
     id: 'mca-daily-payments-cash-flow',
     q: 'Why do MCA daily payments destroy cash flow?',
-    a: 'Because MCA pulls from revenue you haven\'t stabilized yet—if 15% of daily card sales goes to MCA, slow days still require full pulls even when you\'re short on cash. Real scenario: staffing agencies need cash on Monday before weekend payroll, but if Monday is light, they\'re still short. This creates a debt spiral where you take a second or third MCA just to cover payroll, and suddenly you\'re extracting 60%+ of revenue just to service debt. We\'ve helped dozens escape this trap through debt refinancing into single monthly payments that free up 30-50% of what they were paying.',
+    a: 'Because MCA pulls from revenue you haven\'t stabilized yet. If 15% of daily card sales goes to MCA, slow days still require full pulls even when you\'re short on cash. Real scenario: staffing agencies need cash on Monday before weekend payroll, but if Monday is light, they\'re still short. This creates a debt spiral where you take a second or third MCA just to cover payroll, and suddenly you\'re extracting 60%+ of revenue just to service debt. We\'ve helped dozens escape this trap through debt refinancing into single monthly payments that free up 30-50% of what they were paying.',
     relatedSolutions: ['debt-refinance', 'working-capital-loans', 'invoice-factoring']
   },
 
   {
     id: 'how-to-escape-mca-process',
     q: 'How do I actually escape MCA debt?',
-    a: 'Stop taking new advances immediately, then refinance your balance into a term loan, asset-based line, or invoice factoring—typically closing in 10-20 business days. We shop your situation across an extensive lender network because your invoices, AR, and revenue are real collateral; most clients qualify for solutions that cost 10-20 percentage points less annually than their current MCA. Real example: a staffing company paying $15K/month in MCA fees refinanced into an $8K/month term loan, freeing up $7K monthly for growth.',
+    a: 'Stop taking new advances immediately, then refinance your balance into a term loan, asset-based line, or invoice factoring, typically closing in 10-20 business days. We shop your situation across an extensive lender network because your invoices, AR, and revenue are real collateral; most clients qualify for solutions that cost 10-20 percentage points less annually than their current MCA. Real example: a staffing company paying $15K/month in MCA fees refinanced into an $8K/month term loan, freeing up $7K monthly for growth.',
     relatedSolutions: ['debt-refinance', 'asset-based-lending', 'invoice-factoring']
   },
 
   {
     id: 'mca-red-flags-predatory-lender',
     q: 'How do I spot a predatory MCA lender?',
-    a: 'Red flags include high-pressure sales ("offer expires at 5 PM"), refusing to explain factor rate math or APR, non-negotiable daily pulls, prepayment penalties, and confession of judgment clauses. Good lenders ask about your business, disclose APR upfront, and let you shop around without pressure. When in doubt, have us review the terms before you sign—we spot predatory language regularly.',
+    a: 'Red flags include high-pressure sales ("offer expires at 5 PM"), refusing to explain factor rate math or APR, non-negotiable daily pulls, prepayment penalties, and confession of judgment clauses. Good lenders ask about your business, disclose APR upfront, and let you shop around without pressure. When in doubt, have us review the terms before you sign. We spot predatory language regularly.',
     relatedSolutions: ['debt-refinance']
   },
 
   {
     id: 'rbf-vs-traditional-loan-when-use',
     q: 'When should I use RBF instead of a bank loan?',
-    a: 'Use RBF when you\'re growing faster than banks can approve, your tax return doesn\'t match current revenue, or you\'ve maxed your bank line but are still scaling. Banks typically approve in 4-8 weeks; RBF closes in 1-2 weeks and adapts to revenue growth. RBF costs more (1.25%-4% monthly) than bank loans (typically 6-12% APR), so our advice is always bank first if your banker can help—but RBF when they can\'t keep up with your growth.',
+    a: 'Use RBF when you\'re growing faster than banks can approve, your tax return doesn\'t match current revenue, or you\'ve maxed your bank line but are still scaling. Banks typically approve in 4-8 weeks; RBF closes in 1-2 weeks and adapts to revenue growth. RBF costs more (1.25%-4% monthly) than bank loans (typically 6-12% APR), so our advice is always bank first if your banker can help, but RBF when they can\'t keep up with your growth.',
     relatedSolutions: ['working-capital-loans', 'invoice-factoring']
   },
 
   {
     id: 'mca-consolidation-what-happens',
     q: 'If I consolidate MCA debt, what happens to my daily payments?',
-    a: 'They stop immediately—you pay off the MCA and refinance into a single monthly term payment, typically 30-50% lower than what you were paying in daily MCA fees. Real example: $150K MCA balance with daily extractions owed roughly $195K total; refinanced to a term loan that costs $7K/month instead of $32K/month. The key is acting before cash flow becomes too constrained—contact us as soon as you realize MCA payments are unsustainable.',
+    a: 'They stop immediately. You pay off the MCA and refinance into a single monthly term payment, typically 30-50% lower than what you were paying in daily MCA fees. Real example: $150K MCA balance with daily extractions owed roughly $195K total; refinanced to a term loan that costs $7K/month instead of $32K/month. The key is acting before cash flow becomes too constrained. Contact us as soon as you realize MCA payments are unsustainable.',
     relatedSolutions: ['debt-refinance', 'asset-based-lending', 'working-capital-loans']
   }
 ]
@@ -285,6 +285,189 @@ export const workingCapitalFAQs: FAQ[] = [
 // ============================================================================
 
 export const solutionSpecificFAQs: FAQ[] = [
+  // working-capital-loans — folded in from the /funding consolidation
+  {
+    id: "what-is-the-difference-between-revenue-based",
+    q: "What is the difference between revenue-based financing and a merchant cash advance?",
+    a: "The repayment mechanic, and it drives everything else. An MCA buys a share of future receivables and collects 10%-20% of revenue by daily or weekly ACH until a fixed factor amount is paid, commonly annualizing at 50%-200%+. Revenue-based financing is a loan with a fixed monthly payment over a known term at 1.25%-4% per month. Both fund in days on similar underwriting. One takes cash on days your customers have not paid you; the other does not.",
+    relatedSolutions: ["working-capital-loans"]
+  },
+  {
+    id: "how-much-revenue-based-financing-can-i",
+    q: "How much revenue-based financing can I get?",
+    a: "Plan on 10%-15% of annual revenue as the realistic ceiling, so roughly $1.2MM to $1.8MM on $12MM of revenue. Facilities run $250K to $10MM+. If the number you need is well above that band, the answer is usually a different product rather than a different lender: an asset-based line sizes to collateral instead of revenue and can go considerably higher.",
+    relatedSolutions: ["working-capital-loans"]
+  },
+  {
+    id: "what-does-revenue-based-financing-cost-in",
+    q: "What does revenue-based financing cost in 2026?",
+    a: "1.25%-4% per month, which is roughly 18%-48% effective APR depending on deposit consistency, time in business, industry, and owner credit. The single question most worth asking on a term sheet is what happens on early payoff. Real forgiveness of unearned interest can nearly halve what the money costs, and it is not standard across lenders.",
+    relatedSolutions: ["working-capital-loans"]
+  },
+  {
+    id: "is-this-the-kind-of-rbf-where",
+    q: "Is this the kind of RBF where my payment goes up in a good month?",
+    a: "Not the structure we place. Two different products carry the name. One takes a percentage of revenue, so the payment rises when sales rise and the schedule moves under you, which is genuinely difficult in a seasonal business. Serve places the fixed-payment version: a known monthly amount over a known term. If a lender quotes you a percentage of revenue, that is a different product and worth evaluating differently.",
+    relatedSolutions: ["working-capital-loans"]
+  },
+  {
+    id: "should-i-use-this-if-i-have",
+    q: "Should I use this if I have a lot of receivables?",
+    a: "Probably not as the destination. A commercial receivable book of $1MM or more supports an asset-based line or an invoice facility at Prime plus 1%-5%, which is a fraction of the cost and grows with sales. The honest structure in that case is revenue-based financing now, because it closes in days, with the cheaper facility underwriting in parallel and retiring it in six to eight weeks. Speed and price are both available, just not on the same day.",
+    relatedSolutions: ["working-capital-loans"]
+  },
+  {
+    id: "does-taking-this-hurt-my-chances-of",
+    q: "Does taking this hurt my chances of getting cheaper money later?",
+    a: "The opposite, generally. Twelve months of clean monthly payments is exactly the history an asset-based lender, a non-bank SBA lender, or a bank wants to underwrite. The thing that damages the next facility is a stack of advances with daily draws and multiple UCC filings, which is a large part of why the mechanic matters more than the headline rate.",
+    relatedSolutions: ["working-capital-loans"]
+  },
+  {
+    id: "how-fast-can-this-actually-fund",
+    q: "How fast can this actually fund?",
+    a: "Two to ten business days normally, and 24 to 72 hours when payroll is the reason. What determines where you land is almost entirely how fast the file gets assembled: twelve months of bank statements, a current AR aging if you have one, and a clear explanation of what the money is for. Lenders are rarely the bottleneck.",
+    relatedSolutions: ["working-capital-loans"]
+  },
+
+  // invoice-factoring — folded in from the /funding consolidation
+  {
+    id: "is-factoring-a-loan-does-it-put",
+    q: "Is factoring a loan? Does it put debt on my balance sheet?",
+    a: "A properly documented factoring facility is a true sale of the receivable, so the receivable comes off your balance sheet and no debt goes on. That distinction matters if you have covenants elsewhere restricting additional indebtedness. The factor does file a UCC financing statement on your receivables, which is a lien and will be visible to any other lender, so existing secured lenders generally need to subordinate.",
+    relatedSolutions: ["invoice-factoring"]
+  },
+  {
+    id: "what-is-the-difference-between-recourse-and",
+    q: "What is the difference between recourse and non-recourse factoring?",
+    a: "Under recourse factoring, if your customer never pays, you buy the invoice back. Under non-recourse, the factor absorbs that loss. The distinction is narrower than it sounds: non-recourse ordinarily covers customer insolvency only, not disputes, short payments, or a customer withholding because of a quality issue. Those come back to you under either structure. Non-recourse typically costs 0.25%-0.75% more per 30 days, and it is worth paying when the ledger is concentrated in a few names.",
+    relatedSolutions: ["invoice-factoring"]
+  },
+  {
+    id: "can-i-factor-a-single-invoice-instead",
+    q: "Can I factor a single invoice instead of my whole ledger?",
+    a: "Spot factoring exists and can solve a one-off gap, though it prices well above a committed facility, often 3%-5% for a single invoice, because the funder underwrites a customer relationship it will not see again. Most facilities instead ask for the whole ledger or all invoices from selected customers. If your need genuinely is one invoice once, say so early, because the lender set is different.",
+    relatedSolutions: ["invoice-factoring"]
+  },
+  {
+    id: "which-invoices-will-a-factor-refuse-to",
+    q: "Which invoices will a factor refuse to buy?",
+    a: "Anything pre-billed or covering work still in progress. Invoices already more than 90 days old. Invoices to a customer you also buy from, because the contra account can be netted against what you are owed. Related-party invoices. Consignment and guaranteed-sale arrangements, where the sale is not final. Progress billings and retainage. Foreign receivables without credit insurance. Anything under dispute. Expect roughly 5%-15% of a typical ledger to be ineligible, and size the facility on the eligible portion rather than on the gross ageing.",
+    relatedSolutions: ["invoice-factoring"]
+  },
+  {
+    id: "how-quickly-can-a-facility-be-in",
+    q: "How quickly can a facility be in place?",
+    a: "Five to ten business days from a complete submission to the first funded invoice, then 24 to 48 hours per submission after that. The step that most often extends it is obtaining a subordination or lien release from an existing secured lender, which depends on that lender rather than on the factor. If you know a blanket lien is on file, raise it in the first conversation.",
+    relatedSolutions: ["invoice-factoring"]
+  },
+
+  // purchase-order-funding — folded in from the /funding consolidation
+  {
+    id: "can-i-get-purchase-order-financing-with",
+    q: "Can I get purchase order financing with bad credit or a weak balance sheet?",
+    a: "Often, yes. The primary credit decision is about your end customer, not about you. A company with thin financials and a firm order from a creditworthy buyer is a normal PO financing profile. What will stop a deal is a customer whose credit does not check out, a supplier with no delivery history, or margin too thin to carry the cost.",
+    relatedSolutions: ["purchase-order-funding"]
+  },
+  {
+    id: "what-does-purchase-order-financing-cost-in",
+    q: "What does purchase order financing cost in 2026?",
+    a: "Roughly 2%-4% per 30 days on the funded amount. A typical 60-day cycle from supplier payment to customer collection therefore runs 4%-8% of the financed amount. Add the factoring fee on the exit and plan for total financing cost of 5%-10% of the transaction. That is why the margin floor sits around 20%-25%.",
+    relatedSolutions: ["purchase-order-funding"]
+  },
+  {
+    id: "will-the-money-come-to-my-company",
+    q: "Will the money come to my company?",
+    a: "No. The funder pays your supplier directly or issues a letter of credit in their favor. This is intentional. It is what makes the structure financeable, and it is also why PO financing does not solve a general cash shortage. If what you need is operating cash rather than supplier payment, the right tools are factoring, an asset-based line, or a working capital loan.",
+    relatedSolutions: ["purchase-order-funding"]
+  },
+  {
+    id: "does-my-customer-find-out",
+    q: "Does my customer find out?",
+    a: "Usually yes, because the receivable gets factored on the exit and payment is directed to a lockbox. In practice large commercial and government buyers deal with assigned receivables constantly and their AP departments handle it as routine paperwork. It is worth telling your customer before they receive the notice rather than after.",
+    relatedSolutions: ["purchase-order-funding"]
+  },
+  {
+    id: "i-manufacture-the-goods-myself-does-this",
+    q: "I manufacture the goods myself. Does this work?",
+    a: "Generally not for the manufacturing itself. PO funders will not finance work in process, because a half-built product is not collateral. Some will finance the raw-material purchase specifically, and the more common structure for manufacturers is inventory financing or an asset-based line against raw materials and finished goods. It is worth a conversation about which of your costs are actually financeable.",
+    relatedSolutions: ["purchase-order-funding"]
+  },
+  {
+    id: "how-fast-can-this-close",
+    q: "How fast can this close?",
+    a: "Five to fifteen business days. The variable is diligence on two third parties, your customer credit and your supplier reliability, neither of which you fully control. The fastest closings happen when the supplier has delivered for you before and the customer is a name the funder already knows.",
+    relatedSolutions: ["purchase-order-funding"]
+  },
+
+  // bridge-funding — folded in from the /funding consolidation
+  {
+    id: "what-is-the-difference-between-a-c",
+    q: "What is the difference between a C&I bridge loan and a commercial real estate bridge loan?",
+    a: "The collateral and the underwriting question. A C&I bridge is secured by a company operating assets (receivables, inventory, equipment, contract proceeds) and underwritten on the business and its exit event. A CRE bridge is secured by real property and underwritten on the asset value, loan-to-value, and the property exit. Different lenders, different pricing, different documents. Most \"bridge loan\" search results are about the second one, which is why this page exists.",
+    relatedSolutions: ["bridge-funding"]
+  },
+  {
+    id: "what-actually-counts-as-an-exit",
+    q: "What actually counts as an exit?",
+    a: "Something with a date and a document. An asset-based line or SBA loan already in underwriting. A signed acquisition agreement with a funding date. A contract that can be assigned, with the assignment in process. A property under contract with a closing date. What does not count: investors who seem interested, expected revenue improvement, or an asset you believe will appreciate. We will not structure a bridge against those, because in ninety days the bridge becomes the problem.",
+    relatedSolutions: ["bridge-funding"]
+  },
+  {
+    id: "is-a-bridge-loan-expensive",
+    q: "Is a bridge loan expensive?",
+    a: "The annualized rate is high and the total dollars are usually modest, because the money is outstanding for 30-180 days rather than years. Prime plus 6% on $650K for 60 days is roughly $12K-$14K of interest. Evaluate it as dollars against the value of the transaction it protects, over the actual days outstanding, and not as an annualized rate you would never actually pay.",
+    relatedSolutions: ["bridge-funding"]
+  },
+  {
+    id: "can-a-bridge-sit-behind-my-existing",
+    q: "Can a bridge sit behind my existing factor or bank line?",
+    a: "Often, yes. Subordinated bridge structures exist specifically for companies that already have a senior lender in first position. Whether it works depends on your existing intercreditor terms, which we read before proposing anything. If your senior lender has to consent, that conversation happens early rather than at closing.",
+    relatedSolutions: ["bridge-funding"]
+  },
+  {
+    id: "do-you-do-real-estate-bridge-loans",
+    q: "Do you do real estate bridge loans at all?",
+    a: "Yes, and a good deal of it. Real estate bridges are fast to close and we do them constantly. They are a separate product with a separate lender set, which is why they have their own page rather than living on this one. Underwriting a building and underwriting an operating company are genuinely different disciplines, and treating them as one is how borrowers end up with the wrong structure. Tell us which one you have and we will point you at the right desk.",
+    relatedSolutions: ["bridge-funding"]
+  },
+
+  // debt-refinance — folded in from the /funding consolidation
+  {
+    id: "is-mca-consolidation-just-another-merchant-cash",
+    q: "Is MCA consolidation just another merchant cash advance?",
+    a: "It should not be, and often is. A genuine consolidation is a term loan or an asset-secured facility that pays your advances off at their current balances and switches you to monthly payments. If the document in front of you quotes a factor rate, specifies a daily or weekly ACH, and does not name the specific positions it retires, you are being sold a fourth position with a friendlier label. Ask for written payoff letters as a condition of funding.",
+    relatedSolutions: ["debt-refinance"]
+  },
+  {
+    id: "how-much-does-mca-consolidation-cost-in",
+    q: "How much does MCA consolidation cost in 2026?",
+    a: "The realistic first step is an 18-36 month term loan around 18%-22% APR. In isolation that is expensive money. Against a stacked position with a blended true cost above 70%, it typically cuts monthly debt service by 30%-50% and stops the daily extraction. The cheap money comes at the second step, twelve months later, once there is clean payment history to underwrite.",
+    relatedSolutions: ["debt-refinance"]
+  },
+  {
+    id: "how-many-advances-can-be-consolidated-at",
+    q: "How many advances can be consolidated at once?",
+    a: "Two to four positions in a single tranche is normal. Beyond four the arithmetic usually stops working, because the payoff total exceeds what the collateral supports. At six or more positions the honest answer is generally not a refinance at all but a negotiation with the funders, and we will tell you that rather than take you through three weeks of diligence to reach the same conclusion.",
+    relatedSolutions: ["debt-refinance"]
+  },
+  {
+    id: "will-consolidating-hurt-my-credit-or-trigger",
+    q: "Will consolidating hurt my credit or trigger a default?",
+    a: "Paying an advance off at its stated balance is contractually a payoff, not a default, and most agreements permit it. The risks worth checking before you sign anything are prepayment terms that do not forgive unearned fees, confessions of judgment on older contracts, and cross-default language between positions. We read the existing contracts before structuring the takeout, because one bad clause changes the whole sequence.",
+    relatedSolutions: ["debt-refinance"]
+  },
+  {
+    id: "what-if-my-business-does-not-have",
+    q: "What if my business does not have receivables to secure against?",
+    a: "Then the options narrow to free-and-clear equipment, inventory a lender will lend against, or equity in property. If none of those exist, a conventional refinance generally will not close and the realistic paths are a home equity line on the owner side or direct negotiation with the funders. We would rather say that in the first conversation than three weeks in.",
+    relatedSolutions: ["debt-refinance"]
+  },
+  {
+    id: "do-you-charge-anything-before-funding",
+    q: "Do you charge anything before funding?",
+    a: "No. Serve earns a success fee upon the closing of a facility, agreed in writing before you sign anything, and nothing at all if it does not close. No retainers, no application fees, no diligence deposits. If someone in this market asks you for money upfront to arrange a consolidation, that is worth walking away from.",
+    relatedSolutions: ["debt-refinance"]
+  },
   // Asset-Based Lending
   {
     id: "what-is-abl",
@@ -309,7 +492,7 @@ export const solutionSpecificFAQs: FAQ[] = [
   {
     id: "what-is-invoice-factoring",
     q: "What is invoice factoring?",
-    a: "Invoice factoring is when you sell your unpaid B2B invoices to a factor for immediate cash. You get 75-95% of invoice value within 24-48 hours instead of waiting 30-90 days. Unlike a term loan, factoring is self-liquidating—as customers pay, the debt automatically decreases.",
+    a: "Invoice factoring is when you sell your unpaid B2B invoices to a factor for immediate cash. You get 75-95% of invoice value within 24-48 hours instead of waiting 30-90 days. Unlike a term loan, factoring is self-liquidating. As customers pay, the debt automatically decreases.",
     relatedSolutions: ["invoice-factoring"]
   },
   {
@@ -327,7 +510,7 @@ export const solutionSpecificFAQs: FAQ[] = [
   {
     id: "factoring-vs-bank-loan",
     q: "Why is factoring better than a bank line of credit?",
-    a: "Factoring is self-liquidating (debt decreases as customers pay), scales automatically with your sales, has no balance sheet impact, and doesn't require collateral beyond your invoices. Banks require strong credit, tax returns, and collateral—and their rates are often higher. A real example: one client got Prime + 2% on AR factoring (single-digit when combined), vs. traditional bank rates of 8-13%.",
+    a: "Factoring is self-liquidating (debt decreases as customers pay), scales automatically with your sales, has no balance sheet impact, and doesn't require collateral beyond your invoices. Banks require strong credit, tax returns, and collateral. Their rates are often higher. A real example: one client got Prime + 2% on AR factoring (single-digit when combined), vs. traditional bank rates of 8-13%.",
     relatedSolutions: ["invoice-factoring"]
   },
   {
@@ -367,7 +550,7 @@ export const solutionSpecificFAQs: FAQ[] = [
   {
     id: "po-international-suppliers",
     q: "Can PO financing work with international suppliers?",
-    a: "Yes. PO financing specifically supports payments to overseas suppliers (China, India, Vietnam, etc.). This is especially valuable when managing tariff costs—you can negotiate bulk discounts upfront and use PO financing to fund the larger order, offsetting tariff expenses.",
+    a: "Yes. PO financing specifically supports payments to overseas suppliers (China, India, Vietnam, etc.). This is especially valuable when managing tariff costs. You can negotiate bulk discounts upfront and use PO financing to fund the larger order, offsetting tariff expenses.",
     relatedSolutions: ["purchase-order-funding"]
   },
   {
@@ -385,7 +568,7 @@ export const solutionSpecificFAQs: FAQ[] = [
   {
     id: "po-how-fast",
     q: "How quickly can I get PO financing?",
-    a: "Approval typically takes 2-4 weeks. Once approved, funding releases in 5-10 business days for most orders. For established facilities, the process moves even faster—sometimes closing in 10-15 days total.",
+    a: "Approval typically takes 2-4 weeks. Once approved, funding releases in 5-10 business days for most orders. For established facilities, the process moves even faster, sometimes closing in 10-15 days total.",
     relatedSolutions: ["purchase-order-funding"]
   },
 
@@ -399,7 +582,7 @@ export const solutionSpecificFAQs: FAQ[] = [
   {
     id: "gov-contract-subcontractor",
     q: "Can subcontractors get government contract financing?",
-    a: "Yes. Many subcontractors face the same timing gap—they perform work, then wait 30-60+ days for prime contractor or government payment. We fund subcontractors frequently. Qualification depends on strong POs and credit history of the paying entity.",
+    a: "Yes. Many subcontractors face the same timing gap. They perform work, then wait 30-60+ days for prime contractor or government payment. We fund subcontractors frequently. Qualification depends on strong POs and credit history of the paying entity.",
     relatedSolutions: ["government-contracts"]
   },
   {
@@ -489,31 +672,31 @@ export const solutionSpecificFAQs: FAQ[] = [
   {
     id: 'wc-loan-vs-mca',
     q: 'How is a working capital loan different from a merchant cash advance?',
-    a: "A working capital loan from Serve Funding has monthly payments, real prepay discounts, and a true APR roughly half of a typical MCA. MCAs take daily or weekly extractions from your sales and have no meaningful prepay benefit, which is why they tend to stack — businesses borrow another to pay the first. Our working capital product is designed to be paid off and walked away from, not refinanced into a worse position.",
+    a: "A working capital loan from Serve Funding has monthly payments, real prepay discounts, and a true APR roughly half of a typical MCA. MCAs take daily or weekly extractions from your sales and have no meaningful prepay benefit, which is why they tend to stack. Businesses borrow another to pay the first. Our working capital product is designed to be paid off and walked away from, not refinanced into a worse position.",
     relatedSolutions: ['working-capital-loans']
   },
   {
     id: 'wc-loan-size',
     q: 'How much working capital can I borrow?',
-    a: 'As of 2026, working capital loans typically size at 10–15% of your annual revenue, with a practical range of $100K to $10MM+. A $5MM revenue business should expect $500K–$750K of capacity on a clean profile. We always ask what the perfect-world ask is and what the minimum is to make it make sense — those two numbers shape which lender we go to first.',
+    a: 'As of 2026, working capital loans typically size at 10–15% of your annual revenue, with a practical range of $100K to $10MM+. A $5MM revenue business should expect $500K–$750K of capacity on a clean profile. We always ask what the perfect-world ask is and what the minimum is to make it make sense. Those two numbers shape which lender we go to first.',
     relatedSolutions: ['working-capital-loans']
   },
   {
     id: 'wc-loan-speed',
     q: 'How fast can a working capital loan fund?',
-    a: 'A typical working capital loan funds in 2–10 business days from approval. Emergency situations — like a payroll that has to clear in 72 hours — can close inside a week if the deposit history and documentation are clean. The fastest closings happen when the business has at least three months of consistent deposits and no recent MCA activity gumming up the picture.',
+    a: 'A typical working capital loan funds in 2–10 business days from approval. Emergency situations, like a payroll that has to clear in 72 hours, can close inside a week if the deposit history and documentation are clean. The fastest closings happen when the business has at least three months of consistent deposits and no recent MCA activity gumming up the picture.',
     relatedSolutions: ['working-capital-loans']
   },
   {
     id: 'wc-loan-credit-score',
     q: 'Do I need good personal credit for a working capital loan?',
-    a: 'Personal credit matters more in cash-flow underwriting than it does in asset-based lending — a clean 680+ FICO opens meaningfully better pricing. That said, the primary gate is the strength and consistency of your trailing revenue, not the score alone. If credit is the only weak point and the business is solid, we still have lenders who will get the deal done.',
+    a: 'Personal credit matters more in cash-flow underwriting than it does in asset-based lending. A clean 680+ FICO opens meaningfully better pricing. That said, the primary gate is the strength and consistency of your trailing revenue, not the score alone. If credit is the only weak point and the business is solid, we still have lenders who will get the deal done.',
     relatedSolutions: ['working-capital-loans']
   },
   {
     id: 'wc-loan-bridge-to-abl',
     q: 'Can a working capital loan bridge to a cheaper facility later?',
-    a: 'Yes — this is what we call the one-then-three approach. A fast revenue-based working capital loan stabilizes the business in under a week while we build out a permanent asset-based line, factoring facility, or SBA loan in parallel over the next 6–8 weeks. We negotiate the working capital terms so there is no prepayment penalty when the cheaper structure takes over.',
+    a: 'Yes. This is what we call the one-then-three approach. A fast revenue-based working capital loan stabilizes the business in under a week while we build out a permanent asset-based line, factoring facility, or SBA loan in parallel over the next 6–8 weeks. We negotiate the working capital terms so there is no prepayment penalty when the cheaper structure takes over.',
     relatedSolutions: ['working-capital-loans', 'asset-based-lending', 'invoice-factoring']
   },
 
@@ -523,31 +706,31 @@ export const solutionSpecificFAQs: FAQ[] = [
   {
     id: 'factoring-vs-abl',
     q: 'What is the difference between invoice factoring and asset-based lending?',
-    a: 'Factoring and ABL are cousins — both are revolving lines secured by your receivables, often with an inventory add-on. The key difference is that factoring is not a debt product. It is a recurring sale of an asset, so it does not show up on your balance sheet as debt and personal guarantees are often replaced with a validity guarantee. ABL is a true line of credit on the balance sheet and tends to price lower for businesses that qualify, but it takes 6–8 weeks to set up versus 3–4 weeks for factoring.',
+    a: 'Factoring and ABL are cousins. Both are revolving lines secured by your receivables, often with an inventory add-on. The key difference is that factoring is not a debt product. It is a recurring sale of an asset, so it does not show up on your balance sheet as debt and personal guarantees are often replaced with a validity guarantee. ABL is a true line of credit on the balance sheet and tends to price lower for businesses that qualify, but it takes 6–8 weeks to set up versus 3–4 weeks for factoring.',
     relatedSolutions: ['invoice-factoring', 'asset-based-lending']
   },
   {
     id: 'factoring-customer-notification',
     q: 'Will my customers know I am factoring my invoices?',
-    a: 'Your customer is aware in the sense that their A/P team will be told to send payments to a new bank account — typically still in your company name on the remit-to. Most factors do not require you to disclose that you are factoring; you can simply say you have a new collections partner. The factor will make a couple of verification calls at the start of the relationship to confirm the invoice is real, and then the operational change for your customer is essentially a different routing number.',
+    a: 'Your customer is aware in the sense that their A/P team will be told to send payments to a new bank account, typically still in your company name on the remit-to. Most factors do not require you to disclose that you are factoring; you can simply say you have a new collections partner. The factor will make a couple of verification calls at the start of the relationship to confirm the invoice is real, and then the operational change for your customer is essentially a different routing number.',
     relatedSolutions: ['invoice-factoring']
   },
   {
     id: 'factoring-cost-comparison',
     q: 'How much does invoice factoring actually cost on an annual basis?',
-    a: 'As of 2026, a clean profile runs 12–14% all-in on an annualized basis; middle-of-the-road distressed companies sit at 18% or so; and harder cases can run into the mid-twenties. A common term-sheet structure is 1.5% for the first 30 days plus 0.5% every 10 days thereafter, which translates to roughly 18% APR if your customers pay in 30 days and higher if they stretch. Watch for layered fees — some factors quote a low discount rate but add a separate rate on borrowed funds. We always do the all-in math before signing.',
+    a: 'As of 2026, a clean profile runs 12–14% all-in on an annualized basis; middle-of-the-road distressed companies sit at 18% or so; and harder cases can run into the mid-twenties. A common term-sheet structure is 1.5% for the first 30 days plus 0.5% every 10 days thereafter, which translates to roughly 18% APR if your customers pay in 30 days and higher if they stretch. Watch for layered fees. Some factors quote a low discount rate but add a separate rate on borrowed funds. We always do the all-in math before signing.',
     relatedSolutions: ['invoice-factoring']
   },
   {
     id: 'factoring-personal-credit',
     q: 'Does my personal credit score matter for invoice factoring?',
-    a: 'Not nearly as much as it does in cash-flow lending. Factors underwrite on the credit of your account debtors — the customers who owe you money — because that is who actually pays them. Owners with bruised credit who got declined by a bank on FICO grounds can absolutely qualify for factoring if their customer mix is strong. This is the single most common bank-decline reframe we run.',
+    a: 'Not nearly as much as it does in cash-flow lending. Factors underwrite on the credit of your account debtors, the customers who owe you money, because that is who actually pays them. Owners with bruised credit who got declined by a bank on FICO grounds can absolutely qualify for factoring if their customer mix is strong. This is the single most common bank-decline reframe we run.',
     relatedSolutions: ['invoice-factoring']
   },
   {
     id: 'factoring-for-construction',
     q: 'Does invoice factoring work for construction companies?',
-    a: 'Often not as cleanly as people expect. Construction AR tends to be thin relative to revenue, concentrated in three or four large customers, with milestone billing and retainage holdbacks of 10% sitting out six to twelve months. A factor wants steady, recurring, lots-of-customers AR — construction usually has the opposite shape. For construction, we more often pivot to MCA consolidation into a true-term product, a real-estate-backed bridge on owned land, or job-mobilization financing that covers upfront materials and labor.',
+    a: 'Often not as cleanly as people expect. Construction AR tends to be thin relative to revenue, concentrated in three or four large customers, with milestone billing and retainage holdbacks of 10% sitting out six to twelve months. A factor wants steady, recurring, lots-of-customers AR. Construction usually has the opposite shape. For construction, we more often pivot to MCA consolidation into a true-term product, a real-estate-backed bridge on owned land, or job-mobilization financing that covers upfront materials and labor.',
     relatedSolutions: ['invoice-factoring', 'debt-refinance', 'real-estate-lending']
   },
 
@@ -557,7 +740,7 @@ export const solutionSpecificFAQs: FAQ[] = [
   {
     id: 'mca-refi-qualify',
     q: 'How do I qualify for an MCA consolidation loan?',
-    a: 'The honest gate is: real assets or real equity to underwrite against, plus a 13-week cash flow forecast that shows the math works going forward. Commercial receivables, free-and-clear equipment, or home equity are the most common anchors. We also look at how many MCA positions are open, how recently the last one was taken, and whether the underlying business is fundamentally healthy. Three or more MCAs deep with no collateral is the hardest case — sometimes the right answer there is a Home Equity Advance instead of a conventional refi.',
+    a: 'The honest gate is: real assets or real equity to underwrite against, plus a 13-week cash flow forecast that shows the math works going forward. Commercial receivables, free-and-clear equipment, or home equity are the most common anchors. We also look at how many MCA positions are open, how recently the last one was taken, and whether the underlying business is fundamentally healthy. Three or more MCAs deep with no collateral is the hardest case. Sometimes the right answer there is a Home Equity Advance instead of a conventional refi.',
     relatedSolutions: ['debt-refinance']
   },
   {
@@ -569,19 +752,19 @@ export const solutionSpecificFAQs: FAQ[] = [
   {
     id: 'mca-refi-multiple-positions',
     q: 'Can you pay off all of my MCAs at once?',
-    a: 'Usually we can take out two or three positions in a single refi tranche. Six positions deep is rare to clear in one move — that is where we use the basement-to-first-floor analogy. The first step is a few rungs up the ladder, not the whole climb. With six to twelve months of clean payment history on the new product, we can come back and refinance again into a meaningfully cheaper structure.',
+    a: 'Usually we can take out two or three positions in a single refi tranche. Six positions deep is rare to clear in one move. That is where we use the basement-to-first-floor analogy. The first step is a few rungs up the ladder, not the whole climb. With six to twelve months of clean payment history on the new product, we can come back and refinance again into a meaningfully cheaper structure.',
     relatedSolutions: ['debt-refinance']
   },
   {
     id: 'mca-refi-vs-new-mca',
     q: 'How is a Serve Funding refinance different from another MCA reverse consolidation?',
-    a: 'A reverse consolidation is just another MCA dressed up — same daily sweeps, same factor-rate math, often the same lenders behind the curtain. Our refinance products have monthly payments, real prepay forgiveness, longer terms (24+ months versus the typical MCA 6–12), and a true APR that is roughly half. The goal is to get you off the daily-sweep treadmill, not to extend it.',
+    a: 'A reverse consolidation is just another MCA dressed up: same daily sweeps, same factor-rate math, often the same lenders behind the curtain. Our refinance products have monthly payments, real prepay forgiveness, longer terms (24+ months versus the typical MCA 6–12), and a true APR that is roughly half. The goal is to get you off the daily-sweep treadmill, not to extend it.',
     relatedSolutions: ['debt-refinance']
   },
   {
     id: 'mca-refi-credit-impact',
     q: 'Will refinancing my MCAs hurt my credit?',
-    a: 'On its own, no — most MCAs do not report to traditional credit bureaus, and the new term product we put in place is structured to be reportable in a healthy way. The bigger credit lever is what comes after: once you have 12 months of clean monthly payments on a real loan, you start to look refinanceable to bank-owned ABL desks, SBA lenders, and non-bank SBA programs. That second refi step is where the meaningful credit and cost improvement compounds.',
+    a: 'On its own, no. Most MCAs do not report to traditional credit bureaus, and the new term product we put in place is structured to be reportable in a healthy way. The bigger credit lever is what comes after: once you have 12 months of clean monthly payments on a real loan, you start to look refinanceable to bank-owned ABL desks, SBA lenders, and non-bank SBA programs. That second refi step is where the meaningful credit and cost improvement compounds.',
     relatedSolutions: ['debt-refinance']
   },
 
@@ -591,19 +774,19 @@ export const solutionSpecificFAQs: FAQ[] = [
   {
     id: 'why-equipment-cheaper-than-working-capital',
     q: 'Why is equipment financing cheaper than a working capital loan?',
-    a: 'Because the equipment is the collateral. If something happens in your business, the lender can repossess and sell the asset to recover their money — that hard-asset backstop is what makes the rate cheaper. Working capital is underwritten on revenue alone, so the lender is taking more risk and prices for it. As of 2026, we typically see equipment in the high single digits to low teens versus working capital in the mid-teens or higher.',
+    a: 'Because the equipment is the collateral. If something happens in your business, the lender can repossess and sell the asset to recover their money. That hard-asset backstop is what makes the rate cheaper. Working capital is underwritten on revenue alone, so the lender is taking more risk and prices for it. As of 2026, we typically see equipment in the high single digits to low teens versus working capital in the mid-teens or higher.',
     relatedSolutions: ['equipment-leasing', 'working-capital-loans']
   },
   {
     id: 'what-is-equipment-sale-leaseback',
     q: 'What is a sale-leaseback and when does it make sense?',
-    a: 'A sale-leaseback is a way to get cash out of equipment you already own free and clear. The lender effectively buys the equipment from you and leases it back over a 3-to-5-year period, so the asset stays in place and operating but the equity is unlocked as working capital. It makes sense when you want growth capital without touching real estate, taking on a personal guarantee, or running an MCA — the equipment was already paid for, so why leave that equity locked up?',
+    a: 'A sale-leaseback is a way to get cash out of equipment you already own free and clear. The lender effectively buys the equipment from you and leases it back over a 3-to-5-year period, so the asset stays in place and operating but the equity is unlocked as working capital. It makes sense when you want growth capital without touching real estate, taking on a personal guarantee, or running an MCA. The equipment was already paid for, so why leave that equity locked up?',
     relatedSolutions: ['equipment-leasing']
   },
   {
     id: 'equipment-international-customs',
     q: 'How does equipment financing work if the equipment is manufactured overseas?',
-    a: 'That is pretty much par for the course in the equipment leasing space — the borrower pays for the equipment, ships it, and clears it through U.S. customs, and then the lender reimburses on the back end once it is delivered. You will want to plan for that bridge in your cash flow. We help structure the timing so the gap between deposit and reimbursement does not strangle the rest of operations.',
+    a: 'That is pretty much par for the course in the equipment leasing space. The borrower pays for the equipment, ships it, and clears it through U.S. customs, and then the lender reimburses on the back end once it is delivered. You will want to plan for that bridge in your cash flow. We help structure the timing so the gap between deposit and reimbursement does not strangle the rest of operations.',
     relatedSolutions: ['equipment-leasing']
   },
   {
@@ -615,7 +798,7 @@ export const solutionSpecificFAQs: FAQ[] = [
   {
     id: 'vendor-financing-vs-equipment-leasing',
     q: "Should I use the manufacturer's financing or a third-party equipment lender?",
-    a: 'If the manufacturer offers direct financing and the terms are reasonable, take it — we will tell you that to your face. Our value then shifts to the working capital piece you still need alongside the equipment. When the vendor financing is mediocre or unavailable, we run the deal through several third-party equipment lessors and let them compete for your business.',
+    a: 'If the manufacturer offers direct financing and the terms are reasonable, take it. We will tell you that to your face. Our value then shifts to the working capital piece you still need alongside the equipment. When the vendor financing is mediocre or unavailable, we run the deal through several third-party equipment lessors and let them compete for your business.',
     relatedSolutions: ['equipment-leasing', 'working-capital-loans']
   },
 
@@ -625,13 +808,13 @@ export const solutionSpecificFAQs: FAQ[] = [
   {
     id: 'abl-vs-bank-line-of-credit',
     q: 'How is asset-based lending different from a bank line of credit?',
-    a: 'A bank line is underwritten primarily on your financial statements and covenants — leverage ratios, debt service coverage, owner credit. ABL is underwritten on the live value of your assets, mostly receivables and inventory, certified weekly or monthly through a borrowing base. As of 2026, ABL is generally where companies go when they have real assets but no longer fit a bank credit box — pricing runs Prime plus 1% to 5%, which is higher than a bank but still well below most non-bank alternatives.',
+    a: 'A bank line is underwritten primarily on your financial statements and covenants: leverage ratios, debt service coverage, owner credit. ABL is underwritten on the live value of your assets, mostly receivables and inventory, certified weekly or monthly through a borrowing base. As of 2026, ABL is generally where companies go when they have real assets but no longer fit a bank credit box. Pricing runs Prime plus 1% to 5%, which is higher than a bank but still well below most non-bank alternatives.',
     relatedSolutions: ['asset-based-lending', 'working-capital-loans']
   },
   {
     id: 'abl-vs-factoring-difference',
     q: 'What is the difference between asset-based lending and factoring?',
-    a: 'Factoring and ABL are cousins — both are revolving structures collateralized by your receivables, with optional inventory layered underneath. The difference is that factoring is a recurring sale of an asset and does not show up on your balance sheet as debt, while ABL is true debt with a weekly or monthly borrowing-base certificate. ABL usually wins on cost for larger, well-run operators; factoring is often the right tool for smaller deals or businesses with rougher financials.',
+    a: 'Factoring and ABL are cousins. Both are revolving structures collateralized by your receivables, with optional inventory layered underneath. The difference is that factoring is a recurring sale of an asset and does not show up on your balance sheet as debt, while ABL is true debt with a weekly or monthly borrowing-base certificate. ABL usually wins on cost for larger, well-run operators; factoring is often the right tool for smaller deals or businesses with rougher financials.',
     relatedSolutions: ['asset-based-lending', 'invoice-factoring']
   },
   {
@@ -643,13 +826,13 @@ export const solutionSpecificFAQs: FAQ[] = [
   {
     id: 'abl-setup-timeline',
     q: 'How long does it take to set up an ABL facility?',
-    a: 'Six to eight weeks is typical from term sheet to funded. ABL involves a field exam, an asset audit, legal documents, lockbox setup, and a borrowing-base mechanics build-out — so it is not fast. That is why we often run a bridge first when timing is tight: a fast revenue-based line in week one, ABL home in week eight. We call it the one-then-three approach, and it keeps the business operating while the permanent structure is assembled.',
+    a: 'Six to eight weeks is typical from term sheet to funded. ABL involves a field exam, an asset audit, legal documents, lockbox setup, and a borrowing-base mechanics build-out, so it is not fast. That is why we often run a bridge first when timing is tight: a fast revenue-based line in week one, ABL home in week eight. We call it the one-then-three approach, and it keeps the business operating while the permanent structure is assembled.',
     relatedSolutions: ['asset-based-lending', 'working-capital-loans']
   },
   {
     id: 'abl-borrowing-base-explained',
     q: 'What is a borrowing base and how does it work?',
-    a: 'A borrowing base is a weekly or monthly certificate where you tell the lender, in writing, exactly how much eligible receivable and inventory you have right now. The lender advances a percentage against each category — say 85% on AR, 60% on inventory — and that becomes the live ceiling on what you can borrow. As customers pay into the lockbox, the line pays down automatically, and as new invoices and inventory come on, your availability rises. It is the engine that lets ABL scale with your business in real time.',
+    a: 'A borrowing base is a weekly or monthly certificate where you tell the lender, in writing, exactly how much eligible receivable and inventory you have right now. The lender advances a percentage against each category, say 85% on AR and 60% on inventory, and that becomes the live ceiling on what you can borrow. As customers pay into the lockbox, the line pays down automatically, and as new invoices and inventory come on, your availability rises. It is the engine that lets ABL scale with your business in real time.',
     relatedSolutions: ['asset-based-lending']
   },
 
@@ -659,31 +842,31 @@ export const solutionSpecificFAQs: FAQ[] = [
   {
     id: 'inventory-financing-for-ecommerce',
     q: 'Why is inventory financing the right product for e-commerce brands?',
-    a: 'Because e-commerce and direct-to-consumer brands typically have no B2B receivables to factor against — they sell to consumers, not businesses, so there is no commercial AR for a factoring line to attach to. The inventory itself is the asset. As of 2026, we place e-commerce inventory facilities as low as Prime plus 2% with one specialty lender, though most standalone inventory deals run higher. It is often the cheapest realistic capital for a DTC brand that does not own real estate.',
+    a: 'Because e-commerce and direct-to-consumer brands typically have no B2B receivables to factor against. They sell to consumers, not businesses, so there is no commercial AR for a factoring line to attach to. The inventory itself is the asset. As of 2026, we place e-commerce inventory facilities as low as Prime plus 2% with one specialty lender, though most standalone inventory deals run higher. It is often the cheapest realistic capital for a DTC brand that does not own real estate.',
     relatedSolutions: ['inventory-financing']
   },
   {
     id: 'how-inventory-financing-pays-vendors',
     q: 'Does inventory financing give me cash or pay my suppliers directly?',
-    a: 'In most cases the lender is paying your vendors directly rather than handing you cash. That is actually a feature, not a bug — your operating cash stays untouched, the inventory ships into your warehouse or Amazon FBA, and you are only paying for the capital that is actively tied up in product. Most facilities give you a 90-day cycle to sell through and pay it back, then the next purchase can cycle through the line again.',
+    a: 'In most cases the lender is paying your vendors directly rather than handing you cash. That is actually a feature, not a bug. Your operating cash stays untouched, the inventory ships into your warehouse or Amazon FBA, and you are only paying for the capital that is actively tied up in product. Most facilities give you a 90-day cycle to sell through and pay it back, then the next purchase can cycle through the line again.',
     relatedSolutions: ['inventory-financing']
   },
   {
     id: 'standalone-inventory-vs-abl-inventory',
     q: 'What is the difference between standalone inventory financing and inventory inside an ABL?',
-    a: 'Inside an ABL, inventory is layered underneath your AR — usually at a 50% to 75% advance rate and capped at a percentage of eligible AR. Standalone inventory is a different animal: the inventory itself is the entire collateral package, advance rates are often lower (40% to 60% of cost), and only two or three lenders we work with will do a true standalone deal. Standalone is the answer when there is no B2B AR to anchor an ABL, which is exactly the situation most e-commerce and DTC brands are in.',
+    a: 'Inside an ABL, inventory is layered underneath your AR, usually at a 50% to 75% advance rate and capped at a percentage of eligible AR. Standalone inventory is a different animal: the inventory itself is the entire collateral package, advance rates are often lower (40% to 60% of cost), and only two or three lenders we work with will do a true standalone deal. Standalone is the answer when there is no B2B AR to anchor an ABL, which is exactly the situation most e-commerce and DTC brands are in.',
     relatedSolutions: ['inventory-financing', 'asset-based-lending']
   },
   {
     id: 'inventory-financing-cash-forecast',
     q: 'What does an inventory lender need to see to approve a deal?',
-    a: 'On a standalone inventory facility, the lender will want a 13-week cash flow forecast and what I call a math-driven story — not a narrative, a numbers explanation — for why the inventory will turn into cash before the line term is up. They also want an inventory count or third-party verification, a senior lien position on inventory, and clean reporting on sell-through velocity. If you cannot put that math on paper, the deal will not go.',
+    a: 'On a standalone inventory facility, the lender will want a 13-week cash flow forecast and what I call a math-driven story, not a narrative but a numbers explanation, for why the inventory will turn into cash before the line term is up. They also want an inventory count or third-party verification, a senior lien position on inventory, and clean reporting on sell-through velocity. If you cannot put that math on paper, the deal will not go.',
     relatedSolutions: ['inventory-financing']
   },
   {
     id: 'inventory-financing-vs-real-estate-cashout',
     q: 'When should I use inventory financing versus a real estate cash-out for inventory?',
-    a: 'If you own real estate free and clear or with significant equity behind it, that is almost always the cheapest capital — single-digit rates against the property versus Prime plus 6% to 12% on inventory. Rate-sensitive owners with property usually skip inventory financing entirely and pull working capital off the building. If there is no real estate to leverage, inventory financing is the realistic answer, and we will set that expectation honestly.',
+    a: 'If you own real estate free and clear or with significant equity behind it, that is almost always the cheapest capital: single-digit rates against the property versus Prime plus 6% to 12% on inventory. Rate-sensitive owners with property usually skip inventory financing entirely and pull working capital off the building. If there is no real estate to leverage, inventory financing is the realistic answer, and we will set that expectation honestly.',
     relatedSolutions: ['inventory-financing']
   },
 
@@ -693,13 +876,13 @@ export const solutionSpecificFAQs: FAQ[] = [
   {
     id: 'what-is-po-funding',
     q: 'What is purchase order (PO) funding and how does it work?',
-    a: 'PO funding pays your supplier directly — domestic or overseas — so you can fulfill a confirmed customer order before you have customer cash in hand. The lender gets paid off the moment you invoice the end customer, which is why PO funding is almost always paired with a factoring or AR line as the takeout. As of 2026, expect 2%–3% per 30 days on the PO side and roughly half that on the AR back end.',
+    a: 'PO funding pays your supplier directly, domestic or overseas, so you can fulfill a confirmed customer order before you have customer cash in hand. The lender gets paid off the moment you invoice the end customer, which is why PO funding is almost always paired with a factoring or AR line as the takeout. As of 2026, expect 2%–3% per 30 days on the PO side and roughly half that on the AR back end.',
     relatedSolutions: ['purchase-order-funding', 'invoice-factoring']
   },
   {
     id: 'po-vs-factoring',
     q: "What's the difference between PO funding and invoice factoring?",
-    a: "PO funding covers the period before you ship — it pays your supplier so you can build. Factoring covers the period after you ship and invoice — it advances cash against the receivable so you don't wait 60 or 90 days to get paid. They're not either-or; together they close the full cash-conversion cycle, and most growing manufacturers and importers use them as a pair.",
+    a: "PO funding covers the period before you ship. It pays your supplier so you can build. Factoring covers the period after you ship and invoice. It advances cash against the receivable so you don't wait 60 or 90 days to get paid. They're not either-or; together they close the full cash-conversion cycle, and most growing manufacturers and importers use them as a pair.",
     relatedSolutions: ['purchase-order-funding', 'invoice-factoring']
   },
   {
@@ -711,13 +894,13 @@ export const solutionSpecificFAQs: FAQ[] = [
   {
     id: 'po-funding-international-suppliers',
     q: 'Can PO funding pay overseas suppliers?',
-    a: "Yes — paying international suppliers in their own terms is one of the most common use cases. The lender wires the supplier directly, often before the goods ship, which is exactly what an overseas vendor needs to release production. This is especially useful when tariffs or supply-chain timing push you toward bulk orders that your existing line can't cover.",
+    a: "Yes. Paying international suppliers in their own terms is one of the most common use cases. The lender wires the supplier directly, often before the goods ship, which is exactly what an overseas vendor needs to release production. This is especially useful when tariffs or supply-chain timing push you toward bulk orders that your existing line can't cover.",
     relatedSolutions: ['purchase-order-funding']
   },
   {
     id: 'po-funding-credit-requirements',
     q: 'Do I need strong personal credit to qualify for PO funding?',
-    a: "Not really — PO and AR lenders care most about the creditworthiness of the customer who issued the purchase order, not the owner's personal credit. If you're selling to a blue-chip customer, a national distributor, or a government entity, that anchors the deal. Mike's rule of thumb: bring us the PO, the supplier terms, and your last 12 months of revenue, and we can usually tell you on the first call whether it's workable.",
+    a: "Not really. PO and AR lenders care most about the creditworthiness of the customer who issued the purchase order, not the owner's personal credit. If you're selling to a blue-chip customer, a national distributor, or a government entity, that anchors the deal. Mike's rule of thumb: bring us the PO, the supplier terms, and your last 12 months of revenue, and we can usually tell you on the first call whether it's workable.",
     relatedSolutions: ['purchase-order-funding', 'invoice-factoring']
   },
 
@@ -727,31 +910,31 @@ export const solutionSpecificFAQs: FAQ[] = [
   {
     id: 'gov-contract-financing-basics',
     q: 'How does government contract financing work?',
-    a: 'A lender advances against the value of a federal, state, or local contract or receivable — usually up to 90% — so you can fund production and payroll before the government pays. The structure normally combines a PO line (covers materials and labor before invoice) with an AR line (covers the wait from invoice to payment). As of 2026, the full cycle is typically 60 days PO plus 60 days AR — about 120 days of capital commitment per order.',
+    a: 'A lender advances against the value of a federal, state, or local contract or receivable, usually up to 90%, so you can fund production and payroll before the government pays. The structure normally combines a PO line (covers materials and labor before invoice) with an AR line (covers the wait from invoice to payment). As of 2026, the full cycle is typically 60 days PO plus 60 days AR, about 120 days of capital commitment per order.',
     relatedSolutions: ['government-contracts', 'purchase-order-funding', 'invoice-factoring']
   },
   {
     id: 'subcontractor-on-a-prime-financing',
     q: 'Can subcontractors on a prime contract get financing?',
-    a: "Yes — and this is one of the most under-served corners of the market. Most traditional factors won't touch a sub-on-a-prime because the account debtor is another contractor rather than the government directly. Serve Funding works with lenders who specifically finance GovCon subcontractors against the prime's commitment, which opens up a category that's a hard no almost everywhere else.",
+    a: "Yes, and this is one of the most under-served corners of the market. Most traditional factors won't touch a sub-on-a-prime because the account debtor is another contractor rather than the government directly. Serve Funding works with lenders who specifically finance GovCon subcontractors against the prime's commitment, which opens up a category that's a hard no almost everywhere else.",
     relatedSolutions: ['government-contracts', 'invoice-factoring']
   },
   {
     id: 'why-government-payment-takes-so-long',
     q: 'Why does the government take so long to pay?',
-    a: "The clock doesn't start when you deliver — it starts when the contracting officer formally accepts the work, often after inspection and document sign-off. Sixty days from acceptance is normal across DoD, GSA, and most state and local agencies, and net-30 contracts frequently pay in 45. That timing isn't a sign of a problem; it's just the rhythm of government work, which is exactly why a PO+AR facility exists.",
+    a: "The clock doesn't start when you deliver. It starts when the contracting officer formally accepts the work, often after inspection and document sign-off. Sixty days from acceptance is normal across DoD, GSA, and most state and local agencies, and net-30 contracts frequently pay in 45. That timing isn't a sign of a problem; it's just the rhythm of government work, which is exactly why a PO+AR facility exists.",
     relatedSolutions: ['government-contracts']
   },
   {
     id: 'assignment-of-claims-explained',
     q: 'What is assignment of claims and why does it slow GovCon financing?',
-    a: "Assignment of claims is the legal process that lets a government payment be redirected from the contractor to a lender — it's the equivalent of a lockbox for commercial AR, but with federal paperwork attached. The contracting officer has to sign off, which typically adds three to four weeks of setup time. It's why government AR facilities are best set up before you desperately need them, with a small unused-line fee to keep the facility available for sporadic billing.",
+    a: "Assignment of claims is the legal process that lets a government payment be redirected from the contractor to a lender. It's the equivalent of a lockbox for commercial AR, but with federal paperwork attached. The contracting officer has to sign off, which typically adds three to four weeks of setup time. It's why government AR facilities are best set up before you desperately need them, with a small unused-line fee to keep the facility available for sporadic billing.",
     relatedSolutions: ['government-contracts']
   },
   {
     id: 'govcon-specialist-vs-generalist-lender',
     q: 'Should I use a GovCon-specialist lender or a generalist?',
-    a: "It depends on the mix. If 100% of what you do is government work, a specialist lender is almost always the right call — they understand assignment of claims, CO procedures, and milestone billing in a way generalists don't. If GovCon is a slice of a mostly commercial book — say, 10% to 30% — a generalist AR or ABL lender usually handles the whole portfolio, with the government receivables included.",
+    a: "It depends on the mix. If 100% of what you do is government work, a specialist lender is almost always the right call. They understand assignment of claims, CO procedures, and milestone billing in a way generalists don't. If GovCon is a slice of a mostly commercial book, say 10% to 30%, a generalist AR or ABL lender usually handles the whole portfolio, with the government receivables included.",
     relatedSolutions: ['government-contracts', 'invoice-factoring', 'asset-based-lending']
   },
 
@@ -761,31 +944,31 @@ export const solutionSpecificFAQs: FAQ[] = [
   {
     id: 'who-qualifies-for-sba',
     q: 'Who actually qualifies for an SBA loan?',
-    a: "SBA underwriting looks a lot like bank underwriting — two years of profitable, clean financials, reasonable owner credit, demonstrable cash flow to service the debt, and a business that fits the SBA credit box. If you check those boxes, SBA is almost always the cheapest capital available. If you don't — say you had a rough trailing 12 months, or you need money in the next 30 days — there are better-fit products to look at first.",
+    a: "SBA underwriting looks a lot like bank underwriting: two years of profitable, clean financials, reasonable owner credit, demonstrable cash flow to service the debt, and a business that fits the SBA credit box. If you check those boxes, SBA is almost always the cheapest capital available. If you don't, say you had a rough trailing 12 months, or you need money in the next 30 days, there are better-fit products to look at first.",
     relatedSolutions: ['sba-loans']
   },
   {
     id: 'sba-vs-alternative-financing',
-    q: "When is SBA better than alternative financing — and when isn't it?",
-    a: "SBA wins on price and term — prime + 2%–3% over 10 to 25 years is hard to beat. It loses on speed and flexibility. As of 2026, SBA underwriting is 4 to 12 weeks; asset-based lending is 4 to 8 weeks; factoring is 2 to 4 weeks; a revenue-based bridge can fund in days. If your business is clean and profitable and you can wait, do SBA. If you need money sooner or your numbers aren't SBA-ready, alternative financing is the better answer.",
+    q: "When is SBA better than alternative financing, and when isn't it?",
+    a: "SBA wins on price and term: prime + 2%–3% over 10 to 25 years is hard to beat. It loses on speed and flexibility. As of 2026, SBA underwriting is 4 to 12 weeks; asset-based lending is 4 to 8 weeks; factoring is 2 to 4 weeks; a revenue-based bridge can fund in days. If your business is clean and profitable and you can wait, do SBA. If you need money sooner or your numbers aren't SBA-ready, alternative financing is the better answer.",
     relatedSolutions: ['sba-loans', 'asset-based-lending', 'invoice-factoring', 'working-capital-loans']
   },
   {
     id: 'sba-7a-vs-504',
     q: "What's the difference between SBA 7(a) and SBA 504?",
-    a: 'The 7(a) is the workhorse — general business purposes including acquisitions, working capital, refinance, and equipment, up to the $5MM SBA cap. The 504 is structured around fixed-asset purchases (real estate, major equipment), with a bank loan paired with a CDC second and longer amortization on the property piece. Most operators looking at "an SBA loan" are looking at a 7(a); 504 is the right structure if the deal is anchored by a real-estate purchase.',
+    a: 'The 7(a) is the workhorse: general business purposes including acquisitions, working capital, refinance, and equipment, up to the $5MM SBA cap. The 504 is structured around fixed-asset purchases (real estate, major equipment), with a bank loan paired with a CDC second and longer amortization on the property piece. Most operators looking at "an SBA loan" are looking at a 7(a); 504 is the right structure if the deal is anchored by a real-estate purchase.',
     relatedSolutions: ['sba-loans']
   },
   {
     id: 'why-serve-refers-sba-out',
     q: 'Why does Serve Funding refer all SBA loans out instead of doing them in-house?',
-    a: "SBA is its own discipline — the underwriting, the disclosure rules, the program-by-program nuances, the SBA Form 159 process. The SBA also won't allow a broker to charge a success fee on the borrower side and collect lender compensation on the same deal, which makes generalist brokers a bad fit. Serve refers every SBA out to a former SBA banker who runs an SBA-only practice and stays close to make sure the client is served well.",
+    a: "SBA is its own discipline: the underwriting, the disclosure rules, the program-by-program nuances, the SBA Form 159 process. The SBA also won't allow a broker to charge a success fee on the borrower side and collect lender compensation on the same deal, which makes generalist brokers a bad fit. Serve refers every SBA out to a former SBA banker who runs an SBA-only practice and stays close to make sure the client is served well.",
     relatedSolutions: ['sba-loans']
   },
   {
     id: 'can-i-get-a-bridge-while-sba-closes',
     q: 'Can I get a bridge loan while my SBA loan is underwriting?',
-    a: 'Yes — and this is one of the more common SBA pairings we set up. Because SBA takes 4 to 12 weeks, a parallel bridge — usually a revenue-based line, factoring facility, or short-term asset-backed loan — can fund within days to weeks and tide you over until the SBA closes. The bridge gets paid off when the SBA funds, and you only pay interest for the days you actually used the money.',
+    a: 'Yes, and this is one of the more common SBA pairings we set up. Because SBA takes 4 to 12 weeks, a parallel bridge, usually a revenue-based line, factoring facility, or short-term asset-backed loan, can fund within days to weeks and tide you over until the SBA closes. The bridge gets paid off when the SBA funds, and you only pay interest for the days you actually used the money.',
     relatedSolutions: ['sba-loans', 'bridge-funding', 'working-capital-loans', 'invoice-factoring']
   },
 
@@ -795,31 +978,31 @@ export const solutionSpecificFAQs: FAQ[] = [
   {
     id: 're-cash-out-working-capital',
     q: 'Can I use real estate I already own to fund the operating business?',
-    a: "Yes — and for the right profile, it's usually the cheapest capital in your stack. If your commercial property is free and clear or has real equity behind a first mortgage, a cash-out refinance or second-position loan pulls that \"dead equity\" out at rates that almost always beat an asset-based line or inventory loan. Real estate is the lender's favorite asset, so the rates reflect that. The right structure depends on whether you're optimizing for lowest rate, lowest debt service, or maximum cash out.",
+    a: "Yes, and for the right profile, it's usually the cheapest capital in your stack. If your commercial property is free and clear or has real equity behind a first mortgage, a cash-out refinance or second-position loan pulls that \"dead equity\" out at rates that almost always beat an asset-based line or inventory loan. Real estate is the lender's favorite asset, so the rates reflect that. The right structure depends on whether you're optimizing for lowest rate, lowest debt service, or maximum cash out.",
     relatedSolutions: ['real-estate-lending', 'asset-based-lending', 'unsecured-debt']
   },
   {
     id: 're-ltv-by-asset-type',
     q: 'What LTV can I actually borrow against commercial real estate?',
-    a: 'It depends on the asset. Owner-occupied commercial property typically supports 65%+ LTV, and you can often layer a line of credit on top that pushes effective leverage closer to 80% when the operating business is underwritten alongside. Investment / non-owner-occupied is DSCR-driven and varies with rental income. Raw land is a different animal — 50% LTV is the practical ceiling, and these deals close slower because fewer lenders touch them.',
+    a: 'It depends on the asset. Owner-occupied commercial property typically supports 65%+ LTV, and you can often layer a line of credit on top that pushes effective leverage closer to 80% when the operating business is underwritten alongside. Investment / non-owner-occupied is DSCR-driven and varies with rental income. Raw land is a different animal. 50% LTV is the practical ceiling, and these deals close slower because fewer lenders touch them.',
     relatedSolutions: ['real-estate-lending']
   },
   {
     id: 're-bridge-vs-permanent',
     q: 'Should I take a bridge loan or a permanent mortgage on my property?',
-    a: "Depends on what you're optimizing for. A fully amortizing 25-year mortgage gives you the lowest rate but higher debt service because you're paying principal every month. A bridge is interest-only — the rate is a few points higher, but the monthly debt service is considerably lower, which matters a lot if cash is tight. If you can refinance into a permanent structure in 12-24 months at a better rate, the bridge often pencils out better in the meantime.",
+    a: "Depends on what you're optimizing for. A fully amortizing 25-year mortgage gives you the lowest rate but higher debt service because you're paying principal every month. A bridge is interest-only. The rate is a few points higher, but the monthly debt service is considerably lower, which matters a lot if cash is tight. If you can refinance into a permanent structure in 12-24 months at a better rate, the bridge often pencils out better in the meantime.",
     relatedSolutions: ['real-estate-lending', 'bridge-funding']
   },
   {
     id: 're-sell-leaseback',
     q: 'What is a sell-leaseback and when does it make sense?',
-    a: "Sell-leaseback is when you sell your owner-occupied property to an investor and immediately lease it back, so operations continue uninterrupted. It extracts the maximum cash — close to 100% of the value, versus 65-75% on a mortgage — but you give up the asset and take on a long-term lease obligation. It usually makes sense when an owner wants to pull the most capital possible to redeploy into the business and doesn't mind no longer owning the real estate.",
+    a: "Sell-leaseback is when you sell your owner-occupied property to an investor and immediately lease it back, so operations continue uninterrupted. It extracts the maximum cash, close to 100% of the value versus 65-75% on a mortgage, but you give up the asset and take on a long-term lease obligation. It usually makes sense when an owner wants to pull the most capital possible to redeploy into the business and doesn't mind no longer owning the real estate.",
     relatedSolutions: ['real-estate-lending']
   },
   {
     id: 're-bad-years-can-i-still-qualify',
     q: 'My business had a few rough years. Can I still borrow against my real estate?',
-    a: "Often yes. We work with real-estate-backed SBA lenders and private-credit groups that don't get scared off by a couple of negative years on the P&L if the property and the forward story support it. They'll do pro-forma underwrites — looking at where the business is going, not just trailing twelve months. The property carries most of the underwriting weight, which is why real-estate-backed structures are often the path for owners who don't fit a clean bank credit box.",
+    a: "Often yes. We work with real-estate-backed SBA lenders and private-credit groups that don't get scared off by a couple of negative years on the P&L if the property and the forward story support it. They'll do pro-forma underwrites, looking at where the business is going, not just trailing twelve months. The property carries most of the underwriting weight, which is why real-estate-backed structures are often the path for owners who don't fit a clean bank credit box.",
     relatedSolutions: ['real-estate-lending', 'sba-loans']
   },
 
@@ -829,31 +1012,31 @@ export const solutionSpecificFAQs: FAQ[] = [
   {
     id: 'what-is-stretch-capital',
     q: 'What is "stretch capital" and when do I need it?',
-    a: "Stretch capital is the layer that sits on top of your senior secured debt — usually a subordinated or unsecured loan — when you've already pledged your obvious collateral but still need more dollars to get the deal done. It's how layered-capital stacks actually get built: senior secured first (cheapest), then stretch on top to reach the full number. You need it when the senior lender can't size the facility large enough on its own and the incremental dollars unlock real upside.",
+    a: "Stretch capital is the layer that sits on top of your senior secured debt, usually a subordinated or unsecured loan, when you've already pledged your obvious collateral but still need more dollars to get the deal done. It's how layered-capital stacks actually get built: senior secured first (cheapest), then stretch on top to reach the full number. You need it when the senior lender can't size the facility large enough on its own and the incremental dollars unlock real upside.",
     relatedSolutions: ['unsecured-debt', 'asset-based-lending', 'real-estate-lending']
   },
   {
     id: 'subordinated-vs-unsecured',
     q: "What's the difference between subordinated debt and unsecured debt?",
-    a: "Subordinated debt is still secured — there's a lien — but it sits behind your senior lender in priority, so if anything goes sideways, the senior gets paid first. It typically lends at 1-5× EBITDA. Unsecured debt skips the lien entirely: no UCC filing, sometimes no personal guarantee, priced higher because the lender has no collateral. Subordinated is more common in M&A and larger growth deals; unsecured shows up more on smaller bridge and gap-fill situations.",
+    a: "Subordinated debt is still secured. There's a lien, but it sits behind your senior lender in priority, so if anything goes sideways, the senior gets paid first. It typically lends at 1-5× EBITDA. Unsecured debt skips the lien entirely: no UCC filing, sometimes no personal guarantee, priced higher because the lender has no collateral. Subordinated is more common in M&A and larger growth deals; unsecured shows up more on smaller bridge and gap-fill situations.",
     relatedSolutions: ['unsecured-debt']
   },
   {
     id: 'will-stretch-capital-mess-up-senior-line',
     q: 'Will subordinated or unsecured debt interfere with my existing bank or ABL line?',
-    a: "Not if it's structured correctly — that's the whole point. Subordinated lenders sign intercreditor agreements with your senior lender so the lien priority is documented and the bank stays comfortable. Some unsecured products carry no UCC filing at all, which makes them especially clean from the senior's perspective. The bank usually appreciates a well-structured stretch layer, because it lets them keep their senior position right-sized without having to overextend.",
+    a: "Not if it's structured correctly. That's the whole point. Subordinated lenders sign intercreditor agreements with your senior lender so the lien priority is documented and the bank stays comfortable. Some unsecured products carry no UCC filing at all, which makes them especially clean from the senior's perspective. The bank usually appreciates a well-structured stretch layer, because it lets them keep their senior position right-sized without having to overextend.",
     relatedSolutions: ['unsecured-debt', 'asset-based-lending']
   },
   {
     id: 'subordinated-debt-cost',
     q: 'How much does subordinated or unsecured stretch capital cost?',
-    a: 'As of 2026, pricing typically runs Prime + 4-8% depending on cash-flow strength, lien position, and how subordinated the layer is. That\'s more expensive than the senior secured piece underneath — by design, because the lender is taking more risk. The honest question to ask isn\'t "is this cheap?" but "do the incremental dollars unlock enough upside to justify the cost?" When the answer is yes, this is the tool that gets the deal done.',
+    a: 'As of 2026, pricing typically runs Prime + 4-8% depending on cash-flow strength, lien position, and how subordinated the layer is. That\'s more expensive than the senior secured piece underneath, by design, because the lender is taking more risk. The honest question to ask isn\'t "is this cheap?" but "do the incremental dollars unlock enough upside to justify the cost?" When the answer is yes, this is the tool that gets the deal done.',
     relatedSolutions: ['unsecured-debt']
   },
   {
     id: 'unsecured-no-pg',
     q: 'Are there unsecured products with no personal guarantee?',
-    a: "A few, yes — they exist but they're rare and the underwriting bar is higher. Most stretch-capital products will ask for a PG, especially if the structure is unsecured and there's no collateral to anchor it. When a no-PG option is on the table, it tends to be priced at the higher end of the range and the lender is leaning heavily on the historical cash flow and the strength of the senior secured structure underneath. We surface these options when they fit; we don't promise them blind.",
+    a: "A few, yes. They exist but they're rare and the underwriting bar is higher. Most stretch-capital products will ask for a PG, especially if the structure is unsecured and there's no collateral to anchor it. When a no-PG option is on the table, it tends to be priced at the higher end of the range and the lender is leaning heavily on the historical cash flow and the strength of the senior secured structure underneath. We surface these options when they fit; we don't promise them blind.",
     relatedSolutions: ['unsecured-debt']
   },
 
@@ -863,19 +1046,19 @@ export const solutionSpecificFAQs: FAQ[] = [
   {
     id: 'what-makes-a-good-bridge',
     q: 'What makes a "good" bridge loan vs. a bad one?',
-    a: 'The single most important variable is the exit. A good bridge has a visible, time-bound take-out — an ABL closing in 60 days, a property under contract, a senior facility under written term sheet, a contract with assignment of claims signed. A bad bridge has no defined exit and ends up rolling into another bridge, then another. If the repayment source is "investors who are positively responding," that\'s not a bridge — that\'s expensive working capital pretending to be one. We walk away from those.',
+    a: 'The single most important variable is the exit. A good bridge has a visible, time-bound take-out: an ABL closing in 60 days, a property under contract, a senior facility under written term sheet, a contract with assignment of claims signed. A bad bridge has no defined exit and ends up rolling into another bridge, then another. If the repayment source is "investors who are positively responding," that\'s not a bridge. That\'s expensive working capital pretending to be one. We walk away from those.',
     relatedSolutions: ['bridge-funding']
   },
   {
     id: 'bridge-cost-sounds-expensive',
     q: 'The annualized rate on a bridge looks high. Is it actually expensive?',
-    a: "Not if you only carry it for the days you actually need it. Bridge products are built to exit fast, usually 30-180 days, and most carry aggressive early-payoff discounts so the effective cost scales with how long you hold the capital. A 6-7% annualized rate held for 60 days on a strong-margin deal is almost always worth it. The mistake is treating bridge like a long-term loan — that's when the annualized number actually hurts you.",
+    a: "Not if you only carry it for the days you actually need it. Bridge products are built to exit fast, usually 30-180 days, and most carry aggressive early-payoff discounts so the effective cost scales with how long you hold the capital. A 6-7% annualized rate held for 60 days on a strong-margin deal is almost always worth it. The mistake is treating bridge like a long-term loan. That's when the annualized number actually hurts you.",
     relatedSolutions: ['bridge-funding']
   },
   {
     id: 'bridge-while-abl-set-up',
     q: 'Can I use a bridge while my asset-based line is being set up?',
-    a: 'Yes — this is one of the most common ways we sequence capital. We call it a "one-then-three" approach: get a fast revenue-based or unsecured bridge in place in days, then run the asset-based facility in parallel knowing it takes 6-8 weeks to close. The bridge stabilizes operations during the gap; the ABL is the permanent structure. When the ABL funds, it takes out the bridge.',
+    a: 'Yes. This is one of the most common ways we sequence capital. We call it a "one-then-three" approach: get a fast revenue-based or unsecured bridge in place in days, then run the asset-based facility in parallel knowing it takes 6-8 weeks to close. The bridge stabilizes operations during the gap; the ABL is the permanent structure. When the ABL funds, it takes out the bridge.',
     relatedSolutions: ['bridge-funding', 'asset-based-lending']
   },
   {
@@ -887,7 +1070,7 @@ export const solutionSpecificFAQs: FAQ[] = [
   {
     id: 'bridge-vs-mca',
     q: 'Is bridge funding the same as a merchant cash advance?',
-    a: 'No, and the distinction matters. A merchant cash advance is short-term capital with daily or weekly debits, typically no defined exit event, and pricing that gets dramatically worse if you stack multiple advances. A proper bridge is event-driven — it exits when a specific thing closes — and carries interest-only or monthly payment structures with aggressive early-payoff incentives. Bridge belongs in a layered-capital strategy; MCA usually doesn\'t.',
+    a: 'No, and the distinction matters. A merchant cash advance is short-term capital with daily or weekly debits, typically no defined exit event, and pricing that gets dramatically worse if you stack multiple advances. A proper bridge is event-driven. It exits when a specific thing closes, and carries interest-only or monthly payment structures with aggressive early-payoff incentives. Bridge belongs in a layered-capital strategy; MCA usually doesn\'t.',
     relatedSolutions: ['bridge-funding', 'debt-refinance']
   }
 ]
@@ -900,19 +1083,19 @@ export const solutionComparisonFAQs: FAQ[] = [
   {
     id: 'which-funding-fastest',
     q: 'Which funding solution is the fastest?',
-    a: 'Working capital loans and revenue-based financing are the fastest, with approval in 1-3 business days and funding in 2-10 days. Bridge funding and invoice factoring (once approved) can also move quickly—factoring releases cash within 24-48 hours per invoice. Asset-based lending and SBA loans take longer (4-8 weeks) but offer lower rates.',
+    a: 'Working capital loans and revenue-based financing are the fastest, with approval in 1-3 business days and funding in 2-10 days. Bridge funding and invoice factoring (once approved) can also move quickly. Factoring releases cash within 24-48 hours per invoice. Asset-based lending and SBA loans take longer (4-8 weeks) but offer lower rates.',
     relatedSolutions: ['working-capital-loans', 'bridge-funding', 'invoice-factoring']
   },
   {
     id: 'bank-declined-options',
     q: 'What if my bank declined me?',
-    a: 'When banks say no, we say how. Bank declines are actually our most common starting point—bankers are our primary referral source. Alternative lenders evaluate businesses differently: invoice factoring looks at your customers\' credit (not yours), asset-based lending focuses on collateral value, and working capital loans weigh revenue trajectory. We have an extensive network of lender relationships to find the right fit.',
+    a: 'When banks say no, we say how. Bank declines are actually our most common starting point. Bankers are our primary referral source. Alternative lenders evaluate businesses differently: invoice factoring looks at your customers\' credit (not yours), asset-based lending focuses on collateral value, and working capital loans weigh revenue trajectory. We have an extensive network of lender relationships to find the right fit.',
     relatedSolutions: ['asset-based-lending', 'invoice-factoring', 'working-capital-loans']
   },
   {
     id: 'combine-funding-types',
     q: 'Can I combine multiple funding types?',
-    a: 'Yes—this is called "layered capital" and it\'s one of our specialties. Example: $1MM AR revolver + $240K unsecured term loan + $550K second mortgage = $1.79MM total capital. Each layer serves a different purpose and sits at a different position in the capital stack. This approach maximizes available funds without over-leveraging any single source.',
+    a: 'Yes. This is called "layered capital" and it\'s one of our specialties. Example: $1MM AR revolver + $240K unsecured term loan + $550K second mortgage = $1.79MM total capital. Each layer serves a different purpose and sits at a different position in the capital stack. This approach maximizes available funds without over-leveraging any single source.',
     relatedSolutions: ['asset-based-lending', 'unsecured-debt', 'real-estate-lending']
   },
   {
@@ -936,13 +1119,13 @@ export const solutionComparisonFAQs: FAQ[] = [
   {
     id: 'which-solution-cheapest',
     q: 'Which funding solution has the lowest cost?',
-    a: 'SBA loans offer the lowest rates (Prime + 2-3%) but take the longest to close. Invoice factoring (Prime + 1-6%) and asset-based lending (Prime + 1-5%) are next, offering competitive rates with faster timelines. Working capital loans (1.25-4% monthly) cost more but close in days. The cheapest option depends on your timeline, collateral, and business profile—we help you find the best balance of cost and speed.',
+    a: 'SBA loans offer the lowest rates (Prime + 2-3%) but take the longest to close. Invoice factoring (Prime + 1-6%) and asset-based lending (Prime + 1-5%) are next, offering competitive rates with faster timelines. Working capital loans (1.25-4% monthly) cost more but close in days. The cheapest option depends on your timeline, collateral, and business profile. We help you find the best balance of cost and speed.',
     relatedSolutions: ['sba-loans', 'invoice-factoring', 'asset-based-lending', 'working-capital-loans']
   },
   {
     id: 'collateral-required',
     q: 'Do I need collateral to get business funding?',
-    a: 'Not always. Working capital loans and unsecured bridge capital don\'t require traditional collateral—they\'re approved based on revenue and growth trajectory. Invoice factoring uses your unpaid invoices as collateral. Asset-based lending requires hard assets (AR, inventory, equipment). Real estate lending requires property. We match you to the right product based on what you have available.',
+    a: 'Not always. Working capital loans and unsecured bridge capital don\'t require traditional collateral. They\'re approved based on revenue and growth trajectory. Invoice factoring uses your unpaid invoices as collateral. Asset-based lending requires hard assets (AR, inventory, equipment). Real estate lending requires property. We match you to the right product based on what you have available.',
     relatedSolutions: ['working-capital-loans', 'unsecured-debt', 'invoice-factoring', 'asset-based-lending']
   }
 ]
@@ -952,8 +1135,8 @@ export const solutionComparisonFAQs: FAQ[] = [
 // ============================================================================
 
 export const allFAQs: FAQ[] = [
-  ...aboutServeFundingFAQs,
-  ...workingCapitalFAQs,
-  ...solutionSpecificFAQs,
-  ...solutionComparisonFAQs
+...aboutServeFundingFAQs,
+...workingCapitalFAQs,
+...solutionSpecificFAQs,
+...solutionComparisonFAQs
 ]

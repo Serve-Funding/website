@@ -70,7 +70,7 @@ export default function Partners() {
               </Button>
             </Link>
             <Text size="sm" className="mt-6 text-gray-600">
-              Commercial bankers — see the{' '}
+              Commercial bankers, see the{' '}
               <Link href="/bankers" className="text-gold-500 hover:underline font-semibold">
                 Bankers
               </Link>
@@ -94,21 +94,21 @@ export default function Partners() {
               <Card noHover>
                 <Heading size="h3" className="text-olive-900 mb-3">You are the Hero in Their Story</Heading>
                 <Text className="text-gray-700 leading-relaxed">
-                  When we come through for your prospect, they remember that you went out of your way. They see you as the banker or advisor who didn't give up, who found a solution. They often come back to you as a stronger, more loyal client. When we solve for your existing clients, you strengthen that relationship by being the one who delivered. Either way—you've deepened trust, enhanced your reputation, and positioned yourself as the trusted advisor your clients can count on.
+                  When we come through for your prospect, they remember that you went out of your way. They see you as the banker or advisor who didn't give up, who found a solution. They often come back to you as a stronger, more loyal client. When we solve for your existing clients, you strengthen that relationship by being the one who delivered. Either way, you've deepened trust, enhanced your reputation, and positioned yourself as the trusted advisor your clients can count on.
                 </Text>
               </Card>
 
               <Card noHover>
                 <Heading size="h3" className="text-olive-900 mb-3">Time Wasted, Credibility Lost</Heading>
                 <Text className="text-gray-700 leading-relaxed">
-                  You refer a prospect or client to an alternative lender. They go down the road. Two to four weeks of underwriting pass. Then the lender hits a wall—maybe it's a customer contract clause that makes the deal impossible, maybe it's collateral issues, maybe the leverage doesn't work. The business owner gets turned down. Again. Meanwhile, weeks have passed, their opportunity window is closing, and your credibility takes a hit for the referral that didn't work out.
+                  You refer a prospect or client to an alternative lender. They go down the road. Two to four weeks of underwriting pass. Then the lender hits a wall. Maybe it's a customer contract clause that makes the deal impossible, maybe it's collateral issues, maybe the leverage doesn't work. The business owner gets turned down. Again. Meanwhile, weeks have passed, their opportunity window is closing, and your credibility takes a hit for the referral that didn't work out.
                 </Text>
               </Card>
 
               <Card noHover>
                 <Heading size="h3" className="text-olive-900 mb-3">If There's a Way, We'll Find It</Heading>
                 <Text className="text-gray-700 leading-relaxed">
-                  Here's our commitment: if there's a way to get it done, we will find a way. We're not locked into one product or one box. We can layer solutions. We can look at multiple lenders at once. We can use real estate, equipment, personal assets, cash flow—whatever combination works. The only time we can't help is if expectations are just unrealistic. But as long as there's something viable to build on, we'll sweep the corners of the known credit universe to find it. That's how we protect your reputation.
+                  Here's our commitment: if there's a way to get it done, we will find a way. We're not locked into one product or one box. We can layer solutions. We can look at multiple lenders at once. We can use real estate, equipment, personal assets, cash flow, whatever combination works. The only time we can't help is if expectations are just unrealistic. But as long as there's something viable to build on, we'll sweep the corners of the known credit universe to find it. That's how we protect your reputation.
                 </Text>
               </Card>
             </StaggerContainer>
@@ -137,7 +137,7 @@ export default function Partners() {
                     The Importance of Trust: Your Reputation Matters
                   </Heading>
                   <Text className="text-gray-700">
-                    We get it—when a banker declines credit and wants to refer a client to an alternative funding solution, they need assurance that their client is in trusted hands. By referring your clients and prospects to Serve Funding, you're introducing them to a trusted advisor who prioritizes their best interests.
+                    We get it. When a banker declines credit and wants to refer a client to an alternative funding solution, they need assurance that their client is in trusted hands. By referring your clients and prospects to Serve Funding, you're introducing them to a trusted advisor who prioritizes their best interests.
                   </Text>
                 </div>
 

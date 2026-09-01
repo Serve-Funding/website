@@ -16,7 +16,7 @@ export const companyInfo = {
   name: "Serve Funding LLC",
   tagline: "Creative Working Capital",
 
-  description: "A boutique business financing advisory firm serving growing companies with creative working capital from $250 to $100MM. As a channel-neutral advisor, we're not a lender—we're your trusted advocate with relationships across an extensive lender network. We specialize in debt refinance, payroll financing, MCA consolidation, asset-based lending, and alternative financing when traditional banks decline. Operating with servant leadership, we fight for your best interests and negotiate the best terms across multiple underwriting styles. Relationships over bots. Strategy over algorithms.",
+  description: "A boutique business financing advisory firm serving growing companies with creative working capital from $250 to $100MM. As a channel-neutral advisor, we're not a lender. We're your trusted advocate with relationships across an extensive lender network. We specialize in debt refinance, payroll financing, MCA consolidation, asset-based lending, and alternative financing when traditional banks decline. Operating with servant leadership, we fight for your best interests and negotiate the best terms across multiple underwriting styles. Relationships over bots. Strategy over algorithms.",
 
   contact: {
     phone: "+1 770-820-7409",
@@ -250,7 +250,7 @@ export const messagingTemplates = {
 
   relationshipNarrative: {
     headline: "Relationships Over Transactions",
-    message: "We partner with you for the long term. Our 65% repeat client rate shows we're not chasing one-time deals—we're building lasting relationships that grow with your business."
+    message: "We partner with you for the long term. Our 65% repeat client rate shows we're not chasing one-time deals. We're building lasting relationships that grow with your business."
   },
 
   trustNarrative: {
@@ -260,7 +260,7 @@ export const messagingTemplates = {
 
   forAdvisors: {
     headline: "Deepen Client Relationships by Referring",
-    message: "When your client needs capital you can't provide, a Serve Funding referral makes you the hero. You're not losing the relationship—you're strengthening it."
+    message: "When your client needs capital you can't provide, a Serve Funding referral makes you the hero. You're not losing the relationship. You're strengthening it."
   }
 }
 

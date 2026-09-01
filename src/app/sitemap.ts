@@ -2,7 +2,6 @@ import { MetadataRoute } from 'next'
 import { fundingSolutions } from '@/data/solutions'
 import { comparisons } from '@/data/comparisons'
 import { industries } from '@/data/industries'
-import { fundingPages } from '@/data/funding-pages'
 import { getBlogPosts } from '@/lib/blog-utils'
 
 // Stable build-time date for static routes — using `new Date()` per-route makes
@@ -60,12 +59,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }))
 
   // Problem pages carry the paid-search traffic; priority sits with the solution pages.
-  const fundingRoutes = fundingPages.map((p) => ({
-    url: `${baseUrl}/funding/${p.id}`,
-    lastModified: STATIC_PAGES_LAST_REVIEWED,
-    changeFrequency: 'monthly' as const,
-    priority: 0.9,
-  }))
 
   const blogPosts = getBlogPosts()
   const blogRoutes = blogPosts.map((post) => ({
@@ -80,7 +73,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...solutionRoutes,
     ...comparisonRoutes,
     ...industryRoutes,
-    ...fundingRoutes,
     ...blogRoutes,
   ]
 }

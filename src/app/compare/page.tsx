@@ -48,7 +48,7 @@ export default function CompareIndexPage() {
               Head-to-Head Funding Comparisons
             </Heading>
             <Text size="2xl" className="text-gray-700 mb-3">
-              The trade-offs you&apos;re actually weighing — spelled out side by side.
+              The trade-offs you&apos;re actually weighing, spelled out side by side.
             </Text>
             <Text className="text-gray-600">
               Each comparison walks through the structural difference, when each
@@ -97,7 +97,7 @@ export default function CompareIndexPage() {
 
       <CTA
         title="Not sure which comparison fits your situation?"
-        text="A 20-minute call: we listen to where you are, then point you to the right path — comparison or not."
+        text="A 20-minute call: we listen to where you are, then point you to the right path, comparison or not."
         buttonText="Start a Conversation"
         useBG
       />

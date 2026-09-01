@@ -207,7 +207,7 @@ function DiscoverContent() {
               Built on Relationships.<br />Operated With Integrity.
             </Heading>
             <Text color="white" size="2xl" className="mb-6 leading-relaxed">
-              Serve Funding is a relationship-based advisory — not an algorithm-driven &quot;marketplace&quot;. We do not sell leads or shop deals indiscriminately. Every client is handled with care by members of our dedicated, experienced team.
+              Serve Funding is a relationship-based advisory, not an algorithm-driven &quot;marketplace&quot;. We do not sell leads or shop deals indiscriminately. Every client is handled with care by members of our dedicated, experienced team.
             </Text>
             <Text color="white" size="lg" className="leading-relaxed italic">
               We treat every relationship and every client&#39;s financing opportunity as if it were our own.
