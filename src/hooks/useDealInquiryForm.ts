@@ -5,6 +5,7 @@ import { useFormSubmit, FormSubmitData } from './useFormSubmit'
 import { formQuestions } from '@/data/form-questions'
 import { trackEvent, trackFormSubmission, trackHubSpotNativeForm } from '@/lib/tracking'
 import { checkTriageRules, triageRules, type TriageAction } from '@/lib/triage-rules'
+import type { ContactVerdict } from '@/lib/verify-contact'
 
 
 // Calendly URLs - split by person and owner vs partner role
@@ -78,6 +79,11 @@ export function useDealInquiryForm(
   const [phone, setPhone] = useState('')
   const [company, setCompany] = useState('')
   const [smsConsent, setSmsConsent] = useState(false)
+
+  // Email/phone verification on the contact-info step
+  const [isVerifying, setIsVerifying] = useState(false)
+  const [contactError, setContactError] = useState('')
+  const [verification, setVerification] = useState<ContactVerdict | null>(null)
 
   // Dynamic "other" field responses (for single_with_other questions)
   const [otherResponses, setOtherResponses] = useState<Record<string, string>>({})
@@ -429,6 +435,7 @@ export function useDealInquiryForm(
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...contactData,
+          verification,
           type: 'calendly',
           transition_source: source,
           chat_transcript: chatTranscript || '',
@@ -440,8 +447,37 @@ export function useDealInquiryForm(
   }
 
   // Continue from contact-info step (Q2) to next triage question without final submission
-  const handleContactInfoContinue = () => {
-    if (!name || !email) return
+  const handleContactInfoContinue = async () => {
+    if (!name || !email || isVerifying) return
+
+    // Verify the email is deliverable and the phone is a real, reachable line
+    // before we let the lead through. Only an undeliverable email blocks;
+    // everything else is passed along as a flag on the notification email.
+    setContactError('')
+    setIsVerifying(true)
+    let verdict: ContactVerdict | null = null
+    try {
+      const res = await fetch('/api/verify-contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, phone }),
+      })
+      verdict = await res.json()
+    } catch (error) {
+      console.error('Contact verification error:', error)
+    }
+    setIsVerifying(false)
+    setVerification(verdict)
+
+    if (verdict?.hardFail === 'email') {
+      setContactError(
+        verdict.email.suggestion
+          ? `We couldn't deliver to that address. Did you mean ${verdict.email.suggestion}?`
+          : "That email address doesn't appear to exist. Please double-check it so we can reach you."
+      )
+      trackEvent('deal_inquiry_contact_rejected', { reason: 'email_undeliverable' })
+      return
+    }
 
     const isPartner = userRole === 'A Banker / Business Advisor'
     const displayTitle = (isPartner && currentQuestion?.partnerTitle)
@@ -456,7 +492,7 @@ export function useDealInquiryForm(
       options: [],
     }])
 
-    sendAnswerWebhook('contact_info', { name, email, phone, company })
+    sendAnswerWebhook('contact_info', { name, email, phone, company, verification: verdict })
 
     // Fire instant notify email so we hear about the lead even if they abandon mid-triage
     try {
@@ -469,6 +505,7 @@ export function useDealInquiryForm(
           email,
           phone,
           company,
+          verification: verdict,
           type: 'early',
         }),
       })
@@ -649,6 +686,8 @@ export function useDealInquiryForm(
     isLastQuestion,
     isContactInfoStep,
     isTriageQuestion,
+    isVerifying,
+    contactError,
     showChoicePoint,
     chosenPath,
     answeredQuestions,
