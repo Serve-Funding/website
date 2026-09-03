@@ -103,6 +103,14 @@ v = await verifyContact({ email: 'owner@realco.com', phone: '+442079460000' })
 assert.equal(v.flags.length, 1, `expected exactly one flag, got ${JSON.stringify(v.flags)}`)
 assert.match(v.flags[0], /registered in GB/)
 
+// 4d. Catch-all domains are common and say nothing about the mailbox, so they
+// must NOT raise a warning — only appear in the summary line.
+stubFetch({ email: { status: 'success', result: 'catchall' }, phone: usMobile() })
+v = await verifyContact({ email: 'owner@realco.com', phone: '+17045551234' })
+assert.equal(v.hardFail, null)
+assert.deepEqual(v.flags, [], `catchall must not flag, got ${JSON.stringify(v.flags)}`)
+assert.equal(v.email.result, 'catchall')
+
 // 5. Disposable email is flagged but still gets through.
 stubFetch({ email: { status: 'success', result: 'disposable' }, phone: usMobile() })
 v = await verifyContact({ email: 'x@mailinator.com', phone: '+17045551234' })
@@ -128,7 +136,21 @@ v = await verifyContact({ email: 'owner@realco.com' })
 assert.equal(v.hardFail, null)
 assert.match(v.flags.join(' '), /No phone number given/)
 
-console.log('verify-contact: 10/10 checks passed')
+// 9. A configured-but-failing check must say so, not go quiet. This is what an
+// exhausted NeverBounce balance looks like.
+stubFetch({ email: { status: 'auth_failure' }, phone: usMobile() })
+v = await verifyContact({ email: 'owner@realco.com', phone: '+17045551234' })
+assert.equal(v.hardFail, null)
+assert.match(v.flags.join(' '), /out of credits or bad key/)
+assert.doesNotMatch(v.flags.join(' '), /not configured/)
+
+// 10. Twilio failing while NeverBounce succeeds flags only the phone.
+stubFetch({ email: OK_EMAIL, phoneStatus: 500 })
+v = await verifyContact({ email: 'owner@realco.com', phone: '+17045551234' })
+assert.equal(v.flags.length, 1, `expected one flag, got ${JSON.stringify(v.flags)}`)
+assert.match(v.flags[0], /Twilio lookup failed/)
+
+console.log('verify-contact: 13/13 checks passed')
 }
 
 main()

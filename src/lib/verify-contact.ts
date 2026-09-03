@@ -84,7 +84,6 @@ async function verifyPhone(phone: string): Promise<ContactVerdict['phone']> {
 const EMAIL_FLAGS: Partial<Record<EmailResult, string>> = {
   invalid: 'Email is undeliverable — this mailbox does not exist',
   disposable: 'Disposable / throwaway email domain',
-  catchall: 'Domain accepts all mail — the mailbox itself could not be confirmed',
   unknown: 'Email server did not respond — deliverability unconfirmed',
 }
 
@@ -138,11 +137,19 @@ export async function verifyContact({
     }
   }
 
-  if (emailVerdict.result === 'unchecked' && !NEVERBOUNCE_KEY) {
-    flags.push('Email verification not configured (NEVERBOUNCE_API_KEY missing)')
+  if (emailVerdict.result === 'unchecked') {
+    flags.push(
+      NEVERBOUNCE_KEY
+        ? 'Email could not be verified — NeverBounce rejected the request (out of credits or bad key)'
+        : 'Email verification not configured (NEVERBOUNCE_API_KEY missing)'
+    )
   }
-  if (phone?.trim() && phoneVerdict.valid === null && !TWILIO_SID) {
-    flags.push('Phone verification not configured (TWILIO_ACCOUNT_SID missing)')
+  if (phone?.trim() && phoneVerdict.valid === null) {
+    flags.push(
+      TWILIO_SID
+        ? 'Phone could not be verified — the Twilio lookup failed'
+        : 'Phone verification not configured (TWILIO_ACCOUNT_SID missing)'
+    )
   }
   if (!phone?.trim()) {
     flags.push('No phone number given')

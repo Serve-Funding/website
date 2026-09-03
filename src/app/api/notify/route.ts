@@ -59,7 +59,7 @@ function buildVerificationBlock(body: Record<string, any>): string {
   if (flags.length === 0) {
     return `
     <p style="margin-top: 20px; padding: 10px 14px; background: #f0f7f0; border-left: 3px solid #4a7c3f; border-radius: 4px; font-size: 13px; color: #2a231a;">
-      <strong>Contact verified.</strong>${summary ? ` ${escapeHtml(summary)}` : ''}
+      <strong>No contact problems found.</strong>${summary ? ` ${escapeHtml(summary)}` : ''}
     </p>`
   }
 
