@@ -74,6 +74,35 @@ v = await verifyContact({ email: 'owner@realco.com', phone: '+919876543210' })
 assert.equal(v.hardFail, null)
 assert.match(v.flags.join(' '), /registered in IN/)
 
+// 4b. Well-formed US number that no carrier claims — Twilio still calls this
+// "valid". This is the disconnected-number case that started all of this.
+stubFetch({
+  email: OK_EMAIL,
+  phone: {
+    valid: true,
+    country_code: 'US',
+    line_type_intelligence: { type: null, carrier_name: null, error_code: 60600 },
+  },
+})
+v = await verifyContact({ email: 'owner@realco.com', phone: '(704) 555-1234' })
+assert.equal(v.hardFail, null)
+assert.equal(v.flags.length, 1, `expected exactly one flag, got ${JSON.stringify(v.flags)}`)
+assert.match(v.flags[0], /unassigned or disconnected/)
+
+// 4c. A foreign number with no line-type coverage gets the country flag only —
+// missing carrier data abroad is normal and must not read as "disconnected".
+stubFetch({
+  email: OK_EMAIL,
+  phone: {
+    valid: true,
+    country_code: 'GB',
+    line_type_intelligence: { type: null, carrier_name: null, error_code: 60600 },
+  },
+})
+v = await verifyContact({ email: 'owner@realco.com', phone: '+442079460000' })
+assert.equal(v.flags.length, 1, `expected exactly one flag, got ${JSON.stringify(v.flags)}`)
+assert.match(v.flags[0], /registered in GB/)
+
 // 5. Disposable email is flagged but still gets through.
 stubFetch({ email: { status: 'success', result: 'disposable' }, phone: usMobile() })
 v = await verifyContact({ email: 'x@mailinator.com', phone: '+17045551234' })
@@ -99,7 +128,7 @@ v = await verifyContact({ email: 'owner@realco.com' })
 assert.equal(v.hardFail, null)
 assert.match(v.flags.join(' '), /No phone number given/)
 
-console.log('verify-contact: 8/8 checks passed')
+console.log('verify-contact: 10/10 checks passed')
 }
 
 main()

@@ -11,9 +11,10 @@ const NEVERBOUNCE_KEY = process.env.NEVERBOUNCE_API_KEY
 const TWILIO_SID = process.env.TWILIO_ACCOUNT_SID
 const TWILIO_TOKEN = process.env.TWILIO_AUTH_TOKEN
 
-// ponytail: line_type_intelligence (GA) catches burner/VoIP numbers but not a
-// real carrier number that has been disconnected. Append ',line_status' here to
-// catch those too — it is billed as a second lookup and is mobile-only.
+// ponytail: line_type_intelligence catches burner/VoIP lines and, via a missing
+// carrier record, numbers no carrier has ever claimed. It will NOT catch a
+// number that a carrier still owns but has since disconnected. Append
+// ',line_status' here for that — billed as a second lookup, mobile-only.
 const TWILIO_FIELDS = 'line_type_intelligence'
 
 const TIMEOUT_MS = 5000
@@ -22,7 +23,7 @@ export type EmailResult = 'valid' | 'invalid' | 'disposable' | 'catchall' | 'unk
 
 export interface ContactVerdict {
   email: { result: EmailResult; suggestion?: string }
-  phone: { valid: boolean | null; type?: string; carrier?: string; country?: string }
+  phone: { valid: boolean | null; type?: string; carrier?: string; country?: string; errorCode?: number }
   /** Human-readable warnings, rendered into the lead notification email. */
   flags: string[]
   /** Set only when the submission should be sent back for correction. */
@@ -76,6 +77,7 @@ async function verifyPhone(phone: string): Promise<ContactVerdict['phone']> {
     type: data.line_type_intelligence?.type,
     carrier: data.line_type_intelligence?.carrier_name,
     country: data.country_code,
+    errorCode: data.line_type_intelligence?.error_code ?? undefined,
   }
 }
 
@@ -121,6 +123,16 @@ export async function verifyContact({
   } else if (phoneVerdict.valid === true) {
     const suspect = phoneVerdict.type ? SUSPECT_LINE_TYPES[phoneVerdict.type] : undefined
     if (suspect) flags.push(`Phone: ${suspect}`)
+
+    // Twilio's `valid` only means the number is well-formed for its country, not
+    // that anyone can answer it. A US number that no carrier claims is either
+    // unassigned or disconnected — which is what a fake contact number looks
+    // like. Scoped to US because line type coverage is spotty abroad, and a
+    // foreign number already gets its own flag below.
+    if (phoneVerdict.country === 'US' && !phoneVerdict.carrier && !phoneVerdict.type) {
+      flags.push('Phone has no carrier record — the number is unassigned or disconnected')
+    }
+
     if (phoneVerdict.country && phoneVerdict.country !== 'US') {
       flags.push(`Phone is registered in ${phoneVerdict.country}, not the US`)
     }
