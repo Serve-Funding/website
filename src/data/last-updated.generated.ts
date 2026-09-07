@@ -36,8 +36,8 @@ export const ROUTE_LAST_MODIFIED = {
   '/privacy-policy': '2026-08-31',
   '/sms-terms': '2026-08-31',
   '/solutions': '2026-08-31',
-  '/solutions/[solution-id]': '2026-08-31',
-  '/solutions/compare': '2026-08-31',
+  '/solutions/[solution-id]': '2026-09-07',
+  '/solutions/compare': '2026-09-07',
   '/terms-of-service': '2026-08-31',
 } as const
 
