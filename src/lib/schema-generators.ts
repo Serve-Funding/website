@@ -50,8 +50,21 @@ export const getOrganizationSchema = (config?: {
     "sameAs": "https://www.linkedin.com/in/michael-kodinsky/"
   },
   "knowsAbout": fundingSolutions.map(solution => getTitleAsString(solution.title)),
+  // Company profiles, not the founder's — his lives on `founder.sameAs` above.
+  // Agreement across independent sources is one of the few confirmed inputs to
+  // whether an assistant will cite an entity, so this should list every profile
+  // Serve Funding actually controls. Both are already linked from the footer.
   "sameAs": [
-    "https://www.linkedin.com/in/michael-kodinsky/"
+    "https://www.linkedin.com/company/serve-funding",
+    "https://www.facebook.com/ServeFunding"
+  ],
+  // The three bodies llms.txt claims membership in. TMA is displayed in the
+  // footer as an affiliation but is not claimed as a membership, so it is left
+  // out until someone confirms it.
+  "memberOf": [
+    { "@type": "Organization", "name": "Association for Corporate Growth", "url": "https://www.acg.org/" },
+    { "@type": "Organization", "name": "Secured Finance Network", "url": "https://www.sfnet.com/" },
+    { "@type": "Organization", "name": "International Factoring Association", "url": "https://www.factoring.org/" }
   ],
   "speakable": {
     "@type": "SpeakableSpecification",

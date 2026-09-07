@@ -12,7 +12,7 @@ export function SocialIcons() {
         label="LinkedIn"
       />
       <SocialIcon
-        href="https://web.facebook.com/ServeFunding/?_rdc=1&_rdr"
+        href="https://www.facebook.com/ServeFunding"
         icon={Facebook}
         label="Facebook"
       />

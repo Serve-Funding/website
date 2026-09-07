@@ -106,6 +106,8 @@ function ContactInfoFields({
   name, email, phone, company, smsConsent,
   setFieldValue,
   onContinue,
+  isVerifying,
+  contactError,
 }: {
   isPartner: boolean
   name: string
@@ -115,6 +117,8 @@ function ContactInfoFields({
   smsConsent: boolean
   setFieldValue: (id: string, value: any) => void
   onContinue: () => void
+  isVerifying: boolean
+  contactError: string
 }) {
   return (
     <form
@@ -174,7 +178,11 @@ function ContactInfoFields({
             <a href="/sms-terms" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'underline', color: 'inherit' }}>SMS Terms</a>.
           </span>
         </label>
-        <p style={{ fontSize: '12px', color: '#9ca3af', marginLeft: '4px' }}>We respect your privacy. No spam, ever.</p>
+        {contactError ? (
+          <p role="alert" style={{ fontSize: '13px', color: '#b42318', marginLeft: '4px' }}>{contactError}</p>
+        ) : (
+          <p style={{ fontSize: '12px', color: '#9ca3af', marginLeft: '4px' }}>We respect your privacy. No spam, ever.</p>
+        )}
       </div>
 
       <div style={{ display: 'flex', justifyContent: 'center', marginTop: '12px' }}>
@@ -182,10 +190,10 @@ function ContactInfoFields({
           type="submit"
           variant="default"
           size="lg"
-          disabled={!name || !email}
+          disabled={!name || !email || isVerifying}
         >
-          Continue
-          <ChevronRight size={18} className="ml-1" />
+          {isVerifying ? 'Checking\u2026' : 'Continue'}
+          {!isVerifying && <ChevronRight size={18} className="ml-1" />}
         </Button>
       </div>
     </form>
@@ -210,6 +218,8 @@ export function ConversationalForm({ initialRole, onComplete }: ConversationalFo
     chosenPath,
     answeredQuestions,
     isContactInfoStep,
+    isVerifying,
+    contactError,
     getFieldValue,
     setFieldValue,
     handleAnswer,
@@ -519,6 +529,8 @@ export function ConversationalForm({ initialRole, onComplete }: ConversationalFo
                 smsConsent={smsConsent}
                 setFieldValue={setFieldValue}
                 onContinue={handleContactInfoContinue}
+                isVerifying={isVerifying}
+                contactError={contactError}
               />
             </div>
           </motion.div>

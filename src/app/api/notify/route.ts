@@ -39,6 +39,42 @@ function buildContactTable(body: Record<string, any>): string {
     </tr>`).join('')
 }
 
+function buildVerificationBlock(body: Record<string, any>): string {
+  const v = body.verification
+  if (!v) return ''
+
+  const flags: string[] = Array.isArray(v.flags) ? v.flags : []
+
+  const phoneParts = [
+    v.phone?.type,
+    v.phone?.carrier,
+    v.phone?.country && v.phone.country !== 'US' ? v.phone.country : '',
+  ].filter(Boolean)
+
+  const summary = [
+    v.email?.result && v.email.result !== 'unchecked' ? `Email: ${v.email.result}` : '',
+    phoneParts.length ? `Phone: ${phoneParts.join(' \u00b7 ')}` : '',
+  ].filter(Boolean).join(' \u2014 ')
+
+  if (flags.length === 0) {
+    return `
+    <p style="margin-top: 20px; padding: 10px 14px; background: #f0f7f0; border-left: 3px solid #4a7c3f; border-radius: 4px; font-size: 13px; color: #2a231a;">
+      <strong>No contact problems found.</strong>${summary ? ` ${escapeHtml(summary)}` : ''}
+    </p>`
+  }
+
+  return `
+    <div style="margin-top: 20px; padding: 14px 16px; background: #fdf6e3; border-left: 3px solid #c99c42; border-radius: 4px;">
+      <p style="margin: 0 0 8px; font-weight: 600; color: #2a231a; font-size: 14px;">
+        Check this contact before booking a call
+      </p>
+      <ul style="margin: 0; padding-left: 18px; color: #5a4a34; font-size: 13px; line-height: 1.6;">
+        ${flags.map(f => `<li>${escapeHtml(String(f))}</li>`).join('')}
+      </ul>
+      ${summary ? `<p style="margin: 10px 0 0; font-size: 12px; color: #8a7a64;">${escapeHtml(summary)}</p>` : ''}
+    </div>`
+}
+
 function buildTriageTable(body: Record<string, any>): string {
   const fields: Array<{ label: string; key: string }> = [
     { label: 'Annual Revenue', key: 'annual_revenue' },
@@ -103,6 +139,7 @@ export async function POST(request: Request) {
             <table style="width: 100%; border-collapse: collapse;">
               ${buildContactTable(body)}
             </table>
+            ${buildVerificationBlock(body)}
             <p style="color: #999; font-size: 13px; margin-top: 24px;">
               They are currently completing the triage questions. Full details will follow when they finish.
             </p>
@@ -149,6 +186,7 @@ export async function POST(request: Request) {
             <table style="width: 100%; border-collapse: collapse;">
               ${buildContactTable(body)}
             </table>
+            ${buildVerificationBlock(body)}
             ${buildTriageTable(body)}
             ${chatTranscript ? `
             <h3 style="color: #2a231a; margin-top: 24px; margin-bottom: 12px;">AI Conversation</h3>
