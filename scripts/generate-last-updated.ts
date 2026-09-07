@@ -75,6 +75,39 @@ const ROUTE_SOURCES: Record<string, string[]> = {
   '/industries/[industry-id]': ['src/app/industries/[industry-id]/page.tsx', 'src/data/industries.ts'],
 }
 
+/**
+ * True when `git log` can be trusted to answer "when did this file last change".
+ *
+ * Vercel clones ~10 commits deep. Under a shallow clone git reports the boundary
+ * commit for every file the window doesn't contain, so a page untouched since
+ * June comes back dated to whenever the window happens to start — and that date
+ * marches forward with every deploy. Inflated dates are worse than no dates:
+ * Google drops the lastmod signal entirely for domains that publish them.
+ *
+ * So deepen the history first, and if that isn't possible, say so and let the
+ * committed values stand instead of believing the shallow answer.
+ */
+function isShallow(): boolean {
+  try {
+    return execFileSync('git', ['rev-parse', '--is-shallow-repository'], {
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'ignore'],
+    }).trim() === 'true'
+  } catch {
+    return false
+  }
+}
+
+function ensureFullHistory(): boolean {
+  if (!isShallow()) return true
+  try {
+    execFileSync('git', ['fetch', '--unshallow', '--quiet'], { stdio: 'ignore', timeout: 120_000 })
+  } catch {
+    // No network, no credentials, or a detached build checkout. Fall through.
+  }
+  return !isShallow()
+}
+
 function gitDate(file: string): string | null {
   try {
     const out = execFileSync('git', ['log', '-1', '--format=%cs', '--', file], {
@@ -107,9 +140,19 @@ const priorRoutes = existing('ROUTE_LAST_MODIFIED')
 const dates: Record<string, string> = {}
 const unresolved: string[] = []
 
+const trustGit = ensureFullHistory()
+if (!trustGit) {
+  console.log('   git history is shallow and could not be deepened; keeping committed dates')
+}
+
+/** Committed dates win over a shallow git's guesses, never over a full one. */
+function resolve(file: string): string | undefined {
+  return trustGit ? (gitDate(file) ?? priorData[file]) : (priorData[file] ?? gitDate(file) ?? undefined)
+}
+
 for (const file of TRACKED) {
   if (!fs.existsSync(file)) continue
-  const d = gitDate(file) ?? priorData[file]
+  const d = resolve(file)
   if (d) dates[file] = d
   else unresolved.push(file)
 }
@@ -132,7 +175,7 @@ for (const [route, sources] of Object.entries(ROUTE_SOURCES)) {
     .filter((d): d is string => d !== null)
     .sort()
     .pop()
-  const d = newest ?? priorRoutes[route]
+  const d = trustGit ? (newest ?? priorRoutes[route]) : (priorRoutes[route] ?? newest)
   if (d) routes[route] = d
   else unresolved.push(route)
 }
@@ -171,6 +214,7 @@ export function routeLastModified(route: TrackedRoute): Date {
 fs.mkdirSync(path.dirname(OUT), { recursive: true })
 fs.writeFileSync(OUT, body)
 console.log(
-  `📅 last-updated: ${Object.keys(dates).length} data files, ${Object.keys(routes).length} routes dated from git`
+  `📅 last-updated: ${Object.keys(dates).length} data files, ${Object.keys(routes).length} routes dated from ` +
+    (trustGit ? 'git' : 'the committed fallback (shallow clone)')
 )
 if (unresolved.length) console.log(`   unresolved (no git history, no prior value): ${unresolved.join(', ')}`)

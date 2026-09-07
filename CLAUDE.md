@@ -164,6 +164,7 @@ A route's date is the newest commit date across the files listed for it in `ROUT
 
 Two corollaries:
 - **Never stamp `lastmod` with "today" or the build date.** That is the exact pattern that gets the signal discarded. If git can't answer, the script falls back to the previously committed date on purpose.
+- **Shallow clones inflate dates, so the script deepens history before reading it.** Vercel clones ~10 commits deep, and under a shallow clone `git log -1 -- <file>` returns the *boundary* commit for every file the window doesn't contain — so a page untouched since June reports whatever date the window happens to start on, and that date marches forward with every deploy. The script runs `git fetch --unshallow` first; if it can't, it keeps the committed dates and says so in the build log. This shipped broken once: `/fundings` and `/blog` went live claiming 2026-08-31 when their real dates were 2026-06-09 and 2026-06-21.
 - **Don't add a route to `sitemap.ts` that redirects or 404s.** `/funding` sat in the sitemap after it was retired, which surfaces as a "Page with redirect" error in Search Console.
 
 ### Announcing Changes to Search Engines
