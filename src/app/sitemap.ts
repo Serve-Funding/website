@@ -3,67 +3,85 @@ import { fundingSolutions } from '@/data/solutions'
 import { comparisons } from '@/data/comparisons'
 import { industries } from '@/data/industries'
 import { getBlogPosts } from '@/lib/blog-utils'
+import { routeLastModified } from '@/data/last-updated.generated'
 
-// Stable build-time date for static routes — using `new Date()` per-route makes
-// every URL look freshly updated to crawlers, which is noise, not signal.
-// Bump this when you ship a meaningful redesign or content sweep of static pages.
-const STATIC_PAGES_LAST_REVIEWED = new Date('2026-05-27T00:00:00Z')
+// lastmod comes from git, via scripts/generate-last-updated.ts, because Google
+// uses it to schedule recrawls and drops the signal entirely for sites whose
+// dates are wrong. A hardcoded review date used to make every page here report
+// the same stale day while the on-page dateModified said something newer.
+// See ROUTE_SOURCES in that script to change what a route's date is derived from.
+
+const baseUrl = 'https://servefunding.com'
+
+/** Static routes, each dated by the files that render it. */
+const STATIC_ROUTES = [
+  '/',
+  '/about-us',
+  '/solutions',
+  '/solutions/compare',
+  '/compare',
+  '/industries',
+  '/glossary',
+  '/fundings',
+  '/partners',
+  '/bankers',
+  '/discover',
+  '/faq',
+  '/blog',
+  '/privacy-policy',
+  '/sms-terms',
+  '/terms-of-service',
+] as const
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://servefunding.com'
+  const blogPosts = getBlogPosts()
 
-  const routes = [
-    '',
-    '/about-us',
-    '/solutions',
-    '/solutions/compare',
-    '/compare',
-    '/industries',
-    '/funding',
-    '/glossary',
-    '/fundings',
-    '/partners',
-    '/bankers',
-    '/discover',
-    '/faq',
-    '/blog',
-    '/privacy-policy',
-    '/sms-terms',
-    '/terms-of-service',
-  ].map((route) => ({
-    url: `${baseUrl}${route}`,
-    lastModified: STATIC_PAGES_LAST_REVIEWED,
-    changeFrequency: 'weekly' as const,
-    priority: route === '' ? 1 : 0.8,
-  }))
+  const postDate = (post: { lastUpdated?: string; date: string }) =>
+    new Date((post.lastUpdated || post.date) + 'T00:00:00Z')
+
+  // The blog index changes whenever a post lands, not just when its template does.
+  const newestPost = blogPosts
+    .map(postDate)
+    .sort((a, b) => a.getTime() - b.getTime())
+    .pop()
+
+  const routes = STATIC_ROUTES.map((route) => {
+    const templateDate = routeLastModified(route)
+    const lastModified =
+      route === '/blog' && newestPost && newestPost > templateDate ? newestPost : templateDate
+
+    return {
+      url: route === '/' ? baseUrl : `${baseUrl}${route}`,
+      lastModified,
+      changeFrequency: 'weekly' as const,
+      priority: route === '/' ? 1 : 0.8,
+    }
+  })
 
   const solutionRoutes = fundingSolutions.map((solution) => ({
     url: `${baseUrl}/solutions/${solution.id}`,
-    lastModified: STATIC_PAGES_LAST_REVIEWED,
+    lastModified: routeLastModified('/solutions/[solution-id]'),
     changeFrequency: 'weekly' as const,
     priority: 0.9,
   }))
 
   const comparisonRoutes = comparisons.map((c) => ({
     url: `${baseUrl}/compare/${c.id}`,
-    lastModified: STATIC_PAGES_LAST_REVIEWED,
+    lastModified: routeLastModified('/compare/[comparison-id]'),
     changeFrequency: 'monthly' as const,
     priority: 0.85,
   }))
 
   const industryRoutes = industries.map((ind) => ({
     url: `${baseUrl}/industries/${ind.id}`,
-    lastModified: STATIC_PAGES_LAST_REVIEWED,
+    lastModified: routeLastModified('/industries/[industry-id]'),
     changeFrequency: 'monthly' as const,
     priority: 0.85,
   }))
 
-  // Problem pages carry the paid-search traffic; priority sits with the solution pages.
-
-  const blogPosts = getBlogPosts()
   const blogRoutes = blogPosts.map((post) => ({
     url: `${baseUrl}/blog/${post.id}`,
-    lastModified: new Date((post.lastUpdated || post.date) + 'T00:00:00Z'),
+    lastModified: postDate(post),
     changeFrequency: 'monthly' as const,
     priority: 0.7,
   }))

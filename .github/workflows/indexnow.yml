@@ -1,0 +1,38 @@
+# Pushes freshly-changed URLs to IndexNow after a production deploy.
+#
+# Why this exists: Google retired sitemap ping and relies on <lastmod> to
+# schedule recrawls, but Bing does support push submission — and Bing is the
+# index behind ChatGPT's search results. The IndexNow key has been served at
+# /7f3a...txt for a while with nothing ever calling the API, so new content
+# waited on a crawl instead of announcing itself.
+#
+# What it submits: only URLs whose sitemap <lastmod> matches this push's commit
+# date. Since lastmod is derived from git (scripts/generate-last-updated.ts),
+# that set is exactly the pages this deploy changed. A push that touches no
+# tracked content submits nothing and exits clean.
+
+name: IndexNow
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      date:
+        description: 'Submit URLs with this lastmod (YYYY-MM-DD). Defaults to today UTC.'
+        required: false
+
+concurrency:
+  group: indexnow
+  cancel-in-progress: false
+
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Submit changed URLs to IndexNow
+        env:
+          TARGET_DATE: ${{ github.event.inputs.date }}
+        run: python3 .github/scripts/indexnow.py

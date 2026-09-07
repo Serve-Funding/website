@@ -146,6 +146,32 @@ TypeScript types are organized by feature:
 2. Create `page.tsx` with content
 3. Add navigation links in `src/components/Header.tsx` if needed
 4. Use design system components from `src/components/ui/`
+5. Add the route to `src/app/sitemap.ts` **and** to `ROUTE_SOURCES` in `scripts/generate-last-updated.ts` (see below)
+
+### Freshness Signals: sitemap `lastmod` and `dateModified`
+
+**You do not hand-maintain dates anywhere. Both signals are derived from git.**
+
+`scripts/generate-last-updated.ts` runs before every build and writes `src/data/last-updated.generated.ts`, which holds two maps:
+- `DATA_LAST_UPDATED` — per data file, feeds `dateModified` into each page's JSON-LD.
+- `ROUTE_LAST_MODIFIED` — per route, feeds `<lastmod>` into `src/app/sitemap.ts`.
+
+A route's date is the newest commit date across the files listed for it in `ROUTE_SOURCES` — its `page.tsx` plus any data files it renders. So editing `src/data/industries.ts` moves both the on-page `dateModified` and the sitemap `lastmod` for every `/industries/*` URL, with no one having to remember anything.
+
+**The one rule: when you add a route, add it to `ROUTE_SOURCES`.** The script exits non-zero if a route lists source files that don't exist, so a typo fails the build rather than silently shipping a wrong date.
+
+**Why this matters:** Google uses `lastmod` to schedule recrawls, and it *stops trusting the field entirely* for domains that publish inaccurate dates. This previously bit us: `sitemap.ts` hardcoded a single review date, so a full content sweep in late August still reported `lastmod: 2026-05-27` while the on-page `dateModified` said `2026-08-31`. The two signals contradicted each other and the new content read as unchanged.
+
+Two corollaries:
+- **Never stamp `lastmod` with "today" or the build date.** That is the exact pattern that gets the signal discarded. If git can't answer, the script falls back to the previously committed date on purpose.
+- **Don't add a route to `sitemap.ts` that redirects or 404s.** `/funding` sat in the sitemap after it was retired, which surfaces as a "Page with redirect" error in Search Console.
+
+### Announcing Changes to Search Engines
+
+`.github/workflows/indexnow.yml` runs on every push to `main`. It waits for Vercel to publish the new sitemap, selects the URLs whose `lastmod` matches the push's commit date, and submits exactly those to IndexNow. A push that changes no tracked content submits nothing and exits clean.
+
+- The IndexNow key is public by design and lives at `public/7f3a2b9c4d8e1f6a5b7c9d2e4f8a1b3c.txt`. The workflow reads it from that file, so there is one source of truth — don't duplicate it into a secret.
+- This covers **Bing, and therefore ChatGPT**, whose search index is Bing. Google does not support IndexNow and retired sitemap ping; for Google the lever is accurate `lastmod` plus URL Inspection in Search Console.
 
 ### Creating Educational/Reference Pages
 Educational pages (like `/capital-strategy`) follow this pattern:

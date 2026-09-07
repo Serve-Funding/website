@@ -1,4 +1,5 @@
 import { fundingSolutions } from '@/data/solutions'
+import { comparisons } from '@/data/comparisons'
 import { getBlogPosts } from '@/lib/blog-utils'
 import { solutionSpecificFAQs } from '@/data/faq-data'
 import { getFinancialServiceSchema, getHowToSchema, getWebPageSchema } from '@/lib/schema-generators'
@@ -302,6 +303,45 @@ export default async function SolutionDetailPage({ params }: SolutionDetailPageP
                           </Text>
                           <div className="flex items-center gap-2 text-gold-500 group-hover:gap-3 transition-all">
                             <span className="text-sm font-semibold">Read Story</span>
+                            <ChevronRight size={16} />
+                          </div>
+                        </Card>
+                      </Link>
+                    ))}
+                  </StaggerContainer>
+                </div>
+              </Container>
+            </Section>
+          ) : null
+        })()}
+
+        {/* Head-to-head comparisons. "X vs Y" is the query shape assistants
+            answer with a citation, so every comparison page earns a link from
+            each product it covers rather than sitting behind the /compare hub. */}
+        {(() => {
+          const related = comparisons.filter(c => c.relatedSolutions.includes(solution.id))
+
+          return related.length > 0 ? (
+            <Section>
+              <Container>
+                <div className="max-w-4xl mx-auto">
+                  <Heading size="h2" className="mb-4">How It Compares</Heading>
+                  <Text size="lg" className="text-gray-700 mb-8">
+                    Side-by-side breakdowns of {getTitleAsString(solution.title)} against the
+                    structures it most often competes with
+                  </Text>
+                  <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    {related.map(comparison => (
+                      <Link key={comparison.id} href={`/compare/${comparison.id}`} className="group h-full block">
+                        <Card>
+                          <Heading size="h3" className="mb-2 text-olive-900 group-hover:text-gold-500 transition-colors">
+                            {comparison.title}
+                          </Heading>
+                          <Text size="sm" className="mb-4 line-clamp-3">
+                            {comparison.excerpt}
+                          </Text>
+                          <div className="flex items-center gap-2 text-gold-500 group-hover:gap-3 transition-all">
+                            <span className="text-sm font-semibold">See the comparison</span>
                             <ChevronRight size={16} />
                           </div>
                         </Card>

@@ -15,6 +15,7 @@ import { lastUpdated } from '@/data/last-updated.generated'
 import { CTA } from '@/components/cta'
 import { getFAQPageSchema } from '@/lib/schema-generators'
 import { solutionComparisons } from '@/data/solutions-comparison'
+import { comparisons } from '@/data/comparisons'
 import { fundingSolutions } from '@/data/solutions'
 import { solutionComparisonFAQs } from '@/data/faq-data'
 
@@ -318,6 +319,35 @@ export default function SolutionsComparePage() {
                   </Heading>
                   <Text className="text-gray-700">{faq.a}</Text>
                 </div>
+              ))}
+            </div>
+          </div>
+        </Container>
+      </Section>
+
+      {/* This page absorbed the retired /funding hub's inbound equity, so it is
+          the right place to hand traffic on to the head-to-head pages. */}
+      <Section className="py-12 bg-white">
+        <Container>
+          <div className="max-w-4xl mx-auto">
+            <Heading size="h2" className="mb-6 text-olive-900">
+              Head-to-Head Comparisons
+            </Heading>
+            <Text className="text-gray-700 mb-8">
+              Two products at a time, with the terms, costs and trade-offs side by side.
+            </Text>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {comparisons.map(comparison => (
+                <Link key={comparison.id} href={`/compare/${comparison.id}`} className="group h-full block">
+                  <Card>
+                    <Heading size="h3" className="mb-2 text-olive-900 group-hover:text-gold-500 transition-colors">
+                      {comparison.title}
+                    </Heading>
+                    <Text size="sm" className="text-gray-700">
+                      {comparison.excerpt}
+                    </Text>
+                  </Card>
+                </Link>
               ))}
             </div>
           </div>
