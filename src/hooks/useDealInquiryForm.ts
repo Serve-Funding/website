@@ -88,10 +88,17 @@ export function useDealInquiryForm(
   // Dynamic "other" field responses (for single_with_other questions)
   const [otherResponses, setOtherResponses] = useState<Record<string, string>>({})
 
-  // Track form initialization
+  // The form page loaded. This is a view, not intent: it fires whether or not
+  // the visitor ever touches a question, which is why it used to read as ~128
+  // "starts" against 22 submissions. `deal_inquiry_form_started` below is the
+  // engagement signal, fired on the first answer. Keeping both is what makes
+  // the view -> start -> submit funnel readable.
   useEffect(() => {
-    trackEvent('deal_inquiry_form_started')
+    trackEvent('deal_inquiry_form_viewed')
   }, [])
+
+  // Guards `deal_inquiry_form_started` so it fires once per form, not per answer.
+  const hasStartedRef = useRef(false)
 
   // Get visible questions (excluding skipped ones)
   const visibleQuestions = useMemo(() => {
@@ -231,6 +238,14 @@ export function useDealInquiryForm(
 
     // Send webhook with updated form state
     sendAnswerWebhook(currentQuestion.id, value)
+
+    // First answered question is the real start of the form.
+    if (!hasStartedRef.current) {
+      hasStartedRef.current = true
+      trackEvent('deal_inquiry_form_started', {
+        first_question_id: currentQuestion.id,
+      })
+    }
 
     // Track question answered
     trackEvent('deal_inquiry_question_answered', {
