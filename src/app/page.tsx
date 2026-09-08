@@ -93,7 +93,14 @@ export default function Home() {
     <>
       {/* Hero Section */}
       <Section className="min-h-[80vh] lg:min-h-[65vh]">
-        <HeroCarousel slides={heroSlides} />
+        <HeroCarousel
+          slides={heroSlides}
+          cta={{
+            label: 'Explore Funding Options',
+            href: '/discover',
+            note: 'Takes a few minutes. No obligation.',
+          }}
+        />
       </Section>
 
       {/* Value Props Section */}
