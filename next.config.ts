@@ -212,6 +212,30 @@ const nextConfig: NextConfig = {
         destination: "/discover",
         permanent: true,
       },
+
+      // Paths that still 404 while taking real traffic. Counts are entry
+      // pageviews over the 90 days to 2026-09-08, from Umami; every one of
+      // these was a visitor landing on a dead page. Mostly WordPress-era URLs
+      // that still have inbound links pointing at them.
+      // `/partner` (12) and `/contact` (5) are the expensive ones — both are
+      // high-intent, and both have a live page one character away.
+      { source: "/partner", destination: "/partners", permanent: true },
+      { source: "/contact", destination: "/discover", permanent: true },
+      // The old WordPress product/program pages. `/solutions` is the hub that
+      // replaced them; `/loan-terms` goes to compare, which is where the
+      // per-product terms tables actually live now.
+      { source: "/loan-programs", destination: "/solutions", permanent: true },
+      { source: "/programs", destination: "/solutions", permanent: true },
+      { source: "/products", destination: "/solutions", permanent: true },
+      { source: "/loan-terms", destination: "/solutions/compare", permanent: true },
+      // Founder-story and team pages folded into /about-us, which carries both.
+      { source: "/our-story", destination: "/about-us", permanent: true },
+      { source: "/team", destination: "/about-us", permanent: true },
+      // WordPress leftovers: the default first post, and Revolution Slider's
+      // asset paths (scrapers and stale links still request these).
+      { source: "/hello-world", destination: "/blog", permanent: true },
+      { source: "/revslider", destination: "/", permanent: true },
+      { source: "/revslider/:path*", destination: "/", permanent: true },
     ];
   },
 };
