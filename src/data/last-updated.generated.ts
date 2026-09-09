@@ -20,13 +20,13 @@ export const DATA_LAST_UPDATED = {
 } as const
 
 export const ROUTE_LAST_MODIFIED = {
-  '/': '2026-09-09',
+  '/': '2026-08-31',
   '/about-us': '2026-08-31',
   '/bankers': '2026-08-31',
   '/blog': '2026-06-21',
   '/compare': '2026-08-31',
   '/compare/[comparison-id]': '2026-08-31',
-  '/discover': '2026-09-09',
+  '/discover': '2026-09-01',
   '/faq': '2026-08-31',
   '/fundings': '2026-06-09',
   '/glossary': '2026-08-31',
