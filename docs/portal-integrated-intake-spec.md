@@ -111,6 +111,31 @@ cannabis dispensary returns 24: 22 products restrict cannabis, against a pool of
 shape of failure for an excluded state or an out-of-band ask. This is the load-bearing risk in the
 whole feature — it would have Michael personally walking back a number the site gave.
 
+## Built so far on this branch
+
+**`financing_type`, a new form question (position 2).** The blocker found while starting the build:
+**the form never collected which product the visitor wants.** `financing_needs` asks what the money
+is *for* and lands on `use_of_proceeds`; nothing asked what shape the facility is, and
+`projectWebsiteLead` accordingly never writes `deals.products_offered`. Since product selection is
+the entire narrowing lever (126–144 lenders → 20–38), the incentive screen was not merely
+unbuilt — it was **impossible**, and a count shipped today would have read ~130.
+
+- Placed at position 2, above `annual_revenue`, because a Mike-routing rule firing on revenue calls
+  `setShowChoicePoint` and returns — so anything below it is skipped for $10MM+ revenue leads, i.e.
+  exactly the ones where the screen matters most. Constraint 4 in `form-questions.ts` records this.
+- Labels describe the mechanic in the visitor's words ("Get paid now on unpaid invoices"), not our
+  product names. Asking a stranger to self-classify into "Revenue-Based Term Loan" repeats the
+  mistake #81 removed. Multi-select, with "Not sure yet" carrying no product filter rather than a
+  wrong one.
+- **Cross-repo contract change.** The portal must learn `financing_type` and map the labels to
+  `CANONICAL_PRODUCTS` → `deals.products_offered`, in `src/lib/leads/facts.ts` where the bucket-string
+  tables already live (one side of the contract, not two copies of a product list). Until it does,
+  the answer rides along in `inbound_log.payload` and is lost to the projection — which is the
+  capture-first design working as intended, but it means **this field does nothing until the
+  Serve-Platform side ships.**
+
+Verified: `npm run build` passes (including `verify-seo`) and `tsc --noEmit` is clean.
+
 ## Design
 
 ### Eligibility gate — runs first, server-side
@@ -119,6 +144,22 @@ Before any number is computed or shown: restricted industry, excluded state, and
 anything in the matrix. A profile that fails the gate sees **no number** and is routed to a human
 ("let's talk — a few things here need an advisor"). The count is only ever rendered for profiles that
 clear it.
+
+**The gate cannot be built on the current industry question — this is unresolved.** Two mismatches
+found while building:
+
+1. **No state is collected at all.** `projectWebsiteLead` writes no `deal_state`, and the form never
+   asks. (`FormSubmitData` already carries a `company_state` key from another form, so there is a
+   name to reuse.) Deferred rather than bolted onto the conversational form: a 50-option `single`
+   screen would be a bad question in a one-at-a-time UI, `ConversationalForm` renders only `single`
+   and `multi`, and the gate that consumes it does not exist yet. The one-page layout is where a
+   `<select>` belongs. Note state matters beyond the gate — it drives the licensing screen.
+2. **The industry vocabularies don't meet.** The form offers 16 curated industries; lender
+   `restricted_industries` are strings like "Marijuana / cannabis (medical or recreational)" and
+   "Trucking/Transportation/Logistics", neither of which appears in the form's list. A dispensary
+   picks **"Other"**, so the gate's most important case cannot fire on this field. Needs a decision:
+   free-text industry matched against the restricted vocabulary, an explicit restricted-industry
+   disclosure question, or a gate that treats "Other" as not-clearable.
 
 ### Lead with program fit, not a lender count
 
@@ -174,6 +215,22 @@ Also on `dev` and relevant here: #72 added email-deliverability and phone-line-t
 form intake (`src/app/api/verify-contact`). The one-page form should keep that, and the magic-link
 handoff should trust it — a bounced address means the portal link never arrives, which is a silent
 dead end.
+
+### One page means triage moves to submit-time
+
+A consequence of Sarah's request that nobody has flagged. Today the triage rules run **mid-form**: a
+`mike` rule firing on `annual_revenue` stops the form and routes straight to Mike's calendar, which
+is why `annual_revenue` has to sit second-to-last and why one question is deliberately sacrificed.
+On a single page everyone answers everything, so:
+
+- Mike-vs-Kyler routing has to be evaluated **at submit** against the whole answer set, not
+  question-by-question. The rules themselves survive (they are keyed on `question_id` and read form
+  state), but `checkAndAdvance`'s early return does not.
+- The upside: no question is skipped any more, so high-revenue leads would start arriving *with*
+  `financing_type` and `financing_needs` instead of dropping out at revenue.
+- The ordering constraints in `form-questions.ts` become presentational rather than load-bearing —
+  which means the comment block explaining them must be rewritten at the same time, not left to
+  imply a dependency that no longer exists.
 
 ## Open questions
 

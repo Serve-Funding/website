@@ -72,6 +72,7 @@ export function useDealInquiryForm(
   const [timeInBusiness, setTimeInBusiness] = useState('')
   const [annualRevenue, setAnnualRevenue] = useState('')
   const [financingNeeds, setFinancingNeeds] = useState<string[]>([])
+  const [financingType, setFinancingType] = useState<string[]>([])
   const [fundingAmount, setFundingAmount] = useState('')
   const [ownerCreditScore, setOwnerCreditScore] = useState('')
   const [name, setName] = useState('')
@@ -126,6 +127,7 @@ export function useDealInquiryForm(
       case 'time_in_business': return timeInBusiness
       case 'annual_revenue': return annualRevenue
       case 'financing_needs': return financingNeeds
+      case 'financing_type': return financingType
       case 'funding_amount': return fundingAmount
       case 'owner_credit_score': return ownerCreditScore
       case 'name': return name
@@ -152,6 +154,7 @@ export function useDealInquiryForm(
       case 'time_in_business': setTimeInBusiness(value); break
       case 'annual_revenue': setAnnualRevenue(value); break
       case 'financing_needs': setFinancingNeeds(value); break
+      case 'financing_type': setFinancingType(value); break
       case 'funding_amount': setFundingAmount(value); break
       case 'owner_credit_score': setOwnerCreditScore(value); break
       case 'name': setName(value); break
@@ -169,6 +172,7 @@ export function useDealInquiryForm(
     time_in_business: timeInBusiness,
     annual_revenue: annualRevenue,
     financing_needs: financingNeeds,
+    financing_type: financingType,
     funding_amount: fundingAmount,
     owner_credit_score: ownerCreditScore,
     sms_consent: smsConsent ? 'yes' : 'no',
@@ -600,6 +604,11 @@ export function useDealInquiryForm(
       time_in_business: timeInBusiness,
       annual_revenue: annualRevenue,
       financing_needs: financingNeeds,
+      // New key on the cross-repo payload contract. The portal's
+      // WebsiteLeadPayload has to learn it before it lands on
+      // `deals.products_offered` — until then it rides along in the raw
+      // `inbound_log.payload`, which is the point of capture-first.
+      financing_type: financingType,
       funding_amount: fundingAmount,
       owner_credit_score: ownerCreditScore,
       calendly_url: calendlyUrl,
@@ -687,6 +696,7 @@ export function useDealInquiryForm(
     timeInBusiness,
     annualRevenue,
     financingNeeds,
+    financingType,
     fundingAmount,
     ownerCreditScore,
     name,
