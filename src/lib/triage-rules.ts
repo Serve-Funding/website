@@ -16,9 +16,13 @@ export interface TriageRule {
 }
 
 export const triageRules: TriageRule[] = [
-  // After funding_amount: Route to Mike if revenue >= $10M
+  // Keyed on annual_revenue, not funding_amount: funding_amount is now the
+  // form's first question, so revenue is the later of the two and is what
+  // completes the pair these rules need. Reordering the questions without
+  // re-keying these would leave both rules permanently unmatched.
+  // After annual_revenue: Route to Mike if revenue >= $10M
   {
-    question_id: 'funding_amount',
+    question_id: 'annual_revenue',
     if: {
       annual_revenue: ['$10MM-$20MM', '$20MM-$50MM', '$50MM-$100MM', '$100MM+']
     },
@@ -28,9 +32,9 @@ export const triageRules: TriageRule[] = [
     }
   },
 
-  // After funding_amount: Route to Mike if revenue >= $3M AND funding >= $1M
+  // After annual_revenue: Route to Mike if revenue >= $3M AND funding >= $1M
   {
-    question_id: 'funding_amount',
+    question_id: 'annual_revenue',
     if: {
       annual_revenue: ['$3MM-$10MM', '$10MM-$20MM', '$20MM-$50MM', '$50MM-$100MM', '$100MM+'],
       funding_amount: ['$1MM-$5MM', '$5MM-$10MM', '$10MM+']
