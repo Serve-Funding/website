@@ -66,9 +66,6 @@ interface ProgramFit {
   blocked: string | null
   programs: string[]
   band: string | null
-  /** One-time portal handoff for "Upload documents". Absent until the
-   *  magic-link mint lands on the portal side. */
-  documentsUrl?: string | null
 }
 
 /** "A, B and C" — the programs read as a sentence, not a comma list. */
@@ -236,7 +233,7 @@ export function OnePageForm() {
     // Three independent streams. None of them may cost us the lead, so each is
     // awaited-or-swallowed on its own rather than chained: the n8n sheet, the
     // instant notification email, and the portal's inbound log.
-    await Promise.allSettled([
+    const streams = await Promise.allSettled([
       fetch('/api/webhook', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -258,6 +255,11 @@ export function OnePageForm() {
       // `inbound_log`, so the two funnels stay separable. `event_type: final`
       // because a one-page form has no partial event to send — there is no
       // contact step to finish early.
+      //
+      // This is the ONE capture stream whose response we read: the portal mints
+      // the document-upload link here, because the deal has to exist before
+      // there is anything to link to. Still inside allSettled, so a failure is
+      // a missing button and never a lost lead.
       fetch('/api/portal-lead', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -270,6 +272,17 @@ export function OnePageForm() {
         keepalive: true,
       }),
     ])
+
+    let handoffUrl: string | null = null
+    const leadCall = streams[2]
+    if (leadCall.status === 'fulfilled' && leadCall.value.ok) {
+      try {
+        const lead = await leadCall.value.json()
+        if (typeof lead?.handoffUrl === 'string' && lead.handoffUrl) handoffUrl = lead.handoffUrl
+      } catch {
+        // No link, plain confirmation. Never surfaced.
+      }
+    }
 
     trackEvent('one_page_form_submitted', {
       triage_action: triageAction,
@@ -306,7 +319,7 @@ export function OnePageForm() {
     if (elapsed < REVEAL_MS) await new Promise((r) => setTimeout(r, REVEAL_MS - elapsed))
 
     setIsSubmitting(false)
-    setSubmitted({ calendlyUrl, fit, documentsUrl: fit?.documentsUrl ?? null })
+    setSubmitted({ calendlyUrl, fit, documentsUrl: handoffUrl })
   }
 
   if (submitted) {
@@ -388,9 +401,11 @@ export function OnePageForm() {
                 deal wastes their afternoon and leaves us holding financials for
                 something we may not place.
 
-                `documentsUrl` is the portal handoff and is absent until that
-                lands — see the spec. Until then a cleared visitor sees the call
-                CTA alone, which is the current behaviour, not a broken button. */}
+                The URL comes from the LEAD call, not from the gate: the portal
+                mints it alongside the deal, and only for an email its verifier
+                confirmed accepts mail. So it is absent whenever that check
+                didn't pass — a cleared visitor then sees the call CTA alone
+                rather than a button that goes nowhere. */}
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               {submitted.fit?.eligible && submitted.documentsUrl ? (
                 <>

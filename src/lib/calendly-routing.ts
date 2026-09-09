@@ -26,8 +26,20 @@ export const QUICK_SCHEDULE_URL = CALENDLY_URLS.kyler.owner
 export const OWNER_ROLE = 'A Business Owner or Operator Seeking Funding'
 export const PARTNER_ROLE = 'A Banker / Business Advisor'
 
+/**
+ * Only the explicit partner answer means partner; everything else, including
+ * an unanswered question, means owner.
+ *
+ * This used to read `=== OWNER_ROLE ? 'owner' : 'partner'`, which is the same
+ * thing on the conversational form — `user_role` is question 3 there and you
+ * cannot advance past it, so the value is always one of the two. On the
+ * one-page form the question is OPTIONAL, and that default quietly sent every
+ * visitor who skipped it to Michael's PARTNER calendar. Sarah, 2026-09-08: "We
+ * have rarely or never had a partner come through the website." So the unknown
+ * case belongs on the owner side.
+ */
 export function getRoleType(userRole: string): 'owner' | 'partner' {
-  return userRole === OWNER_ROLE ? 'owner' : 'partner'
+  return userRole === PARTNER_ROLE ? 'partner' : 'owner'
 }
 
 export function getCalendlyUrlForAction(action: string, userRole: string): string {

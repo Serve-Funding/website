@@ -281,6 +281,42 @@ masked the wiring for a while — worth knowing if this is retested):
 - The band's capitalisation is applied on this side; the portal emits it lowercase because it also
   reads mid-sentence there.
 
+## The magic-link handoff — built
+
+The confirmation screen's "Upload documents" button goes straight into the visitor's own
+application, no password. Reuses `Serve-Platform/src/lib/auth/access-links.ts` wholesale: a durable
+14-day token in `access_tokens` with a **fresh Supabase OTP minted per click** — that shape exists
+because raw emailed OTPs are single-use and corporate mail scanners pre-open URLs and burn them
+before the human clicks.
+
+- **The URL comes from the lead call, not the gate.** `inbound-lead` mints it because the deal has
+  to exist before there is anything to link to, and returns it as `handoff_url`. The website's
+  `/api/portal-lead` names that one field through rather than forwarding the portal's body, which
+  also holds the deal id and the projection outcome — neither belongs in a browser.
+- **The email check is the spam gate.** Minting provisions a real client account, so an unguarded
+  mint turns the public form into an account factory. We mint only for an address #72's verifier
+  confirmed accepts mail. `unchecked` does **not** pass — an unconfigured verifier must not silently
+  open the guard — and neither does `catchall`, where the domain accepts everything and proves
+  nothing about the mailbox. Six tests pin this boundary.
+- **A banker gets no link, by design.** `provisionExternalUser` refuses to turn a known lender
+  contact into a client (the 2026-08-19 trap), so that case fails safe for free.
+- **Nothing is emailed.** The link is returned and surfaced on screen, full stop. Outbound mail to a
+  borrower is Michael's voice and Michael's decision; emailing this is a separate change.
+- **The documents button only shows when the gate cleared AND a link exists** — otherwise the single
+  call CTA, never a dead button.
+
+**Verified:** with a stub returning a link, both CTAs render with the right hrefs. With the local
+verifier unconfigured (`unchecked`), the button correctly stays hidden — the guard doing its job.
+
+### One bug this turned up
+
+`getRoleType` read `userRole === OWNER_ROLE ? 'owner' : 'partner'`, so **any** other value — including
+unanswered — routed to Michael's *partner* calendar. Harmless on the conversational form, where
+`user_role` is question 3 and you cannot advance past it. On the one-page form the question is
+optional, so every visitor who skipped it was being sent to the partner calendar. Now only the
+explicit partner answer means partner. Sarah, 2026-09-08: "We have rarely or never had a partner
+come through the website."
+
 ## Also in Sarah's 2026-09-08 note — all three already shipped to `dev`
 
 Landed before this spec was written; listed so nobody redoes them:
