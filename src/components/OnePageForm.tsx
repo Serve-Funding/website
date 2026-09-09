@@ -66,9 +66,10 @@ interface ProgramFit {
   blocked: string | null
   programs: string[]
   band: string | null
+  /** One-time portal handoff for "Upload documents". Absent until the
+   *  magic-link mint lands on the portal side. */
+  documentsUrl?: string | null
 }
-
-const sentenceCase = (s: string) => s.charAt(0).toUpperCase() + s.slice(1)
 
 /** "A, B and C" — the programs read as a sentence, not a comma list. */
 function listOf(items: string[]): string {
@@ -100,7 +101,19 @@ export function OnePageForm() {
   const [submitted, setSubmitted] = useState<{
     calendlyUrl: string
     fit: ProgramFit | null
+    documentsUrl: string | null
   } | null>(null)
+
+  /**
+   * The reveal is held for a beat on purpose.
+   *
+   * The check is real — it round-trips to the portal's gate — but it returns in
+   * ~200ms, and a verdict that appears instantly reads as a canned string
+   * rather than as something we looked up. This is the minimum time the
+   * "checking" state stays on screen, not a fake delay standing in for work
+   * that isn't happening.
+   */
+  const REVEAL_MS = 1400
 
   const hasStartedRef = useRef(false)
   const formRef = useRef<HTMLFormElement>(null)
@@ -164,6 +177,7 @@ export function OnePageForm() {
 
     setContactError('')
     setIsSubmitting(true)
+    const startedAt = Date.now()
 
     // #72's gate: an undeliverable address is the one thing that sends the
     // visitor back, because it means the magic link into the portal — and every
@@ -215,7 +229,7 @@ export function OnePageForm() {
       setIsSubmitting(false)
       // A bot gets the plain confirmation and no fit call — the gate is not
       // free, and there is nothing to reassure here.
-      setSubmitted({ calendlyUrl, fit: null })
+      setSubmitted({ calendlyUrl, fit: null, documentsUrl: null })
       return
     }
 
@@ -287,8 +301,12 @@ export function OnePageForm() {
       })
     }
 
+    // Hold the reveal so the verdict reads as looked-up, not canned.
+    const elapsed = Date.now() - startedAt
+    if (elapsed < REVEAL_MS) await new Promise((r) => setTimeout(r, REVEAL_MS - elapsed))
+
     setIsSubmitting(false)
-    setSubmitted({ calendlyUrl, fit })
+    setSubmitted({ calendlyUrl, fit, documentsUrl: fit?.documentsUrl ?? null })
   }
 
   if (submitted) {
@@ -308,33 +326,35 @@ export function OnePageForm() {
               Got it — thank you.
             </Heading>
 
-            {/* Three outcomes, and only the first one shows a number.
-                `eligible` is decided by the portal's gate, never here — the
-                whole point is that this component cannot talk itself into
-                reassurance the data doesn't support. */}
-            {submitted.fit?.eligible && submitted.fit.band ? (
+            {/* Three outcomes. `eligible` is decided by the portal's gate,
+                never here — the whole point is that this component cannot talk
+                itself into reassurance the data doesn't support.
+
+                NO COUNT, deliberately. The banded number was dropped after
+                review: it read as a mail-merge, and because min/max funding is
+                populated on only ~44% of products it barely moved with the size
+                of the ask — so it was closer to "this facility has N lenders"
+                than to anything about this business.
+
+                What survives is the gate as a YES/NO, which is the part that was
+                never over-engineering. `eligible` means a facility was named, the
+                industry is one we can actually place, an ask is present, and
+                enough lenders' published criteria fit to clear the floor. That is
+                a real pre-check, and it is the only thing standing between this
+                sentence and a cannabis dispensary reading it. The claim is sized
+                to exactly what the gate establishes — lenders who work deals
+                like this — and stops short of anything about terms or approval. */}
+            {submitted.fit?.eligible ? (
               <>
                 <Text size="lg" className="mb-2">
-                  Your profile fits{' '}
-                  <strong>
-                    {submitted.fit.programs.length === 1
-                      ? submitted.fit.programs[0]
-                      : listOf(submitted.fit.programs)}
-                  </strong>
-                  .
+                  <strong>Good news — this looks like a strong fit.</strong>
                 </Text>
                 <Text size="lg" className="mb-6">
-                  {/* Worded as what we actually computed. The count comes from
-                      lender criteria for this KIND of facility, so "lenders who
-                      write" is true where "lenders who match you" would be
-                      claiming a per-profile result the matrix cannot support —
-                      min/max funding is populated on only ~44% of products, so
-                      the number barely moves with the size of the ask. */}
-                  {/* The band arrives lowercase ("more than 20") because it is
-                      also used mid-sentence on the portal side; this is the one
-                      place it opens a sentence. */}
-                  <strong>{sentenceCase(submitted.fit.band)} lenders</strong> in our network write
-                  that kind of facility.
+                  We already have lenders in mind who work deals like this
+                  {submitted.fit.programs.length > 0 && (
+                    <> on the {listOf(submitted.fit.programs)} side</>
+                  )}
+                  . To get soft terms from them, we need a few documents first.
                 </Text>
                 <Text size="sm" className="mb-8 text-gray-500">
                   Based on each lender&apos;s published criteria. Subject to underwriting — not an
@@ -362,11 +382,37 @@ export function OnePageForm() {
               </Text>
             )}
 
-            <a href={submitted.calendlyUrl} target="_blank" rel="noopener noreferrer">
-              <Button variant="default" size="lg">
-                Schedule a Call
-              </Button>
-            </a>
+            {/* Two doors when the gate cleared, one when it didn't.
+                Documents lead ONLY on a cleared profile: sending someone to
+                upload bank statements when an advisor still has to look at the
+                deal wastes their afternoon and leaves us holding financials for
+                something we may not place.
+
+                `documentsUrl` is the portal handoff and is absent until that
+                lands — see the spec. Until then a cleared visitor sees the call
+                CTA alone, which is the current behaviour, not a broken button. */}
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              {submitted.fit?.eligible && submitted.documentsUrl ? (
+                <>
+                  <a href={submitted.documentsUrl}>
+                    <Button variant="default" size="lg">
+                      Upload documents
+                    </Button>
+                  </a>
+                  <a href={submitted.calendlyUrl} target="_blank" rel="noopener noreferrer">
+                    <Button variant="outline" size="lg">
+                      Schedule a call first
+                    </Button>
+                  </a>
+                </>
+              ) : (
+                <a href={submitted.calendlyUrl} target="_blank" rel="noopener noreferrer">
+                  <Button variant="default" size="lg">
+                    Schedule a Call
+                  </Button>
+                </a>
+              )}
+            </div>
           </Card>
         </Container>
       </Section>
@@ -493,7 +539,7 @@ export function OnePageForm() {
                 {isSubmitting ? (
                   <span className="flex items-center gap-2">
                     <Loader2 className="w-4 h-4 animate-spin" />
-                    Checking your details…
+                    Checking your profile against our lender network…
                   </span>
                 ) : (
                   'See my options'
