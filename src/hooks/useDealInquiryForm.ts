@@ -24,8 +24,21 @@ export const CALENDLY_URLS = {
 // Quick schedule link always goes to Kyler's owner calendar
 export const QUICK_SCHEDULE_URL = CALENDLY_URLS.kyler.owner
 
+/**
+ * Only the explicit partner answer means partner; everything else, including an
+ * unanswered question, means owner.
+ *
+ * This read `=== OWNER ? 'owner' : 'partner'`, which sends every value it does
+ * not recognise to Michael's PARTNER calendar. On this form `user_role` is
+ * question 2 and unskippable, so the value is always one of the two and the
+ * default never showed. It is still the wrong default to leave in a shared
+ * helper — any caller that treats the question as optional silently books
+ * business owners onto the partner calendar, which is exactly what happened
+ * while the one-page form existed. Sarah, 2026-09-08: "We have rarely or never
+ * had a partner come through the website."
+ */
 function getRoleType(userRole: string): 'owner' | 'partner' {
-  return userRole === 'A Business Owner or Operator Seeking Funding' ? 'owner' : 'partner'
+  return userRole === 'A Banker / Business Advisor' ? 'partner' : 'owner'
 }
 
 function getCalendlyUrlForAction(action: string, userRole: string): string {
@@ -43,7 +56,13 @@ function getCalendlyUrlForAction(action: string, userRole: string): string {
   return CALENDLY_URLS.michael[roleType]
 }
 
-export type ChosenPath = 'schedule' | 'ai_chat' | null
+/**
+ * `documents` is the third door, offered only when the portal actually minted
+ * an upload link for this lead. It records on `chosen_path` like the other two,
+ * so it lands on `lead_source_detail` as "Discover form → documents" and the
+ * three paths stay comparable.
+ */
+export type ChosenPath = 'schedule' | 'ai_chat' | 'documents' | null
 
 export interface AnsweredQuestion {
   questionIndex: number
@@ -64,6 +83,18 @@ export function useDealInquiryForm(
   const [questionHistory, setQuestionHistory] = useState<number[]>(initialRole ? [0] : [])
   const [showChoicePoint, setShowChoicePoint] = useState(false)
   const [chosenPath, setChosenPath] = useState<ChosenPath>(null)
+  /**
+   * The portal's document-upload link for this lead, when it minted one.
+   *
+   * Arrives on the `early` event — the one fired at the contact step — because
+   * that event already creates the deal ("makes a deal out of the person
+   * alone"), so there is something to attach a link to well before the visitor
+   * reaches the choice point. Null is the common case and means no button:
+   * the portal declines to mint unless its verifier confirmed the address
+   * accepts mail, which is what stops the public form provisioning accounts
+   * for junk submissions.
+   */
+  const [handoffUrl, setHandoffUrl] = useState<string | null>(null)
   const [answeredQuestions, setAnsweredQuestions] = useState<AnsweredQuestion[]>([])
 
   // Form field states
@@ -205,12 +236,23 @@ export function useDealInquiryForm(
       submittedAt: new Date().toISOString(),
     }
     try {
+      // The response carries the upload link on the `early` event. Still
+      // fire-and-forget: nothing awaits this, a rejection is swallowed, and a
+      // failure means one fewer button rather than anything the visitor sees.
       fetch('/api/portal-lead', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
         keepalive: true,
-      }).catch(() => {})
+      })
+        .then(async (res) => {
+          if (!res.ok) return
+          const body = await res.json().catch(() => null)
+          if (typeof body?.handoffUrl === 'string' && body.handoffUrl) {
+            setHandoffUrl(body.handoffUrl)
+          }
+        })
+        .catch(() => {})
     } catch {
       // never surface to the visitor
     }
@@ -395,7 +437,12 @@ export function useDealInquiryForm(
     setShowChoicePoint(false)
 
     // Add the choice as an answered question in the thread
-    const choiceLabel = path === 'schedule' ? 'Schedule a Call' : 'Explore with our Funding Navigator'
+    const choiceLabel =
+      path === 'schedule'
+        ? 'Schedule a Call'
+        : path === 'documents'
+          ? 'Upload documents'
+          : 'Explore with our Funding Navigator'
     setAnsweredQuestions(prev => [...prev, {
       questionIndex: -1,
       questionId: 'path_choice',
@@ -427,7 +474,14 @@ export function useDealInquiryForm(
       chosen_path: path,
     }
     sendToWebhooks(contactData, 'deal_inquiry')
-    sendToPortal('final', { chosen_path: path, triage_action: triageAction || '' })
+    // Verification rides along here too, so a link can still be minted if the
+    // early event was lost. `verification` is state by now; the early call uses
+    // the fresh verdict because state has not settled at that point.
+    sendToPortal('final', {
+      chosen_path: path,
+      triage_action: triageAction || '',
+      verification,
+    })
 
     // Only send the "scheduling a call" email when they actually pick scheduling
     if (path === 'schedule') {
@@ -523,7 +577,13 @@ export function useDealInquiryForm(
       console.error('Notify email error:', error)
     }
 
-    sendToPortal('early')
+    // The verdict has to travel with this event, not just with /api/notify:
+    // the portal mints the document-upload link only for an address its
+    // verifier confirmed, and reads that verdict off THIS payload. Without it
+    // `mintLeadHandoff` skips every lead as `email_not_verified` and the
+    // handoff is silently inert — which is exactly how it behaved until this
+    // line changed.
+    sendToPortal('early', { verification: verdict })
 
     trackEvent('deal_inquiry_question_answered', {
       question_id: 'contact_info',
@@ -707,6 +767,7 @@ export function useDealInquiryForm(
     moveToPreviousQuestion,
     handleGoBack,
     handlePathChoice,
+    handoffUrl,
     handleSubmit,
     handleContactInfoContinue,
     notifyScheduleTransition,
