@@ -57,6 +57,26 @@ import { COLORS } from '@/lib/colors'
 /** Answers keyed by question id, plus the contact block and state. */
 type Answers = Record<string, string | string[]>
 
+/**
+ * What the portal will tell us we may say. `eligible: false` is the normal
+ * case, not an error — see the gate in Serve-Platform's `program-fit`.
+ */
+interface ProgramFit {
+  eligible: boolean
+  blocked: string | null
+  programs: string[]
+  band: string | null
+}
+
+const sentenceCase = (s: string) => s.charAt(0).toUpperCase() + s.slice(1)
+
+/** "A, B and C" — the programs read as a sentence, not a comma list. */
+function listOf(items: string[]): string {
+  if (items.length <= 1) return items[0] ?? ''
+  if (items.length === 2) return `${items[0]} and ${items[1]}`
+  return `${items.slice(0, -1).join(', ')} and ${items[items.length - 1]}`
+}
+
 /** The questions rendered as choice blocks — contact-info is its own section. */
 const CHOICE_QUESTIONS = formQuestions.filter((q) => q.type !== 'contact-info')
 
@@ -77,7 +97,10 @@ export function OnePageForm() {
 
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [contactError, setContactError] = useState('')
-  const [submitted, setSubmitted] = useState<{ calendlyUrl: string } | null>(null)
+  const [submitted, setSubmitted] = useState<{
+    calendlyUrl: string
+    fit: ProgramFit | null
+  } | null>(null)
 
   const hasStartedRef = useRef(false)
   const formRef = useRef<HTMLFormElement>(null)
@@ -190,7 +213,9 @@ export function OnePageForm() {
         }),
       }).catch(() => {})
       setIsSubmitting(false)
-      setSubmitted({ calendlyUrl })
+      // A bot gets the plain confirmation and no fit call — the gate is not
+      // free, and there is nothing to reassure here.
+      setSubmitted({ calendlyUrl, fit: null })
       return
     }
 
@@ -238,8 +263,32 @@ export function OnePageForm() {
       answered: Object.keys(answers).length,
     })
 
+    // The lead is already captured above, so this is the only call whose
+    // failure the visitor could notice — and it can't: the route answers 200
+    // with `eligible: false` on every failure path, which renders the plain
+    // confirmation. Deliberately AFTER the capture streams, never racing them.
+    let fit: ProgramFit | null = null
+    try {
+      const res = await fetch('/api/program-fit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ source: 'website_one_page', event_type: 'final', ...payload }),
+      })
+      fit = await res.json()
+    } catch (error) {
+      console.error('Program fit error:', error)
+    }
+
+    if (fit) {
+      trackEvent('one_page_form_fit', {
+        eligible: String(fit.eligible),
+        blocked: fit.blocked ?? '',
+        programs: fit.programs.length,
+      })
+    }
+
     setIsSubmitting(false)
-    setSubmitted({ calendlyUrl })
+    setSubmitted({ calendlyUrl, fit })
   }
 
   if (submitted) {
@@ -258,10 +307,61 @@ export function OnePageForm() {
             <Heading size="h2" className="mb-3">
               Got it — thank you.
             </Heading>
-            <Text size="lg" className="mb-8">
-              An advisor is reviewing what you sent. Pick a time and we&apos;ll walk you through
-              the options that fit.
-            </Text>
+
+            {/* Three outcomes, and only the first one shows a number.
+                `eligible` is decided by the portal's gate, never here — the
+                whole point is that this component cannot talk itself into
+                reassurance the data doesn't support. */}
+            {submitted.fit?.eligible && submitted.fit.band ? (
+              <>
+                <Text size="lg" className="mb-2">
+                  Your profile fits{' '}
+                  <strong>
+                    {submitted.fit.programs.length === 1
+                      ? submitted.fit.programs[0]
+                      : listOf(submitted.fit.programs)}
+                  </strong>
+                  .
+                </Text>
+                <Text size="lg" className="mb-6">
+                  {/* Worded as what we actually computed. The count comes from
+                      lender criteria for this KIND of facility, so "lenders who
+                      write" is true where "lenders who match you" would be
+                      claiming a per-profile result the matrix cannot support —
+                      min/max funding is populated on only ~44% of products, so
+                      the number barely moves with the size of the ask. */}
+                  {/* The band arrives lowercase ("more than 20") because it is
+                      also used mid-sentence on the portal side; this is the one
+                      place it opens a sentence. */}
+                  <strong>{sentenceCase(submitted.fit.band)} lenders</strong> in our network write
+                  that kind of facility.
+                </Text>
+                <Text size="sm" className="mb-8 text-gray-500">
+                  Based on each lender&apos;s published criteria. Subject to underwriting — not an
+                  offer or commitment to lend.
+                </Text>
+              </>
+            ) : submitted.fit?.programs.length ? (
+              <>
+                {/* Blocked, but we still know which programs the answers point
+                    at — so there is something true to say instead of a number.
+                    This is the "Other" industry and the thin-count cases. */}
+                <Text size="lg" className="mb-2">
+                  Based on what you told us, we&apos;d start with{' '}
+                  <strong>{listOf(submitted.fit.programs)}</strong>.
+                </Text>
+                <Text size="lg" className="mb-8">
+                  There are a few things here an advisor should look at with you before we say
+                  what&apos;s available.
+                </Text>
+              </>
+            ) : (
+              <Text size="lg" className="mb-8">
+                An advisor is reviewing what you sent. Pick a time and we&apos;ll walk you through
+                the options that fit.
+              </Text>
+            )}
+
             <a href={submitted.calendlyUrl} target="_blank" rel="noopener noreferrer">
               <Button variant="default" size="lg">
                 Schedule a Call

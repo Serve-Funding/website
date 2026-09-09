@@ -239,6 +239,48 @@ defensible statement is about programs:
 5. Follow-up email goes out **whether or not they book a call**, carrying something of value —
    Sarah's point 5: "What is the customer trying to get? A real answer/something of value."
 
+## The program-fit screen — built and verified end to end
+
+`/api/program-fit` on the website proxies to the portal's `/api/webhooks/program-fit`, holding the
+shared secret so the browser never does. The gate and the band are the portal's decision; this side
+only renders it.
+
+**The screen has three outcomes, and only one shows a number.**
+
+| Portal verdict | What the visitor sees |
+|---|---|
+| `eligible`, band present | "Your profile fits **Factoring**. **More than 20 lenders** in our network write that kind of facility." + the underwriting disclaimer |
+| blocked, programs known | "Based on what you told us, we'd start with **Factoring**. There are a few things here an advisor should look at with you before we say what's available." |
+| nothing known, or the call failed | The plain confirmation, exactly as before |
+
+**The wording is deliberately "lenders who write that kind of facility", not "lenders who match
+you."** The second would be a per-profile claim the matrix cannot support: `min_funding_amount` /
+`max_funding_amount` are populated on only ~44% of products, so the count barely moves with the size
+of the ask — a $100K request and a $10MM request on the same facility land in the same band. Both
+statements are true; only one is precise about what was actually computed.
+
+**Every failure path is invisible.** The route answers 200 with `eligible: false` when unconfigured,
+timed out, rate-limited or the portal is down, and the fit call runs strictly *after* the three
+capture streams — so a screen failure can never cost a lead or show a visitor an error. It stays
+dark until `PORTAL_PROGRAM_FIT_URL` and `PORTAL_INBOUND_SECRET` are set.
+
+**Rate limiting is deliberately modest, and it is worth being straight about why.** The limiter is
+an in-memory per-IP map: it does not survive a cold start and does not see other instances, so it
+stops a trivial scripted loop and nothing more. The real protection is the response shape — a band
+and program names, never lender names, criteria or an exact count — so varying one field and
+watching the number move teaches an attacker almost nothing. If the response ever carries more, this
+needs to become a real limiter.
+
+**Verified against a production build** (dev-mode chunks were being served stale from cache, which
+masked the wiring for a while — worth knowing if this is retested):
+
+- Eligible: `Factoring` → "More than 20", and `Commercial real estate` → "More than 35", with the
+  three CRE products correctly collapsed to one program name.
+- Blocked: industry `Other` → **no number**, programs still named, advisor routing. This is the
+  dispensary case, and the raw count behind it was 23 — it would have displayed "more than 20".
+- The band's capitalisation is applied on this side; the portal emits it lowercase because it also
+  reads mid-sentence there.
+
 ## Also in Sarah's 2026-09-08 note — all three already shipped to `dev`
 
 Landed before this spec was written; listed so nobody redoes them:
@@ -277,10 +319,7 @@ On a single page everyone answers everything, so:
 - **What the screen shows for "Not sure yet".** It measures at **144**, because the matcher reads an
   empty `products_offered` as match-all. It must show no number — decide what it shows instead
   (the programs we'd explore, or straight to advisor routing).
-- **The program-fit screen itself is not built.** The form ends on a plain confirmation plus the
-  Calendly link. The screen needs a portal endpoint that runs the gate and returns a band plus
-  program names, server-side, which does not exist yet — that is the next piece of work, and it is
-  the one the whole incentive rests on.
+- ~~**The program-fit screen itself is not built.**~~ **Built.** See below.
 - **Attribution.** This form is the natural place to fix the UTM/referrer gap found 2026-09-08 —
   every website lead currently gets `lead_source` hardcoded to "search." Capture landing UTMs +
   referrer in `sessionStorage` and append to the payload; derive AI-search sources from known
