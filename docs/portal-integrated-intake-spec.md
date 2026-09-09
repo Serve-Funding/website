@@ -136,6 +136,41 @@ unbuilt — it was **impossible**, and a count shipped today would have read ~13
 
 Verified: `npm run build` passes (including `verify-seo`) and `tsc --noEmit` is clean.
 
+**The one-page form, at `/get-started`.** A NEW route, not a replacement for `/discover` — #81 tuned
+that funnel on real numbers and replacing it in place would destroy the only baseline this page can
+be judged against. Both run; the CTA gets pointed here when there's a reason, and the loser is
+retired with evidence. It is `noindex` while that comparison runs (two near-identical intake forms
+on one domain is a duplicate-content signal and would split the link equity of the page the AIEO
+work went into), and therefore deliberately absent from `sitemap.ts` and from `ROUTE_SOURCES` —
+add both in the same commit that removes the noindex.
+
+- Reads the same `formQuestions` and the same `triageRules` as `ConversationalForm`. The two must
+  route a given lead to the same calendar, and a second copy of either is how that stops being true.
+- `triageCompleteAnswers` (in `triage-rules.ts`) is the only new logic: it evaluates every rule
+  against the whole answer set at submit instead of question-by-question, reads rules in order so
+  position is priority, and ignores `skip_question` (nothing is skipped when everything is visible).
+- Calendly routing moved to `src/lib/calendly-routing.ts` so both forms share one copy of the URLs.
+  `useDealInquiryForm` re-exports `CALENDLY_URLS`, so no importer changed.
+- `company_state` is collected here as a `<select>` from `src/data/us-states.ts`, which closes half
+  of the eligibility-gate blocker below. Postal codes go over the wire because that is what
+  `deals.deal_state` and `states_excluded` hold.
+- Only the ask and contact details are required. The rest is optional on purpose: a partial answer
+  set still projects to a usable deal and still scores, because points only add.
+
+**Manual verification** (this repo has no test framework):
+
+- Rendered `/get-started` and confirmed every question plus the state dropdown is on one page.
+- Submitted a real lead through the browser with the n8n webhook redirected to a local sink, so
+  nothing reached the production sheet. The captured payload carried every contract key —
+  `financing_type: ["Get paid now on unpaid invoices"]`, `company_state: "GA"`, `triage_action:
+  "mike"`, Michael's owner calendar — **including `financing_needs`, which the one-at-a-time form
+  would have skipped for this lead**, since the `$10MM-$20MM` rule fires on revenue and stops the
+  form.
+- All three streams fired independently. `/api/notify` returned 400 (no local Resend key) and the
+  visitor still saw the success screen — the `Promise.allSettled` isolation behaving as intended.
+- Diffed `triageCompleteAnswers` against `checkTriageRules` over 9 answer sets covering all four
+  rules, both defaults, and the browser submission above: **the two agree on every one.**
+
 ## Design
 
 ### Eligibility gate — runs first, server-side
@@ -148,12 +183,13 @@ clear it.
 **The gate cannot be built on the current industry question — this is unresolved.** Two mismatches
 found while building:
 
-1. **No state is collected at all.** `projectWebsiteLead` writes no `deal_state`, and the form never
-   asks. (`FormSubmitData` already carries a `company_state` key from another form, so there is a
-   name to reuse.) Deferred rather than bolted onto the conversational form: a 50-option `single`
-   screen would be a bad question in a one-at-a-time UI, `ConversationalForm` renders only `single`
-   and `multi`, and the gate that consumes it does not exist yet. The one-page layout is where a
-   `<select>` belongs. Note state matters beyond the gate — it drives the licensing screen.
+1. ~~**No state is collected at all.**~~ **Half done.** The one-page form now collects
+   `company_state` as a `<select>`, which is where a 50-option question belongs — it was never going
+   to work as a `single` screen in the one-at-a-time UI, and `ConversationalForm` renders only
+   `single` and `multi`. **Still outstanding on the portal side:** `readWebsiteLeadPayload` does not
+   read `company_state` and `projectWebsiteLead` writes no `deal_state`, so the answer currently
+   reaches `inbound_log.payload` and stops there. `/discover` still doesn't ask at all. Note state
+   matters beyond the gate — it drives the licensing screen.
 2. **The industry vocabularies don't meet.** The form offers 16 curated industries; lender
    `restricted_industries` are strings like "Marijuana / cannabis (medical or recreational)" and
    "Trucking/Transportation/Logistics", neither of which appears in the form's list. A dispensary
@@ -216,9 +252,10 @@ form intake (`src/app/api/verify-contact`). The one-page form should keep that, 
 handoff should trust it — a bounced address means the portal link never arrives, which is a silent
 dead end.
 
-### One page means triage moves to submit-time
+### One page means triage moves to submit-time — done, via `triageCompleteAnswers`
 
-A consequence of Sarah's request that nobody has flagged. Today the triage rules run **mid-form**: a
+A consequence of Sarah's request that nobody had flagged, now implemented and verified to agree with
+the mid-form routing on every rule. Recorded below as the reasoning behind it. Today the triage rules run **mid-form**: a
 `mike` rule firing on `annual_revenue` stops the form and routes straight to Mike's calendar, which
 is why `annual_revenue` has to sit second-to-last and why one question is deliberately sacrificed.
 On a single page everyone answers everything, so:
@@ -234,8 +271,16 @@ On a single page everyone answers everything, so:
 
 ## Open questions
 
-- **Band thresholds.** "More than 20" fits every archetype measured, but the floor case ($30K salon)
-  returned 15. Decide the bands, and decide what shows below the lowest one.
+- **Band thresholds.** Now measured through the real mapping rather than estimated: with a facility
+  named, the count runs **13 (SBA) to 38 (CRE)** — factoring 24, ABL 21, equipment 23, RBF 37. So
+  "more than 20" does not cover SBA. Decide the bands, and decide what shows below the lowest one.
+- **What the screen shows for "Not sure yet".** It measures at **144**, because the matcher reads an
+  empty `products_offered` as match-all. It must show no number — decide what it shows instead
+  (the programs we'd explore, or straight to advisor routing).
+- **The program-fit screen itself is not built.** The form ends on a plain confirmation plus the
+  Calendly link. The screen needs a portal endpoint that runs the gate and returns a band plus
+  program names, server-side, which does not exist yet — that is the next piece of work, and it is
+  the one the whole incentive rests on.
 - **Attribution.** This form is the natural place to fix the UTM/referrer gap found 2026-09-08 —
   every website lead currently gets `lead_source` hardcoded to "search." Capture landing UTMs +
   referrer in `sessionStorage` and append to the payload; derive AI-search sources from known
