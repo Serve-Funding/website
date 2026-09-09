@@ -82,7 +82,6 @@ export function useDealInquiryForm(
 
   // Email/phone verification on the contact-info step
   const [isVerifying, setIsVerifying] = useState(false)
-  const [contactError, setContactError] = useState('')
   const [verification, setVerification] = useState<ContactVerdict | null>(null)
 
   // Dynamic "other" field responses (for single_with_other questions)
@@ -450,10 +449,10 @@ export function useDealInquiryForm(
   const handleContactInfoContinue = async () => {
     if (!name || !email || isVerifying) return
 
-    // Verify the email is deliverable and the phone is a real, reachable line
-    // before we let the lead through. Only an undeliverable email blocks;
-    // everything else is passed along as a flag on the notification email.
-    setContactError('')
+    // Check whether the email is deliverable and the phone is a real, reachable
+    // line. Nothing blocks the lead: the verdict rides along on the notification
+    // email as flags, and an undeliverable address is tracked so we can measure
+    // how often NeverBounce is wrong before ever considering a hard stop.
     setIsVerifying(true)
     let verdict: ContactVerdict | null = null
     try {
@@ -469,14 +468,10 @@ export function useDealInquiryForm(
     setIsVerifying(false)
     setVerification(verdict)
 
-    if (verdict?.hardFail === 'email') {
-      setContactError(
-        verdict.email.suggestion
-          ? `We couldn't deliver to that address. Did you mean ${verdict.email.suggestion}?`
-          : "That email address doesn't appear to exist. Please double-check it so we can reach you."
-      )
-      trackEvent('deal_inquiry_contact_rejected', { reason: 'email_undeliverable' })
-      return
+    if (verdict?.email.result === 'invalid') {
+      trackEvent('deal_inquiry_email_undeliverable', {
+        has_suggestion: Boolean(verdict.email.suggestion),
+      })
     }
 
     const isPartner = userRole === 'A Banker / Business Advisor'
@@ -687,7 +682,6 @@ export function useDealInquiryForm(
     isContactInfoStep,
     isTriageQuestion,
     isVerifying,
-    contactError,
     showChoicePoint,
     chosenPath,
     answeredQuestions,

@@ -107,7 +107,6 @@ function ContactInfoFields({
   setFieldValue,
   onContinue,
   isVerifying,
-  contactError,
 }: {
   isPartner: boolean
   name: string
@@ -118,7 +117,6 @@ function ContactInfoFields({
   setFieldValue: (id: string, value: any) => void
   onContinue: () => void
   isVerifying: boolean
-  contactError: string
 }) {
   return (
     <form
@@ -178,11 +176,7 @@ function ContactInfoFields({
             <a href="/sms-terms" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'underline', color: 'inherit' }}>SMS Terms</a>.
           </span>
         </label>
-        {contactError ? (
-          <p role="alert" style={{ fontSize: '13px', color: '#b42318', marginLeft: '4px' }}>{contactError}</p>
-        ) : (
-          <p style={{ fontSize: '12px', color: '#9ca3af', marginLeft: '4px' }}>We respect your privacy. No spam, ever.</p>
-        )}
+        <p style={{ fontSize: '12px', color: '#9ca3af', marginLeft: '4px' }}>We respect your privacy. No spam, ever.</p>
       </div>
 
       <div style={{ display: 'flex', justifyContent: 'center', marginTop: '12px' }}>
@@ -219,7 +213,6 @@ export function ConversationalForm({ initialRole, onComplete }: ConversationalFo
     answeredQuestions,
     isContactInfoStep,
     isVerifying,
-    contactError,
     getFieldValue,
     setFieldValue,
     handleAnswer,
@@ -530,7 +523,6 @@ export function ConversationalForm({ initialRole, onComplete }: ConversationalFo
                 setFieldValue={setFieldValue}
                 onContinue={handleContactInfoContinue}
                 isVerifying={isVerifying}
-                contactError={contactError}
               />
             </div>
           </motion.div>
