@@ -2,9 +2,12 @@
  * Contact verification for form intake — is this email deliverable and is this
  * phone a real, reachable line?
  *
- * Fails OPEN: any missing key, API error, or timeout yields "unchecked" rather
- * than rejecting a lead. The only verdict that blocks a submission is an email
- * NeverBounce confirms is undeliverable.
+ * Advisory only — nothing here blocks a submission. Even an address NeverBounce
+ * calls undeliverable is passed through as a flag on the lead notification for a
+ * human to judge, because at this traffic volume a false positive costs more
+ * than a bad address does (decided in the 2026-09-09 dev meeting).
+ *
+ * Fails OPEN as well: any missing key, API error, or timeout yields "unchecked".
  */
 
 const NEVERBOUNCE_KEY = process.env.NEVERBOUNCE_API_KEY
@@ -26,8 +29,6 @@ export interface ContactVerdict {
   phone: { valid: boolean | null; type?: string; carrier?: string; country?: string; errorCode?: number }
   /** Human-readable warnings, rendered into the lead notification email. */
   flags: string[]
-  /** Set only when the submission should be sent back for correction. */
-  hardFail: 'email' | null
 }
 
 async function fetchJson(url: string, init?: RequestInit): Promise<any | null> {
@@ -159,6 +160,5 @@ export async function verifyContact({
     email: emailVerdict,
     phone: phoneVerdict,
     flags,
-    hardFail: emailVerdict.result === 'invalid' ? 'email' : null,
   }
 }
