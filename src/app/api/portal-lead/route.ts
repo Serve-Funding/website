@@ -52,7 +52,16 @@ export async function POST(request: Request) {
       return NextResponse.json({ ok: false, reason: 'portal_error', status: res.status })
     }
 
-    return NextResponse.json({ ok: true })
+    // The portal mints a document-upload link for a lead whose email it could
+    // verify, and this is the only path that carries it — the deal has to exist
+    // before there is anything to link to. Named explicitly rather than
+    // forwarding the portal's whole body, which also holds the deal id and the
+    // projection outcome: neither belongs in a browser.
+    const portal = (await res.json().catch(() => null)) as { handoff_url?: unknown } | null
+    const handoffUrl =
+      typeof portal?.handoff_url === 'string' && portal.handoff_url ? portal.handoff_url : null
+
+    return NextResponse.json({ ok: true, handoffUrl })
   } catch (error) {
     // Swallow — the visitor's flow (n8n + email) already succeeded independently.
     console.error('[portal-lead] forward failed:', error)

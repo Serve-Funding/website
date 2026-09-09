@@ -128,3 +128,36 @@ export function checkTriageRules(
 
 // Default behavior: if no triage rules matched, continue through form and then go to mike_with_chat
 export const DEFAULT_ACTION: TriageAction = 'mike_with_chat'
+
+/**
+ * Triage a COMPLETE answer set, all at once.
+ *
+ * `checkTriageRules` above answers "did answering *this* question decide the
+ * routing?" — the question-at-a-time form's shape, where a `mike` match stops
+ * the form on the spot and every question behind it is skipped. The one-page
+ * form has no such moment: every answer arrives together, so routing is decided
+ * once at submit against the whole set.
+ *
+ * Two consequences, both deliberate:
+ *
+ *  - It reads the rules in ORDER and returns the first match, so a rule's
+ *    position in `triageRules` is its priority. The two `mike` rules are listed
+ *    before `kyler_with_chat`, so a lead that satisfies both routes to Mike —
+ *    matching the mid-form behaviour, where the revenue rule fired first and
+ *    the visitor never reached the question the Kyler rule keys on.
+ *  - `skip_question` rules are ignored: nothing is skipped when everything is
+ *    on screen. None exist today; this is what should happen if one is added.
+ *
+ * Question ORDER stops being load-bearing under this function — see the header
+ * in src/data/form-questions.ts, which is still authoritative for the
+ * one-at-a-time form.
+ */
+export function triageCompleteAnswers(
+  formData: Record<string, string | string[] | undefined>
+): TriageAction {
+  for (const rule of triageRules) {
+    if (rule.then.action === 'skip_question') continue
+    if (evaluateRule(rule, formData)) return rule.then.action
+  }
+  return DEFAULT_ACTION
+}

@@ -29,7 +29,7 @@ export interface Question {
 /**
  * ORDER IS LOAD-BEARING — see src/lib/triage-rules.ts before moving anything.
  *
- * Two constraints:
+ * Four constraints:
  *  1. `annual_revenue` must come AFTER `funding_amount`. The two Mike-routing
  *     rules are keyed on `annual_revenue` and read `funding_amount`, so the
  *     amount has to already be on the form state when revenue is answered.
@@ -41,6 +41,12 @@ export interface Question {
  *     earlier silently costs the highest-value leads the fields behind it.
  *     One question is lost today (financing_needs), same as before this
  *     reorder — keep it that way.
+ *  4. `financing_type` must stay ABOVE `annual_revenue`, for the same reason
+ *     constraint 3 exists. It is the field the lender count depends on, and a
+ *     Mike rule firing on revenue would skip it for exactly the leads
+ *     ($10MM+ revenue, or $3MM+ with a $1MM+ ask) where the count matters
+ *     most. Position 2 also keeps it a no-PII tap, which is what screen one
+ *     and two are for.
  *
  * Why `funding_amount` opens: 90 days of Umami to 2026-09-08 says 128 people
  * loaded this form and 34 answered the first question. Of those 34, 26 handed
@@ -56,6 +62,46 @@ export const formQuestions: Question[] = [
     title: 'How much funding are you looking for?',
     answers: ['$100K-$250K', '$250K-$500K', '$500K-$1MM', '$1MM-$5MM', '$5MM-$10MM', '$10MM+'],
     type: 'single'
+  },
+  {
+    id: 'financing_type',
+    title: 'And what would the money be doing?',
+    partnerTitle: "And what would the money be doing for your client?",
+    // WHY THIS EXISTS, AND WHY THE WORDING IS NOT OUR PRODUCT NAMES.
+    //
+    // This is the only field that makes a lender count mean anything. Measured
+    // against production on 2026-09-09: the ask alone matches 126-144 of 166
+    // lenders (a number worth showing nobody), and product selection is what
+    // narrows it to 20-38. Every field after that moves it by ~0. So without
+    // this question there is no honest "we have lenders for this" screen —
+    // see docs/portal-integrated-intake-spec.md.
+    //
+    // `financing_needs` does NOT do this job. It asks what the money is FOR
+    // (working capital, refinance) and lands on `use_of_proceeds`; this asks
+    // what SHAPE the facility is, and is what maps to `products_offered`.
+    //
+    // The labels describe the mechanic in the visitor's words on purpose. A
+    // stranger does not know whether they want a "Revenue-Based Term Loan",
+    // and asking them to self-classify into our vocabulary is the same mistake
+    // the old `user_role` opener made (see #81). The portal owns the
+    // label -> CANONICAL_PRODUCTS mapping, in the same place it already parses
+    // our bucket strings (`src/lib/leads/facts.ts`) — one side of a cross-repo
+    // contract, not two copies of a product list.
+    //
+    // Multi-select, and "Not sure yet" is a real answer: it carries no product
+    // filter rather than a wrong one, which follows Sarah's onboarding brief
+    // that an unsure client still gets their basics saved.
+    answers: [
+      'Borrow against inventory, receivables or equipment',
+      'Get paid now on unpaid invoices',
+      'Buy or lease equipment',
+      'Funding based on monthly revenue',
+      'Pay suppliers for a purchase order',
+      'Commercial real estate',
+      'An SBA loan',
+      'Not sure yet',
+    ],
+    type: 'multi'
   },
   {
     id: 'user_role',

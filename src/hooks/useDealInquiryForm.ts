@@ -5,43 +5,13 @@ import { useFormSubmit, FormSubmitData } from './useFormSubmit'
 import { formQuestions } from '@/data/form-questions'
 import { trackEvent, trackFormSubmission, trackHubSpotNativeForm } from '@/lib/tracking'
 import { checkTriageRules, triageRules, type TriageAction } from '@/lib/triage-rules'
+import { getCalendlyUrlForAction, getRoleType } from '@/lib/calendly-routing'
 import type { ContactVerdict } from '@/lib/verify-contact'
 
 
-// Calendly URLs - split by person and owner vs partner role
-export const CALENDLY_URLS = {
-  michael: {
-    owner: 'https://calendly.com/michael_kodinsky/30-minute-funding-call',
-    partner: 'https://calendly.com/michael_kodinsky/partner-strategy-call',
-  },
-  kyler: {
-    // TODO: Kyler to create matching Calendly links with same intake questions
-    owner: 'https://calendly.com/d/cxqk-t6s-72q/30-minute-funding-strategy-call',
-    partner: 'https://calendly.com/d/cxqk-t6s-72q/30-minute-funding-strategy-call',
-  },
-}
-
-// Quick schedule link always goes to Kyler's owner calendar
-export const QUICK_SCHEDULE_URL = CALENDLY_URLS.kyler.owner
-
-function getRoleType(userRole: string): 'owner' | 'partner' {
-  return userRole === 'A Business Owner or Operator Seeking Funding' ? 'owner' : 'partner'
-}
-
-function getCalendlyUrlForAction(action: string, userRole: string): string {
-  const roleType = getRoleType(userRole)
-
-  if (action === 'mike' || action === 'mike_with_chat') {
-    return CALENDLY_URLS.michael[roleType]
-  }
-
-  if (action === 'kyler_with_chat') {
-    return CALENDLY_URLS.kyler[roleType]
-  }
-
-  // Default: Michael
-  return CALENDLY_URLS.michael[roleType]
-}
+// Calendly routing lives in @/lib/calendly-routing so the one-page form shares
+// it. Re-exported here because ConversationalForm imports it from this module.
+export { CALENDLY_URLS, QUICK_SCHEDULE_URL } from '@/lib/calendly-routing'
 
 export type ChosenPath = 'schedule' | 'ai_chat' | null
 
@@ -72,6 +42,7 @@ export function useDealInquiryForm(
   const [timeInBusiness, setTimeInBusiness] = useState('')
   const [annualRevenue, setAnnualRevenue] = useState('')
   const [financingNeeds, setFinancingNeeds] = useState<string[]>([])
+  const [financingType, setFinancingType] = useState<string[]>([])
   const [fundingAmount, setFundingAmount] = useState('')
   const [ownerCreditScore, setOwnerCreditScore] = useState('')
   const [name, setName] = useState('')
@@ -126,6 +97,7 @@ export function useDealInquiryForm(
       case 'time_in_business': return timeInBusiness
       case 'annual_revenue': return annualRevenue
       case 'financing_needs': return financingNeeds
+      case 'financing_type': return financingType
       case 'funding_amount': return fundingAmount
       case 'owner_credit_score': return ownerCreditScore
       case 'name': return name
@@ -152,6 +124,7 @@ export function useDealInquiryForm(
       case 'time_in_business': setTimeInBusiness(value); break
       case 'annual_revenue': setAnnualRevenue(value); break
       case 'financing_needs': setFinancingNeeds(value); break
+      case 'financing_type': setFinancingType(value); break
       case 'funding_amount': setFundingAmount(value); break
       case 'owner_credit_score': setOwnerCreditScore(value); break
       case 'name': setName(value); break
@@ -169,6 +142,7 @@ export function useDealInquiryForm(
     time_in_business: timeInBusiness,
     annual_revenue: annualRevenue,
     financing_needs: financingNeeds,
+    financing_type: financingType,
     funding_amount: fundingAmount,
     owner_credit_score: ownerCreditScore,
     sms_consent: smsConsent ? 'yes' : 'no',
@@ -600,6 +574,11 @@ export function useDealInquiryForm(
       time_in_business: timeInBusiness,
       annual_revenue: annualRevenue,
       financing_needs: financingNeeds,
+      // New key on the cross-repo payload contract. The portal's
+      // WebsiteLeadPayload has to learn it before it lands on
+      // `deals.products_offered` — until then it rides along in the raw
+      // `inbound_log.payload`, which is the point of capture-first.
+      financing_type: financingType,
       funding_amount: fundingAmount,
       owner_credit_score: ownerCreditScore,
       calendly_url: calendlyUrl,
@@ -687,6 +666,7 @@ export function useDealInquiryForm(
     timeInBusiness,
     annualRevenue,
     financingNeeds,
+    financingType,
     fundingAmount,
     ownerCreditScore,
     name,

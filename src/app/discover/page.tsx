@@ -47,6 +47,7 @@ function DiscoverContent() {
       data.time_in_business ? `${questionMap.time_in_business} ${data.time_in_business}` : null,
       data.owner_credit_score ? `${questionMap.owner_credit_score} ${data.owner_credit_score}` : null,
       data.business_industry ? `${questionMap.business_industry} ${data.business_industry}` : null,
+      data.financing_type && Array.isArray(data.financing_type) && data.financing_type.length > 0 ? `${questionMap.financing_type} ${data.financing_type.join(', ')}` : null,
       data.financing_needs && Array.isArray(data.financing_needs) && data.financing_needs.length > 0 ? `${questionMap.financing_needs} ${data.financing_needs.join(', ')}` : null,
     ].filter(Boolean).join('\n')
 
@@ -77,6 +78,11 @@ function DiscoverContent() {
 
       const fundingGoal = [
         data.funding_amount,
+        // Both, and in this order: financing_type is the facility shape, which
+        // is what Mike needs to see before the call, and financing_needs is
+        // what it's for. High-revenue leads are routed out at annual_revenue
+        // and never reach financing_needs, so type is often the only one set.
+        data.financing_type?.length ? `via ${data.financing_type.join(', ')}` : '',
         data.financing_needs?.length ? `for ${data.financing_needs.join(', ')}` : '',
       ].filter(Boolean).join(' ')
 
