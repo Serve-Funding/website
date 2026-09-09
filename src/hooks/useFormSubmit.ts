@@ -19,9 +19,6 @@ export interface FormSubmitData {
   time_in_business?: string
   annual_revenue?: string
   financing_needs?: string[]
-  /** What SHAPE the facility is — maps to `products_offered`. Not
-   *  `financing_needs`, which is what the money is for. */
-  financing_type?: string[]
   funding_amount?: string
   owner_credit_score?: string
   company_state?: string
