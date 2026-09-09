@@ -66,8 +66,25 @@ ever get on a call.
 | Invite-token onboarding | `Serve-Platform/src/app/onboarding` + `actions/client-portal.ts` | Built. Currently requires an admin to send the link |
 | Distinct-lender match count | `Serve-Platform/src/lib/match/count.ts` (`countMatches`) | Built, pure, unit-tested |
 
-**Goal 1 is therefore already shipping.** Confirm `PORTAL_LEAD_ENABLED=true` is set in the website's
-production environment — the route returns `{ ok: true, skipped: 'disabled' }` otherwise, silently.
+**Goal 1 is therefore already shipping — verified 2026-09-09, not assumed.** `PORTAL_LEAD_ENABLED`
+is live: production `inbound_log` holds 12 `website_discover` rows between 2026-08-30 and
+2026-09-08, 8 of them carrying a `deal_id` at status `projected`. (The 4 still at `received` all
+predate the projection code.) Website leads do create portal deals.
+
+**A trap for whoever re-checks this:** `vercel env pull` returns a **blank value for sensitive
+vars**, so a pulled `PORTAL_LEAD_ENABLED=""` is *not* evidence it is unset — the same pull returned
+`SUPABASE_SECRET_KEY=""` for a portal that demonstrably works. Use `vercel env ls production`, which
+returns names, or check behaviour.
+
+**But the contact verification has never run in production, and that gates this feature.**
+`NEVERBOUNCE_API_KEY`, `TWILIO_ACCOUNT_SID` and `TWILIO_AUTH_TOKEN` are absent from the website's
+production environment — #72's own description flagged adding them as an outstanding step and it was
+never done. So every verdict is `unchecked`, and since the handoff mints only for `valid`, **the
+upload link will be offered to exactly zero visitors until those credentials are added.** Confirmed
+in production: the 2026-09-08 "New Lead: Greg Martin" notification carries the not-configured flags.
+The stronger reason to add them has nothing to do with this feature — #85's
+`deal_inquiry_email_undeliverable` event can never fire without the key, so the false-positive
+measurement the dev meeting asked for is currently vacuous.
 
 Note also that `Serve-Platform/src/app/apply/page.tsx` is a **retired** public intake page that now
 redirects to `/login`. The standalone public form was deliberately replaced by the admin-initiated
