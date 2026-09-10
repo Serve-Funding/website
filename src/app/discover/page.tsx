@@ -54,9 +54,17 @@ function DiscoverContent() {
   }
 
   const buildCalendlyCustomAnswers = (data: FormSubmitData): Record<string, string> => {
-    const isOwner = data.user_role === 'A Business Owner or Operator Seeking Funding'
+    // Only the explicit partner answer means partner — an absent role is an
+    // owner. Same rule as `getRoleType` and `/api/notify`, and here for the
+    // same reason: the form stopped asking the role question on 2026-09-10, so
+    // `user_role` is empty for everyone who did not arrive via
+    // `/discover?role=partner`. Testing for the OWNER string instead would send
+    // every ordinary applicant down the partner branch, whose only field is the
+    // role itself — so an empty role returned `{}` and Michael's invites
+    // arrived with no business, no revenue and no funding goal prefilled.
+    const isPartner = data.user_role === 'A Banker / Business Advisor'
 
-    if (isOwner) {
+    if (!isPartner) {
       const businessDesc = [
         data.company,
         data.business_industry,

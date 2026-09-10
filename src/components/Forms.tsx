@@ -216,7 +216,6 @@ export function DealInquiryForm({
 
   // Is the current step a triage question (after contact info)?
   const isTriageStep = currentQuestion?.type !== 'contact-info' && currentQuestionIndex > 0
-    && currentQuestion?.id !== 'user_role'
 
   // Resolve the display title — use partnerTitle when the user is a Banker / Business Advisor
   const isPartner = userRole === 'A Banker / Business Advisor'

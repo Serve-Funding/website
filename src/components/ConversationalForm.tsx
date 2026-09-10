@@ -383,17 +383,19 @@ export function ConversationalForm({ initialRole, onComplete }: ConversationalFo
           >
             <QuestionRow>
               {handoffUrl
-                ? 'Thanks for sharing! To get soft terms from lenders we need a few documents — you can start uploading now, or talk to our team first.'
+                ? 'Thanks for sharing! To get soft terms from lenders we need a few documents — you can complete your application now, or talk to our team first.'
                 : 'Thanks for sharing! Would you like to speak with our team or explore options with our Funding Navigator?'}
             </QuestionRow>
 
             <AnswerRow>
-              {/* The document handoff, and ONLY when the portal actually minted
-                  a link for this lead. It declines unless its verifier confirmed
-                  the address accepts mail, so this is absent more often than not
-                  — a real corporate on a catch-all domain gets no link. Rendered
-                  conditionally rather than disabled, because a door that is
-                  usually missing should not leave a dead one behind.
+              {/* The portal handoff, and ONLY when the portal actually minted a
+                  link for this lead. It declines unless the email verifier
+                  returned `valid`, so a real corporate on a catch-all domain
+                  gets no link. Rendered conditionally rather than disabled,
+                  because a door that is sometimes missing should not leave a
+                  dead one behind — and there is nothing generic to fall back
+                  to: portal.servefunding.com/apply is retired and redirects to
+                  a login page, which is worse than no button.
 
                   An <a>, not a button: the browser owns the navigation, and the
                   `final` event fired by handlePathChoice uses keepalive so it
@@ -407,7 +409,7 @@ export function ConversationalForm({ initialRole, onComplete }: ConversationalFo
                   className="px-8 py-4 rounded-2xl font-medium text-[15px] inline-block"
                   style={{ backgroundColor: COLORS.primary, color: '#fff', border: 'none' }}
                 >
-                  Upload documents
+                  Complete your application
                 </motion.a>
               )}
               <OptionPill

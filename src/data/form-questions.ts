@@ -49,20 +49,25 @@ export interface Question {
  * themselves before offering anything. Opening with the question they arrived
  * with is one tap, no typing, no PII, and it is the single most useful field
  * to have if they answer nothing else.
+ *
+ * There is no `user_role` question. It was demoted from the opener to second
+ * place and then removed outright (Sarah and Kyler, 2026-09-10): Serve has had
+ * essentially no advisor or banker arrive through this form, so it was a
+ * question almost everyone answered the same way, and the one asked closest to
+ * the point where the funnel bleeds.
+ *
+ * The role itself still exists — `useDealInquiryForm` seeds `userRole` from
+ * `?role=partner`, which is how both CTAs on /partners link here. So a partner
+ * who arrives through the partner page still gets `partnerTitle` wording and
+ * Michael's PARTNER calendar; everyone else is treated as an owner, which is
+ * what they overwhelmingly are. Restoring the question means putting this entry
+ * back after `funding_amount` — nothing else is keyed on it.
  */
 export const formQuestions: Question[] = [
   {
     id: 'funding_amount',
     title: 'How much funding are you looking for?',
     answers: ['$100K-$250K', '$250K-$500K', '$500K-$1MM', '$1MM-$5MM', '$5MM-$10MM', '$10MM+'],
-    type: 'single'
-  },
-  {
-    id: 'user_role',
-    // Not the welcome screen any more, and the old wording said "funding
-    // partner" while the buttons say "Banker / Business Advisor".
-    title: "And are you the business owner, or an advisor working with one?",
-    answers: ['A Business Owner or Operator Seeking Funding', 'A Banker / Business Advisor'],
     type: 'single'
   },
   {
