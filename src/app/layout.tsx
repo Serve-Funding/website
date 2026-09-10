@@ -12,7 +12,7 @@ import { SchemaRenderer } from "@/components/SchemaRenderer"
 import { getOrganizationSchema, getWebSiteSchema } from "@/lib/schema-generators"
 import "@/app/globals.css"
 import { Montserrat } from 'next/font/google'
-import { Chatbot, NewsletterModalLazy } from "@/components/LazyComponents"
+import { Chatbot } from "@/components/LazyComponents"
 
 // Lazy load NewsletterForm to improve LCP
 const NewsletterForm = dynamic(() => import("@/components/Forms").then(mod => ({ default: mod.NewsletterForm })), {
@@ -97,7 +97,6 @@ export default async function RootLayout({
         <NewsletterForm />
         <Footer />
         <Chatbot />
-        <NewsletterModalLazy />
 
         {/* Load third-party scripts after main content with nonce */}
         {process.env.NEXT_PUBLIC_UMAMI_SCRIPT_URL && (

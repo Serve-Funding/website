@@ -38,7 +38,6 @@ export async function POST(request: Request) {
         email: { result: 'unchecked' },
         phone: { valid: null },
         flags: ['Verification skipped (rate limited)'],
-        hardFail: null,
       })
     }
 
@@ -50,7 +49,6 @@ export async function POST(request: Request) {
       email: { result: 'unchecked' },
       phone: { valid: null },
       flags: ['Verification failed to run'],
-      hardFail: null,
     })
   }
 }

@@ -2,8 +2,9 @@
 
 import React from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
-import { Heading, Text, Container } from '@/components/ui'
+import { Heading, Text, Container, Button } from '@/components/ui'
 
 interface HeroSlide {
   heading: string | React.ReactNode
@@ -13,11 +14,23 @@ interface HeroSlide {
   height: number
 }
 
-interface HeroCarouselProps {
-  slides: HeroSlide[]
+interface HeroCta {
+  label: string
+  href: string
+  /** One short line of reassurance under the button. */
+  note?: string
 }
 
-export function HeroCarousel({ slides }: HeroCarouselProps) {
+interface HeroCarouselProps {
+  slides: HeroSlide[]
+  /**
+   * The hero's call to action. Constant across slides on purpose — it is the
+   * page's primary action, not a property of whichever slide is showing.
+   */
+  cta?: HeroCta
+}
+
+export function HeroCarousel({ slides, cta }: HeroCarouselProps) {
   const [heroIndex, setHeroIndex] = React.useState(0)
   const [isUserInteracting, setIsUserInteracting] = React.useState(false)
   const [pageLoaded, setPageLoaded] = React.useState(false)
@@ -67,6 +80,25 @@ export function HeroCarousel({ slides }: HeroCarouselProps) {
         <Text size="2xl" className="mb-6 lg:mb-8 text-gray-700">
           {slide.desc}
         </Text>
+
+        {cta && (
+          <div className="mb-8 lg:mb-10">
+            <Link href={cta.href}>
+              <Button variant="gold" size="lg">
+                {cta.label}
+              </Button>
+            </Link>
+            {cta.note && (
+              <Text size="sm" className="mt-3 text-gray-500">
+                {cta.note}
+              </Text>
+            )}
+          </div>
+        )}
+
+        {/* Slide controls sit below the CTA and stay visually quieter than it —
+            the next-slide arrow used to be the darkest element in the hero,
+            which made "see another slide" read as the primary action. */}
         <div className="flex gap-3 sm:gap-4">
           <button
             onClick={handlePrev}
@@ -77,7 +109,7 @@ export function HeroCarousel({ slides }: HeroCarouselProps) {
           </button>
           <button
             onClick={handleNext}
-            className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gray-800 text-white flex items-center justify-center hover:bg-olive-900 transition-all duration-300 flex-shrink-0"
+            className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center hover:bg-olive-900 hover:text-white transition-all duration-300 flex-shrink-0"
             aria-label="Next slide"
           >
             <ChevronRight size={20} className="sm:w-6 sm:h-6" />

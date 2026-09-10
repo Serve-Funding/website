@@ -107,7 +107,6 @@ function ContactInfoFields({
   setFieldValue,
   onContinue,
   isVerifying,
-  contactError,
 }: {
   isPartner: boolean
   name: string
@@ -118,7 +117,6 @@ function ContactInfoFields({
   setFieldValue: (id: string, value: any) => void
   onContinue: () => void
   isVerifying: boolean
-  contactError: string
 }) {
   return (
     <form
@@ -178,11 +176,7 @@ function ContactInfoFields({
             <a href="/sms-terms" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'underline', color: 'inherit' }}>SMS Terms</a>.
           </span>
         </label>
-        {contactError ? (
-          <p role="alert" style={{ fontSize: '13px', color: '#b42318', marginLeft: '4px' }}>{contactError}</p>
-        ) : (
-          <p style={{ fontSize: '12px', color: '#9ca3af', marginLeft: '4px' }}>We respect your privacy. No spam, ever.</p>
-        )}
+        <p style={{ fontSize: '12px', color: '#9ca3af', marginLeft: '4px' }}>We respect your privacy. No spam, ever.</p>
       </div>
 
       <div style={{ display: 'flex', justifyContent: 'center', marginTop: '12px' }}>
@@ -216,10 +210,10 @@ export function ConversationalForm({ initialRole, onComplete }: ConversationalFo
     success,
     showChoicePoint,
     chosenPath,
+    handoffUrl,
     answeredQuestions,
     isContactInfoStep,
     isVerifying,
-    contactError,
     getFieldValue,
     setFieldValue,
     handleAnswer,
@@ -257,9 +251,14 @@ export function ConversationalForm({ initialRole, onComplete }: ConversationalFo
     hookHandleGoBack(answeredIndex)
   }
 
-  const handlePathChoice = (path: 'schedule' | 'ai_chat') => {
+  const handlePathChoice = (path: 'schedule' | 'ai_chat' | 'documents') => {
     trackEvent('discover_path_choice', { path })
     hookHandlePathChoice(path)
+    // `documents` sets no view and does not call onComplete: the anchor is
+    // navigating to the portal, so switching the parent's view would only
+    // render a screen nobody sees. The hook's submitFinalForm has already sent
+    // the webhook and the `final` portal event, both with keepalive.
+    if (path === 'documents') return
     if (path === 'schedule') {
       setShowCalendlyInline(true)
       onComplete(getCurrentFormData(), 'schedule')
@@ -382,11 +381,37 @@ export function ConversationalForm({ initialRole, onComplete }: ConversationalFo
             transition={{ duration: 0.3 }}
             className="flex flex-col gap-4"
           >
-            <QuestionRow>Thanks for sharing! Would you like to speak with our team or explore options with our Funding Navigator?</QuestionRow>
+            <QuestionRow>
+              {handoffUrl
+                ? 'Thanks for sharing! To get soft terms from lenders we need a few documents — you can start uploading now, or talk to our team first.'
+                : 'Thanks for sharing! Would you like to speak with our team or explore options with our Funding Navigator?'}
+            </QuestionRow>
 
             <AnswerRow>
+              {/* The document handoff, and ONLY when the portal actually minted
+                  a link for this lead. It declines unless its verifier confirmed
+                  the address accepts mail, so this is absent more often than not
+                  — a real corporate on a catch-all domain gets no link. Rendered
+                  conditionally rather than disabled, because a door that is
+                  usually missing should not leave a dead one behind.
+
+                  An <a>, not a button: the browser owns the navigation, and the
+                  `final` event fired by handlePathChoice uses keepalive so it
+                  survives leaving the page. */}
+              {handoffUrl && (
+                <motion.a
+                  href={handoffUrl}
+                  onClick={() => handlePathChoice('documents')}
+                  whileHover={{ scale: 1.02, y: -1 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="px-8 py-4 rounded-2xl font-medium text-[15px] inline-block"
+                  style={{ backgroundColor: COLORS.primary, color: '#fff', border: 'none' }}
+                >
+                  Upload documents
+                </motion.a>
+              )}
               <OptionPill
-                label="Schedule a Call"
+                label={handoffUrl ? 'Schedule a call first' : 'Schedule a Call'}
                 isSelected={false}
                 onClick={() => handlePathChoice('schedule')}
               />
@@ -530,7 +555,6 @@ export function ConversationalForm({ initialRole, onComplete }: ConversationalFo
                 setFieldValue={setFieldValue}
                 onContinue={handleContactInfoContinue}
                 isVerifying={isVerifying}
-                contactError={contactError}
               />
             </div>
           </motion.div>

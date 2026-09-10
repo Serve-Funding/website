@@ -23,12 +23,3 @@ export const Chatbot = dynamic(
     loading: () => null,
   }
 )
-
-// Lazy load NewsletterModal to defer non-critical UI
-export const NewsletterModalLazy = dynamic(
-  () => import('@/components/NewsletterModal').then(mod => ({ default: mod.NewsletterModal })),
-  {
-    ssr: false,
-    loading: () => null,
-  }
-)

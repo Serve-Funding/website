@@ -2,7 +2,8 @@
  * Self-check for src/lib/verify-contact.ts — run with:  npx tsx scripts/verify-contact.check.ts
  *
  * Stubs fetch so it never touches Twilio or NeverBounce. Asserts the two things
- * that matter: an undeliverable email hard-fails, and everything else fails open.
+ * that matter: every verdict is advisory (nothing blocks a submission), and the
+ * warnings a human needs are on `flags`.
  */
 import assert from 'node:assert/strict'
 
@@ -41,17 +42,19 @@ const usMobile = (carrier = 'Verizon') => ({
 // 1. Clean lead — no flags, nothing blocked.
 stubFetch({ email: OK_EMAIL, phone: usMobile() })
 let v = await verifyContact({ email: 'owner@realco.com', phone: '(704) 555-1234' })
-assert.equal(v.hardFail, null)
+// Regression guard: there must be no blocking verdict on the shape at all.
+assert.ok(!('hardFail' in v), 'verdict must carry no blocking field')
 assert.deepEqual(v.flags, [], `expected no flags, got ${JSON.stringify(v.flags)}`)
 assert.equal(v.phone.carrier, 'Verizon')
 
-// 2. Undeliverable email is the only thing that blocks the form.
+// 2. Undeliverable email is flagged with the suggested correction — and still
+// gets through, so a NeverBounce false positive cannot cost us a real lead.
 stubFetch({
   email: { status: 'success', result: 'invalid', suggested_correction: 'owner@gmail.com' },
   phone: usMobile(),
 })
 v = await verifyContact({ email: 'owner@gmial.com', phone: '+17045551234' })
-assert.equal(v.hardFail, 'email')
+assert.equal(v.email.result, 'invalid')
 assert.match(v.flags[0], /undeliverable/i)
 assert.match(v.flags[0], /owner@gmail\.com/)
 
@@ -61,7 +64,6 @@ stubFetch({
   phone: { valid: true, country_code: 'US', line_type_intelligence: { type: 'nonFixedVoip', carrier_name: 'Google Voice' } },
 })
 v = await verifyContact({ email: 'owner@realco.com', phone: '+17045551234' })
-assert.equal(v.hardFail, null)
 assert.equal(v.flags.length, 1)
 assert.match(v.flags[0], /VoIP/i)
 
@@ -71,7 +73,6 @@ stubFetch({
   phone: { valid: true, country_code: 'IN', line_type_intelligence: { type: 'mobile', carrier_name: 'Airtel' } },
 })
 v = await verifyContact({ email: 'owner@realco.com', phone: '+919876543210' })
-assert.equal(v.hardFail, null)
 assert.match(v.flags.join(' '), /registered in IN/)
 
 // 4b. Well-formed US number that no carrier claims — Twilio still calls this
@@ -85,7 +86,6 @@ stubFetch({
   },
 })
 v = await verifyContact({ email: 'owner@realco.com', phone: '(704) 555-1234' })
-assert.equal(v.hardFail, null)
 assert.equal(v.flags.length, 1, `expected exactly one flag, got ${JSON.stringify(v.flags)}`)
 assert.match(v.flags[0], /unassigned or disconnected/)
 
@@ -107,40 +107,34 @@ assert.match(v.flags[0], /registered in GB/)
 // must NOT raise a warning — only appear in the summary line.
 stubFetch({ email: { status: 'success', result: 'catchall' }, phone: usMobile() })
 v = await verifyContact({ email: 'owner@realco.com', phone: '+17045551234' })
-assert.equal(v.hardFail, null)
 assert.deepEqual(v.flags, [], `catchall must not flag, got ${JSON.stringify(v.flags)}`)
 assert.equal(v.email.result, 'catchall')
 
 // 5. Disposable email is flagged but still gets through.
 stubFetch({ email: { status: 'success', result: 'disposable' }, phone: usMobile() })
 v = await verifyContact({ email: 'x@mailinator.com', phone: '+17045551234' })
-assert.equal(v.hardFail, null)
 assert.match(v.flags.join(' '), /Disposable/)
 
 // 6. Both APIs down — fail open, never block a real lead.
 stubFetch({ emailStatus: 500, phoneStatus: 500 })
 v = await verifyContact({ email: 'owner@realco.com', phone: '+17045551234' })
-assert.equal(v.hardFail, null)
 assert.equal(v.email.result, 'unchecked')
 assert.equal(v.phone.valid, null)
 
 // 7. NeverBounce auth failure returns HTTP 200 with a non-success status.
 stubFetch({ email: { status: 'auth_failure', message: 'bad key' }, phone: usMobile() })
 v = await verifyContact({ email: 'owner@realco.com', phone: '+17045551234' })
-assert.equal(v.hardFail, null)
 assert.equal(v.email.result, 'unchecked')
 
 // 8. No phone given is itself worth telling the team about.
 stubFetch({ email: OK_EMAIL })
 v = await verifyContact({ email: 'owner@realco.com' })
-assert.equal(v.hardFail, null)
 assert.match(v.flags.join(' '), /No phone number given/)
 
 // 9. A configured-but-failing check must say so, not go quiet. This is what an
 // exhausted NeverBounce balance looks like.
 stubFetch({ email: { status: 'auth_failure' }, phone: usMobile() })
 v = await verifyContact({ email: 'owner@realco.com', phone: '+17045551234' })
-assert.equal(v.hardFail, null)
 assert.match(v.flags.join(' '), /out of credits or bad key/)
 assert.doesNotMatch(v.flags.join(' '), /not configured/)
 

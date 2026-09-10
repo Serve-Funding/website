@@ -26,6 +26,29 @@ Production is served from `main`. Vercel auto-deploys on every `main` push, so a
 
 AI agents may `git commit`, `git push`, and `gh pr create`. AI agents must **not** run `gh pr merge`, `git push origin main`, or anything else that lands changes on `main` — even if the user says "just merge it." If the user asks you to merge, respond that merging is reserved for human review on github.com and give them the PR URL.
 
+### Never squash-merge `dev` → `main` (use "Create a merge commit")
+
+**`dev` and `main` are both long-lived. Squashing between them corrupts the history relationship, and it is not self-correcting.**
+
+A squash merge throws away the parent link. When `dev` → `main` is squashed, `main` gets the changes as one brand-new commit that has no connection to the commits they came from, so git stops seeing `dev` as an ancestor of `main`. From then on git treats the two branches as having *independently* created the same files, and every later `dev` → `main` merge conflicts on everything they both touched — even though nobody disagreed about anything.
+
+This has already happened three times in a row (#74, #77, #76). #77 existed specifically to repair the split and carried a proper two-parent merge commit; squashing it on the way in flattened that commit back to one parent and undid the repair. The symptom is confusing because the *content* is fine — `git diff origin/main origin/dev` comes back empty while GitHub still reports conflicts.
+
+**Rules:**
+- `dev` → `main`: always **"Create a merge commit"**. Never "Squash and merge", never "Rebase and merge".
+- feature branch → `dev`: squash is fine. Those branches are deleted after merging, so there is no history left to corrupt.
+- Best fix is to turn the option off: **Settings → General → Pull Requests**, uncheck "Allow squash merging" (or set the default merge button to "Create a merge commit") so it cannot happen by muscle memory.
+
+**If it happens anyway**, the repair is to merge `main` back into `dev` and push `dev` — that makes `main` an ancestor of `dev` again, costs nothing in content when the trees already match, and does not require touching `main`:
+
+```bash
+git checkout dev && git pull
+git merge origin/main      # trivial when the trees are already identical
+git push origin dev
+```
+
+Diagnose it with `git rev-list --parents -n 1 <main-tip>` (one parent means it was squashed) and `git merge-base --is-ancestor origin/dev origin/main`.
+
 ## Project Skills
 
 This repo ships its own Claude Code skills in `.claude/skills/`. Invoke them with the `/skill-name` command or by having Claude trigger them based on their description:

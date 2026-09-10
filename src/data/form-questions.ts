@@ -26,10 +26,42 @@ export interface Question {
  * And show an input field when "Other" is clicked
  */
 
+/**
+ * ORDER IS LOAD-BEARING — see src/lib/triage-rules.ts before moving anything.
+ *
+ * Two constraints:
+ *  1. `annual_revenue` must come AFTER `funding_amount`. The two Mike-routing
+ *     rules are keyed on `annual_revenue` and read `funding_amount`, so the
+ *     amount has to already be on the form state when revenue is answered.
+ *  2. `financing_needs` must stay LAST. Its two rules read revenue, amount,
+ *     time in business and industry, so all four have to precede it.
+ *  3. `annual_revenue` must stay SECOND-TO-LAST. A rule returning `mike` calls
+ *     setShowChoicePoint and returns, so every question after the one that
+ *     fires it is skipped. Revenue carries the two Mike rules, so moving it
+ *     earlier silently costs the highest-value leads the fields behind it.
+ *     One question is lost today (financing_needs), same as before this
+ *     reorder — keep it that way.
+ *
+ * Why `funding_amount` opens: 90 days of Umami to 2026-09-08 says 128 people
+ * loaded this form and 34 answered the first question. Of those 34, 26 handed
+ * over contact details and 22 submitted — once someone starts, they finish.
+ * The entire loss was screen one, which used to ask a stranger to classify
+ * themselves before offering anything. Opening with the question they arrived
+ * with is one tap, no typing, no PII, and it is the single most useful field
+ * to have if they answer nothing else.
+ */
 export const formQuestions: Question[] = [
   {
+    id: 'funding_amount',
+    title: 'How much funding are you looking for?',
+    answers: ['$100K-$250K', '$250K-$500K', '$500K-$1MM', '$1MM-$5MM', '$5MM-$10MM', '$10MM+'],
+    type: 'single'
+  },
+  {
     id: 'user_role',
-    title: "Welcome! Are you a business owner or a funding partner?",
+    // Not the welcome screen any more, and the old wording said "funding
+    // partner" while the buttons say "Banker / Business Advisor".
+    title: "And are you the business owner, or an advisor working with one?",
     answers: ['A Business Owner or Operator Seeking Funding', 'A Banker / Business Advisor'],
     type: 'single'
   },
@@ -65,22 +97,16 @@ export const formQuestions: Question[] = [
     type: 'single'
   },
   {
-    id: 'annual_revenue',
-    title: "What's the approximate annual revenue?",
-    partnerTitle: "What's your client's approximate annual revenue?",
-    answers: ['$500K-$1MM', '$1MM-$3MM', '$3MM-$10MM', '$10MM-$20MM', '$20MM-$50MM', '$50MM-$100MM', '$100MM+'],
-    type: 'single'
-  },
-  {
     id: 'time_in_business',
     title: 'How long has the business been operating?',
     answers: ['< 1 year', '1-2 years', '2-3 years', '3-4 years', '5+ years'],
     type: 'single'
   },
   {
-    id: 'funding_amount',
-    title: 'How much funding are you looking for?',
-    answers: ['$100K-$250K', '$250K-$500K', '$500K-$1MM', '$1MM-$5MM', '$5MM-$10MM', '$10MM+'],
+    id: 'annual_revenue',
+    title: "What's the approximate annual revenue?",
+    partnerTitle: "What's your client's approximate annual revenue?",
+    answers: ['$500K-$1MM', '$1MM-$3MM', '$3MM-$10MM', '$10MM-$20MM', '$20MM-$50MM', '$50MM-$100MM', '$100MM+'],
     type: 'single'
   },
   {
