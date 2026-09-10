@@ -3,7 +3,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
-import { ChevronDown } from "lucide-react"
+import { ChevronDown, Phone } from "lucide-react"
 import { useState, useEffect, useRef } from "react"
 import { Button, Container } from "./ui"
 import { motion } from "framer-motion"
@@ -12,6 +12,7 @@ import { trackNavClick, trackEvent } from "@/lib/tracking"
 import { headerNavConfig, getExpandMenuKey, type SimpleNavItem, type DropdownNavItem, type NavItem } from "@/lib/header-nav"
 import { MobileMenuSection, HamburgerIcon } from "./header-components"
 import { DropdownMenuTwoSection } from "./DropdownMenuSolutions"
+import { companyInfo } from "@/data/company-info"
 
 const navItemClasses = "text-gray-700 font-medium text-base h-full relative after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:transition-all after:duration-300 after:w-0 hover:after:w-full flex items-center"
 const underlineStyle = {
@@ -251,8 +252,22 @@ export function Header() {
             })}
           </nav>
 
-          {/* Right side: CTA Button + Mobile Menu */}
+          {/* Right side: Phone + CTA Button + Mobile Menu */}
           <div className="flex items-center gap-4">
+            {/* Click-to-call. Some visitors would rather ring a person than
+                fill in a form, and the number was previously only in the
+                JSON-LD — machine-readable and invisible to a human. Hidden
+                below lg so it never competes with the hamburger; the mobile
+                menu carries its own copy. */}
+            <a
+              href={`tel:${companyInfo.contact.phone.replace(/[^\d+]/g, '')}`}
+              onClick={() => trackEvent('phone_click', { location: 'header' })}
+              className="hidden lg:flex items-center gap-2 text-sm font-medium text-olive-900 hover:text-gold-500 transition-colors whitespace-nowrap"
+            >
+              <Phone size={16} />
+              {companyInfo.contact.phone.replace(/^\+1\s*/, '')}
+            </a>
+
             {/* CTA Button */}
             <Link href="/discover" onClick={() => { trackNavClick("Let's Talk (Header)", "/discover"); trackEvent("lets_talk_click", { location: "header" }) }}>
               <Button variant="default" size="sm" className="rounded-full flex-shrink-0">
@@ -359,6 +374,17 @@ export function Header() {
                   Let&apos;s Talk
                 </Button>
               </Link>
+
+              {/* Click-to-call, the mobile counterpart of the header number —
+                  a tap places the call on the device most likely to be able to. */}
+              <a
+                href={`tel:${companyInfo.contact.phone.replace(/[^\d+]/g, '')}`}
+                onClick={() => { trackEvent('phone_click', { location: 'mobile_menu' }); setIsMenuOpen(false) }}
+                className="w-full flex items-center justify-center gap-2 pt-4 text-base font-medium text-olive-900"
+              >
+                <Phone size={18} />
+                {companyInfo.contact.phone.replace(/^\+1\s*/, '')}
+              </a>
             </div>
         </motion.div>
         )}
