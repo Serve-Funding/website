@@ -15,10 +15,21 @@ function escapeHtml(str: string): string {
   return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
 }
 
+/**
+ * Only the explicit partner answer means partner — everything else, an absent
+ * role included, means owner. Mirrors `getRoleType` in useDealInquiryForm, and
+ * for the same reason: `/discover` stopped asking the role question on
+ * 2026-09-10, so `user_role` is now empty for every lead who did not arrive
+ * through `/discover?role=partner`. Testing for the partner string rather than
+ * the owner string is what keeps these emails saying "Owner" instead of
+ * relabelling the entire pipeline "Partner" overnight.
+ */
+const PARTNER_ROLE = 'A Banker / Business Advisor'
+const isPartnerRole = (userRole: unknown): boolean => userRole === PARTNER_ROLE
+
 function buildContactTable(body: Record<string, any>): string {
   const { name, email, phone, company, user_role } = body
-  const isOwner = user_role === 'A Business Owner or Operator Seeking Funding'
-  const roleLabel = isOwner ? 'Business Owner / Operator' : user_role || 'Unknown'
+  const roleLabel = isPartnerRole(user_role) ? PARTNER_ROLE : 'Business Owner / Operator'
 
   const rows: Array<{ label: string; value: string; isLink?: boolean }> = [
     { label: 'Name', value: name },
@@ -124,8 +135,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Name and email required' }, { status: 400 })
     }
 
-    const isOwner = body.user_role === 'A Business Owner or Operator Seeking Funding'
-    const roleShort = isOwner ? 'Owner' : 'Partner'
+    const roleShort = isPartnerRole(body.user_role) ? 'Partner' : 'Owner'
 
     if (type === 'early') {
       // First email: someone just started the form
