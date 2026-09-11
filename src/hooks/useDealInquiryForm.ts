@@ -28,14 +28,15 @@ export const QUICK_SCHEDULE_URL = CALENDLY_URLS.kyler.owner
  * Only the explicit partner answer means partner; everything else, including an
  * unanswered question, means owner.
  *
- * This read `=== OWNER ? 'owner' : 'partner'`, which sends every value it does
- * not recognise to Michael's PARTNER calendar. On this form `user_role` is
- * question 2 and unskippable, so the value is always one of the two and the
- * default never showed. It is still the wrong default to leave in a shared
- * helper — any caller that treats the question as optional silently books
- * business owners onto the partner calendar, which is exactly what happened
- * while the one-page form existed. Sarah, 2026-09-08: "We have rarely or never
- * had a partner come through the website."
+ * This read `=== OWNER ? 'owner' : 'partner'`, which sent every value it did
+ * not recognise — the empty string included — to Michael's PARTNER calendar.
+ * That was survivable only while `user_role` was an unskippable question and
+ * the value was always one of two strings.
+ *
+ * It is now load-bearing. The question was removed on 2026-09-10, so `userRole`
+ * is `''` for everyone who did not arrive via `/discover?role=partner`, and
+ * this default is the only thing routing them to the owner calendar. Sarah,
+ * 2026-09-08: "We have rarely or never had a partner come through the website."
  */
 function getRoleType(userRole: string): 'owner' | 'partner' {
   return userRole === 'A Banker / Business Advisor' ? 'partner' : 'owner'
@@ -142,8 +143,8 @@ export function useDealInquiryForm(
   // Check if current question is the contact_info question
   const isContactInfoStep = currentQuestion?.type === 'contact-info'
 
-  // The triage questions are everything between user_role and contact_info
-  const isTriageQuestion = currentQuestion?.type !== 'contact-info' && currentQuestion?.id !== 'user_role'
+  // The triage questions are everything that is not the contact-info step
+  const isTriageQuestion = currentQuestion?.type !== 'contact-info'
 
   const getFieldValue = (fieldId: string) => {
     if (fieldId.endsWith('_other')) {
@@ -441,7 +442,7 @@ export function useDealInquiryForm(
       path === 'schedule'
         ? 'Schedule a Call'
         : path === 'documents'
-          ? 'Upload documents'
+          ? 'Complete your application'
           : 'Explore with our Funding Navigator'
     setAnsweredQuestions(prev => [...prev, {
       questionIndex: -1,

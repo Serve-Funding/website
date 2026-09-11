@@ -91,8 +91,12 @@ export default function Home() {
 
   return (
     <>
-      {/* Hero Section */}
-      <Section className="min-h-[80vh] lg:min-h-[65vh]">
+      {/* Hero Section
+          Deliberately shorter than a full viewport: the "Need Business Growth
+          Capital?" band below is the section Mike wants people to see without
+          scrolling, and at 65vh plus the section's own top padding it fell
+          just under the fold on a laptop. */}
+      <Section className="min-h-[70vh] lg:min-h-[52vh] !pt-4 md:!pt-10">
         <HeroCarousel
           slides={heroSlides}
           cta={{
