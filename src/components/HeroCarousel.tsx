@@ -81,48 +81,50 @@ export function HeroCarousel({ slides, cta }: HeroCarouselProps) {
           {slide.desc}
         </Text>
 
-        {/* The only button layer in this column. The slide controls used to sit
-            in a second row underneath, which read as two competing rounds of
-            buttons; they now live over the image instead. */}
-        {cta && (
-          <div>
-            <Link href={cta.href}>
-              <Button variant="gold" size="lg">
-                {cta.label}
-              </Button>
-            </Link>
-            {cta.note && (
-              <Text size="sm" className="mt-3 text-gray-500">
-                {cta.note}
-              </Text>
-            )}
+        {/* One button row: the CTA, then the slide controls to its right (Tim,
+            Sep 10 call). The arrows once sat in a second row underneath, which
+            read as two competing layers of buttons. They stay quieter than the
+            CTA on purpose — the next-slide arrow was once the darkest element
+            in the hero, which made "see another slide" read as the primary
+            action. */}
+        <div className="flex items-start gap-3 sm:gap-4">
+          {cta && (
+            <div className="inline-flex flex-col items-center">
+              <Link href={cta.href}>
+                <Button variant="gold" size="lg">
+                  {cta.label}
+                </Button>
+              </Link>
+              {cta.note && (
+                <Text size="sm" className="mt-2 text-gray-500">
+                  {cta.note}
+                </Text>
+              )}
+            </div>
+          )}
+          {/* h-14 matches the lg button so the arrows centre on it, not on the
+              button-plus-note block. */}
+          <div className="flex h-14 items-center gap-3">
+            <button
+              onClick={handlePrev}
+              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center hover:bg-olive-900 hover:text-white transition-all duration-300 flex-shrink-0"
+              aria-label="Previous slide"
+            >
+              <ChevronLeft size={20} className="sm:w-6 sm:h-6" />
+            </button>
+            <button
+              onClick={handleNext}
+              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center hover:bg-olive-900 hover:text-white transition-all duration-300 flex-shrink-0"
+              aria-label="Next slide"
+            >
+              <ChevronRight size={20} className="sm:w-6 sm:h-6" />
+            </button>
           </div>
-        )}
+        </div>
       </div>
 
       {/* Image Column - full height */}
       <div className="relative w-full lg:flex-[0.5] lg:min-w-0 min-h-[300px] lg:min-h-0 rounded-2xl overflow-hidden shadow-lg">
-        {/* Slide controls, over the image they control. They stay quieter than
-            the CTA on purpose — the next-slide arrow was once the darkest
-            element in the hero, which made "see another slide" read as the
-            primary action. z-20 clears the stacked <Image> layers below. */}
-        <div className="absolute bottom-4 right-4 z-20 flex gap-3">
-          <button
-            onClick={handlePrev}
-            className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/80 backdrop-blur-sm text-gray-700 flex items-center justify-center hover:bg-olive-900 hover:text-white transition-all duration-300 flex-shrink-0 shadow-sm"
-            aria-label="Previous slide"
-          >
-            <ChevronLeft size={20} className="sm:w-6 sm:h-6" />
-          </button>
-          <button
-            onClick={handleNext}
-            className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/80 backdrop-blur-sm text-gray-700 flex items-center justify-center hover:bg-olive-900 hover:text-white transition-all duration-300 flex-shrink-0 shadow-sm"
-            aria-label="Next slide"
-          >
-            <ChevronRight size={20} className="sm:w-6 sm:h-6" />
-          </button>
-        </div>
-
         {slides.map((s, index) => (
           <Image
             key={s.image}

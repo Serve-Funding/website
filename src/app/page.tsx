@@ -68,22 +68,22 @@ const heroSlides = [
     heading: "Funding Solutions to Serve Healthy Business Growth",
     desc: <>An advisory service committed to serve<br />the best interests of your company's<br />current needs and future goals.</>,
     image: "/home/right funding solutions.webp",
-    width: 960,
-    height: 628
+    width: 1920,
+    height: 1256
   },
   {
     heading: "Creative Capital Empowering Entrepreneurs",
     desc: <>Because your company is unique,<br />you want partners who truly understand<br />your story and align with your objectives.</>,
     image: "/home/creative working capital.webp",
-    width: 1024,
-    height: 945
+    width: 2048,
+    height: 1890
   },
     {
     heading: <>You Value Relationships<br />Over Quick Fixes</>,
     desc: <>We partner with like-minded business leaders<br />who want trusted advisors in their corner<br />to ensure they make the best decisions.</>,
     image: "/home/value relationships over bots.webp",
-    width: 1024,
-    height: 819
+    width: 2048,
+    height: 1638
   }
 ]
 
