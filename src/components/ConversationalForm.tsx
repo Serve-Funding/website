@@ -209,6 +209,7 @@ export function ConversationalForm({ initialRole, onComplete }: ConversationalFo
     smsConsent,
     success,
     showChoicePoint,
+    triageAction,
     chosenPath,
     handoffUrl,
     answeredQuestions,
@@ -381,10 +382,22 @@ export function ConversationalForm({ initialRole, onComplete }: ConversationalFo
             transition={{ duration: 0.3 }}
             className="flex flex-col gap-4"
           >
+            {/* The fit line promises no number — Kyler killed the lender-match
+                count on 2026-09-09 ("over-engineering") and wrote this copy in
+                its place. It is gated on the form's own triage: the cold path
+                (revenue < $1M, ask < $250K, or under a year in business) gets
+                the neutral line, because telling a lead they are a strong fit
+                when an advisor is about to say otherwise is the one thing this
+                screen must not do. Everyone else has already cleared the same
+                thresholds that route them to Mike. */}
             <QuestionRow>
-              {handoffUrl
-                ? 'Thanks for sharing! To get soft terms from lenders we need a few documents — you can complete your application now, or talk to our team first.'
-                : 'Thanks for sharing! Would you like to speak with our team or explore options with our Funding Navigator?'}
+              {triageAction === 'kyler_with_chat'
+                ? handoffUrl
+                  ? 'Thanks for sharing! To get soft terms from lenders we need a few documents — you can complete your application now, or talk to our team first.'
+                  : 'Thanks for sharing! Would you like to speak with our team or explore options with our Funding Navigator?'
+                : handoffUrl
+                  ? 'Good news — this looks like a strong fit. We already have lenders in mind who work deals like this. To get you soft terms we need a few documents: complete your application now, or talk to an advisor first.'
+                  : 'Good news — this looks like a strong fit. We already have lenders in mind who work deals like this. The next step is a quick call with an advisor.'}
             </QuestionRow>
 
             <AnswerRow>
@@ -413,10 +426,14 @@ export function ConversationalForm({ initialRole, onComplete }: ConversationalFo
                 </motion.a>
               )}
               <OptionPill
-                label={handoffUrl ? 'Schedule a call first' : 'Schedule a Call'}
+                label={handoffUrl ? 'Schedule a call with an advisor first' : 'Schedule a Call'}
                 isSelected={false}
                 onClick={() => handlePathChoice('schedule')}
               />
+              {/* Two doors when the application link exists — apply, or talk
+                  first. The Navigator stays on the fallback, where it is the
+                  only self-serve path left. */}
+              {!handoffUrl && (
               <motion.button
                 type="button"
                 onClick={() => handlePathChoice('ai_chat')}
@@ -440,6 +457,7 @@ export function ConversationalForm({ initialRole, onComplete }: ConversationalFo
                   Funding Navigator
                 </span>
               </motion.button>
+              )}
             </AnswerRow>
           </motion.div>
         )}
