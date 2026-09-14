@@ -106,7 +106,6 @@ function ContactInfoFields({
   name, email, phone, company, smsConsent,
   setFieldValue,
   onContinue,
-  isVerifying,
 }: {
   isPartner: boolean
   name: string
@@ -116,7 +115,6 @@ function ContactInfoFields({
   smsConsent: boolean
   setFieldValue: (id: string, value: any) => void
   onContinue: () => void
-  isVerifying: boolean
 }) {
   return (
     <form
@@ -184,10 +182,10 @@ function ContactInfoFields({
           type="submit"
           variant="default"
           size="lg"
-          disabled={!name || !email || isVerifying}
+          disabled={!name || !email}
         >
-          {isVerifying ? 'Checking\u2026' : 'Continue'}
-          {!isVerifying && <ChevronRight size={18} className="ml-1" />}
+          Continue
+          <ChevronRight size={18} className="ml-1" />
         </Button>
       </div>
     </form>
@@ -214,7 +212,6 @@ export function ConversationalForm({ initialRole, onComplete }: ConversationalFo
     handoffUrl,
     answeredQuestions,
     isContactInfoStep,
-    isVerifying,
     getFieldValue,
     setFieldValue,
     handleAnswer,
@@ -574,7 +571,6 @@ export function ConversationalForm({ initialRole, onComplete }: ConversationalFo
                 smsConsent={smsConsent}
                 setFieldValue={setFieldValue}
                 onContinue={handleContactInfoContinue}
-                isVerifying={isVerifying}
               />
             </div>
           </motion.div>
