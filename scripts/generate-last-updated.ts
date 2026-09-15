@@ -67,6 +67,7 @@ const ROUTE_SOURCES: Record<string, string[]> = {
   '/discover': ['src/app/discover/page.tsx', 'src/data/form-questions.ts'],
   '/faq': ['src/app/faq/page.tsx', 'src/data/faq-data.ts'],
   '/blog': ['src/app/blog/page.tsx'],
+  '/newsletter': ['src/app/newsletter/page.tsx'],
   '/privacy-policy': ['src/app/privacy-policy/page.tsx'],
   '/sms-terms': ['src/app/sms-terms/page.tsx'],
   '/terms-of-service': ['src/app/terms-of-service/page.tsx'],

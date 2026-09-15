@@ -68,6 +68,9 @@ export function Footer() {
                   <Link href="/blog" className="text-gold-500 hover:text-gold-600 transition-colors font-semibold mt-2">
                     View All Posts →
                   </Link>
+                  <Link href="/newsletter" className="text-olive-900 hover:text-gold-500 transition-colors text-sm">
+                    Creative Working Capital newsletter archive
+                  </Link>
                 </div>
               </div>
 

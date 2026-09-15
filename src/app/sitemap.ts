@@ -28,6 +28,7 @@ const STATIC_ROUTES = [
   '/discover',
   '/faq',
   '/blog',
+  '/newsletter',
   '/privacy-policy',
   '/sms-terms',
   '/terms-of-service',
@@ -45,10 +46,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     .sort((a, b) => a.getTime() - b.getTime())
     .pop()
 
+  // Same idea for the newsletter archive, which lists only the newsletter category.
+  const newestNewsletterPost = blogPosts
+    .filter((post) => post.category === 'Creative Working Capital')
+    .map(postDate)
+    .sort((a, b) => a.getTime() - b.getTime())
+    .pop()
+
   const routes = STATIC_ROUTES.map((route) => {
     const templateDate = routeLastModified(route)
-    const lastModified =
-      route === '/blog' && newestPost && newestPost > templateDate ? newestPost : templateDate
+    const contentDate =
+      route === '/blog' ? newestPost : route === '/newsletter' ? newestNewsletterPost : undefined
+    const lastModified = contentDate && contentDate > templateDate ? contentDate : templateDate
 
     return {
       url: route === '/' ? baseUrl : `${baseUrl}${route}`,

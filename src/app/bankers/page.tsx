@@ -475,6 +475,13 @@ export default function ForBankersPage() {
               </Link>
               .
             </Text>
+            <Text size="sm" className="mt-2 text-gray-500">
+              Want to see how we think about deals month to month? Read past issues of{' '}
+              <Link href="/newsletter" className="underline hover:no-underline">
+                Creative Working Capital
+              </Link>
+              , our newsletter.
+            </Text>
           </FadeIn>
         </Container>
       </Section>

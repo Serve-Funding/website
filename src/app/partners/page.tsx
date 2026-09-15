@@ -254,6 +254,20 @@ export default function Partners() {
             })}
       </div>
 
+      <Section background="white">
+        <Container>
+          <FadeIn className="text-center">
+            <Text className="text-gray-600">
+              Want to see how we think about deals month to month? Read past issues of{' '}
+              <Link href="/newsletter" className="text-gold-500 hover:text-gold-600 font-semibold underline hover:no-underline">
+                Creative Working Capital
+              </Link>
+              , our newsletter.
+            </Text>
+          </FadeIn>
+        </Container>
+      </Section>
+
       <CTA
         title="Have a Client in Need of Financing?"
         text={<>Answer a few questions and schedule a call at your convenience.<br />Takes a few minutes and there's no obligation.</>}
