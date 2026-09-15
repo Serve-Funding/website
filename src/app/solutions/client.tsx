@@ -274,7 +274,7 @@ export function SolutionsClient() {
       {/* Final CTA */}
       <CTA
         title="Ready to Take the Next Step?"
-        text="Connect with our team of funding experts to discuss which solution is right for your business and get started on your path to growth."
+        text="Answer a few questions and find out whether your deal fits lenders in our network. Then complete your application or talk to an advisor first, whichever you prefer."
         buttonText="Explore Funding Options"
         href="/discover"
         useBG
