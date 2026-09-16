@@ -24,13 +24,9 @@ const isSimpleNavItem = (item: NavItem): item is SimpleNavItem => item.type === 
 const isDropdownNavItem = (item: NavItem): item is DropdownNavItem => item.type === 'dropdown'
 
 const getIsActive = (item: DropdownNavItem, pathname: string): boolean => {
-  if (item.basePath === '/solutions') return pathname.startsWith('/solutions')
-  if (pathname === item.basePath) return true
-  // A dropdown whose items point at their own top-level routes (Insights) is
-  // active on any of those routes and their children, e.g. /blog/some-post.
-  return item.items.some(
-    (i) => i.href && i.href !== '/' && (pathname === i.href || pathname.startsWith(`${i.href}/`))
-  )
+  return item.basePath === '/solutions'
+    ? pathname.startsWith('/solutions')
+    : pathname === item.basePath
 }
 
 interface NavItemProps {

@@ -72,16 +72,12 @@ const PARTNERS_ITEMS: FeaturedDropdownItem[] = [
   { name: "Business Advisors", id: "business-advisors" }
 ]
 
-// Every Insights item lives at its own top-level route, so each carries an
-// explicit href; basePath only decides where the parent label navigates.
-const INSIGHTS_ITEMS: FeaturedDropdownItem[] = [
-  { name: "Blog", id: "blog", featured: true, subtitle: "Guides, insights, and real funding stories", href: "/blog" },
+// The newsletter and blog ride along in the Fundings dropdown rather than a menu
+// of their own (a fifth top-level item read as noise). Both use `href` overrides
+// because they are pages, not anchors on /fundings.
+const FUNDINGS_READING_ITEMS: FeaturedDropdownItem[] = [
   { name: "Creative Working Capital", id: "newsletter", featured: true, subtitle: "Our monthly newsletter, every issue archived", href: "/newsletter" },
-  { name: "Compare Solutions", id: "solutions-compare", subtitle: "All 12 options side by side", href: "/solutions/compare" },
-  { name: "Head-to-Head Comparisons", id: "compare", href: "/compare" },
-  { name: "By Industry", id: "industries", href: "/industries" },
-  { name: "Glossary", id: "glossary", href: "/glossary" },
-  { name: "FAQ", id: "faq", href: "/faq" }
+  { name: "Blog", id: "blog", subtitle: "Guides, insights, and real funding stories", href: "/blog" }
 ]
 
 const ABOUT_ITEMS: FeaturedDropdownItem[] = [
@@ -132,7 +128,7 @@ export const headerNavConfig: HeaderNavConfig = {
       type: 'dropdown',
       label: 'Fundings',
       basePath: '/fundings',
-      items: getFundingsForDropdown(),
+      items: [...getFundingsForDropdown(), ...FUNDINGS_READING_ITEMS],
       itemType: 'anchors',
       featuredTitle: 'Top Fundings',
       regularTitle: 'Recent Fundings',
@@ -147,16 +143,6 @@ export const headerNavConfig: HeaderNavConfig = {
       featuredTitle: 'Primary Partners',
       regularTitle: 'All Partners',
       description: 'We work with trusted advisors and professionals who share our commitment to helping businesses succeed. Join our growing network of referral partners.'
-    },
-    {
-      type: 'dropdown',
-      label: 'Insights',
-      basePath: '/blog',
-      items: INSIGHTS_ITEMS,
-      itemType: 'pages',
-      featuredTitle: 'Read',
-      regularTitle: 'Reference',
-      description: 'Plain-English education on working capital: how each structure works, what real deals looked like, and what the terms on a term sheet actually mean.'
     },
     {
       type: 'dropdown',
