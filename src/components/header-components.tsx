@@ -4,7 +4,7 @@ import Link from "next/link"
 import { ChevronDown } from "lucide-react"
 import { motion } from "framer-motion"
 import { trackNavClick } from "@/lib/tracking"
-import type { DropdownItem, DropdownHeaderCta } from "@/lib/header-nav"
+import type { DropdownItem, FeaturedDropdownItem, DropdownHeaderCta } from "@/lib/header-nav"
 
 interface NavItemRendererProps {
   item: DropdownItem
@@ -82,7 +82,7 @@ function NavItemRenderer({
 interface MobileMenuSectionProps {
   label: string
   basePath: string
-  items: DropdownItem[]
+  items: FeaturedDropdownItem[]
   type?: 'pages' | 'anchors'
   isExpanded: boolean
   onToggle: () => void
@@ -145,7 +145,7 @@ export function MobileMenuSection({ label, basePath, items, type = 'pages', isEx
         >
           <div className="space-y-0">
             {items.map((item) => {
-              const href = type === 'anchors' ? `${basePath}#${item.id}` : `${basePath}/${item.id}`
+              const href = item.href ?? (type === 'anchors' ? `${basePath}#${item.id}` : `${basePath}/${item.id}`)
 
               return (
                 <NavItemRenderer
