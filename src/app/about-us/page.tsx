@@ -246,8 +246,7 @@ export default function AboutUs() {
               subtitle="At Serve Funding, we give a percentage of our earnings to support exemplary non-profits. Doing good for those in need is a core part of our mission."
               logos={[
                 { src: "/about/Hope Worldwide.webp", alt: "Hope for the Homeless" },
-                { src: "/about/Frontline.webp", alt: "Frontline Response" },
-                { src: "/about/Jamquest.webp", alt: "JAM Quest" }
+                { src: "/about/SCMA.webp", alt: "Swamp Camp Mission Alliance" }
               ]}
               maxHeight={32}
             />
