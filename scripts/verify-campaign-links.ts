@@ -7,8 +7,11 @@
  *    fragment, where `useSearchParams()` cannot see it. Every open then looks
  *    anonymous and nobody notices, because the page still renders perfectly.
  * 2. **The funding card does not open.** Every funding slug must survive the
- *    fragment parser. One live deal slugs to `bridge-to-m&a-exit`; a parser that
- *    treats `&` as a separator turns it into `bridge-to-m`, which matches no
+ *    fragment parser, raw AND percent-encoded — a campaign tool is entitled to
+ *    escape a fragment, and two live deals slug to `bridge-to-m&a-exit` and
+ *    `refinance-2-mca's`. A parser that treats `&` as a separator turns the
+ *    first into `bridge-to-m`; one that never decodes leaves the escaped forms
+ *    as `bridge-to-m%26a-exit` and `refinance-2-mca%27s`. All three match no
  *    case study, so the banker lands on the grid instead of the deal we sent.
  *
  * Both are invisible in review and invisible in production, so they are pinned
@@ -47,6 +50,24 @@ for (const study of fundingCases) {
   check(`fragment-first id — ${slug}`, readCampaignId(fragmentFirst), 'jimtingler')
   check(`fragment-first slug — ${slug}`, hashSlug(new URL(fragmentFirst).hash), slug)
 
+  // The same two links with the fragment escaped, which is what a tool that
+  // "cleans up" a URL produces. These are the cases that silently opened
+  // nothing for the two titles carrying an `&` and an apostrophe.
+  const encodedSlug = encodeURIComponent(slug)
+  const encodedCanonical = `${SITE}/fundings?id=jimtingler#${encodedSlug}`
+  check(`encoded canonical slug — ${slug}`, hashSlug(new URL(encodedCanonical).hash), slug)
+  const encodedFragmentFirst = `${SITE}/fundings#${encodedSlug}?id=jimtingler`
+  check(`encoded fragment-first id — ${slug}`, readCampaignId(encodedFragmentFirst), 'jimtingler')
+  check(`encoded fragment-first slug — ${slug}`, hashSlug(new URL(encodedFragmentFirst).hash), slug)
+
+  // And with the `?id=` itself escaped, which is what a tool that encodes the
+  // WHOLE fragment produces — there is then no literal `?` to split on.
+  const fullyEncoded = `${SITE}/fundings#${encodeURIComponent(`${slug}?id=jimtingler`)}`
+  check(`fully-encoded id — ${slug}`, readCampaignId(fullyEncoded), 'jimtingler')
+  check(`fully-encoded slug — ${slug}`, hashSlug(new URL(fullyEncoded).hash), slug)
+  const strippedFullyEncoded = stripCampaignId(fullyEncoded)
+  check(`fully-encoded strip drops id — ${slug}`, strippedFullyEncoded?.includes('jimtingler'), false)
+
   // Stripping the id must leave the card addressable.
   const strippedFragmentFirst = stripCampaignId(fragmentFirst)
   check(
@@ -68,10 +89,12 @@ for (const study of fundingCases) {
   const slug = slugOf(study.title)
   seenSlugs.set(slug, (seenSlugs.get(slug) ?? 0) + 1)
 }
+let unreachable = 0
 for (const [slug, count] of seenSlugs) {
   if (count > 1) {
+    unreachable += count - 1
     console.warn(
-      `  WARN  ${count} funding cards slug to "${slug}" — only the first can be opened by a campaign link. Retitle one to make both linkable.`
+      `  WARN  ${count} funding cards slug to "${slug}" — a link opens the FIRST one, so the other ${count - 1} cannot be sent at all. Retitle to make each linkable.`
     )
   }
 }
@@ -102,4 +125,12 @@ if (failures > 0) {
   process.exit(1)
 }
 
-console.log(`✓ campaign links: ${fundingCases.length} funding cards reachable with attribution`)
+// Counted, not asserted: the number is the point, and claiming all 22 are
+// reachable while two share a slug is exactly the false pass this file exists
+// to prevent.
+const reachable = fundingCases.length - unreachable
+console.log(
+  unreachable === 0
+    ? `✓ campaign links: all ${reachable} funding cards reachable with attribution`
+    : `✓ campaign links: ${reachable} of ${fundingCases.length} funding cards reachable with attribution (${unreachable} blocked by a duplicate slug — see WARN above)`
+)

@@ -22,9 +22,20 @@
  * the id out of either position. `readCampaignId` is the one place that knows.
  *
  * Not personal data we go looking for: the id is only ever what we ourselves put
- * in the link we sent that person. It is stripped from the address bar as soon
- * as it is read (see CampaignVisitorTracker) so it cannot leak onward through a
- * Referer header, a shared screenshot, or a copy-pasted URL.
+ * in the link we sent that person, and it is the same public identifier that
+ * appears in their own LinkedIn profile URL.
+ *
+ * WHAT STRIPPING IT DOES AND DOES NOT BUY. `CampaignVisitorTracker` removes it
+ * from the address bar as soon as it is read, which keeps it out of screenshots,
+ * out of a copy-pasted URL (where it would attribute the next reader to the
+ * first), and out of the `Referer` on any link the visitor clicks afterwards.
+ * It does NOT retroactively remove it from our own access logs: in the canonical
+ * `?id=…` form it was in the request line of the first document request before
+ * any script ran, so it is in Vercel's log and in the `Referer` of the
+ * subresources that same document pulled. That is our own infrastructure and a
+ * public identifier, which is the level of exposure this is designed for — but
+ * it is not "gone", and nothing should be put in this parameter that could not
+ * live in a server log.
  */
 
 /** Query/fragment key. Deliberately not `utm_*` — this is an identity, not a source. */
@@ -54,14 +65,9 @@ const ID_PATTERN = /^[^\s<>"'/?#&=%\\]+$/u
 /** Normalize one candidate id, or reject it. */
 export function normalizeCampaignId(raw: string | null | undefined): string | null {
   if (!raw) return null
-  let value = raw.trim()
-  // A link built by hand in a campaign tool may arrive percent-encoded once.
-  try {
-    value = decodeURIComponent(value)
-  } catch {
-    // Malformed escape — keep the raw form rather than losing the visit.
-  }
-  value = value.trim()
+  // A link built by hand in a campaign tool may arrive percent-encoded once; a
+  // malformed escape keeps the raw form rather than losing the visit.
+  const value = decodeOnce(raw.trim()).trim()
   if (!value || value.length > MAX_ID_LENGTH) return null
   if (!ID_PATTERN.test(value)) return null
   return value.toLowerCase()
@@ -97,9 +103,16 @@ export function readCampaignId(href: string): string | null {
 
   const hash = url.hash.replace(/^#/, "")
   if (!hash) return null
-  const afterQuery = hash.replace(/^[^?]*\?/, "")
-  if (afterQuery === hash) return null
-  return normalizeCampaignId(new URLSearchParams(afterQuery).get(CAMPAIGN_ID_PARAM))
+  // Raw first, then once-decoded. A tool that encodes the whole fragment sends
+  // `#slug%3Fid%3Dx`, which has no literal `?` and would otherwise read as a
+  // very odd funding slug and no id at all.
+  for (const candidate of [hash, decodeOnce(hash)]) {
+    const afterQuery = candidate.replace(/^[^?]*\?/, "")
+    if (afterQuery === candidate) continue
+    const found = normalizeCampaignId(new URLSearchParams(afterQuery).get(CAMPAIGN_ID_PARAM))
+    if (found) return found
+  }
+  return null
 }
 
 /**
@@ -122,7 +135,10 @@ export function stripCampaignId(href: string): string | null {
     changed = true
   }
 
-  const hash = url.hash.replace(/^#/, "")
+  // Same two readings as readCampaignId: a fragment that arrived fully encoded
+  // has no literal `?` and would otherwise keep the id in the address bar.
+  const rawHash = url.hash.replace(/^#/, "")
+  const hash = /^[^?]*\?/.test(rawHash) ? rawHash : decodeOnce(rawHash)
   const split = hash.match(/^([^?]*)\?(.*)$/)
   if (split) {
     const params = new URLSearchParams(split[2])
@@ -148,10 +164,28 @@ export function stripCampaignId(href: string): string | null {
  * anything matching on `location.hash` verbatim finds no funding and opens no
  * card. Every reader of the hash goes through here.
  *
+ * Decoded BEFORE the split, because two of our own funding titles contain a
+ * character a link builder is entitled to escape: `Bridge To M&A Exit` slugs to
+ * `bridge-to-m&a-exit` and `Refinance 2 MCA's` to `refinance-2-mca's`. Arriving
+ * as `%26` and `%27` they match no case study, and the page opens the grid
+ * instead of the deal we sent — with no error anywhere.
+ *
  * Splits on `?` only — see readCampaignId for why `&` must stay part of a slug.
  */
 export function hashSlug(hash: string): string {
-  return hash.replace(/^#/, "").split("?")[0]
+  return decodeOnce(hash.replace(/^#/, "")).split("?")[0]
+}
+
+/**
+ * Percent-decode once, tolerating a malformed escape. Shared by the readers
+ * above so "what does one level of encoding mean" has a single answer.
+ */
+function decodeOnce(value: string): string {
+  try {
+    return decodeURIComponent(value)
+  } catch {
+    return value
+  }
 }
 
 /** Remember the id for the rest of the visit (per tab). Best effort. */

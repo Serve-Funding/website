@@ -40,27 +40,34 @@ so a link built the intuitive way still attributes. You do not have to remember 
 which — but prefer the `?id=…#slug` form in new campaigns, because it is the one that
 survives being pasted into tools that rewrite links.
 
-### One gotcha to know about
+### Two gotchas to know about
 
-A couple of funding titles contain characters that do not survive a URL cleanly:
-
-- **Bridge to M&A Exit** → `bridge-to-m&a-exit`. The `&` is fine in the fragment, and the
-  site handles it, but do not let a tool "helpfully" split on it.
-- **Total Working Capital** appears **twice** in the fundings list, so both cards share
-  the slug `total-working-capital` and only the first one can be opened by a link. If you
-  need to send the other, retitle it first (`src/data/fundingData.ts`).
+- **Escaping is fine.** Two funding titles contain characters a tool may percent-encode:
+  **Bridge to M&A Exit** → `bridge-to-m&a-exit` and **Refinance 2 MCA's** →
+  `refinance-2-mca's`. The site decodes the fragment, so `%26` and `%27` open the right
+  card — and so does a fully-escaped `#slug%3Fid%3D…`. You do not have to police this.
+- **Total Working Capital appears TWICE** in the fundings list, so both cards slug to
+  `total-working-capital` and a link only ever opens the first (the Medical Device
+  Manufacturer, FL one). The Labels Manufacturer, TX card **cannot be sent at all** until
+  one of the two is retitled in `src/data/fundingData.ts`. That is a copy change, so it
+  is Mike and Sarah's call, not something the build makes for them.
 
 `npm run verify-campaign-links` checks every funding card is still reachable with an id
-attached, in both orderings, and runs as part of `npm run build` — so a new funding whose
-title breaks the link fails the deploy instead of quietly sending bankers to the wrong
-page.
+attached — both orderings, raw and escaped — and runs as part of `npm run build`, so a
+new funding whose title breaks the link fails the deploy instead of quietly sending
+bankers to the wrong page. It prints the reachable count rather than a blanket tick, so
+the duplicate above is visible on every build.
 
 ## What happens when they click
 
 1. `CampaignVisitorTracker` (mounted in the root layout) reads the id.
 2. It **removes the id from the address bar** immediately, keeping the funding slug. The
-   card still opens; the id can no longer leak through a `Referer` header, a screenshot,
-   or a forwarded URL.
+   card still opens; the id is then out of any screenshot, out of the `Referer` of every
+   link the visitor clicks next, and out of the URL if they forward it (where it would
+   otherwise attribute the next reader to the first). It does **not** vanish from our own
+   Vercel access log — in the `?id=…` form it was in the first request line before any
+   script ran. That is our own infrastructure and a public identifier, but it means
+   nothing belongs in this parameter that could not live in a server log.
 3. It fires a `campaign_link_open` event to Umami — so the "did LinkedIn drive traffic"
    question is answerable without leaving analytics.
 4. It POSTs `{ id, path, funding, referrer }` to `/api/track-visit` on our own origin.
@@ -71,6 +78,16 @@ page.
 
 Everything from step 3 on is fire-and-forget. A visitor never sees an error, and never
 learns whether we recognised them.
+
+### How much to trust it
+
+A LinkedIn public identifier is public, and `/api/track-visit` is an open endpoint on an
+open page, so anyone determined could claim a named banker read a deal. The route caps
+body size, requires the request to come from our own origin, and throttles per IP — but
+those raise the cost of faking traffic, they do not make a visit proof of anything.
+
+Treat an open as a reason to move a name up a call list. It is not evidence, it should
+never be quoted back to the person it is about, and nothing should gate on it.
 
 ## The portal side
 
