@@ -20,6 +20,7 @@ import { Breadcrumb } from '@/components/breadcrumb'
 import { SchemaRenderer } from '@/components/SchemaRenderer'
 import { getReviewSchema } from '@/lib/schema-generators'
 import { COLORS as BRAND_COLORS } from '@/lib/colors'
+import { hashSlug } from '@/lib/campaign-visitor'
 
 function generateSlug(text: string): string {
   return text.toLowerCase().replace(/\s+/g, '-')
@@ -39,7 +40,12 @@ export default function Fundings() {
 
   useEffect(() => {
     const handleHashChange = () => {
-      const hash = window.location.hash.slice(1)
+      // Not `hash.slice(1)`: campaign links are built as
+      // `/fundings#payroll-rescue?id=jimtingler`, whose fragment is the slug AND
+      // the id. Matching the raw fragment finds no funding and silently opens
+      // nothing — the exact link we are asking bankers to click. hashSlug keeps
+      // only the slug, so either ordering opens the card.
+      const hash = hashSlug(window.location.hash)
       if (hash) {
         // Find the matching case study by slug
         const matchingStudy = caseStudies.find(study => generateSlug(study.title) === hash)
