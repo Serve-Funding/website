@@ -117,3 +117,102 @@ Optional overrides, for a deployment that wants the two writers on separate keys
 With neither pair set, `/api/track-visit` accepts the beacon and drops it. The dev projects
 (`website-cuky`, `portal_testing`) carry no `PORTAL_INBOUND_*` today, so the dev preview
 stays dark until one pair is added there.
+
+## Building the link in La Growth Machine
+
+The campaigns run in Michael's LGM account. Steps and message copy are **UI-only** — LGM's
+API is `GET,HEAD` on `/campaigns/{id}/messages` and `/campaigns/{id}/steps`, so nobody can
+script the copy in; it has to be typed in the app. What follows is what to type.
+
+### The merge field: use the LinkedIn URL you already have
+
+Every LGM lead already carries a `linkedinUrl` — checked against the live audience
+"Bankers connected on LI" (1,927 leads), e.g.
+`https://www.linkedin.com/in/anthony-banks-mba-5ba40011`.
+
+**You do not have to trim it to a slug.** The site reduces a whole LinkedIn profile URL to
+the identifier itself, so the raw merge value works as-is:
+
+```
+https://servefunding.com/fundings?id={{linkedinUrl}}#bridge-to-m&a-exit
+```
+
+Verified against production on 2026-09-18 with a real value: the URL collapses to
+`anthony-banks-mba-5ba40011`, the right funding card opens, and the visit lands in the
+portal. A non-LinkedIn URL is rejected rather than guessed, so a mis-mapped field shows up
+as an unrecognised id instead of being credited to the wrong person.
+
+**One thing to check in the editor:** whether `{{linkedinUrl}}` is offered in the variable
+list. LGM documents ~24 lead variables and names `{{firstname}}`, `{{companyName}}`,
+`{{proEmail}}`, `{{persoEmail}}` — all of which are lead fields under their API names, which
+is why `linkedinUrl` probably is one too. It is not confirmed in writing. Open the variable
+dropdown; if it is there, you are done.
+
+### If `{{linkedinUrl}}` is not in the list
+
+Use a custom attribute. LGM leads have 20 of them and **all 20 are empty today**, so
+`customAttribute1` is free. LGM syncs custom attributes from HubSpot, and the audiences are
+already HubSpot-sourced, so this is a mapping change rather than a data project:
+
+1. Map HubSpot `hs_linkedin_url` → `customAttribute1` in the LGM ↔ HubSpot field mapping.
+   **5,111 contacts already have `hs_linkedin_url` populated.**
+2. Use `?id={{customAttribute1}}` instead. It holds the same full URL, which the site
+   reduces the same way.
+
+Do **not** re-import the audience as a CSV to get the attribute in — that creates a new
+CLASSIC audience and loses the HubSpot linkage the current one has.
+
+### Which funding to link
+
+Any card on `/fundings`, by its title lowercased with spaces hyphenated. The full list is in
+`src/data/fundingData.ts`; `npm run verify-campaign-links` proves every one of them is
+reachable with an id attached.
+
+For a **banker** audience, `bridge-to-m&a-exit` is the strongest of the current 22: the story
+is a private banker referring the client to a colleague on the commercial team, who had a
+nine-year relationship with Serve Funding. It is the campaign's own thesis told back to the
+reader. That is a recommendation, not a decision — the copy is Mike and Sarah's.
+
+Two cards cannot be sent as they stand:
+
+- **Total Working Capital** appears twice, so only the Medical Device Manufacturer one opens.
+  Retitle one to free the other (the `fundingType` on each row already distinguishes them:
+  "Working Capital + AR Line" vs "Working Capital + SBA").
+
+### The message
+
+The last line changes from the June wording per the 17 Sep call — Michael: *"deal is better
+than story"*; Sarah's edit: *read more about this deal*. The June message, which is the last
+one that actually ran, for shape:
+
+> Hi {{firstname}},
+>
+> I'm sharing our June banker newsletter with you called CREATIVE WORKING CAPITAL. Would love
+> to hear your feedback if you'd like to offer any, including what type of content would be
+> helpful to you in the future!
+>
+> https://servefunding-23433903.hs-sites.com/800k-in-working-capital-for-heavily-cyclical-business
+
+Two changes: the link points at the funding card instead of the HubSpot page, and it carries
+the id. Michael's own line on the call — *"I don't want anything ever going out that's like,
+hey, this month's blog"* — so lead with the deal, not the newsletter.
+
+### The campaign shell
+
+`Banker CWC Newsletter — Sep 2026` (`6aa8f97bc0b4c28955b9ab4d`) is **empty**: no steps, no
+messages, and only the `LGM` channel, so it has no LinkedIn action to attach copy to.
+`Sharing Newsletter w/ Bankers on LI June '26` (`6a2a1a53f8eca00bce4c9862`) is the last one
+that ran — one `LINKEDIN_DIRECT_MESSAGE` step with a working message. Duplicating that in the
+UI and swapping the copy and audience is fewer clicks than building the shell up.
+
+### Prove it before the send
+
+1. Put the finished link in a LinkedIn message to yourself, or just paste it into a browser.
+2. Open **Signals → Site visits** in the portal.
+3. You should see one row, on the *Warm — never referred* slice, with your name, the deal you
+   linked, and "today".
+
+If the row shows under **Unrecognised ids** with a raw value instead, the merge field did not
+resolve — the raw value on that row is exactly what LGM sent, which is what tells you which
+variable to fix. That slice existing is the point: a whole send attributing to nobody would
+otherwise look identical to nobody clicking.
