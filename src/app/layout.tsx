@@ -6,6 +6,7 @@ import { Header } from "@/components/Header"
 import { Footer } from "@/components/Footer"
 import { ScrollToTop } from "@/components/ScrollToTop"
 import { UmamiRouteTracker } from "@/components/UmamiRouteTracker"
+import { CampaignVisitorTracker } from "@/components/CampaignVisitorTracker"
 import { PerformanceMonitor } from "@/components/PerformanceMonitor"
 import Script from "next/script"
 import { SchemaRenderer } from "@/components/SchemaRenderer"
@@ -89,6 +90,10 @@ export default async function RootLayout({
         <PerformanceMonitor />
         <Header />
         <Suspense fallback={null}>
+          {/* First: it clears the campaign id out of the URL that the trackers
+              below then read. They strip it themselves too — this is the order
+              that makes the cleanup happen once, early. */}
+          <CampaignVisitorTracker />
           <UmamiRouteTracker />
         </Suspense>
         <main className="flex-grow pt-20">

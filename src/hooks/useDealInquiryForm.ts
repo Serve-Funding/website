@@ -5,7 +5,6 @@ import { useFormSubmit, FormSubmitData } from './useFormSubmit'
 import { formQuestions } from '@/data/form-questions'
 import { trackEvent, trackFormSubmission, trackHubSpotNativeForm } from '@/lib/tracking'
 import { checkTriageRules, triageRules, type TriageAction } from '@/lib/triage-rules'
-import type { ContactVerdict } from '@/lib/verify-contact'
 
 
 // Calendly URLs - split by person and owner vs partner role
@@ -111,10 +110,6 @@ export function useDealInquiryForm(
   const [phone, setPhone] = useState('')
   const [company, setCompany] = useState('')
   const [smsConsent, setSmsConsent] = useState(false)
-
-  // Email/phone verification on the contact-info step
-  const [isVerifying, setIsVerifying] = useState(false)
-  const [verification, setVerification] = useState<ContactVerdict | null>(null)
 
   // Dynamic "other" field responses (for single_with_other questions)
   const [otherResponses, setOtherResponses] = useState<Record<string, string>>({})
@@ -437,19 +432,33 @@ export function useDealInquiryForm(
     setChosenPath(path)
     setShowChoicePoint(false)
 
-    // Add the choice as an answered question in the thread
+    // Add the choice as an answered question in the thread. The labels
+    // mirror the doors the result card actually showed (see
+    // ConversationalForm's result copy matrix), so the thread reads back
+    // the same screen the visitor just left.
+    const isNeutralFit = triageAction === 'kyler_with_chat'
+    const scheduleLabel = handoffUrl ? 'Talk to an advisor first' : 'Schedule a call with an advisor'
     const choiceLabel =
       path === 'schedule'
-        ? 'Schedule a Call'
+        ? scheduleLabel
         : path === 'documents'
           ? 'Complete your application'
           : 'Explore with our Funding Navigator'
+    const shownDoors = handoffUrl
+      ? isNeutralFit
+        ? ['Complete your application']
+        : ['Complete your application', scheduleLabel]
+      : isNeutralFit
+        ? ['Explore with our Funding Navigator']
+        : [scheduleLabel, 'Explore with our Funding Navigator']
     setAnsweredQuestions(prev => [...prev, {
       questionIndex: -1,
       questionId: 'path_choice',
-      displayTitle: 'Thanks for sharing! Would you like to speak with our team or explore options with our Funding Navigator?',
+      displayTitle: isNeutralFit
+        ? 'Thanks for sharing. Here is your next step.'
+        : 'Good news: this looks like a strong fit. Choose your next step.',
       answer: choiceLabel,
-      options: ['Schedule a Call', 'Explore with our Funding Navigator'],
+      options: shownDoors,
     }])
 
     // Fire final submission (contact info already collected at Q2)
@@ -475,13 +484,9 @@ export function useDealInquiryForm(
       chosen_path: path,
     }
     sendToWebhooks(contactData, 'deal_inquiry')
-    // Verification rides along here too, so a link can still be minted if the
-    // early event was lost. `verification` is state by now; the early call uses
-    // the fresh verdict because state has not settled at that point.
     sendToPortal('final', {
       chosen_path: path,
       triage_action: triageAction || '',
-      verification,
     })
 
     // Only send the "scheduling a call" email when they actually pick scheduling
@@ -504,7 +509,6 @@ export function useDealInquiryForm(
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...contactData,
-          verification,
           type: 'calendly',
           transition_source: source,
           chat_transcript: chatTranscript || '',
@@ -517,32 +521,7 @@ export function useDealInquiryForm(
 
   // Continue from contact-info step (Q2) to next triage question without final submission
   const handleContactInfoContinue = async () => {
-    if (!name || !email || isVerifying) return
-
-    // Check whether the email is deliverable and the phone is a real, reachable
-    // line. Nothing blocks the lead: the verdict rides along on the notification
-    // email as flags, and an undeliverable address is tracked so we can measure
-    // how often NeverBounce is wrong before ever considering a hard stop.
-    setIsVerifying(true)
-    let verdict: ContactVerdict | null = null
-    try {
-      const res = await fetch('/api/verify-contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, phone }),
-      })
-      verdict = await res.json()
-    } catch (error) {
-      console.error('Contact verification error:', error)
-    }
-    setIsVerifying(false)
-    setVerification(verdict)
-
-    if (verdict?.email.result === 'invalid') {
-      trackEvent('deal_inquiry_email_undeliverable', {
-        has_suggestion: Boolean(verdict.email.suggestion),
-      })
-    }
+    if (!name || !email) return
 
     const isPartner = userRole === 'A Banker / Business Advisor'
     const displayTitle = (isPartner && currentQuestion?.partnerTitle)
@@ -557,7 +536,7 @@ export function useDealInquiryForm(
       options: [],
     }])
 
-    sendAnswerWebhook('contact_info', { name, email, phone, company, verification: verdict })
+    sendAnswerWebhook('contact_info', { name, email, phone, company })
 
     // Fire instant notify email so we hear about the lead even if they abandon mid-triage
     try {
@@ -570,7 +549,6 @@ export function useDealInquiryForm(
           email,
           phone,
           company,
-          verification: verdict,
           type: 'early',
         }),
       })
@@ -578,13 +556,7 @@ export function useDealInquiryForm(
       console.error('Notify email error:', error)
     }
 
-    // The verdict has to travel with this event, not just with /api/notify:
-    // the portal mints the document-upload link only for an address its
-    // verifier confirmed, and reads that verdict off THIS payload. Without it
-    // `mintLeadHandoff` skips every lead as `email_not_verified` and the
-    // handoff is silently inert — which is exactly how it behaved until this
-    // line changed.
-    sendToPortal('early', { verification: verdict })
+    sendToPortal('early')
 
     trackEvent('deal_inquiry_question_answered', {
       question_id: 'contact_info',
@@ -757,7 +729,6 @@ export function useDealInquiryForm(
     isLastQuestion,
     isContactInfoStep,
     isTriageQuestion,
-    isVerifying,
     showChoicePoint,
     chosenPath,
     answeredQuestions,

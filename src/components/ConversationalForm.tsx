@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Calendar, MessageCircle, ChevronRight, Send } from 'lucide-react'
+import { Calendar, MessageCircle, ChevronRight, Send, Check, CheckCircle2, ArrowRight } from 'lucide-react'
 import { useDealInquiryForm, type ChosenPath } from '@/hooks/useDealInquiryForm'
 import { formQuestions } from '@/data/form-questions'
 import { FormSubmitData } from '@/hooks/useFormSubmit'
@@ -101,12 +101,138 @@ function OptionPill({ label, isSelected, onClick, disabled }: {
   )
 }
 
+// ---------------------------------------------------------------------------
+// Result screen — the "analyzing" pause and the card that replaces it.
+//
+// The pause is deliberate product, not a loading state we are waiting on: the
+// portal link was minted back at the contact step (Q2), so nothing here is
+// actually pending. Kyler, 2026-09-15: the old end screen was a plain text
+// bubble that read like any other question, and "you're a great fit" landed
+// flat. A few seconds of visible review, then a formatted verdict with the
+// doors spelled out, is what makes the outcome feel earned and the choice
+// obvious. Kept under six seconds; past that it reads as broken, not thorough.
+//
+// The steps describe what the form's own triage looked at (industry, years in
+// business, revenue, ask). They promise no lender count — Kyler killed the
+// match count on 2026-09-09 and the copy here still promises no number.
+// ---------------------------------------------------------------------------
+
+const ANALYSIS_STEPS = [
+  'Reviewing industry and time in business',
+  'Checking against lender criteria',
+  'Preparing your next step',
+]
+const ANALYSIS_STEP_MS = 1700
+const ANALYSIS_TOTAL_MS = ANALYSIS_STEP_MS * ANALYSIS_STEPS.length + 400 // ≈ 5.5s
+
+function AnalyzingCard({ stepsDone }: { stepsDone: number }) {
+  return (
+    <div
+      className="mx-auto w-full rounded-3xl border border-gray-200 bg-white px-6 py-8 sm:px-10"
+      style={{ maxWidth: 640 }}
+      role="status"
+      aria-live="polite"
+    >
+      <div className="flex items-center gap-4">
+        <motion.span
+          aria-hidden
+          className="inline-block h-9 w-9 shrink-0 rounded-full border-[3px]"
+          style={{ borderColor: `${COLORS.primary}33`, borderTopColor: COLORS.primary }}
+          animate={{ rotate: 360 }}
+          transition={{ repeat: Infinity, duration: 0.9, ease: 'linear' }}
+        />
+        <div>
+          <p className="text-lg font-semibold" style={{ color: COLORS.dark }}>Reviewing your answers</p>
+          <p className="text-sm text-gray-500">This takes a few seconds.</p>
+        </div>
+      </div>
+      <ul className="mt-6 flex flex-col gap-3">
+        {ANALYSIS_STEPS.map((label, i) => {
+          const done = i < stepsDone
+          const active = i === stepsDone
+          return (
+            <motion.li
+              key={label}
+              className="flex items-center gap-3 text-[15px]"
+              initial={{ opacity: 0.4 }}
+              animate={{ opacity: done || active ? 1 : 0.4 }}
+              transition={{ duration: 0.3 }}
+            >
+              <span
+                className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full"
+                style={{ backgroundColor: done ? COLORS.primary : COLORS.gray }}
+              >
+                {done
+                  ? <Check size={14} strokeWidth={3} color="#fff" />
+                  : <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: active ? COLORS.primary : '#d1d5db' }} />}
+              </span>
+              <span style={{ color: done || active ? COLORS.dark : '#9ca3af' }}>{label}</span>
+            </motion.li>
+          )
+        })}
+      </ul>
+    </div>
+  )
+}
+
+// One door on the result card. An <a> when it leaves the site (the portal
+// handoff): the browser owns that navigation and the `final` event fired by
+// handlePathChoice uses keepalive so it survives leaving the page.
+function Door({ primary, title, sub, href, onClick }: {
+  primary?: boolean
+  title: React.ReactNode
+  sub: string
+  href?: string
+  onClick: () => void
+}) {
+  const className = 'flex-1 min-w-[240px] rounded-2xl px-6 py-5 text-left'
+  const style = primary
+    ? { backgroundColor: COLORS.primary, color: '#fff', border: `1px solid ${COLORS.primary}` }
+    : { backgroundColor: '#fff', color: COLORS.dark, border: '1px solid #d1d5db' }
+  const inner = (
+    <>
+      <span className="flex items-center justify-between gap-3 text-[16px] font-semibold">
+        <span>{title}</span>
+        <ArrowRight size={18} className="shrink-0" />
+      </span>
+      <span className="mt-1 block text-sm leading-snug" style={{ opacity: primary ? 0.85 : 0.7 }}>{sub}</span>
+    </>
+  )
+  const motionProps = {
+    whileHover: { scale: 1.01, y: -1 },
+    whileTap: { scale: 0.99 },
+    transition: { duration: 0.15 },
+  }
+  return href ? (
+    <motion.a href={href} onClick={onClick} className={className} style={style} {...motionProps}>{inner}</motion.a>
+  ) : (
+    <motion.button type="button" onClick={onClick} className={className} style={style} {...motionProps}>{inner}</motion.button>
+  )
+}
+
+function NavigatorName() {
+  return (
+    <span
+      style={{
+        background: 'linear-gradient(135deg, #c99c42 0%, #e8c170 35%, #6b8e23 100%)',
+        backgroundSize: '200% 200%',
+        animation: 'gradient-shift 4s ease infinite',
+        WebkitBackgroundClip: 'text',
+        WebkitTextFillColor: 'transparent',
+        backgroundClip: 'text',
+        fontWeight: 700,
+      }}
+    >
+      Funding Navigator
+    </span>
+  )
+}
+
 function ContactInfoFields({
   isPartner,
   name, email, phone, company, smsConsent,
   setFieldValue,
   onContinue,
-  isVerifying,
 }: {
   isPartner: boolean
   name: string
@@ -116,7 +242,6 @@ function ContactInfoFields({
   smsConsent: boolean
   setFieldValue: (id: string, value: any) => void
   onContinue: () => void
-  isVerifying: boolean
 }) {
   return (
     <form
@@ -184,10 +309,10 @@ function ContactInfoFields({
           type="submit"
           variant="default"
           size="lg"
-          disabled={!name || !email || isVerifying}
+          disabled={!name || !email}
         >
-          {isVerifying ? 'Checking\u2026' : 'Continue'}
-          {!isVerifying && <ChevronRight size={18} className="ml-1" />}
+          Continue
+          <ChevronRight size={18} className="ml-1" />
         </Button>
       </div>
     </form>
@@ -214,7 +339,6 @@ export function ConversationalForm({ initialRole, onComplete }: ConversationalFo
     handoffUrl,
     answeredQuestions,
     isContactInfoStep,
-    isVerifying,
     getFieldValue,
     setFieldValue,
     handleAnswer,
@@ -229,6 +353,33 @@ export function ConversationalForm({ initialRole, onComplete }: ConversationalFo
 
   const [showCalendlyInline, setShowCalendlyInline] = useState(false)
   const [showAIChat, setShowAIChat] = useState(false)
+
+  // The visible "reviewing your answers" pause before the result card. Reset
+  // whenever the choice point closes (editing an earlier answer reopens it and
+  // should replay the review, since the verdict may have changed).
+  const [analysisStep, setAnalysisStep] = useState(0)
+  const [analysisDone, setAnalysisDone] = useState(false)
+  useEffect(() => {
+    if (!showChoicePoint) {
+      setAnalysisStep(0)
+      setAnalysisDone(false)
+      return
+    }
+    const timers = ANALYSIS_STEPS.map((_, i) =>
+      setTimeout(() => setAnalysisStep(i + 1), ANALYSIS_STEP_MS * (i + 1))
+    )
+    timers.push(setTimeout(() => setAnalysisDone(true), ANALYSIS_TOTAL_MS))
+    return () => timers.forEach(clearTimeout)
+  }, [showChoicePoint])
+
+  const isStrongFit = triageAction !== 'kyler_with_chat'
+  useEffect(() => {
+    if (!analysisDone) return
+    trackEvent('discover_result_shown', {
+      fit: isStrongFit ? 'strong' : 'neutral',
+      apply_door: Boolean(handoffUrl),
+    })
+  }, [analysisDone]) // eslint-disable-line react-hooks/exhaustive-deps
   const [aiMessages, setAiMessages] = useState<Array<{ text: string; sender: 'bot' | 'user' }>>([])
   const [aiInput, setAiInput] = useState('')
   const [aiLoading, setAiLoading] = useState(false)
@@ -313,7 +464,7 @@ export function ConversationalForm({ initialRole, onComplete }: ConversationalFo
         activeQuestionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
       }, 300)
     }
-  }, [currentQuestionIndex, showChoicePoint])
+  }, [currentQuestionIndex, showChoicePoint, analysisDone])
 
   const isPartner = userRole === 'A Banker / Business Advisor'
 
@@ -373,7 +524,7 @@ export function ConversationalForm({ initialRole, onComplete }: ConversationalFo
           ))}
         </AnimatePresence>
 
-        {/* Choice Point */}
+        {/* Choice Point — a short visible review, then the result card. */}
         {showChoicePoint && !chosenPath && (
           <motion.div
             ref={activeQuestionRef}
@@ -382,83 +533,124 @@ export function ConversationalForm({ initialRole, onComplete }: ConversationalFo
             transition={{ duration: 0.3 }}
             className="flex flex-col gap-4"
           >
-            {/* The fit line promises no number — Kyler killed the lender-match
-                count on 2026-09-09 ("over-engineering") and wrote this copy in
-                its place. It is gated on the form's own triage: the cold path
-                (revenue < $1M, ask < $250K, or under a year in business) gets
-                the neutral line, because telling a lead they are a strong fit
-                when an advisor is about to say otherwise is the one thing this
-                screen must not do. Everyone else has already cleared the same
-                thresholds that route them to Mike. */}
-            <QuestionRow>
-              {triageAction === 'kyler_with_chat'
+            {!analysisDone ? (
+              <AnalyzingCard stepsDone={analysisStep} />
+            ) : (() => {
+              // Copy matrix. Two axes: the form's own triage (the cold
+              // `kyler_with_chat` path — revenue < $1M, ask < $250K, or under a
+              // year in business — never hears "strong fit", because an advisor
+              // is about to say otherwise), and whether the portal minted an
+              // application link for this lead.
+              //
+              // Cold path gets ONE door, the application, and no call. Kyler,
+              // 2026-09-15: with the application in hand the team can route a
+              // thin file to lenders or consolidators and reply quickly,
+              // instead of booking a call, waiting a week for documents, and
+              // only then seeing the picture. When no link exists there is no
+              // application to send them to, so the Navigator is the one door.
+              const firstName = name.trim().split(/\s+/)[0] || ''
+              const greet = firstName ? `, ${firstName}` : ''
+              // What they told us, as chips. Revenue and ask are both bare
+              // dollar ranges, so each carries a word to tell them apart.
+              const factOf = (id: string, suffix = '') => {
+                const v = getFieldValue(id)
+                return typeof v === 'string' && v.length > 0 ? `${v}${suffix}` : null
+              }
+              const facts = [
+                factOf('business_industry'),
+                factOf('time_in_business', ' in business'),
+                factOf('annual_revenue', ' revenue'),
+                factOf('funding_amount', ' requested'),
+              ].filter((v): v is string => v !== null)
+
+              const headline = isStrongFit
+                ? `Good news${greet}. This looks like a strong fit.`
+                : `Thanks for sharing${greet}.`
+              const body = isStrongFit
                 ? handoffUrl
-                  ? 'Thanks for sharing! To get soft terms from lenders we need a few documents — you can complete your application now, or talk to our team first.'
-                  : 'Thanks for sharing! Would you like to speak with our team or explore options with our Funding Navigator?'
+                  ? 'We already have lenders in mind who work deals like this. To get you to soft terms we need a few documents, and there are two ways to get there.'
+                  : 'We already have lenders in mind who work deals like this. The next step is a quick call with an advisor.'
                 : handoffUrl
-                  ? 'Good news — this looks like a strong fit. We already have lenders in mind who work deals like this. To get you soft terms we need a few documents: complete your application now, or talk to an advisor first.'
-                  : 'Good news — this looks like a strong fit. We already have lenders in mind who work deals like this. The next step is a quick call with an advisor.'}
-            </QuestionRow>
+                  ? 'We have your details. Complete your application and someone from our team will reach out shortly with next steps.'
+                  : 'We have your details, and someone from our team will reach out shortly.'
+              const doorsLabel = isStrongFit && handoffUrl ? 'Choose your next step' : 'Your next step'
 
-            <AnswerRow>
-              {/* The portal handoff, and ONLY when the portal actually minted a
-                  link for this lead. It declines unless the email verifier
-                  returned `valid`, so a real corporate on a catch-all domain
-                  gets no link. Rendered conditionally rather than disabled,
-                  because a door that is sometimes missing should not leave a
-                  dead one behind — and there is nothing generic to fall back
-                  to: portal.servefunding.com/apply is retired and redirects to
-                  a login page, which is worse than no button.
+              return (
+                <motion.div
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.35 }}
+                  className="mx-auto w-full rounded-3xl border bg-white px-6 py-8 sm:px-10"
+                  style={{ maxWidth: 720, borderColor: isStrongFit ? `${COLORS.primary}66` : '#e5e7eb' }}
+                >
+                  {isStrongFit && (
+                    <span
+                      className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wide"
+                      style={{ backgroundColor: COLORS.background, color: COLORS.dark }}
+                    >
+                      <CheckCircle2 size={14} color={COLORS.primary} />
+                      Strong fit
+                    </span>
+                  )}
+                  <h3
+                    className={`${isStrongFit ? 'mt-3' : ''} text-2xl font-semibold leading-tight sm:text-3xl`}
+                    style={{ color: COLORS.dark }}
+                  >
+                    {headline}
+                  </h3>
+                  <p className="mt-3 text-base leading-relaxed text-gray-600 sm:text-lg">{body}</p>
+                  {facts.length > 0 && (
+                    <ul className="mt-4 flex flex-wrap gap-2" aria-label="What you told us">
+                      {facts.map(f => (
+                        <li key={f} className="rounded-full bg-gray-100 px-3 py-1 text-sm text-gray-700">{f}</li>
+                      ))}
+                    </ul>
+                  )}
 
-                  An <a>, not a button: the browser owns the navigation, and the
-                  `final` event fired by handlePathChoice uses keepalive so it
-                  survives leaving the page. */}
-              {handoffUrl && (
-                <motion.a
-                  href={handoffUrl}
-                  onClick={() => handlePathChoice('documents')}
-                  whileHover={{ scale: 1.02, y: -1 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="px-8 py-4 rounded-2xl font-medium text-[15px] inline-block"
-                  style={{ backgroundColor: COLORS.primary, color: '#fff', border: 'none' }}
-                >
-                  Complete your application
-                </motion.a>
-              )}
-              <OptionPill
-                label={handoffUrl ? 'Schedule a call with an advisor first' : 'Schedule a Call'}
-                isSelected={false}
-                onClick={() => handlePathChoice('schedule')}
-              />
-              {/* Two doors when the application link exists — apply, or talk
-                  first. The Navigator stays on the fallback, where it is the
-                  only self-serve path left. */}
-              {!handoffUrl && (
-              <motion.button
-                type="button"
-                onClick={() => handlePathChoice('ai_chat')}
-                whileHover={{ scale: 1.02, y: -1 }}
-                whileTap={{ scale: 0.98 }}
-                className="px-8 py-4 rounded-2xl font-medium text-[15px]"
-                style={{ backgroundColor: COLORS.gray, color: COLORS.dark, border: 'none' }}
-              >
-                Explore with our{' '}
-                <span
-                  style={{
-                    background: 'linear-gradient(135deg, #c99c42 0%, #e8c170 35%, #6b8e23 100%)',
-                    backgroundSize: '200% 200%',
-                    animation: 'gradient-shift 4s ease infinite',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    backgroundClip: 'text',
-                    fontWeight: 700,
-                  }}
-                >
-                  Funding Navigator
-                </span>
-              </motion.button>
-              )}
-            </AnswerRow>
+                  <div className="my-6 h-px bg-gray-200" />
+
+                  <p className="text-sm font-semibold uppercase tracking-wide text-gray-500">{doorsLabel}</p>
+                  <div className="mt-3 flex flex-wrap gap-3">
+                    {/* The portal handoff, and ONLY when the portal actually
+                        minted a link for this lead. Rendered conditionally
+                        rather than disabled: portal.servefunding.com/apply is
+                        retired and redirects to a login page, which is worse
+                        than no button. */}
+                    {handoffUrl && (
+                      <Door
+                        primary
+                        href={handoffUrl}
+                        onClick={() => handlePathChoice('documents')}
+                        title="Complete your application"
+                        sub={isStrongFit
+                          ? 'The fastest path to a term sheet. Finish in our secure portal.'
+                          : 'Finish in our secure portal. Our team follows up from there.'}
+                      />
+                    )}
+                    {isStrongFit && (
+                      <Door
+                        primary={!handoffUrl}
+                        onClick={() => handlePathChoice('schedule')}
+                        title={handoffUrl ? 'Talk to an advisor first' : 'Schedule a call with an advisor'}
+                        sub={handoffUrl
+                          ? 'Prefer to walk through it? Pick a time and we take it from there.'
+                          : 'Pick a time that works for you.'}
+                      />
+                    )}
+                    {!handoffUrl && (
+                      <Door
+                        primary={!isStrongFit}
+                        onClick={() => handlePathChoice('ai_chat')}
+                        title={<>Explore with our <NavigatorName /></>}
+                        sub={isStrongFit
+                          ? 'Ask questions about your options first.'
+                          : 'Ask questions about your options while you wait.'}
+                      />
+                    )}
+                  </div>
+                </motion.div>
+              )
+            })()}
           </motion.div>
         )}
 
@@ -574,7 +766,6 @@ export function ConversationalForm({ initialRole, onComplete }: ConversationalFo
                 smsConsent={smsConsent}
                 setFieldValue={setFieldValue}
                 onContinue={handleContactInfoContinue}
-                isVerifying={isVerifying}
               />
             </div>
           </motion.div>
