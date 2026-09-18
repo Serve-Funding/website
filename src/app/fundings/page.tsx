@@ -20,6 +20,7 @@ import { Breadcrumb } from '@/components/breadcrumb'
 import { SchemaRenderer } from '@/components/SchemaRenderer'
 import { getReviewSchema } from '@/lib/schema-generators'
 import { COLORS as BRAND_COLORS } from '@/lib/colors'
+import { hashSlug } from '@/lib/campaign-visitor'
 
 function generateSlug(text: string): string {
   return text.toLowerCase().replace(/\s+/g, '-')
@@ -39,7 +40,12 @@ export default function Fundings() {
 
   useEffect(() => {
     const handleHashChange = () => {
-      const hash = window.location.hash.slice(1)
+      // Not `hash.slice(1)`: campaign links are built as
+      // `/fundings#payroll-rescue?id=jimtingler`, whose fragment is the slug AND
+      // the id. Matching the raw fragment finds no funding and silently opens
+      // nothing — the exact link we are asking bankers to click. hashSlug keeps
+      // only the slug, so either ordering opens the card.
+      const hash = hashSlug(window.location.hash)
       if (hash) {
         // Find the matching case study by slug
         const matchingStudy = caseStudies.find(study => generateSlug(study.title) === hash)
@@ -70,6 +76,34 @@ export default function Fundings() {
   const openModal = (study: typeof caseStudies[0]) => {
     setSelectedStudy(study)
     setIsModalOpen(true)
+    // Put the card in the address bar. replaceState rather than `location.hash =`:
+    // every card below carries id={slug}, so assigning the hash would scroll the
+    // grid behind the modal. replaceState fires no hashchange, so one is
+    // dispatched by hand — CampaignVisitorTracker records which card was opened
+    // from that event, and without it a banker who browses five deals from a
+    // campaign link is recorded as having read one.
+    const slug = generateSlug(study.title)
+    if (hashSlug(window.location.hash) !== slug) {
+      window.history.replaceState(
+        window.history.state,
+        '',
+        `${window.location.pathname}${window.location.search}#${slug}`
+      )
+      window.dispatchEvent(new HashChangeEvent('hashchange'))
+    }
+  }
+
+  const closeModal = () => {
+    setIsModalOpen(false)
+    // Leave the URL clean once the card is closed, so a copied or refreshed
+    // address does not reopen a card the visitor already dismissed.
+    if (window.location.hash) {
+      window.history.replaceState(
+        window.history.state,
+        '',
+        `${window.location.pathname}${window.location.search}`
+      )
+    }
   }
 
   return (
@@ -176,7 +210,7 @@ export default function Fundings() {
       {/* Case Study Modal */}
       <CaseStudyModal
         isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
+        onClose={closeModal}
         caseStudy={selectedStudy}
       />
     </div>

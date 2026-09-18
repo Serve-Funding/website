@@ -6,12 +6,13 @@
   "scripts": {
     "dev": "next dev",
     "verify-seo": "tsx scripts/verify-seo.ts",
-    "build": "npm run last-updated && npm run verify-seo && npm run verify-webhook-destinations && next build",
+    "build": "npm run last-updated && npm run verify-seo && npm run verify-webhook-destinations && npm run verify-campaign-links && next build",
     "start": "next start",
     "lint": "next lint",
     "analyze": "ANALYZE=true next build --webpack",
     "last-updated": "tsx scripts/generate-last-updated.ts",
-    "verify-webhook-destinations": "tsx scripts/verify-webhook-destinations.ts"
+    "verify-webhook-destinations": "tsx scripts/verify-webhook-destinations.ts",
+    "verify-campaign-links": "tsx scripts/verify-campaign-links.ts"
   },
   "browserslist": [
     "chrome >= 90",
