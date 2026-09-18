@@ -12,6 +12,17 @@ export interface FundingCase {
 
 export const fundingCases: FundingCase[] = [
   {
+    amount: '$650K',
+    title: 'Subordinated Growth Capital',
+    company: 'Commercial Excavation Contractor, CO',
+    description: 'A Colorado commercial excavation company with more than a decade in business had nearly quadrupled revenue under current ownership, from just over $5MM to nearly $20MM, and was projecting another 20-25% growth. Its bank had just refinanced the SBA loan used to buy the company, which freed the owner\'s personal property from a blanket lien but left nothing behind it for working capital.',
+    fullStory: 'The owners acquired the business five years ago with an SBA 7(a) loan. It was the right tool at the time, and it came with a blanket lien across both the business and the owner\'s personal property. Five years of scaling later, that structure had become the constraint rather than the support.\n\nThis year the owners refinanced the SBA debt into a conventional bank facility. That did the important work of releasing the personal property from the lien, but the new facility was sized only to retire the SBA balance. It left no room for the working capital the business needed to keep growing, and anything additional would have to sit behind the new senior lender as subordinated debt, which is a materially harder ask than a first-position loan.\n\nServe Funding sourced multiple competitive options and structured a $650,000 subordinated term loan behind the new bank facility: a 20-month term at simple interest in the mid-teens, with a prepay discount negotiated to waive all remaining interest on an early payoff at any point. That last term is what changes its character - it behaves like a line of credit rather than a fixed-cost term loan, so the client only pays for the time they actually use. The deal closed within a couple of weeks.\n\nFunding the next stage of growth took a different kind of capital: one built to sit responsibly behind a senior lender without slowing the business down.',
+    industry: 'Commercial Excavation',
+    fundingType: 'Subordinated Term Loan',
+    challengeResolved: 'Added growth capital behind a new senior bank facility that had been sized only to retire an SBA 7(a) balance',
+    timeline: 'A couple of weeks'
+  },
+  {
     amount: '$2.8MM',
     title: 'Portfolio Equity Unlock',
     company: 'Private Real Estate Investor, Multi-State',
