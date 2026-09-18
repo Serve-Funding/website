@@ -102,7 +102,7 @@ export default function Home() {
           cta={{
             label: 'Explore Funding Options',
             href: '/discover',
-            note: 'Takes a few minutes. No obligation.',
+            note: 'Two minutes to see if your deal fits. No obligation.',
           }}
         />
       </Section>
@@ -166,8 +166,8 @@ export default function Home() {
       {/* Trust-Based Partnership Section */}
       <CTA
         title="Capital That Serves You"
-        text="Answer a few questions to find out what credit options are available to you. Takes a few minutes and there's no obligation."
-        buttonText="Explore Funding Options"
+        text="Answer a few questions and find out whether your deal fits lenders in our network. Takes two minutes and there's no obligation."
+        buttonText="See If Your Deal Fits"
         background="gray"
       />
 
@@ -363,8 +363,8 @@ export default function Home() {
 
       <CTA
         title="Ready to Get Started?"
-        text="Answer a few questions and schedule a call at your convenience. Takes a few minutes and there's no obligation."
-        buttonText="Explore Funding Options"
+        text="Answer a few questions and find out whether lenders in our network would look at your deal. Two minutes, no obligation, and what happens next is your call."
+        buttonText="See If Your Deal Fits"
         href="/discover"
       />
     </>

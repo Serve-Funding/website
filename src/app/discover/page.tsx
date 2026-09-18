@@ -152,7 +152,7 @@ function DiscoverContent() {
       {/* Hero */}
       <HeroFadeIn
         title="Discover Your Funding Options"
-        subtitle={<>Take a few minutes to share some high-level details.<br />We&#39;ll show you what credit options may be available.</>}
+        subtitle={<>Take two minutes to share the high-level details.<br />We&#39;ll tell you whether your deal fits lenders in our network, and what happens next is your call.</>}
         compact
       />
 

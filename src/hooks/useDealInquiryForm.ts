@@ -432,19 +432,33 @@ export function useDealInquiryForm(
     setChosenPath(path)
     setShowChoicePoint(false)
 
-    // Add the choice as an answered question in the thread
+    // Add the choice as an answered question in the thread. The labels
+    // mirror the doors the result card actually showed (see
+    // ConversationalForm's result copy matrix), so the thread reads back
+    // the same screen the visitor just left.
+    const isNeutralFit = triageAction === 'kyler_with_chat'
+    const scheduleLabel = handoffUrl ? 'Talk to an advisor first' : 'Schedule a call with an advisor'
     const choiceLabel =
       path === 'schedule'
-        ? 'Schedule a Call'
+        ? scheduleLabel
         : path === 'documents'
           ? 'Complete your application'
           : 'Explore with our Funding Navigator'
+    const shownDoors = handoffUrl
+      ? isNeutralFit
+        ? ['Complete your application']
+        : ['Complete your application', scheduleLabel]
+      : isNeutralFit
+        ? ['Explore with our Funding Navigator']
+        : [scheduleLabel, 'Explore with our Funding Navigator']
     setAnsweredQuestions(prev => [...prev, {
       questionIndex: -1,
       questionId: 'path_choice',
-      displayTitle: 'Thanks for sharing! Would you like to speak with our team or explore options with our Funding Navigator?',
+      displayTitle: isNeutralFit
+        ? 'Thanks for sharing. Here is your next step.'
+        : 'Good news: this looks like a strong fit. Choose your next step.',
       answer: choiceLabel,
-      options: ['Schedule a Call', 'Explore with our Funding Navigator'],
+      options: shownDoors,
     }])
 
     // Fire final submission (contact info already collected at Q2)
