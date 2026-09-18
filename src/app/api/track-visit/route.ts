@@ -10,10 +10,15 @@ import { NextResponse } from 'next/server'
  * from a page, the secret never ships in a bundle, and `connect-src 'self'` in
  * middleware.ts needs no new origin. Same shape as /api/portal-lead.
  *
- * Dark until SITE_VISIT_PORTAL_URL and SITE_VISIT_PORTAL_SECRET are both set;
- * unlike /api/portal-lead there is no separate on/off flag, because "configured"
- * and "enabled" cannot usefully disagree here — there is no second delivery path
- * this one is being added alongside.
+ * CONFIGURATION. Reuses the lead handoff's pair by default: the secret is
+ * PORTAL_INBOUND_SECRET and the target is PORTAL_INBOUND_URL's origin with
+ * `/api/webhooks/site-visit` as the path — the same portal, one path over. So
+ * the projects that already hand leads to the portal (Aug 2026) forward visits
+ * with no new variables (Kyler + Tim, 2026-09-18). SITE_VISIT_PORTAL_URL and
+ * SITE_VISIT_PORTAL_SECRET, when set, override each half, for a deployment
+ * that wants the two writers on different keys. Dark when neither pair is set;
+ * unlike /api/portal-lead there is no separate on/off flag, because
+ * "configured" and "enabled" cannot usefully disagree here.
  *
  * WHAT A FORGED VISIT CAN AND CANNOT DO. This is an unauthenticated endpoint on
  * a public page, and a LinkedIn public identifier is public, so anyone who wants
@@ -36,8 +41,19 @@ import { NextResponse } from 'next/server'
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 
-const PORTAL_URL = process.env.SITE_VISIT_PORTAL_URL || ''
-const PORTAL_SECRET = process.env.SITE_VISIT_PORTAL_SECRET || ''
+/** The portal's site-visit endpoint, derived from the lead endpoint's origin. */
+function siteVisitUrlFrom(inboundUrl: string | undefined): string {
+  if (!inboundUrl) return ''
+  try {
+    return new URL('/api/webhooks/site-visit', inboundUrl).toString()
+  } catch {
+    return ''
+  }
+}
+
+const PORTAL_URL =
+  process.env.SITE_VISIT_PORTAL_URL || siteVisitUrlFrom(process.env.PORTAL_INBOUND_URL)
+const PORTAL_SECRET = process.env.SITE_VISIT_PORTAL_SECRET || process.env.PORTAL_INBOUND_SECRET || ''
 const TIMEOUT_MS = 3000
 
 /** Matches src/lib/campaign-visitor.ts — re-checked here, since this is a public route. */
