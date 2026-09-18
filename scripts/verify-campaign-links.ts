@@ -107,6 +107,16 @@ check('id percent-encoded once', readCampaignId(`${SITE}/fundings?id=jean%2Dsimo
 check('non-ascii identifier kept', readCampaignId(`${SITE}/fundings?id=jeann%C3%A9-mack`), 'jeanné-mack')
 check('long member-hash identifier', readCampaignId(`${SITE}/fundings?id=steven-a-sandoval-33514650`), 'steven-a-sandoval-33514650')
 check('linkedin member urn lowercased', readCampaignId(`${SITE}/fundings?id=ACoAAAB1cDEBxyz`), 'acoaaab1cdebxyz')
+// A merge field nobody trimmed: the whole profile URL, as LinkedIn prints it.
+// The portal reduces these to the slug; the website must agree, or the visit is
+// dropped here and the portal never sees that the campaign is wired wrong.
+check('full profile url reduces to slug', readCampaignId(`${SITE}/fundings?id=https://www.linkedin.com/in/JimTingler/#payroll-cover`), 'jimtingler')
+check('locale host + encoded profile url', readCampaignId(`${SITE}/fundings?id=https%3A%2F%2Fnl.linkedin.com%2Fin%2Fjean-simon-04357a1b%2F`), 'jean-simon-04357a1b')
+check('legacy /pub/ url', readCampaignId(`${SITE}/fundings?id=https://www.linkedin.com/pub/some-name/1/2/3`), 'some-name')
+check('fragment-first with a profile url', readCampaignId(`${SITE}/fundings#payroll-cover?id=https://linkedin.com/in/jimtingler`), 'jimtingler')
+check('trailing slash dropped', readCampaignId(`${SITE}/fundings?id=jimtingler/`), 'jimtingler')
+check('company page is not a person', readCampaignId(`${SITE}/fundings?id=https://www.linkedin.com/company/serve-funding`), null)
+check('foreign host with /in/ is not a person', readCampaignId(`${SITE}/fundings?id=https://evil.example/in/jimtingler`), null)
 check('no id is no id', readCampaignId(`${SITE}/fundings#seasonal-working-capital`), null)
 check('empty id rejected', readCampaignId(`${SITE}/fundings?id=`), null)
 check('over-long id rejected', readCampaignId(`${SITE}/fundings?id=${'a'.repeat(129)}`), null)

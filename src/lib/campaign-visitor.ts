@@ -62,12 +62,30 @@ const MAX_ID_LENGTH = 128
  */
 const ID_PATTERN = /^[^\s<>"'/?#&=%\\]+$/u
 
+/**
+ * A whole LinkedIn profile URL, wherever it sits in the value: `/in/<slug>` or
+ * the legacy `/pub/<slug>`, any subdomain, with or without a scheme. The host is
+ * part of the match on purpose — `evil.example/in/jim` is not Jim. Kept in step
+ * with `PROFILE_PATH` in the portal's src/lib/site-visits/linkedin-key.ts.
+ */
+const PROFILE_PATH = /(?:^|[^a-z0-9.-])(?:[a-z0-9-]+\.)*linkedin\.com\/(?:in|pub)\/([^/?#"'<>\s]+)/i
+
 /** Normalize one candidate id, or reject it. */
 export function normalizeCampaignId(raw: string | null | undefined): string | null {
   if (!raw) return null
   // A link built by hand in a campaign tool may arrive percent-encoded once; a
   // malformed escape keeps the raw form rather than losing the visit.
-  const value = decodeOnce(raw.trim()).trim()
+  let value = decodeOnce(raw.trim()).trim()
+  // A merge field that nobody trimmed emits the whole profile URL. The portal's
+  // linkedin_key() reduces that to the slug, and the website must not be
+  // stricter than the portal: rejecting it here drops the visit before the
+  // portal's "Unrecognised ids" slice can ever show that a campaign is wired
+  // wrong. Reduce it the same way instead.
+  const profile = value.match(PROFILE_PATH)
+  if (profile) value = profile[1]
+  // LinkedIn prints profile URLs with a trailing slash, so "everything after
+  // /in/" is `slug/` for anyone who copied one. That is the same person.
+  value = value.replace(/\/+$/, '')
   if (!value || value.length > MAX_ID_LENGTH) return null
   if (!ID_PATTERN.test(value)) return null
   return value.toLowerCase()

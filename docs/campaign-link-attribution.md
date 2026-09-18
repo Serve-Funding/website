@@ -15,7 +15,7 @@ https://servefunding.com/fundings?id=<linkedin-id>#<funding-slug>
 
 | Piece | What it is |
 | --- | --- |
-| `<linkedin-id>` | The recipient's LinkedIn public identifier — the bit after `/in/` in their profile URL. Both shapes work: the short one (`jimtingler`) and the long member-hash one (`steven-a-sandoval-33514650`). The `ACoAAA…` member URN works too. |
+| `<linkedin-id>` | The recipient's LinkedIn public identifier — the bit after `/in/` in their profile URL. Both shapes work: the short one (`jimtingler`) and the long member-hash one (`steven-a-sandoval-33514650`). The `ACoAAA…` member URN works too. **The whole profile URL also works** (`?id=https://www.linkedin.com/in/jimtingler/`), trailing slash and all, so a merge field can be the raw URL column if trimming it is awkward. |
 | `<funding-slug>` | The funding title, lowercased, spaces to hyphens: **Seasonal Working Capital** → `seasonal-working-capital`. This is what opens the deal card on top of the fundings grid. |
 
 Clay already holds the LinkedIn URL for every person in the list, so the merge field is

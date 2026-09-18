@@ -25,9 +25,13 @@ import { NextResponse } from 'next/server'
  * every public route here is a separate, already-written piece of work; see
  * docs/api-abuse-hardening-plan.md.
  *
- * Every response is a 204. This is a beacon, not an API: the visitor's page must
- * not learn whether we recognised them, and nothing it does depends on the
- * answer. Our own failures go to the server log.
+ * Responses carry no information about the visitor. This is a beacon, not an
+ * API: the page never learns whether we recognised them, because the portal
+ * answers the same `{ ok: true }` for a matched and an unmatched id alike. Two
+ * statuses only: 204 when the visit was taken (or deliberately dropped —
+ * unconfigured, malformed, throttled), 502 when the portal did not take it, so
+ * the tracker can release its "reported" mark and try again later instead of
+ * counting a timed-out forward as delivered. Our own failures go to the log.
  */
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
@@ -103,6 +107,8 @@ function str(value: unknown, max = MAX_STR): string | null {
 }
 
 const noContent = () => new NextResponse(null, { status: 204 })
+/** The portal did not take the visit. Bodyless: the status is the whole message. */
+const notDelivered = () => new NextResponse(null, { status: 502 })
 
 export async function POST(request: Request) {
   if (!PORTAL_URL || !PORTAL_SECRET) return noContent()
@@ -163,9 +169,11 @@ export async function POST(request: Request) {
     if (!res.ok) {
       const detail = await res.text().catch(() => '')
       console.error(`[track-visit] portal responded ${res.status}: ${detail.slice(0, 500)}`)
+      return notDelivered()
     }
   } catch (error) {
     console.error('[track-visit] forward failed:', error)
+    return notDelivered()
   } finally {
     clearTimeout(timeout)
   }

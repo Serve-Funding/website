@@ -23,7 +23,7 @@
  */
 
 import { useEffect, useRef } from "react"
-import { usePathname } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import {
   hashSlug,
   readCampaignId,
@@ -35,6 +35,7 @@ import { trackEvent } from "@/lib/tracking"
 
 export function CampaignVisitorTracker() {
   const pathname = usePathname()
+  const router = useRouter()
   // One report per page per visit. A banker re-opening the same funding card
   // three times in a minute is one read, not three, and the interesting number
   // is which deals get opened — not how twitchy the scroll was.
@@ -48,7 +49,24 @@ export function CampaignVisitorTracker() {
       if (fromUrl) {
         rememberCampaignId(fromUrl)
         const cleaned = stripCampaignId(window.location.href)
-        if (cleaned) window.history.replaceState(window.history.state, "", cleaned)
+        if (cleaned) {
+          const searchChanged = new URL(cleaned, window.location.origin).search !== window.location.search
+          if (searchChanged) {
+            // The canonical `?id=…` form goes through the router, not
+            // history.replaceState. On first load Next commits its own canonical
+            // URL — which still carries the query — over anything written to
+            // history directly, so a direct rewrite here was undone a tick later
+            // and the id sat in the address bar for the whole visit (seen on
+            // Next 16.1). router.replace makes the cleaned URL the canonical one.
+            // Same pathname, so the page keeps its state and the open card.
+            router.replace(cleaned, { scroll: false })
+          } else {
+            // Only the fragment changed. No router involvement: a hash-only
+            // rewrite is not undone at hydration, and going through the router
+            // would re-fire every search-param effect on the page for nothing.
+            window.history.replaceState(window.history.state, "", cleaned)
+          }
+        }
       }
 
       const id = fromUrl ?? recallCampaignId()
@@ -77,9 +95,18 @@ export function CampaignVisitorTracker() {
           referrer: document.referrer || null,
           occurredAt: new Date().toISOString(),
         }),
-      }).catch(() => {
-        // Attribution is never worth a console error on a visitor's machine.
       })
+        .then((res) => {
+          // Only a delivered beacon counts as reported. /api/track-visit answers
+          // 502 when the portal did not take the visit, so the key is released
+          // and the next hashchange or route change tries again — a portal blip
+          // must not erase the only record that this open ever happened.
+          if (!res.ok) reported.current.delete(key)
+        })
+        .catch(() => {
+          // Attribution is never worth a console error on a visitor's machine.
+          reported.current.delete(key)
+        })
     }
 
     report()
@@ -88,7 +115,7 @@ export function CampaignVisitorTracker() {
     // pathname effect never re-runs. Which cards get opened is the whole point.
     window.addEventListener("hashchange", report)
     return () => window.removeEventListener("hashchange", report)
-  }, [pathname])
+  }, [pathname, router])
 
   return null
 }
