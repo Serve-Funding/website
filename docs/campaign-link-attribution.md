@@ -99,11 +99,21 @@ what lifecycle stage they are in, and whether they have ever referred a deal. Se
 
 ## Configuration
 
+**Nothing new to set.** The beacon reuses the lead handoff's variables from August 2026:
+`PORTAL_INBOUND_SECRET` is the shared secret, and the target is `PORTAL_INBOUND_URL`'s
+origin with the path swapped to `/api/webhooks/site-visit`. The portal side accepts the same
+value under `INBOUND_LEAD_SECRET` / `PORTAL_INBOUND_SECRET`. Any project that already hands
+leads to the portal (the production `website` and `serve-platform` projects) forwards visits
+as soon as the code is deployed.
+
+Optional overrides, for a deployment that wants the two writers on separate keys:
+
 | Variable | Where | Meaning |
 | --- | --- | --- |
 | `SITE_VISIT_PORTAL_URL` | website (Vercel) | `https://<portal-host>/api/webhooks/site-visit` |
 | `SITE_VISIT_PORTAL_SECRET` | website (Vercel) | Shared secret, must match the portal |
 | `SITE_VISIT_SECRET` | portal (Vercel) | The same value |
 
-Until both website variables are set, `/api/track-visit` accepts the beacon and drops it.
-Nothing else on the site changes, so this can merge before the portal side is live.
+With neither pair set, `/api/track-visit` accepts the beacon and drops it. The dev projects
+(`website-cuky`, `portal_testing`) carry no `PORTAL_INBOUND_*` today, so the dev preview
+stays dark until one pair is added there.
