@@ -7,6 +7,10 @@ sent us one becomes a name on Cole's call list instead of an anonymous hit in Um
 
 Decided on the Marketing & Lead Gen call, 17 Sep 2026 (Tim, Mike, Sarah, Kyler).
 
+> **What changes next time:** [campaign-october-plan.md](campaign-october-plan.md) — opaque
+> tokens instead of LinkedIn identifiers, and the one rule that matters after September:
+> **an open is `human_visit_count`, never `visit_count`.** Most fetches are link scanners.
+
 ## The link
 
 ```
