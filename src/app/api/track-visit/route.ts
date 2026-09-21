@@ -178,6 +178,16 @@ export async function POST(request: Request) {
         funding: str(body.funding),
         referrer: str(body.referrer),
         occurredAt: str(body.occurredAt, 40),
+        // Did a human do anything on the page, and what made us decide. The
+        // first send recorded one "open" per message because something with a
+        // real browser engine fetches every link; these two are how a read is
+        // told apart from a scan. Coerced rather than forwarded — `engaged` is
+        // a boolean or it is false.
+        engaged: body.engaged === true,
+        engagementReason: str(body.engagementReason, 40),
+        // Names the fetcher. The single most useful field for working out what
+        // is generating the traffic, and it costs nothing to carry.
+        userAgent: str(body.userAgent, 512),
         source: 'website',
       }),
       signal: controller.signal,
