@@ -2,27 +2,27 @@
 
 ## Git Workflow (HARD RULE — applies to every change)
 
-**All changes go `dev` → PR → `main`. AI agents must never push directly to `main` and must never merge PRs themselves.**
+**All changes go feature branch → PR → `dev`, then a release PR `dev` → `main`. AI agents must never push directly to `main` or `dev` and must never merge PRs themselves.**
 
 Production is served from `main`. Vercel auto-deploys on every `main` push, so a bad commit on `main` is a bad commit in production. The PR gate exists so a human reviews SEO length errors, Markdoc traps, and deploy-breaking changes before they ship.
 
 **Workflow for any code or content change:**
 
-1. `git checkout dev && git pull` — start from fresh `dev`.
-2. Make the change, run `npm run build` locally (it runs `scripts/verify-seo.ts` first — must pass).
+1. `git fetch origin && git switch -c <type>/<short-name> origin/dev` — branch from fresh `dev`.
+2. Make the change, run `npm run build` locally (it runs `scripts/verify-seo.ts` and the other checks before `next build` — must pass).
 3. `git add` the specific files you changed (never `git add .`), commit with a conventional prefix (`fix:`, `feat:`, `content:`, `seo:`, `perf:`, `copy:`, `docs:`).
-4. `git push origin dev`.
-5. `gh pr create --base main --head dev --title "..." --body "..."` — open the PR.
+4. `git push -u origin <type>/<short-name>`.
+5. `gh pr create --base dev --title "..." --body "..."` — open the PR into `dev`. Production ships later through a separate `dev` → `main` release PR (see the merge rule below).
 6. **Stop.** Report the PR URL to the user and explicitly hand off:
 
-   > "PR ready at {url}. Only a human can merge — please review the diff, watch the Vercel check go green, and click **Merge pull request** on GitHub to ship to production."
+   > "PR ready at {url}. Only a human can merge — please review the diff, watch the Vercel check go green, and merge it into `dev`. It reaches production with the next `dev` → `main` release PR."
 
 **Why this is a hard rule:**
 - Merging is the one action that goes live. It's explicitly reserved for the human owner so they see what's shipping.
 - Skipping the PR (direct push to `main`) desyncs `dev` from `main` and hides changes from review. This already bit us once (commit e1afeee): a direct-to-main push sailed through without review, failed Vercel's SEO gate, and sat broken in production for a day before anyone noticed.
-- Vercel's build can fail silently on frontmatter length violations — the PR check is how you catch that before it affects the live site.
+- Vercel's build can fail silently on SEO violations — frontmatter or page-metadata length, duplicate titles or descriptions — and the old site stays live. The PR check is how you catch that before it affects the live site.
 
-AI agents may `git commit`, `git push`, and `gh pr create`. AI agents must **not** run `gh pr merge`, `git push origin main`, or anything else that lands changes on `main` — even if the user says "just merge it." If the user asks you to merge, respond that merging is reserved for human review on github.com and give them the PR URL.
+AI agents may `git commit`, `git push`, and `gh pr create`. AI agents must **not** run `gh pr merge`, `git push origin main`, `git push origin dev`, or anything else that lands changes on `main` or `dev` — even if the user says "just merge it." If the user asks you to merge, respond that merging is reserved for human review on github.com and give them the PR URL.
 
 ### Never squash-merge `dev` → `main` (use "Create a merge commit")
 
@@ -35,7 +35,7 @@ A squash merge throws away the parent link, so git stops seeing `dev` as an ance
 - feature branch → `dev`: squash is fine. Those branches are deleted after merging, so there is no history left to corrupt.
 - Best fix is to turn the option off: **Settings → General → Pull Requests**, uncheck "Allow squash merging" (or set the default merge button to "Create a merge commit") so it cannot happen by muscle memory.
 
-**If it happens anyway**, the repair is to merge `main` back into `dev` and push `dev` — that makes `main` an ancestor of `dev` again, costs nothing in content when the trees already match, and does not require touching `main`:
+**If it happens anyway**, the repair (for the repo owner — it is the one sanctioned direct push to `dev`; an agent hands over these commands rather than running them) is to merge `main` back into `dev` and push `dev` — that makes `main` an ancestor of `dev` again, costs nothing in content when the trees already match, and does not require touching `main`:
 
 ```bash
 git checkout dev && git pull
@@ -53,7 +53,7 @@ This repo ships its own Claude Code skills in `.claude/skills/`:
 
 ## Project Overview
 
-Serve Funding's marketing site: funding solutions, company information, a Markdoc blog, and a Claude-powered chatbot. The architecture emphasizes data centralization, SEO optimization (AIEO — AI Engine Optimization), and JSON-LD schema markup for LLM visibility. Stack, project structure, environment variables and deployment targets are in `README.md`.
+Serve Funding's marketing site: funding solutions, company information, a Markdoc blog, and a Claude-powered chatbot. The architecture emphasizes data centralization, SEO optimization (AIEO — AI Engine Optimization), and JSON-LD schema markup for LLM visibility. Stack and scripts are in `package.json`. `README.md` is out of date (its env list and file tree predate most of the site) — take environment variables from the code (`grep -rn process.env src`), not from it.
 
 ## Commands
 
@@ -61,16 +61,17 @@ Serve Funding's marketing site: funding solutions, company information, a Markdo
 
 ## Conventions
 
-- **`src/data/company-info.ts` is the single source of truth for company facts.** The chatbot's system prompt (`buildAIContext()` in `src/lib/ai.ts`) and the JSON-LD schema are built from it, so change a fact there, not in page copy. `[VERIFY:]` markers flag items needing founder validation.
-- **CTAs**: Always use `<CTA />` component from `src/components/cta.tsx` instead of writing manual section markup. Props: `title`, `text`, `buttonText`, `href` (default `/discover`), `useBG` (for gray background).
+- **`src/data/company-info.ts` is the single source of truth for company facts.** The chatbot's system prompt (`buildAIContext()` in `src/lib/ai.ts`) and the JSON-LD schema are built from it. Page copy and metadata hardcode some of the same facts — the funding range appears in `layout.tsx`, `page.tsx`, `about-us`, `discover`, `solutions` and `bankers` — so when a fact changes, update `company-info.ts` **and** grep `src/app` for the old value. `[VERIFY:]` markers flag items needing founder validation.
+- **CTAs**: Always use `<CTA />` component from `src/components/cta.tsx` instead of writing manual section markup. Props: `title`, `text`, `buttonText`, `href` (default `/discover`), and `background` (`white` | `gray` | `primary` | `background`); the older `useBG` flag gives the cream `background` band, not gray.
 - **Hero Sections**: Use `<HeroFadeIn />` for consistent page headers instead of manual Section/Container/Heading combinations.
-- **Forms**: Use pre-built form components from `src/components/Forms.tsx` (e.g., `DealInquiryForm`, `NewsletterForm`).
+- **Forms**: Reuse the existing form components instead of writing new markup. The `/discover` intake is `ConversationalForm` (`src/components/ConversationalForm.tsx`, state in `src/hooks/useDealInquiryForm.ts`); the newsletter signup is `NewsletterForm` in `src/components/Forms.tsx`.
 - **FAQ answers** live in `src/data/faq-data.ts` and feed both the `/faq` page and the chatbot's context. An entry can carry a YouTube `videoId` plus a verbatim `videoTranscript` (see `src/types/faq.ts`).
+- **Never put customer info from `docs/` into published output** — pages, FAQs, blog posts, chatbot context or the `llms` files. `docs/` is committed internal AI tooling whose transcripts hold real prospect names. Lift Mike's own words freely; for deal examples use `src/data/fundingData.ts` (the public case studies); anonymize or drop anything tied to an identifiable prospect.
 - **Educational/reference pages** follow one order: `<HeroFadeIn />` → plain-language overview → main content in `<Card />` / `<StaggerContainer />` → real-world examples with specific numbers → a decision framework → key takeaways in cards → `<CTA />`, plus a proper metadata object.
 
 ## Freshness Signals: sitemap `lastmod` and `dateModified`
 
-**You do not hand-maintain dates anywhere. Both signals are derived from git.**
+**You do not hand-maintain dates anywhere except blog frontmatter (see Blog Posts). Everything else is derived from git.**
 
 `scripts/generate-last-updated.ts` runs before every build and writes `src/data/last-updated.generated.ts`, which holds two maps:
 - `DATA_LAST_UPDATED` — per data file, feeds `dateModified` into each page's JSON-LD.
@@ -78,7 +79,7 @@ Serve Funding's marketing site: funding solutions, company information, a Markdo
 
 A route's date is the newest commit date across the files listed for it in `ROUTE_SOURCES` — its `page.tsx` plus any data files it renders.
 
-**The one rule: when you add a route, add it to `src/app/sitemap.ts` and to `ROUTE_SOURCES`.** The script exits non-zero if a route lists source files that don't exist, so a typo fails the build rather than silently shipping a wrong date.
+**The one rule: when you add a route, add it to `ROUTE_SOURCES`, and to `src/app/sitemap.ts` unless the page is noindex (e.g. `/call-confirmed`).** The script exits non-zero only when *none* of a route's listed files exist; a single mistyped path is silently skipped and that file never moves the route's date, so check the paths.
 
 **Why this matters:** Google uses `lastmod` to schedule recrawls, and it *stops trusting the field entirely* for domains that publish inaccurate dates. Corollaries:
 - **Never stamp `lastmod` with "today" or the build date.** That is the exact pattern that gets the signal discarded. If git can't answer, the script falls back to the previously committed date on purpose.
@@ -95,6 +96,7 @@ Posts are `.mdoc` files in `/posts/` with YAML frontmatter, and each routes auto
 
 - **NEVER use `---` (horizontal rules) in blog post body content.** Markdoc renders `---` as `<hr>` which causes React hydration errors (500 errors in production). Use headings or whitespace for visual separation instead.
 - **NEVER use checkbox syntax (`- [ ]` or `- [x]`)** in blog posts. Markdoc does not support checkboxes — they render as plain text `[ ]`. Use regular bullet points (`-`) instead.
+- **Blog dates come from frontmatter, not git.** A substantive edit to an existing post sets `lastUpdated: "YYYY-MM-DD"` (the original `date` stays). It drives the sitemap `lastmod`, the post's `dateModified`, and whether IndexNow resubmits it; without it the edit is never announced.
 - Only use standard markdown plus the custom tags defined in `src/markdoc/config.ts` (`callout`, `relatedPosts`). Unsupported syntax may cause silent rendering failures or 500 errors in production.
 - **SEO frontmatter limits (HARD REQUIREMENT — enforced by `scripts/verify-seo.ts`):** `title` ≤ 54 characters (the page template appends ` | Serve Funding` for a 70-char OG-title budget); `excerpt` 120–160 characters (it doubles as the meta description). Exceeding them fails the build, and **Vercel's deploy fails silently** — the post never reaches production.
 - **Post-push verification:** check the commit's deploy status with `gh api repos/ServeFunding/website/commits/{sha}/status --jq '.state'` — if `failure`, production is serving stale content until you fix the frontmatter.
