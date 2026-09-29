@@ -8,7 +8,9 @@
  *    link when the visitor arrived on one, so "Mia sent them, they downloaded
  *    it" is one email rather than a cross-reference;
  *  - hands the form to HubSpot's native-form tracking, the same route every
- *    other form on the site uses, so the contact lands in HubSpot;
+ *    other form on the site uses (the email above is the reliable record: the
+ *    CSP currently blocks forms.hscollectedforms.net, so check HubSpot before
+ *    relying on it);
  *  - records an Umami event.
  * Then it starts the download. A visitor who has unlocked a file before skips
  * the form next time; the gate is lead capture, not access control.
