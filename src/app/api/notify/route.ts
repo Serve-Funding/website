@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { Resend } from 'resend'
+import { DOWNLOADS, isDownloadKey } from '@/data/downloads'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'team@portal.servefunding.com'
@@ -251,6 +252,56 @@ ${escapeHtml(dealContext)}
         return NextResponse.json({ error: error.message }, { status: 500 })
       }
 
+      return NextResponse.json({ success: true, id: data?.id })
+    }
+
+    if (type === 'download') {
+      // Someone unlocked a partner one-pager on /bankers or /advisors.
+      const assetKey: unknown = body.asset
+      if (!isDownloadKey(assetKey)) {
+        return NextResponse.json({ error: 'Unknown download' }, { status: 400 })
+      }
+      const asset = DOWNLOADS[assetKey]
+      const company: string = typeof body.company === 'string' ? body.company.slice(0, 200) : ''
+      const pageUrl: string = typeof body.pageUrl === 'string' ? body.pageUrl.slice(0, 500) : ''
+      // The LinkedIn id from an outreach link, when they came in on one.
+      const campaignId: string = typeof body.campaign_id === 'string' ? body.campaign_id.slice(0, 128) : ''
+
+      const rows: Array<{ label: string; value: string; isLink?: boolean }> = [
+        { label: 'Name', value: String(name).slice(0, 200) },
+        { label: 'Email', value: String(email).slice(0, 200), isLink: true },
+        ...(company ? [{ label: 'Company', value: company }] : []),
+        { label: 'Downloaded', value: asset.title },
+        ...(pageUrl ? [{ label: 'Page', value: pageUrl }] : []),
+        ...(campaignId ? [{ label: 'LinkedIn id', value: campaignId }] : []),
+      ]
+
+      const { data, error } = await resend.emails.send({
+        from: `Serve Funding <${FROM_EMAIL}>`,
+        to: NOTIFY_RECIPIENTS,
+        subject: `${asset.audience} download: ${String(name).slice(0, 80)}${company ? ` (${company.slice(0, 80)})` : ''}`,
+        html: `
+          <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
+            <h2 style="color: #2a231a; margin-bottom: 24px;">${escapeHtml(asset.title)} downloaded</h2>
+            <table style="width: 100%; border-collapse: collapse;">
+              ${rows.map((row, i) => `
+              <tr${i % 2 === 1 ? ' style="background: #f9f9f9;"' : ''}>
+                <td style="padding: 8px 12px; font-weight: 600; color: #666; width: 140px;">${row.label}</td>
+                <td style="padding: 8px 12px; color: #2a231a;">${
+                  row.isLink
+                    ? `<a href="mailto:${escapeHtml(row.value)}" style="color: #c99c42;">${escapeHtml(row.value)}</a>`
+                    : escapeHtml(row.value)
+                }</td>
+              </tr>`).join('')}
+            </table>
+          </div>
+        `,
+      })
+
+      if (error) {
+        console.error('Resend error:', error)
+        return NextResponse.json({ error: error.message }, { status: 500 })
+      }
       return NextResponse.json({ success: true, id: data?.id })
     }
 

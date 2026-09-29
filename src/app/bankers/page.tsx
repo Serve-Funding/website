@@ -12,6 +12,7 @@ import {
 import { Breadcrumb } from '@/components/breadcrumb'
 import { SchemaRenderer } from '@/components/SchemaRenderer'
 import { FAQSectionWithSchema } from '@/components/FAQSection'
+import { GatedDownload } from '@/components/GatedDownload'
 
 // Banker → client intro email draft, voiced per docs/mike-voice-patterns.md.
 const INTRO_EMAIL_SUBJECT = 'Quick intro: a financing advisory I trust'
@@ -93,12 +94,12 @@ const bankerFaqs = [
     a: "Depends on the product. Working capital loans and bridge capital fund in 2 to 10 business days. Invoice factoring closes in 2 to 3 weeks (then 24–48 hours per invoice after). Asset-based lending takes 4 to 8 weeks. Government contract financing 10 to 20 business days. SBA 4 to 12 weeks (we refer those to non-bank SBA lenders). When timing is genuinely critical we can usually find a bridge structure that funds in days while a permanent facility closes in the background.",
   },
   {
-    q: "Who's actually doing the work, Mike or an intake person?",
-    a: "Mike Kodinsky personally handles initial discovery on every banker-referred deal. After the discovery call, depending on the product complexity, he may bring in additional team members for placement and closing, but the relationship stays with him. We're deliberately a small boutique because the relationship-driven approach doesn't scale through a call center. We've turned down hiring expansions specifically to keep that hands-on character.",
+    q: "Who actually works the deal, the founders or an intake team?",
+    a: "Serve Funding is a small, family-owned advisory. Co-founders Michael and Sarah Kodinsky are involved in every banker-referred deal, and the relationship stays with them from the first call through closing. We've stayed deliberately small because relationship-driven work doesn't scale through a call center.",
   },
   {
     q: "Can I just send my client to your discovery form?",
-    a: "Yes. The fastest path is servefunding.com/discover. Mention you're a banker referral and we'll prioritize the discovery call. If you'd prefer to make a warm introduction over email, michael@servefunding.com goes straight to Mike, and he is happy to coordinate a three-way call if that fits the situation better than a hand-off.",
+    a: "Yes. The fastest path is servefunding.com/discover. Mention you're a banker referral and we'll prioritize the discovery call. If you'd prefer to make a warm introduction over email, michael@servefunding.com goes straight to Michael, and he is happy to coordinate a three-way call if that fits the situation better than a hand-off.",
   },
 ]
 
@@ -160,7 +161,7 @@ export default function ForBankersPage() {
               A non-bank financing advisory built around banker referrals. You stay the relationship; we extend your reach. We don&apos;t take deposits, we don&apos;t compete for the depository, and the client comes back to you cleaner when the trajectory allows.
             </Text>
             <Text size="sm" className="text-gray-500">
-              Founder &amp; CEO Michael Kodinsky personally handles every banker-referred discovery call.
+              A family-owned advisory led by co-founders Michael and Sarah Kodinsky.
             </Text>
           </FadeIn>
         </Container>
@@ -174,46 +175,54 @@ export default function ForBankersPage() {
               You stay the relationship. We extend your reach.
             </Heading>
             <Text className="text-gray-700 mb-6">
-              Most commercial bankers turn down 30–40% of their loan requests for credit-box reasons even when the underlying business is sound: thin DSCR, tax returns that don&apos;t yet reflect current revenue, leverage from a recent acquisition, industry concentration the bank can&apos;t take. The credit need is real. Your client knows it&apos;s real. And right now your client is one Google search away from a financing broker who&apos;ll pitch them an MCA at a 1.4 factor rate and quietly try to move the depository over the next twelve months.
+              Plenty of sound businesses fall outside a bank&apos;s credit box: DSCR that just misses, tax returns that lag current revenue, leverage from a recent acquisition, an industry concentration the bank can&apos;t take. The need is real, and your client knows it. Left alone, they&apos;re one search away from a broker who&apos;ll put them in a merchant cash advance they&apos;ll regret.
             </Text>
-            <Text className="text-gray-700 mb-6">
-              The alternative is a referral to an advisor whose business model depends on never threatening yours. That&apos;s how Serve Funding works. We exist downstream of your decline. The client gets credit; you stay the hero; the operating account stays with you; and 12 to 36 months later, when the trajectory has cleaned up the financials, the client comes back to your credit team in a position to qualify.
+            <Text className="text-gray-700">
+              The better option is an advisor whose business depends on never threatening yours. We work downstream of your decline. Your client gets the capital, you stay the banker who found a way, the operating account stays with you, and when the financials catch up, the client comes back to your credit team ready to qualify.
             </Text>
-            <Card padding="md" noHover className="bg-gray-50 border-l-4 border-l-gold-500">
-              <Text className="text-gray-800 italic mb-3">
-                &ldquo;We&apos;re a, sort of, financing is our own — my wife and I work it together. It&apos;s a business financing advisory. So we&apos;re not a direct lender. We are like a broker that represents our client to the lending world, alternative from banks. Bankers that we partner with are often introducing us when a client has a need that the bank can&apos;t fulfill for one reason or another, and we seek to understand the full scope of what you&apos;re trying to do, what the options are.&rdquo;
-              </Text>
-              <Text size="sm" className="text-gray-600">
-                — Michael Kodinsky, Founder of Serve Funding
-              </Text>
-            </Card>
           </div>
         </Container>
       </Section>
 
-      {/* Why we exist — the David Phillips origin story */}
+      {/* Banker one-pager, gated so the team knows who downloaded it */}
+      <Section id="download" className="py-12 bg-gray-50 scroll-mt-28">
+        <Container>
+          <GatedDownload
+            asset="bankers"
+            heading="Get the banker one-pager"
+            description="Two pages to keep on file or forward internally: what we fund, and a sampling of the programs we place, with real terms."
+            highlights={[
+              'The five kinds of capital we place: working capital and bridge, asset-based lending, subordinated and stretch capital, equipment, and real estate',
+              'Eight sample programs with amounts, terms, rates, and credit requirements',
+              'How we position you as the one who got it done',
+            ]}
+          />
+        </Container>
+      </Section>
+
+      {/* Why we exist — Michael's origin story */}
       <Section className="py-12 bg-white">
         <Container>
           <div className="max-w-3xl mx-auto">
             <Heading size="h2" className="mb-6 text-olive-900">
-              Why we exist: Mike&apos;s origin story
+              Why Michael built Serve Funding this way
             </Heading>
             <Text className="text-gray-700 mb-6">
-              Mike Kodinsky came up on the direct-lender side. For years he was the person bankers referred their declined clients to, running asset-based deals out of one specific credit box. That experience is what built Serve Funding, and it&apos;s the reason banker referrals are at the center of how we operate today.
+              Before Serve Funding, Michael Kodinsky spent years on the direct-lender side, running asset-based deals. Most of that business came from bankers: a client the bank couldn&apos;t approve, and a banker who made the introduction.
             </Text>
             <Card padding="md" noHover className="bg-gray-50 border-l-4 border-l-gold-500 mb-6">
               <Text className="text-gray-800 italic mb-3">
-                &ldquo;David Phillips and I — we were competitors at one time. I was doing very much what he was doing on the asset-based side, and we would get referrals from bankers primarily. I did a study at one point, looked back two years, and figured out we were closing one deal out of every 15 or 16 looks we got. And the problem with that wasn&apos;t so much the closing ratio — sales is sales, it&apos;s always going to be a numbers game. It was the fact that on so many of those other ones we didn&apos;t end up closing, we still <em>thought</em> we had a deal, and we went down the road and spent time — which is to say, spent the client&apos;s time, and our own time — only to hit a wall later.&rdquo;
+                &ldquo;I did a study at one point. I looked back two years and found we were closing one deal out of every fifteen or sixteen we looked at. The problem wasn&apos;t the closing ratio. Sales is a numbers game. The problem was that on so many of the others, we thought we had a deal. We spent weeks, the client&apos;s time and our own, only to hit a wall.&rdquo;
               </Text>
               <Text size="sm" className="text-gray-600">
-                — Michael Kodinsky, Founder of Serve Funding
+                Michael Kodinsky, Co-Founder &amp; CEO
               </Text>
             </Card>
             <Text className="text-gray-700 mb-6">
-              That experience is what turned Mike into a channel-neutral, product-neutral advisor. When the only product in your bag is asset-based lending, every client&apos;s situation has to fit asset-based lending, and you spend weeks of the client&apos;s time before you find out it doesn&apos;t. The job of a real advisor is to triage the situation across <em>every</em> product available, not to force the situation into the one product you happen to sell.
+              A lender with one product has to make every client fit that product, and it can take weeks to find out the fit isn&apos;t there. By then the client&apos;s window is closing, and the banker who made the introduction wears the result.
             </Text>
             <Text className="text-gray-700">
-              For a referring banker, this matters in one concrete way: when you send a client to Serve Funding, the client&apos;s time is the resource we&apos;re most protective of. If we can&apos;t place the deal, we say so on the discovery call rather than after three weeks of underwriting. The banker who sent the referral never has to apologize to their client for the wasted process, which is the outcome that quietly kills banker-referral relationships across this industry.
+              So Michael and Sarah built Serve Funding the other way around. We&apos;re channel-neutral and product-neutral: we look at every structure available before we recommend one, and if nothing fits, we say so on the first call. That&apos;s how we protect your client&apos;s time, and your reputation along with it.
             </Text>
           </div>
         </Container>
@@ -312,7 +321,7 @@ export default function ForBankersPage() {
                   <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gold-500 text-white font-bold flex items-center justify-center">1</div>
                   <div>
                     <Heading size="h4" className="mb-1 text-olive-900">Discovery call (20 minutes)</Heading>
-                    <Text className="text-gray-700">Mike Kodinsky personally takes the call. He maps the situation (collateral position, revenue trajectory, use of funds, timing) and identifies which two or three products fit. If nothing fits, he says so honestly on this call.</Text>
+                    <Text className="text-gray-700">We map the situation (collateral position, revenue trajectory, use of funds, timing) and identify which two or three products fit. If nothing fits, we say so on this call.</Text>
                   </div>
                 </div>
               </li>
@@ -330,7 +339,7 @@ export default function ForBankersPage() {
                   <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gold-500 text-white font-bold flex items-center justify-center">3</div>
                   <div>
                     <Heading size="h4" className="mb-1 text-olive-900">Delivery: closing the facility</Heading>
-                    <Text className="text-gray-700">Mike negotiates terms on the client&apos;s behalf, coordinates underwriting, and guides closing. You&apos;re kept in the loop on closing timing and any material structural changes. We don&apos;t run separately from the banking relationship.</Text>
+                    <Text className="text-gray-700">We negotiate terms on the client&apos;s behalf, coordinate underwriting, and guide closing. You&apos;re kept in the loop on closing timing and any material structural changes. We don&apos;t run separately from the banking relationship.</Text>
                   </div>
                 </div>
               </li>
@@ -348,7 +357,7 @@ export default function ForBankersPage() {
                   <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gold-500 text-white font-bold flex items-center justify-center">5</div>
                   <div>
                     <Heading size="h4" className="mb-1 text-olive-900">The warm hand-back to your credit team</Heading>
-                    <Text className="text-gray-700">When a client looks ready, Mike emails the original referring banker with a short summary of where the business is (current facility, monthly debt service, recent tax-return trajectory, DSCR posture) so your credit team can pick the conversation up cleanly. You stay in the driver&apos;s seat on whether and when to re-open the bank credit conversation. If Serve Funding ever has to decline a referred deal we couldn&apos;t place, the same courtesy: a short written summary back to you so you know exactly where the client landed and why.</Text>
+                    <Text className="text-gray-700">When a client looks ready for bank credit again, we reach back out to you with where the business stands, so your credit team can pick the conversation up cleanly. You decide whether and when to reopen it. And if we can&apos;t place a deal you referred, we&apos;ll tell you that too, so you know where your client landed.</Text>
                   </div>
                 </div>
               </li>
@@ -357,16 +366,16 @@ export default function ForBankersPage() {
         </Container>
       </Section>
 
-      {/* Quote — Mike on the talk track to bankers */}
+      {/* Quote — Michael on time */}
       <Section className="py-12 bg-white">
         <Container>
           <div className="max-w-3xl mx-auto">
             <Card padding="md" noHover className="bg-gray-50 border-l-4 border-l-gold-500">
               <Text className="text-gray-800 italic mb-3">
-                &ldquo;How our time is our most valuable resource, because it&apos;s literally the one that&apos;s finite. You cannot make more — everything else in the world, you can make more of, but not time. It&apos;s part of my talk track to bankers, because the worst outcome for a banker referral is when the client wastes three weeks with the wrong advisor and comes back angry. We&apos;d rather tell a client honestly on the first call that we can&apos;t help than spend their time pretending we can.&rdquo;
+                &ldquo;Time is our most valuable resource. It&apos;s the only one that&apos;s truly finite. Everything else in the world, you can make more of, but not time.&rdquo;
               </Text>
               <Text size="sm" className="text-gray-600">
-                — Michael Kodinsky, Founder of Serve Funding
+                Michael Kodinsky, Co-Founder &amp; CEO
               </Text>
             </Card>
           </div>
@@ -385,7 +394,7 @@ export default function ForBankersPage() {
             </Text>
             <Card padding="md" noHover className="border-l-4 border-l-olive-500">
               <Text className="text-gray-800 italic">
-                &ldquo;Our credit team can&apos;t get this done in our box — it&apos;s a structural fit issue, not a question of whether your business is sound. I want to introduce you to a financing advisory we&apos;ve worked with before. They&apos;re channel-neutral, banker-referred, and they shop deals across about 30 alternative lenders to find what actually fits the situation. They don&apos;t take deposits, so your accounts stay with us. The founder personally takes the first call and he&apos;s straight with people about whether he can help — he&apos;ll tell you on the call if it&apos;s not a fit. First call is 20 minutes. Here&apos;s the link.&rdquo;
+                &ldquo;Our credit team can&apos;t get this done in our box — it&apos;s a structural fit issue, not a question of whether your business is sound. I want to introduce you to a financing advisory we&apos;ve worked with before. They&apos;re channel-neutral and they shop deals across a wide network of alternative lenders to find what actually fits. They don&apos;t take deposits, so your accounts stay with us. They&apos;re straight with people: if they can&apos;t help, they&apos;ll tell you on the first call. It&apos;s about 20 minutes. Here&apos;s the link.&rdquo;
               </Text>
             </Card>
             <Text size="sm" className="text-gray-500 mt-4">
