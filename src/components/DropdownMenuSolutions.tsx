@@ -108,8 +108,8 @@ export function DropdownMenuTwoSection({
       {/* Content */}
       <div className="p-6 lg:p-8">
         {allFeatured ? (
-          // All featured - 3 column grid
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          // All featured - one column per item, up to 3
+          <div className={`grid grid-cols-1 gap-8 ${featuredItems.length === 2 ? 'lg:grid-cols-2 max-w-3xl' : 'lg:grid-cols-3'}`}>
             {featuredItems.map((item) => {
               const href = item.href ?? (type === 'anchors' ? `${basePath}#${item.id}` : `${basePath}/${item.id}`)
               return (
@@ -122,7 +122,7 @@ export function DropdownMenuTwoSection({
                       onAnchorClick?.(e as React.MouseEvent<HTMLAnchorElement>, href)
                     }
                   }}
-                  className="flex flex-col gap-2 transition-colors p-3"
+                  className={featuredItemClasses}
                   style={{ color: COLORS.dark }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.backgroundColor = COLORS.background
@@ -131,7 +131,15 @@ export function DropdownMenuTwoSection({
                     e.currentTarget.style.backgroundColor = 'transparent'
                   }}
                 >
-                  <div className="font-semibold text-base">{item.name}</div>
+                  <div style={{ color: COLORS.primary }}>
+                    {getIcon(item.icon)}
+                  </div>
+                  <div className="flex-1">
+                    <div className="font-semibold text-base leading-snug">{item.name}</div>
+                    {item.subtitle && (
+                      <div className="text-xs mt-1 leading-tight" style={{ color: `${COLORS.dark}80` }}>{item.subtitle}</div>
+                    )}
+                  </div>
                 </Link>
               )
             })}

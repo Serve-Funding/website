@@ -25,6 +25,7 @@ const STATIC_ROUTES = [
   '/fundings',
   '/partners',
   '/bankers',
+  '/advisors',
   '/discover',
   '/faq',
   '/blog',
