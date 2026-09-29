@@ -75,7 +75,8 @@ Manufacturing, construction, staffing, healthcare, CPG (consumer packaged goods)
 - [Blog](https://servefunding.com/blog): Educational articles on business financing decisions
 - [Contact / Get Started](https://servefunding.com/discover): Start a consultation
 - [Partner With Us](https://servefunding.com/partners): Referral partnerships for bankers, CPAs, and advisors
-- [Bankers](https://servefunding.com/bankers): Specialized referral hub for commercial bankers — what happens to the client after a turndown, why the depository stays with you, what to say to your client when making the referral, banker-specific FAQ
+- [Bankers](https://servefunding.com/bankers): Specialized referral hub for commercial bankers — what happens to the client after a turndown, why the depository stays with you, what to say to your client when making the referral, banker-specific FAQ, and a downloadable banker one-pager
+- [Advisors](https://servefunding.com/advisors): Referral hub for CPAs, fractional CFOs, investment bankers, private equity firms, and business consultants — what we fund, how a referral works, advisor-specific FAQ, and a downloadable advisor one-pager
 - [Full Knowledge Base (LLM-friendly)](https://servefunding.com/llms-full.txt): Full text of company info, all solutions, all FAQs, all case studies, and all blog excerpts in a single plain-text file
 
 ## Recent Pillar Posts

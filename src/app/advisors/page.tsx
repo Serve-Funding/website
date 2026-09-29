@@ -11,6 +11,8 @@ import {
 import { Breadcrumb } from '@/components/breadcrumb'
 import { CTA } from '@/components/cta'
 import { GatedDownload } from '@/components/GatedDownload'
+import { FAQSectionWithSchema } from '@/components/FAQSection'
+import { SchemaRenderer } from '@/components/SchemaRenderer'
 
 const PAGE_URL = 'https://servefunding.com/advisors'
 
@@ -83,9 +85,86 @@ const solutions = [
   },
 ]
 
+const referralSteps = [
+  {
+    title: 'You make the introduction',
+    text: 'Send your client to servefunding.com/discover, or email michael@servefunding.com if you would rather make a warm introduction or set up a three-way call.',
+  },
+  {
+    title: 'A 20-minute discovery call',
+    text: 'We map the situation (collateral, revenue trajectory, use of funds, timing) and identify which structures fit. If nothing does, we say so on this call.',
+  },
+  {
+    title: 'We shop the deal',
+    text: 'We take the deal to the lenders that fit and come back with two or three real options for your client to compare, not a single quoted rate.',
+  },
+  {
+    title: 'Closing, with you in the loop',
+    text: 'We negotiate terms on your client’s behalf and guide them through closing. You stay informed throughout, as much as your client wants you to be.',
+  },
+]
+
+const howToSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: 'How a CPA, fractional CFO, or business advisor refers a client to Serve Funding',
+  description:
+    'The steps from an advisor’s introduction to a closed financing facility, with the advisor kept in the loop.',
+  step: referralSteps.map((step, idx) => ({
+    '@type': 'HowToStep',
+    position: idx + 1,
+    name: step.title,
+    text: step.text,
+  })),
+}
+
+// Written as the questions an advisor would actually type into a search box or
+// an AI assistant. Each answer stands on its own, because that is the unit an
+// assistant quotes.
+const advisorFaqs = [
+  {
+    q: 'Where can I send a client who needs financing their bank turned down?',
+    a: "To a business financing advisory like Serve Funding. We're not a lender. We represent your client to the non-bank lending market: asset-based lenders, factors, equipment lessors, real estate lenders, and specialty lenders. We find what fits their situation, and we bring back two or three real options instead of one quoted rate. Start at servefunding.com/discover, or email michael@servefunding.com for a warm introduction.",
+  },
+  {
+    q: 'Is Serve Funding a lender or a broker?',
+    a: "A broker, in the best sense of the word. We're a family-owned business financing advisory, so we work for the client, not for a lender. We're channel-neutral and product-neutral: we're not trying to fit every client into AR financing or equipment leasing. We look across everything available and recommend the structure that actually fits.",
+  },
+  {
+    q: 'What size of business and financing do you work with?',
+    a: 'We place financing from $250K to $100MM for businesses with real revenue and a real plan. Most clients are growing companies that should be bankable in 12 to 24 months but aren’t today, because of thin DSCR, tax returns that lag current revenue, recent leverage, or an industry the bank won’t take.',
+  },
+  {
+    q: 'What kinds of financing can you arrange for my client?',
+    a: 'Five broad kinds: working capital and bridge loans; asset-based lending on receivables, inventory, purchase orders, equipment, and commercial real estate; subordinated or stretch capital behind an existing bank facility; equipment leasing and financing; and real estate lending. Programs in our network include revenue-based term loans up to $10MM, asset-based lines up to $50MM or more, and government contract financing up to $10MM or more.',
+  },
+  {
+    q: 'Can you help a client stuck in merchant cash advances?',
+    a: "Often, yes. MCAs can work like a drug that businesses get hooked on, with each advance making the next one more necessary. If the business has real revenue and something to build on, we look at refinancing the stack into a term loan or an asset-based facility with a payment the business can carry. If the numbers don't support that, we'll say so plainly rather than add another layer.",
+  },
+  {
+    q: 'Do you finance government contractors, healthcare, or tech companies?',
+    a: 'Yes. Government contract financing covers receivables, contracts, and work in progress for prime contractors and subcontractors on federal, state, and Defense contracts. There are specialty term loans for healthcare firms, and revenue-based term loans for software and SaaS companies with no equity warrants. We also work regularly with manufacturing, construction, staffing, and distribution.',
+  },
+  {
+    q: 'How fast can my client get funded?',
+    a: 'It depends on the structure. Working capital loans and bridge capital typically fund in 2 to 10 business days, and some real estate bridge loans close in under a week. Invoice factoring usually takes 2 to 3 weeks to set up, and asset-based lending 4 to 8 weeks. When timing is critical, a bridge can often fund quickly while a longer-term facility closes behind it.',
+  },
+  {
+    q: 'What happens if you can’t help my client?',
+    a: "We tell them on the first call. Time is the one resource none of us can make more of, and the worst outcome for a referral is weeks of underwriting that end in a no. So we'd rather be honest early than string anyone along. If we can't place a deal, we'll tell you too.",
+  },
+  {
+    q: 'Will you compete with me for the client relationship?',
+    a: "No. We only do financing, so we don't offer the tax, accounting, or advisory work you provide. We want your client to come away seeing you as the advisor who found a way. That's how referral relationships last, and it's how we've built ours.",
+  },
+]
+
 export default function AdvisorsPage() {
   return (
     <>
+      <SchemaRenderer schema={howToSchema} />
+
       <Breadcrumb items={[{ label: 'Advisors' }]} />
 
       {/* Hero */}
@@ -201,24 +280,7 @@ export default function AdvisorsPage() {
               How a referral works
             </Heading>
             <ol className="space-y-6">
-              {[
-                {
-                  title: 'You make the introduction',
-                  text: 'Send your client to servefunding.com/discover, or email michael@servefunding.com if you would rather make a warm introduction or set up a three-way call.',
-                },
-                {
-                  title: 'A 20-minute discovery call',
-                  text: 'We map the situation (collateral, revenue trajectory, use of funds, timing) and identify which structures fit. If nothing does, we say so on this call.',
-                },
-                {
-                  title: 'We shop the deal',
-                  text: 'We take the deal to the lenders that fit and come back with two or three real options for your client to compare, not a single quoted rate.',
-                },
-                {
-                  title: 'Closing, with you in the loop',
-                  text: 'We negotiate terms on your client’s behalf and guide them through closing. You stay informed throughout, as much as your client wants you to be.',
-                },
-              ].map((step, idx) => (
+              {referralSteps.map((step, idx) => (
                 <li key={step.title}>
                   <div className="flex gap-4">
                     <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gold-500 text-white font-bold flex items-center justify-center">{idx + 1}</div>
@@ -233,6 +295,14 @@ export default function AdvisorsPage() {
           </div>
         </Container>
       </Section>
+
+      <FAQSectionWithSchema
+        title="Advisor FAQ"
+        description="The questions CPAs, CFOs, and advisors ask before sending the first client."
+        faqs={advisorFaqs}
+        background="gray"
+        schemaName="Serve Funding Advisor Referral"
+      />
 
       <CTA
         title="Have a Client in Need of Financing?"
