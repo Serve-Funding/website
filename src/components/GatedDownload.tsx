@@ -19,6 +19,7 @@ import { Download, CheckCircle } from 'lucide-react'
 import { Button, Card, FormInput, Heading, Text } from '@/components/ui'
 import { DOWNLOADS, type DownloadKey } from '@/data/downloads'
 import { recallCampaignId } from '@/lib/campaign-visitor'
+import { COLORS } from '@/lib/colors'
 import { trackFormSubmission, trackHubSpotNativeForm } from '@/lib/tracking'
 
 const UNLOCKED_KEY = 'sf-downloads-unlocked'
@@ -116,7 +117,7 @@ export function GatedDownload({ asset, heading, description, highlights }: Gated
           <ul className="space-y-2 text-gray-700 text-sm">
             {highlights.map((item) => (
               <li key={item} className="flex gap-2">
-                <span className="text-gold-500 font-bold">•</span>
+                <span className="font-bold" style={{ color: COLORS.primary }}>•</span>
                 <span>{item}</span>
               </li>
             ))}
@@ -125,7 +126,7 @@ export function GatedDownload({ asset, heading, description, highlights }: Gated
 
         {unlocked ? (
           <div className="flex flex-col items-center text-center gap-4 py-6">
-            <CheckCircle size={40} className="text-gold-500" />
+            <CheckCircle size={40} style={{ color: COLORS.primary }} />
             <Text className="text-gray-700">
               Your copy of <strong>{title}</strong> should be downloading now.
             </Text>
