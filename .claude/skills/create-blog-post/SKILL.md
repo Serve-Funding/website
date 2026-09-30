@@ -12,7 +12,7 @@ A blog post on this site is a single `.mdoc` file in `/posts/` plus a cover imag
 - **Node 20+** and the repo's deps installed: `npm install` in the repo root.
 - **`cwebp`** for PNG → WebP conversion. On macOS: `brew install webp`. On Ubuntu: `sudo apt install webp`.
 - **`gh`** (GitHub CLI) authenticated against the `ServeFunding/website` repo: `gh auth login`.
-- **Clone is clean** and you're on an up-to-date `dev` branch: `git checkout dev && git pull`.
+- **Clone is clean** and you branch from an up-to-date `dev`: `git fetch origin && git switch -c content/{slug} origin/dev`.
 
 If any of these are missing the skill's commands will fail partway through. Verify before starting, not after.
 
@@ -20,7 +20,7 @@ If any of these are missing the skill's commands will fail partway through. Veri
 
 1. **Use Mike's voice. It's the single biggest lever for both AI citation and reader trust.** The `docs/` folder (gitignored, local-only) contains ~1,200 lines of verbatim Michael Kodinsky quotes from real discovery calls — signature analogies (triangle, lockbox, water-in-a-cup, drug, basement-to-ladder, band-aid), repeated phrases ("here to serve," "channel-neutral product-neutral," "under-promise and over-deliver"), and his actual product explanations. **Every new post must mine this corpus first and embed at least 2–3 named direct quotes from Mike.** Paraphrasing his analogies is the lazy version of using them. See Step 0 and the Voice Cheat Sheet appendix.
 2. **Never put customer info from `docs/` into published output.** `docs/` is committed to the repo as internal AI tooling, but the transcripts contain real prospect names (Lewis Farsedakis, Lawson Aschenbach, Frank Tonuzi, Lwany Sarabia, Lynn Chipperfield, Carlos/Rosa Rodriguez, Joel Hamann, Daryl Wakefield, Schuyler Rooke, Eli Angote, Stephen Deason, Chuck Wahr) who shared their situations expecting confidentiality. Lift Mike's *own* words freely. For deal-specific examples, prefer `src/data/fundingData.ts` — the public case-study source. Anything tied to an identifiable prospect that isn't already in `fundingData.ts` must be anonymized or dropped. See memory: `feedback_no_customer_info_in_public_content`.
-3. **Workflow is `dev` → PR → `main`.** Never push directly to `main`. Check out `dev`, commit there, open a PR. (If you see a lone commit on `main` from someone who skipped this, flag it — Kyler did this once and it desynced `dev`.)
+3. **Workflow is feature branch → PR → `dev`, then a `dev` → `main` release PR.** Never push directly to `main` or `dev`. Branch from `origin/dev`, commit there, open a PR into `dev`. (If you see a lone commit on `main` from someone who skipped this, flag it — Kyler did this once and it desynced `dev`.)
 2. **`npm run build` runs `scripts/verify-seo.ts` FIRST.** If frontmatter fails length rules, the build dies before Next.js even starts — which means **Vercel deploys fail silently** and the post never reaches production. Hard limits:
    - **Title ≤ 54 chars.** The template appends ` | Serve Funding` (16 chars) for a 70-char OG-title budget. Count carefully.
    - **Excerpt 120–160 chars.** This doubles as the meta description.
@@ -232,12 +232,11 @@ Agent #2: GEO research + audit
 ## Step 5 — Commit and PR
 
 ```bash
-git checkout dev
-git pull
+git fetch origin && git switch -c content/{slug} origin/dev   # if not already on it
 git add posts/{slug}.mdoc public/blog/{slug}.webp
 git commit -m "content: add {short post description}"
-git push
-gh pr create --base main --head dev --title "content: {title}" --body "Adds {short summary}."
+git push -u origin content/{slug}
+gh pr create --base dev --title "content: {title}" --body "Adds {short summary}."
 ```
 
 One commit per post is the norm. If the user hasn't asked you to commit, stop after Step 3 and show them the files — don't create commits unprompted.
@@ -258,7 +257,7 @@ One commit per post is the norm. If the user hasn't asked you to commit, stop af
 - `relatedSolutions` contains an ID that doesn't exist in `src/data/solutions.tsx` → broken links in the "Related Solutions" widget.
 - Author image path has wrong capitalization (`/Michael Headshot.webp` is correct, case-sensitive on Linux deploys).
 - Post dated in the future → hidden until the date arrives (filter in `src/lib/blog-utils.ts`). Check this first if a committed post isn't showing.
-- Pushed straight to `main` instead of via `dev` → PR. Always use the PR flow.
+- Pushed straight to `main` or `dev` instead of a feature branch → PR. Always use the PR flow.
 
 ## Debugging checklist: "the post isn't showing on production"
 
@@ -275,8 +274,8 @@ Run these in order:
 User says: "Add a post about whether SBA loans are worth the paperwork for a $500K ask."
 
 ```bash
-# 1. Make sure the repo is clean and on dev
-git checkout dev && git pull
+# 1. Make sure the repo is clean, then branch from fresh dev
+git fetch origin && git switch -c content/sba-loans-worth-the-paperwork-at-500k origin/dev
 
 # 2. Pick a slug
 SLUG="sba-loans-worth-the-paperwork-at-500k"
@@ -301,12 +300,12 @@ npm run dev                      # open http://localhost:3000/blog/${SLUG}
 # 6. Ship — only if the user asked you to commit
 git add posts/${SLUG}.mdoc public/blog/${SLUG}.webp
 git commit -m "content: add SBA loan paperwork post"
-git push
-gh pr create --base main --head dev \
+git push -u origin content/${SLUG}
+gh pr create --base dev \
   --title "content: SBA loans worth the paperwork" \
   --body "Adds /blog/${SLUG} — answers whether SBA paperwork burden pencils out at a \$500K ask."
 
-# 7. Confirm deploy succeeded after merge
+# 7. After the dev → main release PR merges, confirm the deploy succeeded
 SHA=$(git rev-parse origin/main)
 gh api repos/ServeFunding/website/commits/${SHA}/status --jq '.state'
 # Expect: "success". If "failure", see debugging checklist above.

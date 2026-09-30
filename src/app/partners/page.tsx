@@ -74,7 +74,11 @@ export default function Partners() {
               <Link href="/bankers" className="text-gold-500 hover:underline font-semibold">
                 Bankers
               </Link>
-              {' '}page for how the referral works, what happens to your client after the hand-off, and the depository-relationship protections.
+              {' '}page for how the referral works, what happens to your client after the hand-off, and the depository-relationship protections. CPAs, CFOs, and other advisors, see the{' '}
+              <Link href="/advisors" className="text-gold-500 hover:underline font-semibold">
+                Advisors
+              </Link>
+              {' '}page.
             </Text>
           </FadeIn>
         </Container>

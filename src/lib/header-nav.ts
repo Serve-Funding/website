@@ -59,17 +59,11 @@ export interface HeaderNavConfig {
 // Header CTA goes directly to Kyler's Calendly for quick scheduling
 export const CALENDLY_URL = "https://calendly.com/d/cxqk-t6s-72q/30-minute-funding-strategy-call"
 
+// Two audiences, two hubs (Sarah, 2026-09-29). Both link out of /partners via the
+// `href` override; the Partners label itself still goes to /partners.
 const PARTNERS_ITEMS: FeaturedDropdownItem[] = [
-  // For Bankers gets first/featured slot — it's the specialized referral hub for the
-  // audience that drives most of Serve Funding's pipeline. Uses `href` override so it
-  // links to the standalone /bankers page instead of an anchor under /partners.
-  { name: "For Bankers", id: "bankers", featured: true, subtitle: "Referral hub for commercial bankers", href: "/bankers" },
-  { name: "Commercial Bankers", id: "commercial-bankers", featured: true, subtitle: "Our primary referral partners" },
-  { name: "CPAs / Accountants", id: "cpas---accountants", featured: true, subtitle: "Trusted advisors for clients" },
-  { name: "Fractional CFOs", id: "fractional-cfos" },
-  { name: "Investment Bankers", id: "investment-bankers" },
-  { name: "Private Equity Firms", id: "private-equity-firms" },
-  { name: "Business Advisors", id: "business-advisors" }
+  { name: "For Bankers", id: "bankers", featured: true, subtitle: "Resource & Referral Hub for Commercial Bankers", icon: "Building2", href: "/bankers" },
+  { name: "For Business Advisors", id: "advisors", featured: true, subtitle: "Resource & Referral Hub for Business Advisors", icon: "BookOpen", href: "/advisors" },
 ]
 
 const ABOUT_ITEMS: FeaturedDropdownItem[] = [
@@ -131,9 +125,8 @@ export const headerNavConfig: HeaderNavConfig = {
       label: 'Partners',
       basePath: '/partners',
       items: PARTNERS_ITEMS,
-      itemType: 'anchors',
-      featuredTitle: 'Primary Partners',
-      regularTitle: 'All Partners',
+      // Every item carries its own href, so 'pages' just means "use <Link>" on mobile.
+      itemType: 'pages',
       description: 'We work with trusted advisors and professionals who share our commitment to helping businesses succeed. Join our growing network of referral partners.'
     },
     {
