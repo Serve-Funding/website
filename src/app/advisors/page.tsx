@@ -217,8 +217,8 @@ export default function AdvisorsPage() {
         <Container>
           <GatedDownload
             asset="advisors"
-            heading="Get the advisor one-pager"
-            description="Two pages to keep on file or share with your team: what we fund, and a sampling of the programs we place, with real terms."
+            heading="Get the Advisor One-Pager"
+            description="Keep this on file as a reference or share it with your team: what we fund, and a sampling of the programs we place, with real terms."
             highlights={[
               'The five kinds of capital we place: working capital and bridge, asset-based lending, subordinated and stretch capital, equipment, and real estate',
               'Eight sample programs with amounts, terms, rates, and credit requirements',
