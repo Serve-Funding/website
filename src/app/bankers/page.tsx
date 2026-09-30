@@ -153,9 +153,10 @@ export default function ForBankersPage() {
       {/* Hero — one consolidated section, no separate "answer block" card */}
       <Section className="pt-32 pb-12 bg-gradient-to-b from-gray-50 to-white">
         <Container>
-          <FadeIn className="max-w-4xl mx-auto">
+          <FadeIn className="max-w-5xl mx-auto">
             <Heading size="h1" className="mb-4 text-olive-900">
-              When You Have to Decline the Deal, Stay the Hero
+              When You Have to Decline the Deal,{' '}<br className="hidden md:inline" />
+              Stay the Hero
             </Heading>
             <Text size="2xl" className="text-gray-700 mb-4">
               A non-bank financing advisory built around banker referrals. You stay the relationship; we extend your reach. We don&apos;t take deposits, we don&apos;t compete for the depository, and the client comes back to you cleaner when the trajectory allows.
@@ -172,7 +173,8 @@ export default function ForBankersPage() {
         <Container>
           <div className="max-w-3xl mx-auto">
             <Heading size="h2" className="mb-6 text-olive-900">
-              You stay the relationship. We extend your reach.
+              You stay the relationship.{' '}<br className="hidden md:inline" />
+              We extend your reach.
             </Heading>
             <Text className="text-gray-700 mb-6">
               Plenty of sound businesses fall outside a bank&apos;s credit box: DSCR that just misses, tax returns that lag current revenue, leverage from a recent acquisition, an industry concentration the bank can&apos;t take. The need is real, and your client knows it. Left alone, they&apos;re one search away from a broker who&apos;ll put them in a merchant cash advance they&apos;ll regret.
@@ -189,8 +191,8 @@ export default function ForBankersPage() {
         <Container>
           <GatedDownload
             asset="bankers"
-            heading="Get the banker one-pager"
-            description="Two pages to keep on file or forward internally: what we fund, and a sampling of the programs we place, with real terms."
+            heading="Get the Banker One-Pager"
+            description="Keep this on file as a reference or forward internally: what we fund, and a sampling of the programs we place, with real terms."
             highlights={[
               'The five kinds of capital we place: working capital and bridge, asset-based lending, subordinated and stretch capital, equipment, and real estate',
               'Eight sample programs with amounts, terms, rates, and credit requirements',
@@ -205,7 +207,8 @@ export default function ForBankersPage() {
         <Container>
           <div className="max-w-3xl mx-auto">
             <Heading size="h2" className="mb-6 text-olive-900">
-              Why Michael built Serve Funding this way
+              Why Michael built{' '}<br className="hidden md:inline" />
+              Serve Funding this way
             </Heading>
             <Text className="text-gray-700 mb-6">
               Before Serve Funding, Michael Kodinsky spent years on the direct-lender side, running asset-based deals. Most of that business came from bankers: a client the bank couldn&apos;t approve, and a banker who made the introduction.
@@ -233,7 +236,8 @@ export default function ForBankersPage() {
         <Container>
           <div className="max-w-4xl mx-auto">
             <Heading size="h2" className="mb-6 text-olive-900">
-              What we do, and what we don&apos;t
+              What we do,{' '}<br className="hidden md:inline" />
+              and what we don&apos;t
             </Heading>
 
             <div className="grid md:grid-cols-2 gap-6">
@@ -258,12 +262,10 @@ export default function ForBankersPage() {
                 <ul className="space-y-2 text-gray-700 text-sm">
                   <li className="flex gap-2"><span className="text-gray-400 font-bold">•</span><span>Take deposits or open operating accounts</span></li>
                   <li className="flex gap-2"><span className="text-gray-400 font-bold">•</span><span>Compete with your bank for the depository relationship</span></li>
-                  <li className="flex gap-2"><span className="text-gray-400 font-bold">•</span><span>Pay referral fees (legally restricted for bankers anyway)</span></li>
                   <li className="flex gap-2"><span className="text-gray-400 font-bold">•</span><span>Raise equity or place equity capital (we refer out)</span></li>
                   <li className="flex gap-2"><span className="text-gray-400 font-bold">•</span><span>Sell your client products that don&apos;t fit their situation</span></li>
                   <li className="flex gap-2"><span className="text-gray-400 font-bold">•</span><span>Cold-pitch your client services they didn&apos;t ask for</span></li>
                   <li className="flex gap-2"><span className="text-gray-400 font-bold">•</span><span>Hold long-term debt on our balance sheet (we&apos;re an advisor, not a lender)</span></li>
-                  <li className="flex gap-2"><span className="text-gray-400 font-bold">•</span><span>Work consumer financing, cannabis, or crypto deals</span></li>
                   <li className="flex gap-2"><span className="text-gray-400 font-bold">•</span><span>Push a client into a deal because we want to close them</span></li>
                 </ul>
               </Card>
@@ -387,7 +389,8 @@ export default function ForBankersPage() {
         <Container>
           <div className="max-w-3xl mx-auto">
             <Heading size="h2" className="mb-6 text-olive-900">
-              What to say to your client when you make the referral
+              What to say to your client{' '}<br className="hidden md:inline" />
+              when you make the referral
             </Heading>
             <Text className="text-gray-700 mb-6">
               You know your client better than we do. The framing below is just a starting point. Adapt it to how the two of you actually talk.
