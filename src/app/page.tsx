@@ -31,12 +31,12 @@ import { CTA } from '@/components/cta'
 
 export const metadata: Metadata = {
   title: 'Capital That Serves You | Serve Funding',
-  description: 'Trusted working capital advisory. Get funded in 3-10 days with transparency & relationships. Debt refinance, MCA consolidation. $250K-$100MM.',
+  description: 'Trusted working capital advisory. Funding timelines in days to weeks, with transparency & relationships. Debt refinance, MCA consolidation. $250K-$100MM.',
   keywords: 'working capital, business loans, when banks say no, funding advisory, asset-based lending, invoice factoring, rapid growth funding',
   alternates: { canonical: 'https://servefunding.com' },
   openGraph: {
     title: 'Capital That Serves You | Serve Funding',
-    description: 'Entrepreneurs deserve better. Get funded fast with trusted advisors who prioritize your growth. Debt refinance, MCA consolidation, invoice factoring & working capital solutions in 3-10 days.',
+    description: 'Entrepreneurs deserve better. Get funded fast with trusted advisors who prioritize your growth. Debt refinance, MCA consolidation, invoice factoring & working capital solutions in days to weeks.',
     url: 'https://servefunding.com/',
     siteName: 'Serve Funding',
     type: 'website',
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Capital That Serves You | Serve Funding',
-    description: 'Trusted working capital advisory for growing entrepreneurs. Fast funding when banks decline. Relationships > Bots. $250K-$100MM in 3-10 days.',
+    description: 'Trusted working capital advisory for growing entrepreneurs. Fast funding when banks decline. Relationships > Bots. $250K-$100MM, with timelines by product.',
   },
   robots: 'index, follow',
 }
