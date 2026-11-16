@@ -133,6 +133,7 @@ function renderCompany(): string {
     `## Key Metrics`,
     '',
     `- Total capital facilitated: ${companyInfo.metrics.totalCapitalFacilitated}`,
+    `- Total clients served: ${companyInfo.metrics.totalClientsServed}`,
     `- Deal range: $250K – $100MM`,
     `- Funding speed: days to weeks depending on the product (see each solution page)`,
     `- Fee structure: success fee only, earned upon closing of a credit facility, loan or line of credit`,

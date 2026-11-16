@@ -42,10 +42,12 @@ export const companyInfo = {
   // Years of experience (founder/team) — confirmed 15+
   experience: "15",
 
-  // Only what our deal records support: $50MM+ (recorded closings total about $55MM). Clients served, repeat rate and
-  // average deal size were removed 2026-11: the CRM does not support them. Add one back only with a source.
+  // $50MM+ is supported (recorded closings total about $55MM). "100+" clients served is the founder's own count
+  // (the CRM shows 57 funded clients, so "served" means funded or advised; say "clients", never "funded clients").
+  // Repeat rate and average deal size were removed 2026-11: the CRM does not support them.
   metrics: {
-    totalCapitalFacilitated: "$50MM+"
+    totalCapitalFacilitated: "$50MM+",
+    totalClientsServed: "100+"
   }
 }
 
