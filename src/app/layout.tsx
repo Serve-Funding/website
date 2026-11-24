@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   keywords: "debt refinance, payroll financing, mca consolidation, when banks say no, alternative business financing, asset-based lending, invoice factoring, channel neutral advisor, boutique lender",
   openGraph: {
     title: "Serve Funding - Creative Working Capital | $250K-$100MM",
-    description: "Boutique working capital advisory specializing in debt refinance, payroll financing, MCA consolidation, and alternative funding when traditional banks decline. Relationships over bots. Fast funding in 3-10 days.",
+    description: "Boutique working capital advisory specializing in debt refinance, payroll financing, MCA consolidation, and alternative funding when traditional banks decline. Relationships over bots. Timelines by product, days to weeks.",
     url: "https://servefunding.com/",
     siteName: "Serve Funding",
     type: "website",

@@ -106,7 +106,7 @@ export const aboutServeFundingFAQs: FAQ[] = [
   {
     id: 'can-you-help-if-bank-denied',
     q: 'Can you help if my bank denied me?',
-    a: 'Absolutely. When banks say no, we say how. Bankers are our primary referral sources because we specialize in alternative financing that traditional banks don\'t offer. We leverage asset-based lending, invoice factoring, debt refinance, revenue-based financing, and PO funding. We have relationships with dozens of alternative lenders who evaluate businesses differently and often approve when banks decline.'
+    a: 'Absolutely. When banks say no, we say how. Bankers are our primary referral sources because we specialize in alternative financing that traditional banks don\'t offer. We leverage asset-based lending, invoice factoring, debt refinance, revenue-based financing, and PO funding. We have relationships with an extensive network of alternative lenders who evaluate businesses differently and often approve when banks decline.'
   },
   {
     id: 'channel-neutral-advisor',
@@ -161,7 +161,7 @@ export const aboutServeFundingFAQs: FAQ[] = [
   {
     id: 'why-use-serve-vs-direct',
     q: 'Why should I use Serve Funding instead of going direct to a lender?',
-    a: 'Working with a channel-neutral advisor typically reduces your cost of capital by 10-20 percentage points vs. going direct. Here\'s why: we have relationships across an extensive lender network and can negotiate aggressively on your behalf because we\'re not committed to any one relationship. We also guide you away from predatory products and help you avoid costly mistakes. Our 65% repeat client rate shows we deliver value. We succeed only when you do.'
+    a: 'Working with a channel-neutral advisor can improve the terms you get compared with going direct to a single lender. Here\'s why: we have relationships across an extensive lender network and can negotiate aggressively on your behalf because we\'re not committed to any one relationship. We also guide you away from predatory products and help you avoid costly mistakes. We succeed only when you do.'
   }
 ]
 
