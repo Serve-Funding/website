@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://servefunding.com/blog' },
   openGraph: {
     title: 'Business Growth Funding When Banks Decline',
-    description: 'See how real businesses secured funding in 3-10 days when banks declined. Learn alternative lending strategies, explore case studies, and discover creative working capital solutions.',
+    description: 'See how real businesses secured funding when banks declined. Learn alternative lending strategies, explore case studies, and discover creative working capital solutions.',
     url: 'https://servefunding.com/blog',
     type: 'website',
     images: [
