@@ -4,8 +4,14 @@
 // every field is bounded here before the model is called. Oversized or malformed
 // requests are rejected; an over-long conversation history is trimmed to its most
 // recent turns so a genuine long chat keeps working.
+//
+// The site's own chat UIs trim with `historyForRequest` before sending, so a long
+// conversation never reaches the body limit. The server bounds are still the
+// authority: nothing here trusts the caller to have trimmed.
 
-export const MAX_BODY_BYTES = 100_000
+// Room for a fully trimmed request in multi-byte text (history + message + form
+// answers), with margin. Anything larger did not come from the site's UI.
+export const MAX_BODY_BYTES = 200_000
 export const MAX_MESSAGE_CHARS = 2_000
 export const MAX_HISTORY_TURNS = 20
 export const MAX_HISTORY_TURN_CHARS = 4_000
@@ -29,11 +35,30 @@ export async function readJsonBody(request: Request): Promise<Record<string, unk
     throw new InputError('Request is too large', 413)
   }
 
-  const raw = await request.text()
-  // The header can be absent or wrong, so measure what actually arrived.
-  if (new TextEncoder().encode(raw).length > MAX_BODY_BYTES) {
-    throw new InputError('Request is too large', 413)
+  // The header can be absent or wrong, so count the bytes as they arrive and stop
+  // reading the moment the limit is passed.
+  const reader = request.body?.getReader()
+  const chunks: Uint8Array[] = []
+  let received = 0
+  if (reader) {
+    for (;;) {
+      const { done, value } = await reader.read()
+      if (done) break
+      received += value.byteLength
+      if (received > MAX_BODY_BYTES) {
+        await reader.cancel().catch(() => {})
+        throw new InputError('Request is too large', 413)
+      }
+      chunks.push(value)
+    }
   }
+  const bytes = new Uint8Array(received)
+  let offset = 0
+  for (const chunk of chunks) {
+    bytes.set(chunk, offset)
+    offset += chunk.byteLength
+  }
+  const raw = new TextDecoder().decode(bytes)
 
   let parsed: unknown
   try {
@@ -59,10 +84,10 @@ export function requireMessage(value: unknown): string {
 }
 
 /**
- * Turn caller-supplied history into model turns. Entries that are not
- * `{ sender, text: string }` are dropped, each turn is cut to
- * MAX_HISTORY_TURN_CHARS, and only the most recent turns that fit within
- * MAX_HISTORY_TURNS and MAX_HISTORY_TOTAL_CHARS are kept.
+ * Turn caller-supplied history into model turns. Entries without a string `text`
+ * are dropped, each turn is cut to MAX_HISTORY_TURN_CHARS, and only the most recent
+ * turns that fit within MAX_HISTORY_TURNS and MAX_HISTORY_TOTAL_CHARS are kept.
+ * A `sender` other than 'user' is treated as the assistant, as it always was.
  */
 export function boundHistory(value: unknown): ChatTurn[] {
   if (!Array.isArray(value)) return []
@@ -97,4 +122,19 @@ export function boundList(value: unknown, maxItems: number, maxChars: number): s
     .slice(0, maxItems)
     .map((item) => boundField(item, maxChars))
     .filter(Boolean)
+}
+
+/**
+ * Client side: the history to put in a request body. Applies the same bounds the
+ * server enforces and sends only `sender` and `text`, so a long conversation keeps
+ * working instead of growing past the body limit. The UI keeps its full transcript
+ * for display; only the request is trimmed.
+ */
+export function historyForRequest(
+  messages: ReadonlyArray<{ sender: string; text: string }>
+): Array<{ sender: 'user' | 'bot'; text: string }> {
+  return boundHistory(messages).map((turn) => ({
+    sender: turn.role === 'user' ? 'user' : 'bot',
+    text: turn.content,
+  }))
 }

@@ -13,7 +13,7 @@ import { fundingSolutions } from '@/data/solutions'
 import { comparisons } from '@/data/comparisons'
 import { industries } from '@/data/industries'
 import { getTitleAsString } from '@/lib/solution-helpers'
-import { MAX_MESSAGE_CHARS } from '@/lib/api-input-limits'
+import { MAX_MESSAGE_CHARS, historyForRequest } from '@/lib/api-input-limits'
 
 // Resolve an internal URL to a short, human-readable label for the inline pill chips.
 function labelForUrl(url: string): string {
@@ -433,7 +433,7 @@ export function Chatbot({ userRole }: ChatbotProps = {}) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           message: inputValue,
-          conversationHistory: messages,
+          conversationHistory: historyForRequest(messages),
           userRole: storedUserRole,
         }),
       })

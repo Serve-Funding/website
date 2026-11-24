@@ -26,8 +26,8 @@ export async function POST(request: Request) {
         : {}
     const field = (key: string, maxChars = 200) => boundField(rawForm[key], maxChars)
     const formData = {
-      firstname: field("firstname", 80),
-      lastname: field("lastname", 80),
+      // The intake form sends a single `name`; older callers sent first and last.
+      name: field("name", 160) || `${field("firstname", 80)} ${field("lastname", 80)}`.trim(),
       company: field("company"),
       email: field("email"),
       phone: field("phone", 40),
@@ -48,7 +48,7 @@ export async function POST(request: Request) {
     const systemPrompt = `${dealContext}
 
 User Information from Deal Inquiry Form:
-- Name: ${formData.firstname || ''} ${formData.lastname || ''}
+- Name: ${formData.name || 'Not provided'}
 - Company: ${formData.company || 'Not specified'}
 - Email: ${formData.email || 'Not provided'}
 - Phone: ${formData.phone || 'Not provided'}
