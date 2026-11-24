@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Client Success Stories & Fundings | Serve Funding',
-  description: 'Real working capital wins from Serve Funding clients — payroll, acquisitions, bridge capital, and more across industries. $250K-$100MM funded in 3-10 days.',
+  description: 'Real working capital wins from Serve Funding clients — payroll, acquisitions, bridge capital, and more across industries. $250K-$100MM funded in days to weeks.',
   alternates: { canonical: 'https://servefunding.com/fundings' },
   openGraph: {
     title: 'Client Success Stories & Fundings | Serve Funding',
