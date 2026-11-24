@@ -10,6 +10,7 @@ import { comparisons } from '@/data/comparisons'
 import { industries } from '@/data/industries'
 import { glossaryTerms } from '@/data/glossary'
 import { allFAQs } from '@/data/faq-data'
+import { historyForRequest } from './api-input-limits'
 
 // Names of real prospects, lenders, and people that may appear in internal docs
 // but must never be sent to the LLM context or rendered to a visitor.
@@ -402,7 +403,7 @@ export async function getAIResponse(userMessage: string, conversationHistory: Me
       },
       body: JSON.stringify({
         message: userMessage,
-        conversationHistory,
+        conversationHistory: historyForRequest(conversationHistory),
       }),
     })
 
@@ -441,7 +442,7 @@ export async function getAIDealResponse(
       },
       body: JSON.stringify({
         message: userMessage,
-        conversationHistory,
+        conversationHistory: historyForRequest(conversationHistory),
         formData,
       }),
     })

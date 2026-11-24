@@ -1,44 +1,24 @@
 import Anthropic from "@anthropic-ai/sdk"
 import { buildAIContext } from "@/lib/ai"
 import { getBlogPosts } from "@/lib/blog-utils"
+import { InputError, boundField, boundHistory, readJsonBody, requireMessage } from "@/lib/api-input-limits"
 
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
 })
 
-interface ConversationMessage {
-  text: string
-  sender: 'user' | 'bot'
-}
-
 export async function POST(request: Request) {
   try {
-    const { message, conversationHistory, userRole } = await request.json()
+    // Everything the caller sends is bounded before the model is called: this route is
+    // public and each request costs money. See src/lib/api-input-limits.ts.
+    const body = await readJsonBody(request)
+    const message = requireMessage(body.message)
+    const userRole = boundField(body.userRole, 60) || undefined
 
-    if (!message) {
-      return Response.json(
-        { error: "Message is required" },
-        { status: 400 }
-      )
-    }
-
-    // Build message array from conversation history
-    const messages: Array<{ role: 'user' | 'assistant'; content: string }> = []
-
-    if (conversationHistory && Array.isArray(conversationHistory)) {
-      for (const msg of conversationHistory) {
-        messages.push({
-          role: msg.sender === 'user' ? 'user' : 'assistant',
-          content: msg.text,
-        })
-      }
-    }
-
-    // Add the current user message
-    messages.push({
-      role: "user",
-      content: message,
-    })
+    const messages = [
+      ...boundHistory(body.conversationHistory),
+      { role: "user" as const, content: message },
+    ]
 
     // Stay on Haiku 4.5 for all turns — with the rich cached system prompt, Haiku handles
     // voice + citations well. We can route to Sonnet later once we've confirmed the model
@@ -91,11 +71,14 @@ export async function POST(request: Request) {
 
     return Response.json({ reply })
   } catch (error) {
-    const errorMessage = error instanceof Error ? error.message : String(error)
-    console.error("Chat API error:", errorMessage)
-    console.error("Full error:", error)
+    if (error instanceof InputError) {
+      return Response.json({ error: error.message }, { status: error.status })
+    }
+    // Log the detail server-side only. The caller gets a fixed message, never the
+    // provider's error text.
+    console.error("Chat API error:", error)
     return Response.json(
-      { error: `Failed to process chat request: ${errorMessage}` },
+      { error: "Failed to process chat request" },
       { status: 500 }
     )
   }

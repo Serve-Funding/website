@@ -12,6 +12,7 @@ import { CalendlyWidget } from '@/components/CalendlyWidget'
 import { CALENDLY_URLS } from '@/hooks/useDealInquiryForm'
 import { getAIDealResponse } from '@/lib/ai'
 import { trackEvent } from '@/lib/tracking'
+import { MAX_MESSAGE_CHARS } from '@/lib/api-input-limits'
 
 interface ConversationalFormProps {
   initialRole?: string
@@ -904,6 +905,7 @@ export function ConversationalForm({ initialRole, onComplete }: ConversationalFo
                   ref={aiInputRef}
                   type="text"
                   value={aiInput}
+                  maxLength={MAX_MESSAGE_CHARS}
                   onChange={(e) => setAiInput(e.target.value)}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' && !e.shiftKey) {
