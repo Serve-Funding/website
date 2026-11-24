@@ -16,7 +16,7 @@ export const companyInfo = {
   name: "Serve Funding LLC",
   tagline: "Creative Working Capital",
 
-  description: "A boutique business financing advisory firm serving growing companies with creative working capital from $250 to $100MM. As a channel-neutral advisor, we're not a lender. We're your trusted advocate with relationships across an extensive lender network. We specialize in debt refinance, payroll financing, MCA consolidation, asset-based lending, and alternative financing when traditional banks decline. Operating with servant leadership, we fight for your best interests and negotiate the best terms across multiple underwriting styles. Relationships over bots. Strategy over algorithms.",
+  description: "A boutique business financing advisory firm serving growing companies with creative working capital from $250K to $100MM. As a channel-neutral advisor, we're not a lender. We're your trusted advocate with relationships across an extensive lender network. We specialize in debt refinance, payroll financing, MCA consolidation, asset-based lending, and alternative financing when traditional banks decline. Operating with servant leadership, we fight for your best interests and negotiate the best terms across multiple underwriting styles. Relationships over bots. Strategy over algorithms.",
 
   contact: {
     phone: "+1 770-820-7409",
@@ -42,12 +42,12 @@ export const companyInfo = {
   // Years of experience (founder/team) — confirmed 15+
   experience: "15",
 
-  // $50MM+ confirmed (~$74MM actual); clients served & repeat rate NOT yet founder-verified
+  // $50MM+ is supported (recorded closings total about $55MM). "100+" clients served is the founder's own count
+  // (the CRM shows 57 funded clients, so "served" means funded or advised; say "clients", never "funded clients").
+  // Repeat rate and average deal size were removed 2026-11: the CRM does not support them.
   metrics: {
     totalCapitalFacilitated: "$50MM+",
-    averageDealSize: "$500K - $3.35MM",
-    totalClientsServed: "100+",
-    repeatClientRate: "65%"
+    totalClientsServed: "100+"
   }
 }
 
@@ -169,16 +169,16 @@ export const competitivePositioning = {
     },
     {
       label: "Timely",
-      description: "Funding in 3-10 business days when traditional banks take 60-90 days. Speed matters when growth opportunities arrive."
+      description: "Days to weeks, depending on the product, when a bank takes months. Speed matters when growth opportunities arrive."
     },
     {
       label: "Trusted",
-      description: "65% repeat client rate. We own outcomes, not just transactions. Relationships that grow with your business."
+      description: "We own outcomes, not just transactions. Relationships that grow with your business."
     }
   ],
 
   vsTraditionalBanks: {
-    speed: "3-10 days vs. 60-90 days",
+    speed: "Days to weeks, depending on the product, vs. months at a bank",
     flexibility: "We work outside traditional credit boxes for founders banks reject",
     creditRequirements: "We evaluate whole business, not just DSCR or credit score",
     documentation: "Bank-statement friendly underwriting for growth-stage companies"
@@ -194,8 +194,6 @@ export const competitivePositioning = {
   vsPeerAdvisors: {
     experience: "15+ years in capital advisory with proven track record",
     lenderNetwork: "Relationships across an extensive lender network spanning all major funding types",
-    successRate: "100% of referred deals funded within target timelines",
-    clientSatisfaction: "65% repeat client rate demonstrates lasting value"
   }
 }
 
@@ -245,12 +243,12 @@ export const messagingTemplates = {
 
   speedNarrative: {
     headline: "Funding in Days, Not Months",
-    message: "When opportunity arrives, you don't have time to wait 60-90 days for bank approval. We close in 3-10 business days, keeping your momentum intact."
+    message: "When opportunity arrives, you don't have time to wait 60-90 days for bank approval. Timing depends on the product, from days for some to weeks for others, and we tell you which up front. We keep your momentum intact."
   },
 
   relationshipNarrative: {
     headline: "Relationships Over Transactions",
-    message: "We partner with you for the long term. Our 65% repeat client rate shows we're not chasing one-time deals. We're building lasting relationships that grow with your business."
+    message: "We partner with you for the long term. We're not chasing one-time deals. We're building lasting relationships that grow with your business."
   },
 
   trustNarrative: {
