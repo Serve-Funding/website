@@ -10,7 +10,7 @@ import { comparisons } from '@/data/comparisons'
 import { industries } from '@/data/industries'
 import { glossaryTerms } from '@/data/glossary'
 import { allFAQs } from '@/data/faq-data'
-import { historyForRequest } from './api-input-limits'
+import { historyForRequest, throttledMessage } from './api-input-limits'
 
 // Names of real prospects, lenders, and people that may appear in internal docs
 // but must never be sent to the LLM context or rendered to a visitor.
@@ -407,6 +407,7 @@ export async function getAIResponse(userMessage: string, conversationHistory: Me
       }),
     })
 
+    if (response.status === 429) return throttledMessage(response)
     if (!response.ok) {
       throw new Error(`API error: ${response.status}`)
     }
@@ -447,6 +448,7 @@ export async function getAIDealResponse(
       }),
     })
 
+    if (response.status === 429) return JSON.stringify({ message: throttledMessage(response) })
     if (!response.ok) {
       throw new Error(`API error: ${response.status}`)
     }

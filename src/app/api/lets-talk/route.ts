@@ -1,12 +1,17 @@
 import Anthropic from "@anthropic-ai/sdk"
 import { buildDealAIContext } from "@/lib/ai"
 import { InputError, boundField, boundHistory, boundList, readJsonBody, requireMessage } from "@/lib/api-input-limits"
+import { aiRouteLimiter, tooManyRequests } from "@/lib/rate-limit"
 
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
 })
 
 export async function POST(request: Request) {
+  // Throttled before the body is read: a refused request should cost nothing.
+  const throttled = tooManyRequests(aiRouteLimiter, request)
+  if (throttled) return throttled
+
   try {
     // Everything the caller sends is bounded before the model is called: this route is
     // public and each request costs money. See src/lib/api-input-limits.ts.

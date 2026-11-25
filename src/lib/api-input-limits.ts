@@ -138,3 +138,18 @@ export function historyForRequest(
     text: turn.content,
   }))
 }
+
+/**
+ * Client side: what to tell a visitor whose request was throttled (HTTP 429), using
+ * the wait the server reported.
+ */
+export function throttledMessage(response: Response): string {
+  const seconds = Number(response.headers.get('retry-after'))
+  const wait =
+    !Number.isFinite(seconds) || seconds <= 0
+      ? 'a little while'
+      : seconds <= 90
+        ? 'about a minute'
+        : `about ${Math.ceil(seconds / 60)} minutes`
+  return `We've had a lot of messages from your network in a short time. Please try again in ${wait}, or contact us at michael@servefunding.com.`
+}
