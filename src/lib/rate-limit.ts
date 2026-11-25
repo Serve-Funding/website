@@ -68,6 +68,13 @@ export class RateLimiter {
     return { ok: true }
   }
 
+  /** Give back one counted request, for a caller that a later check turned away. */
+  refund(client: string): void {
+    for (const counter of this.counters.get(client) ?? []) {
+      if (counter.count > 0) counter.count -= 1
+    }
+  }
+
   /** True when a new address can be tracked, after clearing out finished entries. */
   private hasRoom(now: number): boolean {
     if (this.counters.size < MAX_TRACKED_CLIENTS) return true
@@ -91,25 +98,37 @@ export function clientAddress(request: Request): string {
   const raw = real || request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || ''
   if (!raw) return 'unknown'
 
-  let address = raw.toLowerCase().split('%')[0]
-  // An IPv4 address carried inside IPv6 (::ffff:203.0.113.7) is that IPv4 address.
-  const mapped = /^::ffff:(\d+\.\d+\.\d+\.\d+)$/.exec(address)
-  if (mapped) address = mapped[1]
-
+  const address = raw.toLowerCase().split('%')[0]
   if (isIP(address) === 4) return address
-  if (isIP(address) === 6) return ipv6Network(address)
+  if (isIP(address) === 6) {
+    const groups = ipv6Groups(address)
+    // An IPv4 address carried inside IPv6 (::ffff:203.0.113.7, in either spelling) is
+    // that IPv4 address.
+    if (groups.slice(0, 5).every((g) => g === 0) && groups[5] === 0xffff) {
+      return [groups[6] >> 8, groups[6] & 255, groups[7] >> 8, groups[7] & 255].join('.')
+    }
+    return groups.slice(0, 4).map((g) => g.toString(16)).join(':') + '::/64'
+  }
   // Not an address we recognise: still a stable key, kept short.
   return `other:${address.slice(0, 64)}`
 }
 
-/** The /64 network of a valid IPv6 address: its first four groups, `::` expanded. */
-function ipv6Network(address: string): string {
-  const [head, tail] = address.split('::')
+/** The eight 16-bit groups of a valid IPv6 address. */
+function ipv6Groups(address: string): number[] {
+  // A dotted IPv4 tail stands for the last two groups.
+  const dotted = /^(.*:)(\d+)\.(\d+)\.(\d+)\.(\d+)$/.exec(address)
+  const text = dotted
+    ? dotted[1] +
+      ((Number(dotted[2]) << 8) | Number(dotted[3])).toString(16) +
+      ':' +
+      ((Number(dotted[4]) << 8) | Number(dotted[5])).toString(16)
+    : address
+  const [head, tail] = text.split('::')
   const front = head ? head.split(':') : []
   const back = tail ? tail.split(':') : []
-  const groups =
-    tail === undefined ? front : [...front, ...Array(Math.max(0, 8 - front.length - back.length)).fill('0'), ...back]
-  return groups.slice(0, 4).map((g) => g.replace(/^0+(?=.)/, '')).join(':') + '::/64'
+  const filled =
+    tail === undefined ? front : [...front, ...Array(8 - front.length - back.length).fill('0'), ...back]
+  return filled.map((g) => parseInt(g, 16))
 }
 
 const MINUTE = 60_000
@@ -131,8 +150,9 @@ export const aiRouteLimiter = new RateLimiter([
  *
  * Chat transcripts and lead notifications have separate allowances, so that chat
  * traffic can never use up the room a lead notification needs. The route-wide limiter
- * runs before the body is read and counts every request, refused or not; an address has
- * to send more than two a second for a full minute to meet it.
+ * runs before the body is read, so a flood of unreadable requests is refused cheaply.
+ * A request that one of the other two then turns away is given back to it, so refused
+ * transcripts cannot use up the room a lead needs there either.
  */
 export const notifyRouteLimiter = new RateLimiter([
   { max: 120, windowMs: MINUTE },

@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 import { Resend } from 'resend'
 import { DOWNLOADS, isDownloadKey } from '@/data/downloads'
 import {
+  clientAddress,
   leadNotifyLimiter,
   notifyRouteLimiter,
   tooManyRequests,
@@ -111,7 +112,10 @@ export async function POST(request: Request) {
       type === 'chat_message' ? transcriptNotifyLimiter : leadNotifyLimiter,
       request,
     )
-    if (throttled) return throttled
+    if (throttled) {
+      notifyRouteLimiter.refund(clientAddress(request))
+      return throttled
+    }
 
     // Chat transcripts don't have a name/email (they're anonymous browser sessions)
     if (type !== 'chat_message' && (!name || !email)) {
