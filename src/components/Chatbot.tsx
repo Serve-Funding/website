@@ -13,7 +13,7 @@ import { fundingSolutions } from '@/data/solutions'
 import { comparisons } from '@/data/comparisons'
 import { industries } from '@/data/industries'
 import { getTitleAsString } from '@/lib/solution-helpers'
-import { MAX_MESSAGE_CHARS, historyForRequest } from '@/lib/api-input-limits'
+import { MAX_MESSAGE_CHARS, historyForRequest, throttledMessage } from '@/lib/api-input-limits'
 
 // Resolve an internal URL to a short, human-readable label for the inline pill chips.
 function labelForUrl(url: string): string {
@@ -437,6 +437,20 @@ export function Chatbot({ userRole }: ChatbotProps = {}) {
           userRole: storedUserRole,
         }),
       })
+      if (apiResponse.status === 429) {
+        // Throttled: say how long to wait and put the message back so it can be resent.
+        setInputValue(inputValue)
+        setMessages((prev) => [
+          ...prev,
+          {
+            id: (Date.now() + 1).toString(),
+            text: throttledMessage(apiResponse),
+            sender: 'bot',
+            timestamp: new Date(),
+          },
+        ])
+        return
+      }
       const data = await apiResponse.json()
 
       if (data.error) {

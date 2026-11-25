@@ -1,55 +1,59 @@
 // Request throttling for the public API routes (/api/chat, /api/lets-talk, /api/notify).
 //
 // What this is: fixed-window counters held in the memory of one server instance, keyed
-// by the caller's IP address. One caller hammering a route is cut off after a handful
-// of requests, and a ceiling across all callers bounds what one instance will spend on
-// the model in an hour.
+// by the caller's network address. It is a best-effort brake on one address hammering
+// a route.
 //
-// What this is not: a shared counter. Each server instance counts on its own, so a
-// flood spread across several instances gets a multiple of these limits. A limit that
-// must hold exactly belongs at the edge (a firewall rule), in front of this code.
+// What this is not: a shared counter, or a count of people. Each server instance
+// counts on its own, so a flood spread across instances gets a multiple of these
+// limits, and everyone behind one office or VPN address shares one allowance. A limit
+// that must hold exactly, or across many addresses, belongs at the edge (a firewall
+// rule) in front of this code.
 //
-// The windows are deliberately far above what a person does in the chat, so a real
-// visitor never meets them.
+// The windows are set far above what one person does in the chat, so that a shared
+// address with several real visitors still fits.
 
 export type Window = { max: number; windowMs: number }
 
-export type LimiterOptions = {
-  /** Windows applied to each caller separately. A request must fit all of them. */
-  perClient: Window[]
-  /** Optional ceiling across every caller of this limiter, per instance. */
-  overall?: Window
-}
 
 export type Verdict = { ok: true } | { ok: false; retryAfterSeconds: number }
 
-/** Callers tracked at once. Past this, the oldest entries are dropped first. */
-const MAX_TRACKED_CLIENTS = 5_000
-const OVERALL_KEY = ''
+/**
+ * Addresses tracked at once. When the table is full of live entries, a new address is
+ * let through uncounted instead of pushing a live entry out: dropping one would hand a
+ * throttled caller a fresh allowance, and refusing would lock out real visitors. A
+ * flood from that many addresses is beyond what a per-address counter can stop.
+ */
+const MAX_TRACKED_CLIENTS = 20_000
 
 type Counter = { count: number; resetAt: number }
 
 export class RateLimiter {
   private readonly counters = new Map<string, Counter[]>()
-  private readonly options: LimiterOptions
+  private readonly windows: Window[]
 
-  constructor(options: LimiterOptions) {
-    this.options = options
+  /** A request must fit every window. */
+  constructor(windows: Window[]) {
+    this.windows = windows
   }
 
   /** Count one request from `client` and say whether it may proceed. */
   check(client: string, now: number = Date.now()): Verdict {
-    const overall = this.options.overall
-    const overallCounters = overall ? this.countersFor(OVERALL_KEY, [overall], now) : []
-    const clientCounters = this.countersFor(`c:${client}`, this.options.perClient, now)
+    let held = this.counters.get(client)
+    if (!held) {
+      if (!this.hasRoom(now)) return { ok: true }
+      held = this.windows.map((w) => ({ count: 0, resetAt: now + w.windowMs }))
+      this.counters.set(client, held)
+    }
 
-    // Decide before counting, so a refused request does not push the window further
-    // out of reach and a refused caller cannot use up the overall ceiling.
-    const windows = [...(overall ? [overall] : []), ...this.options.perClient]
-    const held = [...overallCounters, ...clientCounters]
+    // Decide before counting, so a refused request does not extend the wait.
     let retryAt = 0
     held.forEach((counter, i) => {
-      if (counter.count >= windows[i].max) retryAt = Math.max(retryAt, counter.resetAt)
+      if (now >= counter.resetAt) {
+        counter.count = 0
+        counter.resetAt = now + this.windows[i].windowMs
+      }
+      if (counter.count >= this.windows[i].max) retryAt = Math.max(retryAt, counter.resetAt)
     })
     if (retryAt > 0) {
       return { ok: false, retryAfterSeconds: Math.max(1, Math.ceil((retryAt - now) / 1000)) }
@@ -59,48 +63,37 @@ export class RateLimiter {
     return { ok: true }
   }
 
-  private countersFor(key: string, windows: Window[], now: number): Counter[] {
-    let held = this.counters.get(key)
-    if (!held) {
-      this.makeRoom(now)
-      held = windows.map((w) => ({ count: 0, resetAt: now + w.windowMs }))
-      this.counters.set(key, held)
-      return held
-    }
-    held.forEach((counter, i) => {
-      if (now >= counter.resetAt) {
-        counter.count = 0
-        counter.resetAt = now + windows[i].windowMs
-      }
-    })
-    return held
-  }
-
-  /** Keep the map bounded: drop finished entries, then the oldest, before adding one. */
-  private makeRoom(now: number): void {
-    if (this.counters.size < MAX_TRACKED_CLIENTS) return
+  /** True when a new address can be tracked, after clearing out finished entries. */
+  private hasRoom(now: number): boolean {
+    if (this.counters.size < MAX_TRACKED_CLIENTS) return true
     for (const [key, held] of this.counters) {
-      if (key !== OVERALL_KEY && held.every((counter) => now >= counter.resetAt)) {
-        this.counters.delete(key)
-      }
+      if (held.every((counter) => now >= counter.resetAt)) this.counters.delete(key)
     }
-    for (const key of this.counters.keys()) {
-      if (this.counters.size < MAX_TRACKED_CLIENTS) break
-      if (key !== OVERALL_KEY) this.counters.delete(key)
-    }
+    return this.counters.size < MAX_TRACKED_CLIENTS
   }
 }
 
 /**
  * The caller's address as the hosting platform reports it. Vercel sets these headers
- * itself and overwrites anything the caller sent, so they cannot be forged there.
- * Requests with no address at all share one bucket.
+ * itself and overwrites what the caller sent. Requests with no address share one
+ * bucket. An IPv6 caller is keyed by its /64 network, because one subscriber holds
+ * that whole range and could otherwise use a new address for every request.
  */
 export function clientAddress(request: Request): string {
   const real = request.headers.get('x-real-ip')?.trim()
-  if (real) return real
-  const forwarded = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim()
-  return forwarded || 'unknown'
+  const address = real || request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || ''
+  if (!address) return 'unknown'
+  return address.includes(':') ? ipv6Network(address) : address
+}
+
+/** The first four groups of an IPv6 address, with `::` expanded. */
+function ipv6Network(address: string): string {
+  const [head, tail] = address.toLowerCase().split('%')[0].split('::')
+  const front = head ? head.split(':') : []
+  const back = tail ? tail.split(':') : []
+  const groups =
+    tail === undefined ? front : [...front, ...Array(Math.max(0, 8 - front.length - back.length)).fill('0'), ...back]
+  return groups.slice(0, 4).map((g) => g.replace(/^0+(?=.)/, '')).join(':') + '::/64'
 }
 
 const MINUTE = 60_000
@@ -108,27 +101,26 @@ const HOUR = 60 * MINUTE
 
 /**
  * The two routes that call the model share one limiter, because they share one bill.
- * A person sends a few messages a minute; these allow well over that.
+ * One person sends a few messages a minute.
  */
-export const aiRouteLimiter = new RateLimiter({
-  perClient: [
-    { max: 12, windowMs: MINUTE },
-    { max: 100, windowMs: HOUR },
-  ],
-  overall: { max: 600, windowMs: HOUR },
-})
+export const aiRouteLimiter = new RateLimiter([
+  { max: 20, windowMs: MINUTE },
+  { max: 200, windowMs: HOUR },
+])
 
 /**
- * Team notification emails. The chat sends one after each reply and the intake form a
- * few per submission. No overall ceiling: a lead notification must never be refused
- * because of someone else's traffic.
+ * Team notification emails, in two separate allowances so that chat traffic can never
+ * use up the room a lead notification needs. The chat sends a transcript when a
+ * visitor goes quiet; the intake form and downloads send a few emails per lead.
  */
-export const notifyRouteLimiter = new RateLimiter({
-  perClient: [
-    { max: 30, windowMs: MINUTE },
-    { max: 300, windowMs: HOUR },
-  ],
-})
+export const transcriptNotifyLimiter = new RateLimiter([
+  { max: 30, windowMs: MINUTE },
+  { max: 300, windowMs: HOUR },
+])
+export const leadNotifyLimiter = new RateLimiter([
+  { max: 20, windowMs: MINUTE },
+  { max: 100, windowMs: HOUR },
+])
 
 /** A 429 for a throttled request, or null when the request may proceed. */
 export function tooManyRequests(limiter: RateLimiter, request: Request): Response | null {
