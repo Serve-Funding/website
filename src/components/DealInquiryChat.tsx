@@ -7,6 +7,7 @@ import { COLORS as BRAND_COLORS } from '@/lib/colors'
 import { trackChatbotMessage } from '@/lib/tracking'
 import { getAIDealResponse } from '@/lib/ai'
 import { Container, Button } from '@/components/ui'
+import { MAX_MESSAGE_CHARS } from '@/lib/api-input-limits'
 
 interface Message {
   id: string
@@ -240,6 +241,7 @@ export function DealInquiryChat({ formData, onScheduleClick }: DealInquiryChatPr
               <input
                 type="text"
                 value={inputValue}
+                maxLength={MAX_MESSAGE_CHARS}
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' && !e.shiftKey) {
