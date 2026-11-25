@@ -13,6 +13,8 @@
 // The windows are set far above what one person does in the chat, so that a shared
 // address with several real visitors still fits.
 
+import { isIP } from 'node:net'
+
 export type Window = { max: number; windowMs: number }
 
 
@@ -25,12 +27,15 @@ export type Verdict = { ok: true } | { ok: false; retryAfterSeconds: number }
  * flood from that many addresses is beyond what a per-address counter can stop.
  */
 const MAX_TRACKED_CLIENTS = 20_000
+/** While the table is full, look for finished entries at most this often. */
+const SWEEP_INTERVAL_MS = 10_000
 
 type Counter = { count: number; resetAt: number }
 
 export class RateLimiter {
   private readonly counters = new Map<string, Counter[]>()
   private readonly windows: Window[]
+  private nextSweepAt = 0
 
   /** A request must fit every window. */
   constructor(windows: Window[]) {
@@ -66,6 +71,8 @@ export class RateLimiter {
   /** True when a new address can be tracked, after clearing out finished entries. */
   private hasRoom(now: number): boolean {
     if (this.counters.size < MAX_TRACKED_CLIENTS) return true
+    if (now < this.nextSweepAt) return false
+    this.nextSweepAt = now + SWEEP_INTERVAL_MS
     for (const [key, held] of this.counters) {
       if (held.every((counter) => now >= counter.resetAt)) this.counters.delete(key)
     }
@@ -81,14 +88,23 @@ export class RateLimiter {
  */
 export function clientAddress(request: Request): string {
   const real = request.headers.get('x-real-ip')?.trim()
-  const address = real || request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || ''
-  if (!address) return 'unknown'
-  return address.includes(':') ? ipv6Network(address) : address
+  const raw = real || request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || ''
+  if (!raw) return 'unknown'
+
+  let address = raw.toLowerCase().split('%')[0]
+  // An IPv4 address carried inside IPv6 (::ffff:203.0.113.7) is that IPv4 address.
+  const mapped = /^::ffff:(\d+\.\d+\.\d+\.\d+)$/.exec(address)
+  if (mapped) address = mapped[1]
+
+  if (isIP(address) === 4) return address
+  if (isIP(address) === 6) return ipv6Network(address)
+  // Not an address we recognise: still a stable key, kept short.
+  return `other:${address.slice(0, 64)}`
 }
 
-/** The first four groups of an IPv6 address, with `::` expanded. */
+/** The /64 network of a valid IPv6 address: its first four groups, `::` expanded. */
 function ipv6Network(address: string): string {
-  const [head, tail] = address.toLowerCase().split('%')[0].split('::')
+  const [head, tail] = address.split('::')
   const front = head ? head.split(':') : []
   const back = tail ? tail.split(':') : []
   const groups =
@@ -100,8 +116,9 @@ const MINUTE = 60_000
 const HOUR = 60 * MINUTE
 
 /**
- * The two routes that call the model share one limiter, because they share one bill.
- * One person sends a few messages a minute.
+ * The two routes that call the model use one limiter, because they share one bill.
+ * The allowance is shared only where both routes run in the same server process;
+ * otherwise each route counts on its own. One person sends a few messages a minute.
  */
 export const aiRouteLimiter = new RateLimiter([
   { max: 20, windowMs: MINUTE },
@@ -109,17 +126,25 @@ export const aiRouteLimiter = new RateLimiter([
 ])
 
 /**
- * Team notification emails, in two separate allowances so that chat traffic can never
- * use up the room a lead notification needs. The chat sends a transcript when a
- * visitor goes quiet; the intake form and downloads send a few emails per lead.
+ * Team notification emails. Nothing that calls this route retries a refused request,
+ * so a refusal here is a lost email: the limits are loose and only stop a flood.
+ *
+ * Chat transcripts and lead notifications have separate allowances, so that chat
+ * traffic can never use up the room a lead notification needs. The route-wide limiter
+ * runs before the body is read and counts every request, refused or not; an address has
+ * to send more than two a second for a full minute to meet it.
  */
+export const notifyRouteLimiter = new RateLimiter([
+  { max: 120, windowMs: MINUTE },
+  { max: 1200, windowMs: HOUR },
+])
 export const transcriptNotifyLimiter = new RateLimiter([
   { max: 30, windowMs: MINUTE },
   { max: 300, windowMs: HOUR },
 ])
 export const leadNotifyLimiter = new RateLimiter([
-  { max: 20, windowMs: MINUTE },
-  { max: 100, windowMs: HOUR },
+  { max: 30, windowMs: MINUTE },
+  { max: 300, windowMs: HOUR },
 ])
 
 /** A 429 for a throttled request, or null when the request may proceed. */

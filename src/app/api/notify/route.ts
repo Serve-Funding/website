@@ -1,7 +1,12 @@
 import { NextResponse } from 'next/server'
 import { Resend } from 'resend'
 import { DOWNLOADS, isDownloadKey } from '@/data/downloads'
-import { leadNotifyLimiter, tooManyRequests, transcriptNotifyLimiter } from '@/lib/rate-limit'
+import {
+  leadNotifyLimiter,
+  notifyRouteLimiter,
+  tooManyRequests,
+  transcriptNotifyLimiter,
+} from '@/lib/rate-limit'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'team@portal.servefunding.com'
@@ -92,6 +97,10 @@ function buildTriageTable(body: Record<string, any>): string {
 // type=early: initial contact capture
 // type=calendly: transitioning to scheduling (includes triage + AI conversation)
 export async function POST(request: Request) {
+  // A flood from one address is refused before its body is read.
+  const flooded = tooManyRequests(notifyRouteLimiter, request)
+  if (flooded) return flooded
+
   try {
     const body = await request.json()
     const { name, email, type = 'early' } = body
